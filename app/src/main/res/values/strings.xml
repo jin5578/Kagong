@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">KagongApplication</string>
+    <string name="app_name">Kagong</string>
+
+    <string name="appName">카공의 민족</string>
+
+    <string name="imageView_description">이미지가 열리지 않습니다.</string>
 </resources>
