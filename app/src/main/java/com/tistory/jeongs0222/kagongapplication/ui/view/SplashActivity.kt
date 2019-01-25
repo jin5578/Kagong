@@ -3,7 +3,6 @@ package com.tistory.jeongs0222.kagongapplication.ui.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.tistory.jeongs0222.kagongapplication.MainActivity
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivitySplashBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.SplashViewModel
@@ -18,8 +17,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         val splashViewModel = SplashViewModel()
 
         splashViewModel.openDelay.observe(this, Observer {
-            if (it)
+            if (it) {
                 startActivity(Intent(this, MainActivity::class.java))
+
+                finish()
+                //finishActivity(this.layoutResourceId)
+            }
         })
 
         viewDataBinding.viewmodel = splashViewModel

@@ -24,7 +24,7 @@ class SplashViewModel : DisposableViewModel() {
             .subscribe {
                 _openDelay.value = true
 
-                //onCleared()
+                onCleared()
             }
 
 }
