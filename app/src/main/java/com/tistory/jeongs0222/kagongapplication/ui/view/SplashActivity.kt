@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
         splashViewModel.openDelay.observe(this, Observer {
             if (it) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
 
                 finish()
                 //finishActivity(this.layoutResourceId)
