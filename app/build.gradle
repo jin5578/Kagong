@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -49,4 +51,9 @@ dependencies {
     //Lifecycle
     implementation 'androidx.core:core-ktx:1.0.1'
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+    //Google FIrebase
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }
+

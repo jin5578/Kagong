@@ -1,8 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view
 
-import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
+import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.LoginViewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
@@ -14,8 +15,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         val loginViewModel = LoginViewModel()
 
+        loginViewModel.googleLoginBtn.observe(this, Observer {
+            loginViewModel.googleLogin()
+        })
+
         viewDataBinding.viewmodel = loginViewModel
         viewDataBinding.setLifecycleOwner(this)
 
+        //viewDataBinding.viewmodel = loginViewModel
+        //viewDataBinding.setLifecycleOwner(this)
     }
 }

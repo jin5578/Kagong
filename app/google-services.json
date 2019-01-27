@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "385824661828",
+    "firebase_url": "https://kagongapplication.firebaseio.com",
+    "project_id": "kagongapplication",
+    "storage_bucket": "kagongapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385824661828:android:df6adc6ce7b3c946",
+        "android_client_info": {
+          "package_name": "com.tistory.jeongs0222.kagongapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385824661828-uui6j70864pakmu3slgu8aahk46pric8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tistory.jeongs0222.kagongapplication",
+            "certificate_hash": "b9f08c585a5b709bb4f43023efc66cbc06b2d29d"
+          }
+        },
+        {
+          "client_id": "385824661828-o8638d7b6d7gt3u7ia36ks2mnj95udrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6q4UE7ZHlw3jvIf97KXpFd6Ewj6XUAQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385824661828-o8638d7b6d7gt3u7ia36ks2mnj95udrl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
