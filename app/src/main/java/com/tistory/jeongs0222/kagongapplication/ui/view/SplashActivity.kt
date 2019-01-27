@@ -21,11 +21,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 startActivity(Intent(this, LoginActivity::class.java))
 
                 finish()
-                //finishActivity(this.layoutResourceId)
             }
         })
 
-        viewDataBinding.viewmodel = splashViewModel
+        viewDataBinding.sViewModel = splashViewModel
         viewDataBinding.setLifecycleOwner(this)
     }
 

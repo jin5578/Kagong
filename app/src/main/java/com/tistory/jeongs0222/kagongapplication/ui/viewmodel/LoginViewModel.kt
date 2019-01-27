@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
 import android.util.Log
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 
@@ -9,16 +10,15 @@ class LoginViewModel : DisposableViewModel() {
 
     private val TAG = "LoginViewModel"
 
-    private val _googleLoginBtn = SingleLiveEvent<Any>()
-    val googleLoginBtn: LiveData<Any> get() = _googleLoginBtn
+    private val _googleLogin = SingleLiveEvent<ConstraintLayout>()
+    val googleLogin: LiveData<ConstraintLayout> get() = _googleLogin
 
-    fun googleLoginClickEvent() {
-        _googleLoginBtn.call()
-
-        Log.e(TAG, "googleLoginEvent")
+    fun googleLoginClick() {
+        _googleLogin.call()
     }
 
     fun googleLogin() {
-
+        Log.e(TAG, "googleLoginClickAndEvent")
     }
+
 }

@@ -15,14 +15,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         val loginViewModel = LoginViewModel()
 
-        loginViewModel.googleLoginBtn.observe(this, Observer {
+        loginViewModel.googleLogin.observe(this, Observer {
             loginViewModel.googleLogin()
         })
 
-        viewDataBinding.viewmodel = loginViewModel
+        viewDataBinding.lViewModel = loginViewModel
         viewDataBinding.setLifecycleOwner(this)
-
-        //viewDataBinding.viewmodel = loginViewModel
-        //viewDataBinding.setLifecycleOwner(this)
     }
 }

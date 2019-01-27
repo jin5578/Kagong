@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
 
         <variable
-                name="viewmodel"
+                name="sViewModel"
                 type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.SplashViewModel"/>
 
     </data>

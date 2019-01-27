@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
 
         <variable
-                name="viewmodel"
+                name="lViewModel"
                 type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.LoginViewModel"/>
 
     </data>
@@ -32,14 +32,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.gms.common.SignInButton
-                android:id="@+id/googleLoginBtn"
+        <View
+                android:id="@+id/null2"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="1dp"
+                android:background="@color/colorLightGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/null3"/>
+
+        <include
+                android:id="@+id/null3"
+                layout="@layout/googlebutton_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:lViewModel="@{lViewModel}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/null4"/>
+
+        <View
+                android:id="@+id/null4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="150dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:onClick="@{() -> viewmodel.googleLoginClickEvent()}"
+                android:background="@color/colorLightGray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
