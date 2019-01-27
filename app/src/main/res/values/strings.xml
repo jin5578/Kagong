@@ -6,4 +6,6 @@
     <string name="imageView_description">이미지가 열리지 않습니다.</string>
 
     <string name="google_login">Sign in with Google</string>
+
+    <string name="client_id">385824661828-uui6j70864pakmu3slgu8aahk46pric8.apps.googleusercontent.com</string>
 </resources>
