@@ -12,13 +12,13 @@ import com.tistory.jeongs0222.kagongapplication.R
 
 
 interface GoogleSignProvider {
-    fun getGoogleSignInOptions() : GoogleSignInOptions
+    fun getGoogleSignInOptions(): GoogleSignInOptions
 
-    fun getGoogleSignInClient(gso : GoogleSignInOptions) : GoogleSignInClient
+    fun getGoogleSignInClient(gso: GoogleSignInOptions): GoogleSignInClient
 
-    fun googleSignIn(googleSignInClient : GoogleSignInClient)
+    fun googleSignIn(googleSignInClient: GoogleSignInClient)
 
-    fun firebaseSignIn(acct: GoogleSignInAccount)
+    fun firebaseSignIn(acct: GoogleSignInAccount): Boolean
 
 }
 
@@ -27,35 +27,47 @@ class GoogleSignProviderImpl(private val activity: Activity) : GoogleSignProvide
 
     private lateinit var mAuth: FirebaseAuth
 
+    private val  messageProvider = MessageProviderImpl(activity) as MessageProvider
+
+    private var user_uid: String? = null
+
     override fun getGoogleSignInOptions(): GoogleSignInOptions {
-        return  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(activity.getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
     }
 
-    override fun getGoogleSignInClient(gso : GoogleSignInOptions) : GoogleSignInClient {
+    override fun getGoogleSignInClient(gso: GoogleSignInOptions): GoogleSignInClient {
         return GoogleSignIn.getClient(activity, gso)
     }
 
-    override fun googleSignIn(googleSignInClient : GoogleSignInClient) {
+    override fun googleSignIn(googleSignInClient: GoogleSignInClient) {
         val signInIntent = googleSignInClient.signInIntent
 
         activity.startActivityForResult(signInIntent, 10)
     }
 
-    override fun firebaseSignIn(acct: GoogleSignInAccount) {
+    override fun firebaseSignIn(acct: GoogleSignInAccount): Boolean {
         mAuth = FirebaseAuth.getInstance()
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
 
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
-                if(task.isSuccessful) {
+                if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
 
-                    Log.e(TAG, user!!.uid)
+                    user_uid = user!!.uid
+
+                    messageProvider.toastMessage("구글 로그인을 성공하였습니다.")
+
+                    Log.e(TAG, user.uid)
+                } else {
+                    messageProvider.toastMessage("구글 로그인을 실패하였습니다.")
                 }
             }
+
+        return true
     }
 }

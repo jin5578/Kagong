@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -44,7 +45,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 val account = task.getResult(ApiException::class.java)
 
                 if (account != null) {
-                    googleSignProvider.firebaseSignIn(account)
+                    Log.e(TAG, googleSignProvider.firebaseSignIn(account).toString())
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
