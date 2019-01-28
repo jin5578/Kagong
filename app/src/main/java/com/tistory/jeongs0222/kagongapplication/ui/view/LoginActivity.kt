@@ -2,11 +2,8 @@ package com.tistory.jeongs0222.kagongapplication.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
@@ -40,37 +37,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        Log.e(TAG, "1")
-
         if(requestCode == 10) {
-            Log.e(TAG, "2")
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
-                Log.e(TAG, "3")
                 val account = task.getResult(ApiException::class.java)
 
-                Log.e(TAG, account.toString())
-
+                if (account != null) {
+                    googleSignProvider.firebaseSignIn(account)
+                }
             } catch (e: ApiException) {
-                Log.e(TAG, "4")
-
                 e.printStackTrace()
             }
-            /*Log.e(TAG, "2")
-
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-
-            if(result.isSuccess) {
-                Log.e(TAG, "3")
-
-                val account = result.signInAccount
-
-                Log.e(TAG, account.toString())
-            } else {
-                Log.e(TAG, "4")
-
-            }*/
         }
     }
+
 }
