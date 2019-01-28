@@ -11,15 +11,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.view.SplashActivity">
+        <activity android:name=".ui.view.fragment.PersonalInfoFragment">
+        </activity>
+        <activity android:name=".ui.view.fragment.BasicInfoFragment">
+        </activity>
+        <activity android:name=".ui.view.activity.RegisterActivity">
+        </activity>
+        <activity android:name=".ui.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.view.LoginActivity"/>
-        <activity android:name=".ui.view.MainActivity"/>
+        <activity android:name=".ui.view.activity.LoginActivity"/>
+        <activity android:name=".ui.view.activity.MainActivity"/>
     </application>
 
 </manifest>

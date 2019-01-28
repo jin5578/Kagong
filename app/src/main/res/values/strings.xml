@@ -2,10 +2,16 @@
     <string name="app_name">Kagong</string>
 
     <string name="appName">카공의 민족</string>
+    <string name="app_introduce">\t\t모든 카페 정보부터\n 리뷰,평점까지 한번에!</string>
 
     <string name="imageView_description">이미지가 열리지 않습니다.</string>
+    <string name="register">회원가입</string>
+    <string name="basic_information">기본정보</string>
+    <string name="nickname">NICKNAME</string>
+    <string name="validate">중복확인</string>
+    <string name="in_agreement">약관동의</string>
+    <string name="entire_agreement">전체동의</string>
 
     <string name="google_login">Sign in with Google</string>
 
-    <string name="client_id">385824661828-uui6j70864pakmu3slgu8aahk46pric8.apps.googleusercontent.com</string>
 </resources>

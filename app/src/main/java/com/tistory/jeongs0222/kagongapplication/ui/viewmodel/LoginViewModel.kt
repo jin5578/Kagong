@@ -9,9 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.tistory.jeongs0222.kagongapplication.utils.GoogleSignProvider
 
 
-
-
-class LoginViewModel : DisposableViewModel() {
+class LoginViewModel: DisposableViewModel() {
 
     private val _googleLogin = SingleLiveEvent<ConstraintLayout>()
     val googleLogin: LiveData<ConstraintLayout> get() = _googleLogin
@@ -20,8 +18,8 @@ class LoginViewModel : DisposableViewModel() {
 
     private lateinit var googleSignProvider: GoogleSignProvider
 
-    private lateinit var gso : GoogleSignInOptions
-    private lateinit var mGoogleSignInClient : GoogleSignInClient
+    private lateinit var gso: GoogleSignInOptions
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     fun bind(googleSignProvider: GoogleSignProvider) {
         this.googleSignProvider = googleSignProvider

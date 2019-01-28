@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/google_login"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

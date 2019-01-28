@@ -28,17 +28,6 @@ class MessageProviderImpl(private val activity: Activity): MessageProvider {
         toast.view = toastView
 
         toast.show()
-
-
-        /*val toastView = activity.layoutInflater.inflate(R.layout.toastmessage_layout, null)
-
-        val toast = Toast(activity)
-        toast.view = toastView
-        toast.duration = Toast.LENGTH_SHORT
-        toast.setGravity(Gravity.CENTER, 0, 0)
-        toast.setText(message)
-        toast.show()*/
-        //Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun snackbar() {
