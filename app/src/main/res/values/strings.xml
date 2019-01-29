@@ -11,6 +11,7 @@
     <string name="validate">중복확인</string>
     <string name="in_agreement">약관동의</string>
     <string name="entire_agreement">전체동의</string>
+    <string name="next">NEXT</string>
 
     <string name="google_login">Sign in with Google</string>
 
