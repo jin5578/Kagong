@@ -19,6 +19,10 @@ class RegisterViewModel: DisposableViewModel() {
 
     lateinit var adapter: PagerAdapter
 
+    init {
+        Log.e(TAG, "RegisterViewModelCreated")
+    }
+
     fun bind(viewPagerProvider: ViewPagerProvider) {
         adapter = viewPagerProvider.getPagerAdapter()
     }

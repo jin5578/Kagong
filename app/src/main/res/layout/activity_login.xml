@@ -39,7 +39,7 @@
                 android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/null3"/>
+                app:layout_constraintBottom_toTopOf="@id/null3"/>
 
         <include
                 android:id="@+id/null3"
