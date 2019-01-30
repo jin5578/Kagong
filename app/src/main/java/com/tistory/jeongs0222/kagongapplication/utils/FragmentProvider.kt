@@ -15,8 +15,6 @@ interface FragmentProvider {
 
 class FragmentProviderImpl(private val fragmentManager: FragmentManager): FragmentProvider {
 
-    //private lateinit var fragmentTransaction: FragmentTransaction
-
     override fun initFragment() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.frameLayout, BasicInfoFragment()).commit()

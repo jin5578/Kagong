@@ -19,17 +19,92 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <Button
-                android:id="@+id/number1"
+        <TextView
+                android:id="@+id/null1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Personal Info"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="150dp"
+                android:text="@string/personal_information"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/null2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/sex"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"/>
+
+        <TextView
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:fontFamily="@font/goyang"
+                android:text="@string/female"
+                android:textSize="12sp"
+                android:background="@drawable/edittext_background"
+                app:layout_constraintStart_toEndOf="@id/null2"
+                app:layout_constraintTop_toTopOf="@id/null2"
+                app:layout_constraintBottom_toBottomOf="@id/null2"/>
+
+        <TextView
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:fontFamily="@font/goyang"
+                android:text="@string/male"
+                android:textSize="12sp"
+                android:background="@drawable/edittext_background"
+                app:layout_constraintStart_toEndOf="@id/female"
+                app:layout_constraintTop_toTopOf="@id/female"
+                app:layout_constraintBottom_toBottomOf="@id/female"/>
+
+        <TextView
+                android:id="@+id/null3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/age"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"/>
+
+        <TextView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:padding="15dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/previous"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/goyang"
                 android:onClick="@{() -> rViewModel.test2Click()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/null3"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,6 +9,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.FragmentBasicInfoBin
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+
 class BasicInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentBasicInfoBinding

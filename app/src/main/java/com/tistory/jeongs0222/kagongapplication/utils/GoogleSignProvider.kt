@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.tistory.jeongs0222.kagongapplication.R
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.InagreementActivity
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.RegisterActivity
 
 
@@ -64,7 +65,7 @@ class GoogleSignProviderImpl(private val activity: Activity) : GoogleSignProvide
 
                     messageProvider.toastMessage("구글 로그인을 성공하였습니다.")
 
-                    activity.startActivity(Intent(activity, RegisterActivity::class.java))
+                    activity.startActivity(Intent(activity, InagreementActivity::class.java))
 
                     activity.finish()
 

@@ -28,7 +28,6 @@
                 android:text="@string/basic_information"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:textStyle="bold"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -38,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/nickname"
                 android:textSize="12sp"
@@ -76,7 +75,6 @@
                 android:text="@string/in_agreement"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:textStyle="bold"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/nickname"/>
@@ -89,7 +87,7 @@
                 android:textColor="@color/colorGray2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null4"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="20dp"/>
 
         <TextView
