@@ -16,6 +16,9 @@ class InagreementViewModel: DisposableViewModel() {
     private val _nextClick = SingleLiveEvent<Any>()
     val nextClick: LiveData<Any> get() = _nextClick
 
+    private val _closeClick = SingleLiveEvent<Any>()
+    val closeClick: LiveData<Any> get() = _closeClick
+
     private val TAG = "InagreementViewModel"
 
     init {
@@ -30,5 +33,9 @@ class InagreementViewModel: DisposableViewModel() {
 
     fun nextClickEvent() {
         _nextClick.call()
+    }
+
+    fun closeClickEvent() {
+        _closeClick.call()
     }
 }

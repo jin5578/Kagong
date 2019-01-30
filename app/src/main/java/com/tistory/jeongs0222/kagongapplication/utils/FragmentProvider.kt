@@ -11,6 +11,8 @@ interface FragmentProvider {
     fun initFragment()
 
     fun replaceFragment(fragment: Fragment)
+
+    fun addFragment(fragment: Fragment)
 }
 
 class FragmentProviderImpl(private val fragmentManager: FragmentManager): FragmentProvider {
@@ -18,12 +20,15 @@ class FragmentProviderImpl(private val fragmentManager: FragmentManager): Fragme
     override fun initFragment() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.frameLayout, BasicInfoFragment()).commit()
-
     }
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment).commit()
+    }
 
+    override fun addFragment(fragment: Fragment) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.frameLayout, fragment).commit()
     }
 }

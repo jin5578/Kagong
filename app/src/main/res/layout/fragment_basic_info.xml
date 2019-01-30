@@ -23,7 +23,7 @@
                 android:id="@+id/null1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="150dp"
                 android:text="@string/basic_information"
                 android:textColor="@color/colorBlack"
@@ -36,9 +36,10 @@
                 android:id="@+id/nickname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
                 android:hint="@string/nickname"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
@@ -48,63 +49,38 @@
                 android:background="@drawable/edittext_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"
-                app:layout_constraintEnd_toStartOf="@id/validate"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
                 android:id="@+id/validate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:padding="10dp"
                 android:gravity="center"
-                android:layout_marginEnd="20dp"
                 android:text="@string/validate"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 android:background="@drawable/edittext_background"
-                app:layout_constraintStart_toEndOf="@id/nickname"
-                app:layout_constraintTop_toTopOf="@id/nickname"
-                app:layout_constraintBottom_toBottomOf="@id/nickname"
+                app:layout_constraintTop_toBottomOf="@id/nickname"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-                android:id="@+id/null4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:text="@string/in_agreement"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/goyang"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nickname"/>
-
-        <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/entire_agreement"
-                android:textColor="@color/colorGray2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null4"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="20dp"/>
 
         <TextView
                 android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="50dp"
+                android:layout_marginEnd="30dp"
                 android:padding="15dp"
-                android:layout_marginTop="50dp"
                 android:text="@string/next"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> rViewModel.test1Click()}"
-                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="@{() -> rViewModel.nextClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkBox"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

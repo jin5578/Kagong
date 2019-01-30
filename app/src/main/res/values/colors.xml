@@ -9,4 +9,7 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorGray1">#EAEAEA</color>
     <color name="colorGray2">#4C4C4C</color>
+    <color name="colorGray3">#808080</color>
+    <color name="colorPink">#F7A7A6</color>
+    <color name="colorTransparent">#80000000</color>
 </resources>

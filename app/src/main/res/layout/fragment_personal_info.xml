@@ -23,7 +23,7 @@
                 android:id="@+id/null1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="150dp"
                 android:text="@string/personal_information"
                 android:textColor="@color/colorBlack"
@@ -36,7 +36,7 @@
                 android:id="@+id/null2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/sex"
                 android:textSize="12sp"
@@ -46,65 +46,84 @@
 
         <TextView
                 android:id="@+id/female"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:gravity="center"
+                android:padding="15dp"
                 android:fontFamily="@font/goyang"
                 android:text="@string/female"
                 android:textSize="12sp"
                 android:background="@drawable/edittext_background"
-                app:layout_constraintStart_toEndOf="@id/null2"
-                app:layout_constraintTop_toTopOf="@id/null2"
-                app:layout_constraintBottom_toBottomOf="@id/null2"/>
+                android:onClick="@{() -> rViewModel.femaleClickEvent()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/male"
+                app:layout_constraintTop_toBottomOf="@id/null2"/>
 
         <TextView
                 android:id="@+id/male"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:padding="15dp"
                 android:fontFamily="@font/goyang"
                 android:text="@string/male"
                 android:textSize="12sp"
                 android:background="@drawable/edittext_background"
+                android:onClick="@{() -> rViewModel.maleClickEvent()}"
                 app:layout_constraintStart_toEndOf="@id/female"
                 app:layout_constraintTop_toTopOf="@id/female"
-                app:layout_constraintBottom_toBottomOf="@id/female"/>
+                app:layout_constraintBottom_toBottomOf="@id/female"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
                 android:id="@+id/null3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/age"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"/>
+                app:layout_constraintTop_toBottomOf="@id/female"/>
+
+        <TextView
+                android:id="@+id/age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:fontFamily="@font/goyang"
+                android:text="2018"
+                android:textSize="12sp"
+                android:background="@drawable/edittext_background"
+                android:onClick="@{() -> rViewModel.ageClickEvent()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null3"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="50dp"
+                android:layout_marginStart="30dp"
                 android:padding="15dp"
                 android:layout_marginTop="50dp"
                 android:text="@string/previous"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> rViewModel.test2Click()}"
+                android:onClick="@{() -> rViewModel.previousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null3"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
