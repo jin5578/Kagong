@@ -98,10 +98,11 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                android:hint="@string/age"
                 android:gravity="center"
                 android:padding="15dp"
                 android:fontFamily="@font/goyang"
-                android:text="@string/age"
+                android:text="@{rViewModel.userYear}"
                 android:textSize="12sp"
                 android:background="@drawable/edittext_background"
                 android:onClick="@{() -> rViewModel.ageClickEvent()}"
@@ -154,8 +155,6 @@
                 android:onClick="@{() -> rViewModel.previousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

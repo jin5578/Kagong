@@ -1,12 +1,10 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityRegisterBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.AgeFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.YearFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.PersonalInfoFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
@@ -18,8 +16,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
-    private var FRAGMENT_ID: Fragment = PersonalInfoFragment()
-
     private val TAG = "RegisterActivity"
 
     override val layoutResourceId: Int = R.layout.activity_register
@@ -29,32 +25,38 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val registerViewModel by viewModel<RegisterViewModel>()
 
+    private val personalInfoFragment = PersonalInfoFragment()
+    private val basicInfoFragment = BasicInfoFragment()
+    private val yearFragment = YearFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         fragmentProvider.initFragment()
 
         registerViewModel.nextClick.observe(this@RegisterActivity, Observer {
-            FRAGMENT_ID = PersonalInfoFragment()
-
-            fragmentProvider.replaceFragment(FRAGMENT_ID)
+            fragmentProvider.replaceFragment(personalInfoFragment)
         })
 
         registerViewModel.previousClick.observe(this@RegisterActivity, Observer {
-            FRAGMENT_ID = BasicInfoFragment()
-
-            fragmentProvider.replaceFragment(FRAGMENT_ID)
+            fragmentProvider.replaceFragment(basicInfoFragment)
         })
 
         registerViewModel.ageClick.observe(this@RegisterActivity, Observer {
-            fragmentProvider.addFragment(AgeFragment())
+            fragmentProvider.addFragment(yearFragment)
         })
 
         registerViewModel.userSex.observe(this@RegisterActivity, Observer {
             userSexProvider.sexChange(it)
         })
 
+        registerViewModel.userYear.observe(this@RegisterActivity, Observer {
+            fragmentProvider.replaceFragment(personalInfoFragment)
+        })
+
         viewDataBinding.rViewModel = registerViewModel
         viewDataBinding.setLifecycleOwner(this)
     }
+
+
 }

@@ -7,7 +7,6 @@ import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragme
 
 
 interface FragmentProvider {
-
     fun initFragment()
 
     fun replaceFragment(fragment: Fragment)

@@ -1,17 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
 import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.AgeFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.PersonalInfoFragment
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 
 
-class RegisterViewModel: DisposableViewModel() {
+class RegisterViewModel: DisposableViewModel(), RegisterEventListener {
 
     private val _nextClick = SingleLiveEvent<Any>()
     val nextClick: LiveData<Any> get() = _nextClick
@@ -31,14 +26,15 @@ class RegisterViewModel: DisposableViewModel() {
     private val _userSex = MutableLiveData<String>()
     val userSex: LiveData<String> get() = _userSex
 
+    private val _userYear = MutableLiveData<String>()
+    val userYear: LiveData<String> get() = _userYear
+
     private val TAG = "RegisterViewModel"
 
 
     init {
         Log.e(TAG, "RegisterViewModelCreated")
     }
-
-
 
     fun nextClickEvent() {
         _nextClick.call()
@@ -67,5 +63,14 @@ class RegisterViewModel: DisposableViewModel() {
     fun ageClickEvent() {
         _ageClick.call()
     }
+
+    override fun clickEvent(year: String) {
+        _userYear.value = year
+    }
+}
+
+interface RegisterEventListener {
+
+    fun clickEvent(year: String)
 
 }
