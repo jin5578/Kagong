@@ -24,6 +24,8 @@
     <string name="entire_agreement">전체동의</string>
     <string name="kagong_inAgreement">카공의민족 이용약관 동의</string>
 
+    <string name="job">직업</string>
+
     <string name="google_login">Sign in with Google</string>
 
 </resources>
