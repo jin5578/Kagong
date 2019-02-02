@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.tistory.jeongs0222.kagongapplication.R
 
 
@@ -11,7 +12,7 @@ interface UserSexProvider {
     fun sexChange(sex: String)
 }
 
-class UserSexProviderImpl(private val activity: Activity) : UserSexProvider {
+class UserSexProviderImpl(private val activity: FragmentActivity) : UserSexProvider {
     override fun sexChange(sex: String) {
         var position1 = R.id.female
         var position2 = R.id.male

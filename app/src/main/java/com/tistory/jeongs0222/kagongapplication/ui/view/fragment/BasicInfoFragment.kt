@@ -16,6 +16,7 @@ class BasicInfoFragment : Fragment() {
 
     private val registerViewModel by sharedViewModel<RegisterViewModel>()
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBasicInfoBinding.inflate(inflater, container, false).apply {
             rViewModel = registerViewModel

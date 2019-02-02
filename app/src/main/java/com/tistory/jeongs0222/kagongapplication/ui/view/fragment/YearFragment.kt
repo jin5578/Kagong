@@ -10,7 +10,6 @@ import com.tistory.jeongs0222.kagongapplication.databinding.FragmentYearBinding
 import com.tistory.jeongs0222.kagongapplication.model.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.YearAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.year_item.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

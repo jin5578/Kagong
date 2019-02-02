@@ -27,12 +27,9 @@ class YearAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-
         if (items.isNotEmpty()) {
             (holder as ViewHolder).bind(items[position])
         }
-
-
     }
 
     override fun getItemCount(): Int = items.size

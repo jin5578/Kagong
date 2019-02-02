@@ -62,6 +62,7 @@
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 android:background="@drawable/edittext_background"
+                android:onClick="@{() -> rViewModel.validateClickEvent()}"
                 app:layout_constraintTop_toBottomOf="@id/nickname"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -79,8 +80,7 @@
                 android:fontFamily="@font/goyang"
                 android:onClick="@{() -> rViewModel.nextClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-        />
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,10 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.YearFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.PersonalInfoFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
-import com.tistory.jeongs0222.kagongapplication.utils.UserSexProvider
-import com.tistory.jeongs0222.kagongapplication.utils.UserSexProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
@@ -34,6 +31,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
         fragmentProvider.initFragment()
 
+        registerViewModel.bind(MessageProviderImpl(this) as MessageProvider)
+
         registerViewModel.nextClick.observe(this@RegisterActivity, Observer {
             fragmentProvider.replaceFragment(personalInfoFragment)
         })
@@ -46,6 +45,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             fragmentProvider.addFragment(yearFragment)
         })
 
+        registerViewModel.validateClick.observe(this@RegisterActivity, Observer {
+            registerViewModel.nicknameValidate()
+        })
+
         registerViewModel.userSex.observe(this@RegisterActivity, Observer {
             userSexProvider.sexChange(it)
         })
@@ -53,7 +56,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         registerViewModel.userYear.observe(this@RegisterActivity, Observer {
             fragmentProvider.replaceFragment(personalInfoFragment)
         })
-
         viewDataBinding.rViewModel = registerViewModel
         viewDataBinding.setLifecycleOwner(this)
     }
