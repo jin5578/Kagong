@@ -30,7 +30,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
         fragmentProvider.initFragment(basicInfoFragment)
 
-        registerViewModel.bind(MessageProviderImpl(this) as MessageProvider)
+        registerViewModel.bind(MessageProviderImpl(this) as MessageProvider, IntentProviderImpl(this) as IntentProvider)
 
         registerViewModel.nextClick.observe(this@RegisterActivity, Observer {
             fragmentProvider.replaceFragment(personalInfoFragment)

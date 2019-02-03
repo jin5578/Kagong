@@ -55,6 +55,7 @@ dependencies {
     //Google FIrebase
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
     //Koin
     implementation 'org.koin:koin-android:1.0.2'

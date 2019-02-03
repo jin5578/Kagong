@@ -15,6 +15,7 @@ import com.tistory.jeongs0222.kagongapplication.utils.UserSexProvider
 import com.tistory.jeongs0222.kagongapplication.utils.UserSexProviderImpl
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+
 class PersonalInfoFragment : Fragment() {
 
     private val TAG = "PersonalInfoFragment"
@@ -50,11 +51,18 @@ class PersonalInfoFragment : Fragment() {
             userSexProvider.sexChange(it)
         })
 
+
         registerViewModel.confirmClick.observe(this@PersonalInfoFragment, Observer {
             if(registerViewModel.validateCheck) {
                 if(!registerViewModel.userSex.value.isNullOrBlank()) {
                     if(!registerViewModel.userYear.value.isNullOrBlank()) {
-                        Log.e(TAG, "userYear Not null or blank")
+                        registerViewModel
+                            .register(
+                                registerViewModel.userkey.value!!,
+                                registerViewModel.token.value!!,
+                                registerViewModel.userNickname.value!!,
+                                registerViewModel.userSex.value!!,
+                                registerViewModel.userYear.value!!)
                     } else {
                         messageProvider.toastMessage("연령을 선택해주세요")
                     }

@@ -21,7 +21,6 @@ interface GoogleSignProvider {
     fun googleSignIn(googleSignInClient: GoogleSignInClient)
 
     fun firebaseSignIn(acct: GoogleSignInAccount): Boolean
-
 }
 
 class GoogleSignProviderImpl(private val activity: Activity) : GoogleSignProvider {

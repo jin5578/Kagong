@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,10 +9,25 @@ import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.iid.FirebaseInstanceId
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 
 
 class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
     RegisterEventListener {
+
+    //RegisterActivity
+    private val _userkey = MutableLiveData<String>()
+    val userkey: LiveData<String>
+        get() = _userkey
+
+    private val _token = MutableLiveData<String>()
+    val token: LiveData<String>
+        get() = _token
+
 
     //BasicInfoFragment
     private val _nextClick = SingleLiveEvent<Any>()
@@ -26,10 +42,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     private val _userNickname = MutableLiveData<String>()
     val userNickname: LiveData<String>
         get() = _userNickname
-
-    /*private val _validateCheck = MutableLiveData<Boolean>()
-    val validateCheck: LiveData<Boolean>
-        get() = _validateCheck*/
 
 
     //PersonalInfoFragment
@@ -66,16 +78,21 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     private val TAG = "RegisterViewModel"
 
     private lateinit var messageProvider: MessageProvider
+    private lateinit var intentProvider: IntentProvider
 
     var validateCheck: Boolean = false
 
 
     init {
         Log.e(TAG, "RegisterViewModelCreated")
+
+        getKey()
+        getToken()
     }
 
-    fun bind(messageProvider: MessageProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.messageProvider = messageProvider
+        this.intentProvider = intentProvider
     }
 
     fun nextClickEvent() {
@@ -145,6 +162,48 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                 it.printStackTrace()
             }
             .subscribe()
+    }
+
+    @SuppressLint("CheckResult")
+    fun register(userkey: String, token: String, nickname: String, sex: String, age: String) {
+        registerRepository
+            .register(userkey, token, nickname, sex, age)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                when {
+                    it.value == 0 -> {
+                        messageProvider.toastMessage(it.message)
+
+                        intentProvider.intent(MainActivity::class.java)
+                    }
+
+                    it.value == 1 -> {
+                        messageProvider.toastMessage(it.message)
+                    }
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun getKey() {
+        _userkey.value = FirebaseAuth.getInstance().uid
+
+        Log.e(TAG, _userkey.value)
+    }
+
+    private fun getToken() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+                _token.value = task.result!!.token
+            })
     }
 
     override fun clickEvent(year: String) {
