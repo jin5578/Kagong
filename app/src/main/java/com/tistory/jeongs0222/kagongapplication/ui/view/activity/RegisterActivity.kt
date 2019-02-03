@@ -18,7 +18,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     override val layoutResourceId: Int = R.layout.activity_register
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
-    private val userSexProvider = UserSexProviderImpl(this) as UserSexProvider
 
     private val registerViewModel by viewModel<RegisterViewModel>()
 
@@ -42,20 +41,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         })
 
         registerViewModel.ageClick.observe(this@RegisterActivity, Observer {
-            fragmentProvider.addFragment(yearFragment)
-        })
-
-        registerViewModel.validateClick.observe(this@RegisterActivity, Observer {
-            registerViewModel.nicknameValidate()
-        })
-
-        registerViewModel.userSex.observe(this@RegisterActivity, Observer {
-            userSexProvider.sexChange(it)
+            fragmentProvider.replaceFragment(yearFragment)
         })
 
         registerViewModel.userYear.observe(this@RegisterActivity, Observer {
             fragmentProvider.replaceFragment(personalInfoFragment)
         })
+
         viewDataBinding.rViewModel = registerViewModel
         viewDataBinding.setLifecycleOwner(this)
     }

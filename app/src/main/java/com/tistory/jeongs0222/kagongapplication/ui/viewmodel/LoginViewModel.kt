@@ -9,10 +9,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.tistory.jeongs0222.kagongapplication.utils.GoogleSignProvider
 
 
-class LoginViewModel: DisposableViewModel() {
+class LoginViewModel : DisposableViewModel() {
 
     private val _googleLogin = SingleLiveEvent<ConstraintLayout>()
-    val googleLogin: LiveData<ConstraintLayout> get() = _googleLogin
+    val googleLogin: LiveData<ConstraintLayout>
+        get() = _googleLogin
 
     private val TAG = "LoginViewModel"
 

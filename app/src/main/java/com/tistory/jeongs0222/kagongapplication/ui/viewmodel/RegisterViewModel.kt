@@ -1,10 +1,8 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.RegisterRepository
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -12,34 +10,53 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class RegisterViewModel(private val registerRepository: RegisterRepository): DisposableViewModel(), RegisterEventListener {
+class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
+    RegisterEventListener {
 
     private val _nextClick = SingleLiveEvent<Any>()
-    val nextClick: LiveData<Any> get() = _nextClick
+    val nextClick: LiveData<Any>
+        get() = _nextClick
 
     private val _previousClick = SingleLiveEvent<Any>()
-    val previousClick: LiveData<Any> get() = _previousClick
+    val previousClick: LiveData<Any>
+        get() = _previousClick
+
+    private val _confirmClick = SingleLiveEvent<Any>()
+    val confirmClick: LiveData<Any>
+        get() = _confirmClick
 
     private val _validateClick = SingleLiveEvent<Any>()
-    val validateClick: LiveData<Any> get() = _validateClick
+    val validateClick: LiveData<Any>
+        get() = _validateClick
 
     private val _femaleClick = SingleLiveEvent<Any>()
-    val femaleClick: LiveData<Any> get() = _femaleClick
+    val femaleClick: LiveData<Any>
+        get() = _femaleClick
 
     private val _maleClick = SingleLiveEvent<Any>()
-    val maleClick: LiveData<Any> get() = _maleClick
+    val maleClick: LiveData<Any>
+        get() = _maleClick
 
     private val _ageClick = SingleLiveEvent<Any>()
-    val ageClick: LiveData<Any> get() = _ageClick
+    val ageClick: LiveData<Any>
+        get() = _ageClick
+
+    private val _validateCheck = SingleLiveEvent<Boolean>()
+    val validateCheck: LiveData<Boolean>
+        get() = _validateCheck
 
     private val _userNickname = MutableLiveData<String>()
-    val userNickname: LiveData<String> get() = _userNickname
+    val userNickname: LiveData<String>
+        get() = _userNickname
 
     private val _userSex = MutableLiveData<String>()
-    val userSex: LiveData<String> get() = _userSex
+    val userSex: LiveData<String>
+        get() = _userSex
 
     private val _userYear = MutableLiveData<String>()
-    val userYear: LiveData<String> get() = _userYear
+    val userYear: LiveData<String>
+        get() = _userYear
+
 
     private lateinit var messageProvider: MessageProvider
 
@@ -66,6 +83,12 @@ class RegisterViewModel(private val registerRepository: RegisterRepository): Dis
         Log.e(TAG, "test2Click")
     }
 
+    fun confirmClickEvent() {
+        _confirmClick.call()
+
+        Log.e(TAG, "confirmClick")
+    }
+
     fun validateClickEvent() {
         _validateClick.call()
 
@@ -88,9 +111,9 @@ class RegisterViewModel(private val registerRepository: RegisterRepository): Dis
         _ageClick.call()
     }
 
-    fun nicknameValidate() {
+    fun nicknameValidate(nickname: String) {
         registerRepository
-            .nicknameValidate("관리자")
+            .nicknameValidate(nickname)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

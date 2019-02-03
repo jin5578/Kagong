@@ -12,7 +12,8 @@ import java.util.concurrent.TimeUnit
 class SplashViewModel : DisposableViewModel() {
 
     private val _openDelay = SingleLiveEvent<Boolean>()
-    val openDelay: LiveData<Boolean> get() = _openDelay
+    val openDelay: LiveData<Boolean>
+        get() = _openDelay
 
     init {
         addDisposable(delayTime())

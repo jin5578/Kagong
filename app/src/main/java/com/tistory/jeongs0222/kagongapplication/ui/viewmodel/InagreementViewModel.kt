@@ -5,24 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 
 
-class InagreementViewModel: DisposableViewModel() {
+class InagreementViewModel : DisposableViewModel() {
 
     private val _agreement = MutableLiveData<Boolean>()
-    val agreement: LiveData<Boolean> get() = _agreement
+    val agreement: LiveData<Boolean>
+        get() = _agreement
 
     private val _entireClick = SingleLiveEvent<Any>()
-    val entireClick: LiveData<Any> get() = _entireClick
+    val entireClick: LiveData<Any>
+        get() = _entireClick
 
     private val _nextClick = SingleLiveEvent<Any>()
-    val nextClick: LiveData<Any> get() = _nextClick
+    val nextClick: LiveData<Any>
+        get() = _nextClick
 
     private val _closeClick = SingleLiveEvent<Any>()
-    val closeClick: LiveData<Any> get() = _closeClick
+    val closeClick: LiveData<Any>
+        get() = _closeClick
 
     private val TAG = "InagreementViewModel"
 
     init {
-       _agreement.value = false
+        _agreement.value = false
     }
 
     fun entireClickEvent() {

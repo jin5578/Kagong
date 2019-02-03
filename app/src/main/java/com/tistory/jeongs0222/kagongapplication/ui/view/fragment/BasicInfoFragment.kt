@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentBasicInfoBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -28,5 +29,9 @@ class BasicInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registerViewModel.validateClick.observe(this@BasicInfoFragment, Observer {
+            registerViewModel.nicknameValidate(binding.nickname.text.toString())
+        })
     }
 }
