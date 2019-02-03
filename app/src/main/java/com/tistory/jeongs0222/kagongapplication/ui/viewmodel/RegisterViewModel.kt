@@ -13,22 +13,26 @@ import io.reactivex.schedulers.Schedulers
 class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
     RegisterEventListener {
 
+    //BasicInfoFragment
     private val _nextClick = SingleLiveEvent<Any>()
     val nextClick: LiveData<Any>
         get() = _nextClick
-
-    private val _previousClick = SingleLiveEvent<Any>()
-    val previousClick: LiveData<Any>
-        get() = _previousClick
-
-    private val _confirmClick = SingleLiveEvent<Any>()
-    val confirmClick: LiveData<Any>
-        get() = _confirmClick
 
     private val _validateClick = SingleLiveEvent<Any>()
     val validateClick: LiveData<Any>
         get() = _validateClick
 
+
+    private val _userNickname = MutableLiveData<String>()
+    val userNickname: LiveData<String>
+        get() = _userNickname
+
+    /*private val _validateCheck = MutableLiveData<Boolean>()
+    val validateCheck: LiveData<Boolean>
+        get() = _validateCheck*/
+
+
+    //PersonalInfoFragment
     private val _femaleClick = SingleLiveEvent<Any>()
     val femaleClick: LiveData<Any>
         get() = _femaleClick
@@ -41,13 +45,14 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     val ageClick: LiveData<Any>
         get() = _ageClick
 
-    private val _validateCheck = SingleLiveEvent<Boolean>()
-    val validateCheck: LiveData<Boolean>
-        get() = _validateCheck
+    private val _previousClick = SingleLiveEvent<Any>()
+    val previousClick: LiveData<Any>
+        get() = _previousClick
 
-    private val _userNickname = MutableLiveData<String>()
-    val userNickname: LiveData<String>
-        get() = _userNickname
+    private val _confirmClick = SingleLiveEvent<Any>()
+    val confirmClick: LiveData<Any>
+        get() = _confirmClick
+
 
     private val _userSex = MutableLiveData<String>()
     val userSex: LiveData<String>
@@ -58,9 +63,11 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
         get() = _userYear
 
 
+    private val TAG = "RegisterViewModel"
+
     private lateinit var messageProvider: MessageProvider
 
-    private val TAG = "RegisterViewModel"
+    var validateCheck: Boolean = false
 
 
     init {
@@ -119,9 +126,19 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
             .doOnSuccess {
                 Log.e(TAG, "1")
                 when {
-                    it.value == 0 -> messageProvider.toastMessage(it.message)
-                    it.value == 1 -> messageProvider.toastMessage(it.message)
-                    else -> messageProvider.toastMessage(it.message)
+                    it.value == 0 -> {
+                        messageProvider.toastMessage(it.message)
+                        _userNickname.value = nickname
+                        validateCheck = true
+                    }
+                    it.value == 1 -> {
+                        messageProvider.toastMessage(it.message)
+                        validateCheck = false
+                    }
+                    else -> {
+                        messageProvider.toastMessage(it.message)
+                        validateCheck = false
+                    }
                 }
             }
             .doOnError {

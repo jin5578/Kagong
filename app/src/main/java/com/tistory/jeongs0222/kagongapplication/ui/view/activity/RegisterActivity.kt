@@ -28,7 +28,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        fragmentProvider.initFragment()
+        fragmentProvider.initFragment(basicInfoFragment)
 
         registerViewModel.bind(MessageProviderImpl(this) as MessageProvider)
 

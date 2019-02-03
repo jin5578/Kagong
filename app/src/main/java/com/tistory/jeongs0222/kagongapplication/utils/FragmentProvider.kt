@@ -7,7 +7,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragme
 
 
 interface FragmentProvider {
-    fun initFragment()
+    fun initFragment(fragment: Fragment)
 
     fun replaceFragment(fragment: Fragment)
 
@@ -16,9 +16,9 @@ interface FragmentProvider {
 
 class FragmentProviderImpl(private val fragmentManager: FragmentManager): FragmentProvider {
 
-    override fun initFragment() {
+    override fun initFragment(fragment: Fragment) {
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.frameLayout, BasicInfoFragment()).commit()
+        fragmentTransaction.replace(R.id.frameLayout, fragment).commit()
     }
 
     override fun replaceFragment(fragment: Fragment) {

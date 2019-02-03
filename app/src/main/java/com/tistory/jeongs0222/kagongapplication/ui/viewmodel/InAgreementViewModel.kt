@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 
 
-class InagreementViewModel : DisposableViewModel() {
+class InAgreementViewModel : DisposableViewModel() {
 
     private val _agreement = MutableLiveData<Boolean>()
     val agreement: LiveData<Boolean>
@@ -23,7 +23,8 @@ class InagreementViewModel : DisposableViewModel() {
     val closeClick: LiveData<Any>
         get() = _closeClick
 
-    private val TAG = "InagreementViewModel"
+    private val TAG = "InAgreementViewModel"
+
 
     init {
         _agreement.value = false

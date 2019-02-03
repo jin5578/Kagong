@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.view.activity.LoginActivity"/>
-        <activity android:name=".ui.view.activity.InagreementActivity"/>
+        <activity android:name=".ui.view.activity.InAgreementActivity"/>
         <activity android:name=".ui.view.activity.RegisterActivity"/>
         <activity android:name=".ui.view.activity.MainActivity"/>
     </application>

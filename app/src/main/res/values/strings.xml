@@ -14,6 +14,7 @@
     <string name="in_agreement">약관동의</string>
 
     <string name="register">회원가입</string>
+    <string name="validate_null">중복확인을 먼저 해주세요</string>
 
     <string name="basic_information">기본정보</string>
     <string name="nickname">NICKNAME</string>
