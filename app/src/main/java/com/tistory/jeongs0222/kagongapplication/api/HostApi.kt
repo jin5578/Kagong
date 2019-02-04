@@ -14,6 +14,7 @@ interface HostApi {
     @POST("nickname_validate.php")
     fun nicknameValidate(@Field("nickname") nickname: String): Single<NicknameResult>  //0: 사용가능, 1: 이미 존재, 2: 2 ~ 6자
 
+    //Register
     @FormUrlEncoded
     @POST("register.php")
     fun register(@Field("userkey") userkey: String,

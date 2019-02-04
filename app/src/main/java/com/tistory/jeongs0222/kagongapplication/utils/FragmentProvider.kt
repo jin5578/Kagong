@@ -3,7 +3,6 @@ package com.tistory.jeongs0222.kagongapplication.utils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.tistory.jeongs0222.kagongapplication.R
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.BasicInfoFragment
 
 
 interface FragmentProvider {

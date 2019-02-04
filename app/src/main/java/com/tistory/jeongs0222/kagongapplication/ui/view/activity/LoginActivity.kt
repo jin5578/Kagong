@@ -12,6 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.LoginViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.GoogleSignProvider
 import com.tistory.jeongs0222.kagongapplication.utils.GoogleSignProviderImpl
 
+
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private val TAG = "LoginActivity"

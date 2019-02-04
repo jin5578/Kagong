@@ -7,6 +7,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivitySplashBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.SplashViewModel
 
+
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_splash

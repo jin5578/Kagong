@@ -11,6 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val TAG = "RegisterActivity"

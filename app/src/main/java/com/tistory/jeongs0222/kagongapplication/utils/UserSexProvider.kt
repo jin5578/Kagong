@@ -1,9 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.utils
 
-import android.app.Activity
-import android.content.Context
+
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.tistory.jeongs0222.kagongapplication.R
 

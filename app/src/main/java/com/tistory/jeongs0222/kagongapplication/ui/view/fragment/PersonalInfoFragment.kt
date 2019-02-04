@@ -28,9 +28,6 @@ class PersonalInfoFragment : Fragment() {
 
     private lateinit var messageProvider: MessageProvider
 
-    //private val userSexProvider = UserSexProviderImpl(this) as UserSexProvider
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentPersonalInfoBinding.inflate(inflater, container, false).apply {
