@@ -2,15 +2,11 @@ package com.tistory.jeongs0222.kagongapplication.di
 
 import com.tistory.jeongs0222.kagongapplication.BuildConfig
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
-import com.tistory.jeongs0222.kagongapplication.model.repository.RegisterRepository
-import com.tistory.jeongs0222.kagongapplication.model.repository.RegisterRepositoryImpl
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.hostUrl
 import com.tistory.jeongs0222.kagongapplication.utils.loggingInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -20,9 +16,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 val apiModules: Module = module {
     single {
         Retrofit.Builder()
-            .client(OkHttpClient.Builder()
-                .addInterceptor(get(loggingInterceptor))
-                .build())
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(get(loggingInterceptor))
+                    .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(hostUrl)
@@ -39,15 +36,3 @@ val apiModules: Module = module {
         } as Interceptor
     }
 }
-
-val kagongModules = module {
-    viewModel {
-        RegisterViewModel(get())
-    }
-
-    factory {
-        RegisterRepositoryImpl(get()) as RegisterRepository
-    }
-}
-
-val appModules = listOf(apiModules, kagongModules)

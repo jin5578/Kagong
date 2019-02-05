@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
@@ -7,11 +8,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.tistory.jeongs0222.kagongapplication.model.repository.LoginRepository
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.InAgreementActivity
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
-class LoginViewModel : DisposableViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
 
     private val _googleLogin = SingleLiveEvent<ConstraintLayout>()
     val googleLogin: LiveData<ConstraintLayout>
@@ -57,6 +62,8 @@ class LoginViewModel : DisposableViewModel() {
             if(task.isSuccessful) {
                 user = FirebaseAuth.getInstance().currentUser!!.uid
 
+                keyCheck(user)
+
                 messageProvider.toastMessage("구글 로그인에 성공하였습니다.")
 
 
@@ -69,7 +76,42 @@ class LoginViewModel : DisposableViewModel() {
     private fun validateUserCheck() {
         if(!dbHelperProvider.getDBHelper().getUserkey().isEmpty()) {
             intentProvider.intent(MainActivity::class.java)
+
+            Log.e(TAG + "userCheck", true.toString())
+        } else {
+            Log.e(TAG + "userCheck", false.toString())
         }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun keyCheck(userkey: String) {
+        loginRepository.keyCheck(userkey)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                when {
+                    it.value == 0 -> {
+                        Log.e(TAG, it.value.toString())
+
+                        intentProvider.intent(InAgreementActivity::class.java)
+                    }
+
+                    it.value == 1 -> {
+                        Log.e(TAG, it.value.toString())
+
+                        intentProvider.intent(InAgreementActivity::class.java)
+                    }
+
+                    it.value == 2 -> {
+                        intentProvider.intent(MainActivity::class.java)
+                    }
+
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
 
 }

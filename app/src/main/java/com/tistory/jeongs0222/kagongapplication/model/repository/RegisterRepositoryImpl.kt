@@ -8,11 +8,8 @@ import io.reactivex.Single
 
 class RegisterRepositoryImpl(private val hostApi: HostApi) : RegisterRepository {
 
-    override fun nicknameValidate(nickname: String): Single<NicknameResult> {
-        return hostApi.nicknameValidate(nickname)
-    }
+    override fun nicknameValidate(nickname: String): Single<NicknameResult> = hostApi.nicknameValidate(nickname)
 
-    override fun register(userkey: String, token: String, nickname: String, sex: String, age: String): Single<RegisterResult> {
-        return hostApi.register(userkey, token, nickname, sex, age)
-    }
+    override fun register(userkey: String, token: String, nickname: String, sex: String, age: String): Single<RegisterResult> = hostApi.register(userkey, token, nickname, sex, age)
+
 }

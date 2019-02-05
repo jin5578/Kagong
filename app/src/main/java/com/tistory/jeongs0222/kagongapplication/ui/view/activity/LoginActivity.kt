@@ -2,7 +2,6 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -10,10 +9,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.LoginViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.disposables.Disposables
-import io.reactivex.internal.schedulers.RxThreadFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
@@ -22,7 +18,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_login
 
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel by viewModel<LoginViewModel>()
 
     private val googleSignProvider = GoogleSignProviderImpl(this@LoginActivity) as GoogleSignProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@LoginActivity) as DBHelperProvider
@@ -33,7 +29,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loginViewModel = LoginViewModel()
 
         loginViewModel.bind(googleSignProvider, dbHelperProvider, messageProvider, intentProvider)
 

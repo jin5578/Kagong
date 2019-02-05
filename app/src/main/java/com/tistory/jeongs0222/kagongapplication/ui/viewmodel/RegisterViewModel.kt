@@ -174,7 +174,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                 when {
                     it.value == 0 -> {
                         messageProvider.toastMessage(it.message)
-
                         intentProvider.intent(MainActivity::class.java)
                     }
 
