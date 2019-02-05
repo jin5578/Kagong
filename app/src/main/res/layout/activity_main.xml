@@ -22,7 +22,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MainActivity"
+                android:text="@{mViewModel.test1}"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:fontFamily="@font/goyang"
@@ -30,6 +30,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                app:itemBackground="@color/colorWhite"
+                app:itemTextColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:menu="@menu/main_bottom_navigation"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,6 +7,8 @@
 
     <string name="imageView_description">이미지가 열리지 않습니다.</string>
 
+    <string name="google_login">Sign in with Google</string>
+
     <string name="hello">어서오세요</string>
     <string name="agreement">약관동의가 필요해요</string>
     <string name="entire_agreement">전체동의</string>
@@ -29,6 +31,9 @@
     <string name="previous">PREVIOUS</string>
     <string name="confirm">CONFIRM</string>
 
-    <string name="google_login">Sign in with Google</string>
+    <string name="home">홈</string>
+    <string name="location">지역</string>
+    <string name="profile">내정보</string>
+
 
 </resources>

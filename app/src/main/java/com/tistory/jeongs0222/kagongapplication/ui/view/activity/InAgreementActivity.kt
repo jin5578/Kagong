@@ -9,18 +9,21 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityInagreementB
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.InAgreementViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_inagreement
 
+    private val inAgreementViewModel by viewModel<InAgreementViewModel>()
+
     private val  messageProvider = MessageProviderImpl(this@InAgreementActivity) as MessageProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val inAgreementViewModel = InAgreementViewModel()
+        //val inAgreementViewModel = InAgreementViewModel()
 
         inAgreementViewModel.nextClick.observe(this@InAgreementActivity, Observer {
             if(inAgreementViewModel.agreement.value!!)

@@ -1,7 +1,10 @@
 package com.tistory.jeongs0222.kagongapplication.di
 
+
 val kagongModules = arrayListOf(
     apiModules,
     loginModules,
-    registerModules
+    inAgreementModules,
+    registerModules,
+    mainModules
 )

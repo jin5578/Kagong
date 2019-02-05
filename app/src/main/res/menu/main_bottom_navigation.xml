@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_menu"
+        android:icon="@drawable/ic_home_gray_24dp"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/location_menu"
+        android:icon="@drawable/ic_place_gray_24dp"
+        android:title="@string/location"/>
+
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/ic_person_gray_24dp"
+        android:title="@string/profile"/>
+
+</menu>
