@@ -29,7 +29,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         loginViewModel.bind(googleSignProvider, dbHelperProvider, messageProvider, intentProvider)
 
         loginViewModel.googleLogin.observe(this, Observer {

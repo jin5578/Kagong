@@ -74,7 +74,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
     }
 
     private fun validateUserCheck() {
-        if(!dbHelperProvider.getDBHelper().getUserkey().isEmpty()) {
+        if(!dbHelperProvider.getDBHelper().getGooglekey().isEmpty()) {
             intentProvider.intent(MainActivity::class.java)
 
             Log.e(TAG + "userCheck", true.toString())
@@ -104,6 +104,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
 
                     it.value == 2 -> {
                         intentProvider.intent(MainActivity::class.java)
+
+                        dbHelperProvider.getDBHelper().insertUser(userkey)
                     }
 
                 }

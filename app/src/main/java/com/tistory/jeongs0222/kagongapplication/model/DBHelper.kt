@@ -23,7 +23,7 @@ class DBHelper(context: Context, name: String, factory: SQLiteDatabase.CursorFac
         db.close()
     }
 
-    fun getUserkey(): String {
+    fun getGooglekey(): String {
         var key = ""
 
         val db = readableDatabase

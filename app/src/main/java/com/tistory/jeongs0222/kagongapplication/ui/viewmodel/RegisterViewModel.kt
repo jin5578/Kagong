@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 
 
@@ -79,6 +80,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
+    private lateinit var dbHelperProvider: DBHelperProvider
 
     var validateCheck: Boolean = false
 
@@ -90,9 +92,10 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
         getToken()
     }
 
-    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
+        this.dbHelperProvider = dbHelperProvider
     }
 
     fun nextClickEvent() {
@@ -174,6 +177,9 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                 when {
                     it.value == 0 -> {
                         messageProvider.toastMessage(it.message)
+
+                        dbHelperProvider.getDBHelper().insertUser(userkey)
+
                         intentProvider.intent(MainActivity::class.java)
                     }
 
