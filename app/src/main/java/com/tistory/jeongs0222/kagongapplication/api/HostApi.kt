@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
 import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
+import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
 import io.reactivex.Single
@@ -28,4 +29,10 @@ interface HostApi {
     @FormUrlEncoded
     @POST("keycheck.php")
     fun keyCheck(@Field("googlekey") googlekey: String): Single<KeyCheckResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
+
+    //Bring Nickname
+    @FormUrlEncoded
+    @POST("bringNickname.php")
+    fun bringNickname(@Field("googlekey") googlekey: String): Single<BringNicknameResult>
+
 }

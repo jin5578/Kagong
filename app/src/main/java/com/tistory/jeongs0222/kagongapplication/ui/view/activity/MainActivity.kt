@@ -45,6 +45,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
 
+        mainViewModel.bringNickname("C7AgC33EiMhSMAWG3YGDMZaYJ453")
+
         viewDataBinding.mViewModel = mainViewModel
         viewDataBinding.setLifecycleOwner(this)
     }

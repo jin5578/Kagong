@@ -35,5 +35,6 @@
     <string name="location">지역</string>
     <string name="profile">내정보</string>
 
+    <string name="mainWelcome">어디로 떠나시나요?</string>
 
 </resources>
