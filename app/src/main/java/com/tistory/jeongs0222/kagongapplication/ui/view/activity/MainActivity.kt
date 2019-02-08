@@ -8,9 +8,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.HomeFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ProfileFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,13 +28,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
 
     private val mainViewModel by viewModel<MainViewModel>()
 
+    private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val dbHelperProvider = DBHelperProviderImpl(this) as DBHelperProvider
+
+    private val homeFragment = HomeFragment()
+    private val searchFragment = SearchFragment()
+    private val profileFragment = ProfileFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Log.e(TAG + "googlekey", dbHelperProvider.getDBHelper().getGooglekey())
+
+        fragmentProvider.initFragment(homeFragment)
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
 
@@ -38,15 +50,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when(menuItem.itemId) {
+        when (menuItem.itemId) {
             R.id.home_menu ->
-                mainViewModel.test1Event("home_menu")
+                fragmentProvider.replaceFragment(homeFragment)
 
             R.id.location_menu ->
-                mainViewModel.test1Event("location_menu")
+                fragmentProvider.replaceFragment(searchFragment)
 
             R.id.profile_menu ->
-                mainViewModel.test1Event("profile_menu")
+                fragmentProvider.replaceFragment(profileFragment)
         }
 
         return false
