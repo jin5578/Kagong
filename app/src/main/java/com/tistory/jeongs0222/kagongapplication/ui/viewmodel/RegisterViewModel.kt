@@ -17,8 +17,7 @@ import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 
 
-class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
-    RegisterEventListener {
+class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(), RegisterEventListener {
 
     //RegisterActivity
     private val _userkey = MutableLiveData<String>()

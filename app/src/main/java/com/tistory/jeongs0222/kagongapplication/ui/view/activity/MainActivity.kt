@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.HomeFragment
@@ -45,7 +46,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
 
-        mainViewModel.bringNickname("C7AgC33EiMhSMAWG3YGDMZaYJ453")
+        //mainViewModel.bringNickname("C7AgC33EiMhSMAWG3YGDMZaYJ453")
+        mainViewModel.bringNickname(FirebaseAuth.getInstance().uid!!)
 
         viewDataBinding.mViewModel = mainViewModel
         viewDataBinding.setLifecycleOwner(this)

@@ -24,7 +24,6 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="160dp"
-                android:src="@drawable/book"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -37,8 +36,8 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/appName"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp"
-                android:fontFamily="@font/goyang"
+                android:textSize="30sp"
+                android:fontFamily="@font/temporaryfont"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"
                 app:layout_constraintEnd_toEndOf="parent"/>
