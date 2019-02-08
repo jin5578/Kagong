@@ -3,6 +3,8 @@ package com.tistory.jeongs0222.kagongapplication.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.AreaSearchHistoryItemBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
@@ -11,36 +13,25 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
 class AreaSearchHistoryAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    private val eventListener: MainEventListener,
-    private val items: MutableList<AreaSearchResult>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val eventListener: MainEventListener) :
+    ListAdapter<AreaSearchResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
 
     private val TAG = "SearchHistoryAdapter"
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = AreaSearchHistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding, lifecycleOwner, eventListener)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        if(items.isNotEmpty()) {
-            if(holder.layoutPosition == 0) {
-                (holder as ViewHolder).bind(AreaSearchResult("도시 검색"))
-            } else {
-                (holder as ViewHolder).bind(items[position-1])
-            }
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return if(items.isEmpty()) {
-            0
+        if(holder.layoutPosition == 0) {
+            holder.bind(AreaSearchResult("도시 검색"))
         } else {
-            items.size + 1
+            holder.bind(getItem(position - 1))
         }
     }
 
@@ -56,6 +47,22 @@ class AreaSearchHistoryAdapter(
             binding.eventListener = eventListener
             binding.setLifecycleOwner(lifecycleOwner)
             binding.executePendingBindings()
+        }
+    }
+
+    object areaDiff : DiffUtil.ItemCallback<AreaSearchResult>() {
+        override fun areItemsTheSame(
+            oldItem: AreaSearchResult,
+            newItem: AreaSearchResult
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: AreaSearchResult,
+            newItem: AreaSearchResult
+        ): Boolean {
+            return oldItem == newItem
         }
     }
 }

@@ -56,6 +56,7 @@
                 android:orientation="horizontal"
                 android:scrollbars="none"
                 android:background="@color/colorWhite"
+                app:addList="@{mViewModel.areaSearchHistory}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"/>
