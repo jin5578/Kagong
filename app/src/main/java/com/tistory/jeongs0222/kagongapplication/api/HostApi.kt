@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
+import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
@@ -34,5 +35,10 @@ interface HostApi {
     @FormUrlEncoded
     @POST("bringNickname.php")
     fun bringNickname(@Field("googlekey") googlekey: String): Single<BringNicknameResult>
+
+    //Bring search area history
+    @FormUrlEncoded
+    @POST("areasearchhistory.php")
+    fun bringHistory(@Field("googlekey") googlekey: String): Single<AreaSearchResponse>
 
 }

@@ -26,16 +26,16 @@ class YearFragment: Fragment() {
             setLifecycleOwner(this@YearFragment)
         }
 
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@YearFragment.context)
-            adapter = YearAdapter(this@YearFragment, registerViewModel, yearList())
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@YearFragment.context)
+            adapter = YearAdapter(this@YearFragment, registerViewModel, yearList())
+        }
     }
 
     private fun yearList(): MutableList<YearItem> {
