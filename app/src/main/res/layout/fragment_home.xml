@@ -52,26 +52,14 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal"
                 android:scrollbars="none"
                 android:background="@color/colorWhite"
-                app:addList="@{mViewModel.areaSearchHistory}"
+                app:addSearchList="@{mViewModel.areaSearchHistory}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"/>
-
-        <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home Fragment"
-                android:textSize="20sp"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/goyang"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

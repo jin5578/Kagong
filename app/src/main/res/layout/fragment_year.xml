@@ -29,6 +29,7 @@
                 android:layout_marginEnd="50dp"
                 android:scrollbars="vertical"
                 android:background="@color/colorWhite"
+                app:addYearList="@{rViewModel.yearItem}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

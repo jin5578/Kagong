@@ -13,8 +13,8 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
 class AreaSearchHistoryAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    private val eventListener: MainEventListener) :
-    ListAdapter<AreaSearchResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
+    private val eventListener: MainEventListener
+) : ListAdapter<AreaSearchResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
 
     private val TAG = "SearchHistoryAdapter"
 
@@ -28,7 +28,7 @@ class AreaSearchHistoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        if(holder.layoutPosition == 0) {
+        if (holder.layoutPosition == 0) {
             holder.bind(AreaSearchResult("도시 검색"))
         } else {
             holder.bind(getItem(position - 1))

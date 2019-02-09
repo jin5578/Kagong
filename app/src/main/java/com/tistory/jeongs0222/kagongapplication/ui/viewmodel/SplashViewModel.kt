@@ -28,5 +28,4 @@ class SplashViewModel : DisposableViewModel() {
 
                 onCleared()
             }
-
 }

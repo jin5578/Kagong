@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
+import com.tistory.jeongs0222.kagongapplication.model.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
@@ -66,6 +67,12 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
         get() = _confirmClick
 
 
+    //YearFragment
+    private val _yearItem = MutableLiveData<MutableList<YearItem>>()
+    val yearItem: LiveData<MutableList<YearItem>>
+        get() = _yearItem
+
+
     private val _userSex = MutableLiveData<String>()
     val userSex: LiveData<String>
         get() = _userSex
@@ -89,6 +96,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
         getKey()
         getToken()
+        getYearList()
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
@@ -208,6 +216,20 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                 }
                 _token.value = task.result!!.token
             })
+    }
+
+    private fun getYearList() {
+        val items = mutableListOf<YearItem>()
+
+        var year = 1950
+
+        for(i in 0..69) {
+            items.add(i, YearItem(year.toString()))
+
+            year++
+        }
+
+        _yearItem.value = items
     }
 
     override fun clickEvent(year: String) {
