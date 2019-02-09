@@ -29,11 +29,7 @@ class AreaSearchHistoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        if (holder.layoutPosition == 0) {
-            holder.bind(AreaSearchResult("도시 검색"))
-        } else {
-            holder.bind(getItem(position - 1))
-        }
+        holder.bind(getItem(position))
     }
 
     class ViewHolder(

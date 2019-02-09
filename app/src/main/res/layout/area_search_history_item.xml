@@ -22,21 +22,17 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/search_background">
+            android:layout_marginEnd="10dp">
 
-        <TextView
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{areaItem.area}"
-                android:textSize="20sp"
-                android:fontFamily="@font/goyang"
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="런던"/>
+                app:imageUrl="@{areaItem.image}"
+                android:contentDescription="@string/imageView_description"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
