@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -16,7 +17,7 @@ class AreaSearchHistoryAdapter(
     private val eventListener: MainEventListener
 ) : ListAdapter<AreaSearchResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
 
-    private val TAG = "SearchHistoryAdapter"
+    private val TAG = "AreaSearchAdapter"
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

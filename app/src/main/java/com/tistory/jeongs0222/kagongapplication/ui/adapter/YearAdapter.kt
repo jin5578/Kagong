@@ -28,8 +28,6 @@ class YearAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        Log.e(TAG, getItem(position).year)
-
         holder.bind(getItem(position))
     }
 
