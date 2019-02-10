@@ -4,10 +4,12 @@ import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearch
 import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
+import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface HostApi {
@@ -40,5 +42,9 @@ interface HostApi {
     @FormUrlEncoded
     @POST("areasearchhistory.php")
     fun bringHistory(@Field("googlekey") googlekey: String): Single<AreaSearchResponse>
+
+    //Bring recommend area
+    @GET("recommendarea.php")
+    fun bringRecommendArea(): Single<RecommendResponse>
 
 }

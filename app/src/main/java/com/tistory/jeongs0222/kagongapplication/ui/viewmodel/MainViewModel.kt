@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
+import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -18,7 +19,15 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val areaSearchHistory: LiveData<MutableList<AreaSearchResult>>
         get() = _areaSearchHistory
 
+    private val _recommendArea = MutableLiveData<MutableList<RecommendResult>>()
+    val recommendArea: LiveData<MutableList<RecommendResult>>
+        get() = _recommendArea
+
     private val TAG = "MainViewModel"
+
+    init {
+        bringRecommendArea()
+    }
 
     fun bringNickname(googlekey: String) {
         mainRepository.bringNickname(googlekey)
@@ -26,7 +35,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 if (it.value == 0) {
-                    _userNickname.value = it.nickname + "님"
+                    _userNickname.value = it.nickname + "님 어디로 떠나시나요?"
                 }
             }
             .doOnError {
@@ -41,6 +50,19 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _areaSearchHistory.value = it.areasearchhistory
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringRecommendArea() {
+        mainRepository.bringRecommendArea()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _recommendArea.value = it.recommendarea
             }
             .doOnError {
                 it.printStackTrace()

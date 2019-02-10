@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentHomeBinding
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.AreaSearchHistoryAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.adapter.RecommendAreaAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -33,9 +34,14 @@ class HomeFragment: Fragment() {
 
         mainViewModel.bringHistory(FirebaseAuth.getInstance().uid!!)
 
-        binding.recyclerView.apply {
+        binding.recommendRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@HomeFragment.context)
+            adapter = RecommendAreaAdapter(this@HomeFragment, mainViewModel)
+        }
+
+        /*binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@HomeFragment.context, LinearLayoutManager.HORIZONTAL, false)
             adapter = AreaSearchHistoryAdapter(this@HomeFragment, mainViewModel)
-        }
+        }*/
     }
 }

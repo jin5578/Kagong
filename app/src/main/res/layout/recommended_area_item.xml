@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="recommendItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult"/>
+
+        <variable
+                name="eventListener"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener"/>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
+
+        <ImageView
+                android:id="@+id/recommend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:recommendImageUrl="@{recommendItem.image}"
+                tools:src="@drawable/paris"
+                android:contentDescription="@string/imageView_description"/>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
