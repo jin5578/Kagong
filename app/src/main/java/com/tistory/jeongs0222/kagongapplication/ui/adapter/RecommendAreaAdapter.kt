@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner

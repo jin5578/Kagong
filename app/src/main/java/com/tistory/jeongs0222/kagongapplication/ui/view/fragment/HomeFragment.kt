@@ -35,6 +35,7 @@ class HomeFragment: Fragment() {
         mainViewModel.bringHistory(FirebaseAuth.getInstance().uid!!)
 
         binding.recommendRecyclerView.apply {
+            isNestedScrollingEnabled = false
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
             adapter = RecommendAreaAdapter(this@HomeFragment, mainViewModel)
         }

@@ -77,7 +77,6 @@
                     android:layout_marginTop="20dp"
                     android:scrollbars="none"
                     android:background="@color/colorWhite"
-                    android:paddingBottom="10dp"
                     app:addRecommendList="@{mViewModel.recommendArea}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
