@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(), MainEventListener {
 
+    //HomeFragment
     private val _searchAreaClick = SingleLiveEvent<Any>()
     val searchAreaClick: LiveData<Any>
         get() = _searchAreaClick
@@ -20,13 +21,20 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val userNickname: LiveData<String>
         get() = _userNickname
 
+    private val _recommendArea = MutableLiveData<MutableList<RecommendResult>>()
+    val recommendArea: LiveData<MutableList<RecommendResult>>
+        get() = _recommendArea
+
+
+    //SearchAreaFragment
+    private val _previousClick = SingleLiveEvent<Any>()
+    val previousClick: LiveData<Any>
+        get() = _previousClick
+
     private val _areaSearchHistory = MutableLiveData<MutableList<AreaSearchResult>>()
     val areaSearchHistory: LiveData<MutableList<AreaSearchResult>>
         get() = _areaSearchHistory
 
-    private val _recommendArea = MutableLiveData<MutableList<RecommendResult>>()
-    val recommendArea: LiveData<MutableList<RecommendResult>>
-        get() = _recommendArea
 
     private val TAG = "MainViewModel"
 
@@ -38,6 +46,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         _searchAreaClick.call()
 
         Log.e(TAG, "searchAreaClick")
+    }
+
+    fun previousClickEvent() {
+        _previousClick.call()
+
+        Log.e(TAG, "previousClick")
     }
 
     fun bringNickname(googlekey: String) {

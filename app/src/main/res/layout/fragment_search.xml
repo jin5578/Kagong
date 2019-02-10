@@ -20,6 +20,30 @@
             android:background="@color/colorWhite">
 
         <TextView
+                android:id="@+id/null1"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="@string/appName"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/temporaryfont"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/frameLayout"/>
+
+        <View
+                android:id="@+id/null2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"
+                app:layout_constraintBottom_toTopOf="@id/frameLayout"/>
+
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search Fragment"

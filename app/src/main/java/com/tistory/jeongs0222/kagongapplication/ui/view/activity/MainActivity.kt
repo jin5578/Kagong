@@ -59,6 +59,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
             fragmentProvider.replaceFragment(searchAreaFragment)
         })
 
+        mainViewModel.previousClick.observe(this@MainActivity, Observer {
+            fragmentProvider.replaceFragment(homeFragment)
+        })
+
         viewDataBinding.mViewModel = mainViewModel
         viewDataBinding.setLifecycleOwner(this)
     }
