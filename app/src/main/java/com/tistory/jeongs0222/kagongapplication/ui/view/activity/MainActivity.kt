@@ -4,6 +4,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.HomeFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ProfileFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchAreaFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
@@ -35,6 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
     private val profileFragment = ProfileFragment()
+    private val searchAreaFragment = SearchAreaFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +51,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
 
         //mainViewModel.bringNickname("C7AgC33EiMhSMAWG3YGDMZaYJ453")
         mainViewModel.bringNickname(FirebaseAuth.getInstance().uid!!)
+
+        mainViewModel.bringHistory(FirebaseAuth.getInstance().uid!!)
+
+
+        mainViewModel.searchAreaClick.observe(this@MainActivity, Observer {
+            fragmentProvider.replaceFragment(searchAreaFragment)
+        })
 
         viewDataBinding.mViewModel = mainViewModel
         viewDataBinding.setLifecycleOwner(this)

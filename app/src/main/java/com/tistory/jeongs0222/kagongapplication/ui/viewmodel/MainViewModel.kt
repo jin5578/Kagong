@@ -6,10 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
+import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(), MainEventListener {
+
+    private val _searchAreaClick = SingleLiveEvent<Any>()
+    val searchAreaClick: LiveData<Any>
+        get() = _searchAreaClick
 
     private val _userNickname = MutableLiveData<String>()
     val userNickname: LiveData<String>
@@ -27,6 +32,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     init {
         bringRecommendArea()
+    }
+
+    fun searchAreaClickEvent() {
+        _searchAreaClick.call()
+
+        Log.e(TAG, "searchAreaClick")
     }
 
     fun bringNickname(googlekey: String) {
