@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
-import com.tistory.jeongs0222.kagongapplication.model.year.YearItem
+import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider

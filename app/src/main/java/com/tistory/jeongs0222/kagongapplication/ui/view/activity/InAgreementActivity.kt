@@ -23,8 +23,6 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //val inAgreementViewModel = InAgreementViewModel()
-
         inAgreementViewModel.nextClick.observe(this@InAgreementActivity, Observer {
             if(inAgreementViewModel.agreement.value!!)
                 startActivity(Intent(this@InAgreementActivity, RegisterActivity::class.java))

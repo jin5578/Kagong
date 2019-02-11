@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -8,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.YearItemBinding
-import com.tistory.jeongs0222.kagongapplication.model.year.YearItem
+import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterEventListener
 
 

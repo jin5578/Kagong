@@ -6,5 +6,4 @@ import io.reactivex.Single
 
 interface LoginRepository {
     fun keyCheck(googlekey: String): Single<KeyCheckResult>
-
 }

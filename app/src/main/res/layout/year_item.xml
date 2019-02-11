@@ -10,7 +10,7 @@
 
         <variable
                 name="yearItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.year.YearItem"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem"/>
 
         <variable
                 name="eventListener"

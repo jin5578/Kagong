@@ -2,7 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.model.year.YearItem
+import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
 
 
 @BindingAdapter("addYearList")

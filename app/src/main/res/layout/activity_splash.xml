@@ -19,27 +19,17 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <ImageView
-                android:id="@+id/null1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="160dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/imageView_description"/>
-
         <TextView
                 android:id="@+id/null2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="200dp"
                 android:text="@string/appName"
                 android:textColor="@color/colorBlack"
                 android:textSize="30sp"
                 android:fontFamily="@font/temporaryfont"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null1"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

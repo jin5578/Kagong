@@ -6,7 +6,5 @@ import io.reactivex.Single
 
 
 class LoginRepositoryImpl(private val hostApi: HostApi) : LoginRepository {
-
     override fun keyCheck(googlekey: String): Single<KeyCheckResult> = hostApi.keyCheck(googlekey)
-
 }
