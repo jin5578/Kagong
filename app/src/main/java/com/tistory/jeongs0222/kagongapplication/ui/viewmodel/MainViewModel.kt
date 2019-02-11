@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -34,6 +35,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private val _areaSearchHistory = MutableLiveData<MutableList<AreaSearchResult>>()
     val areaSearchHistory: LiveData<MutableList<AreaSearchResult>>
         get() = _areaSearchHistory
+
+    private val _findArea = MutableLiveData<MutableList<FindAreaResult>>()
+    val findArea: LiveData<MutableList<FindAreaResult>>
+        get() = _findArea
 
 
     private val TAG = "MainViewModel"
@@ -88,6 +93,19 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _recommendArea.value = it.recommendarea
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun findArea(charSequence: CharSequence) {
+        mainRepository.findArea(charSequence.toString())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _findArea.value = it.findarea
             }
             .doOnError {
                 it.printStackTrace()

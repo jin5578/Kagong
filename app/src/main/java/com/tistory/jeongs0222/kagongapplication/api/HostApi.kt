@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
@@ -46,5 +47,10 @@ interface HostApi {
     //Bring recommend area
     @GET("recommendarea.php")
     fun bringRecommendArea(): Single<RecommendResponse>
+
+    //Bring search area
+    @FormUrlEncoded
+    @POST("findarea.php")
+    fun findArea(@Field("findcontent") findcontent: String): Single<FindAreaResponse>
 
 }

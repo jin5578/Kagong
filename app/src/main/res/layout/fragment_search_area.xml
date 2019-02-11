@@ -55,12 +55,33 @@
                 android:id="@+id/recent_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:scrollbars="none"
                 app:addSearchList="@{mViewModel.areaSearchHistory}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/areaSearch"/>
+
+        <View
+                android:id="@+id/null1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recent_recyclerView"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/findRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:scrollbars="none"
+                app:addFindAreaList="@{mViewModel.findArea}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

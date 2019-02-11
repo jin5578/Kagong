@@ -17,7 +17,7 @@ fun searchList(recyclerView: RecyclerView, list: MutableList<AreaSearchResult>?)
         }
 }
 
-@BindingAdapter("imageUrl")
+@BindingAdapter("searchImageUrl")
 fun setImageUrl(view: ImageView, url: String?) {
     if(url != null) {
         Glide
