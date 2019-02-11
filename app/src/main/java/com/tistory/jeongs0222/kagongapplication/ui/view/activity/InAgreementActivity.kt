@@ -1,12 +1,13 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityInagreementBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.InAgreementViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,6 +19,7 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
 
     private val inAgreementViewModel by viewModel<InAgreementViewModel>()
 
+    private val intentProvider = IntentProviderImpl(this@InAgreementActivity) as IntentProvider
     private val  messageProvider = MessageProviderImpl(this@InAgreementActivity) as MessageProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,7 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
 
         inAgreementViewModel.nextClick.observe(this@InAgreementActivity, Observer {
             if(inAgreementViewModel.agreement.value!!)
-                startActivity(Intent(this@InAgreementActivity, RegisterActivity::class.java))
+                intentProvider.intent(RegisterActivity::class.java)
             else
                 messageProvider.toastMessage("약관동의를 해주세요")
         })

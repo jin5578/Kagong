@@ -3,15 +3,22 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(), MainEventListener {
+
+    //MainActivity
+    private val _viewFinish = MutableLiveData<Boolean>()
+    val viewFinish: LiveData<Boolean>
+        get() = _viewFinish
 
     //HomeFragment
     private val _searchAreaClick = SingleLiveEvent<Any>()
@@ -43,8 +50,21 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     private val TAG = "MainViewModel"
 
+    private var pressedTime: Long = 0
+
+    private lateinit var messageProvider: MessageProvider
+
+
     init {
+        _viewFinish.value = false
+
         bringRecommendArea()
+        bringNickname(FirebaseAuth.getInstance().uid!!)
+        bringHistory(FirebaseAuth.getInstance().uid!!)
+    }
+
+    fun bind(messageProvider: MessageProvider) {
+        this.messageProvider = messageProvider
     }
 
     fun searchAreaClickEvent() {
@@ -111,6 +131,24 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
                 it.printStackTrace()
             }
             .subscribe()
+    }
+
+    fun backPressed() {
+        if(pressedTime == 0.toLong()) {
+            messageProvider.toastMessage("한 번 더 누르면 종료됩니다")
+
+            pressedTime = System.currentTimeMillis()
+        } else {
+            val secondsTime = (System.currentTimeMillis() - pressedTime).toInt()
+
+            if(secondsTime > 2000) {
+                messageProvider.toastMessage("한 번 더 누르면 종료됩니다")
+
+                pressedTime = 0
+            } else {
+                _viewFinish.value = true
+            }
+        }
     }
 
     override fun clickEvent() {

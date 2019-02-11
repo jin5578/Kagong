@@ -11,5 +11,6 @@ interface IntentProvider {
 class IntentProviderImpl(private val activity: Activity): IntentProvider {
     override fun intent(activityClass: Class<*>) {
         activity.startActivity(Intent(activity, activityClass))
+        activity.finish()
     }
 }
