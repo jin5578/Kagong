@@ -45,6 +45,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val selectedHistory: LiveData<String>
         get() = _selectedHistory
 
+    private val _selectedSearch = MutableLiveData<String>()
+    val selectedSearch: LiveData<String>
+        get() = _selectedSearch
+
     private val _areaSearchHistory = MutableLiveData<MutableList<FindAreaHistoryResult>>()
     val areaSearchHistory: LiveData<MutableList<FindAreaHistoryResult>>
         get() = _areaSearchHistory
@@ -89,8 +93,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, "previousClick")
     }
 
-    fun findAreaLog() {
-        mainRepository.findAreaLog(_selectedHistory.value!!, uid)
+    fun findAreaLog(area: String) {
+        mainRepository.findAreaLog(area, uid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -174,15 +178,24 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         }
     }
 
-    override fun historyClickEvent(area: String) {
+    override fun historyItemClickEvent(area: String) {
         _selectedHistory.value = area
 
         Log.e(TAG, area)
     }
+
+    override fun searchItemClickEvent(area: String) {
+        _selectedSearch.value = area
+
+        Log.e(TAG, area)
+    }
+
 }
 
 interface MainEventListener {
 
-    fun historyClickEvent(area: String)
+    fun historyItemClickEvent(area: String)
+
+    fun searchItemClickEvent(area: String)
 
 }

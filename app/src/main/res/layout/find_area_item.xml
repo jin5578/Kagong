@@ -21,7 +21,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
+            android:background="@color/colorWhite"
+            android:onClick="@{() -> eventListener.searchItemClickEvent(areaItem.area)}">
 
         <TextView
                 android:id="@+id/area"

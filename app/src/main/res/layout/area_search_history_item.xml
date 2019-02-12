@@ -24,7 +24,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:onClick="@{() -> eventListener.historyClickEvent(areaItem.area)}">
+            android:onClick="@{() -> eventListener.historyItemClickEvent(areaItem.area)}">
 
         <ImageView
                 android:layout_width="0dp"
