@@ -6,5 +6,6 @@ val kagongModules = arrayListOf(
     loginModules,
     inAgreementModules,
     registerModules,
-    mainModules
+    mainModules,
+    areaDetailModules
 )

@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.databinding.YearItemBinding
+import com.tistory.jeongs0222.kagongapplication.databinding.ItemYearBinding
 import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterEventListener
 
@@ -19,7 +19,7 @@ class YearAdapter(
     private val TAG = "YearAdapter"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = YearItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemYearBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding, lifecycleOwner, eventListener)
     }
@@ -31,7 +31,7 @@ class YearAdapter(
     }
 
     class ViewHolder(
-        private val binding: YearItemBinding,
+        private val binding: ItemYearBinding,
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: RegisterEventListener
     ) : RecyclerView.ViewHolder(binding.root) {

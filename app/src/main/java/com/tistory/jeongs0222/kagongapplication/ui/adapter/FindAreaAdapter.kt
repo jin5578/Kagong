@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.databinding.FindAreaItemBinding
+import com.tistory.jeongs0222.kagongapplication.databinding.ItemFindAreaBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
@@ -20,7 +20,7 @@ class FindAreaAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = FindAreaItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFindAreaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding, lifecycleOwner, eventListener)
 
@@ -33,7 +33,7 @@ class FindAreaAdapter(
     }
 
     class ViewHolder(
-        private val binding: FindAreaItemBinding,
+        private val binding: ItemFindAreaBinding,
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: MainEventListener
     ) : RecyclerView.ViewHolder(binding.root) {

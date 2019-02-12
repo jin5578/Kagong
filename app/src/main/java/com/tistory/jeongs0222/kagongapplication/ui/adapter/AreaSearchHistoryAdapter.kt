@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.databinding.AreaSearchHistoryItemBinding
+import com.tistory.jeongs0222.kagongapplication.databinding.ItemSearchHistoryAreaBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
@@ -20,7 +20,7 @@ class AreaSearchHistoryAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = AreaSearchHistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemSearchHistoryAreaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding, lifecycleOwner, eventListener)
     }
@@ -32,7 +32,7 @@ class AreaSearchHistoryAdapter(
     }
 
     class ViewHolder(
-        private val binding: AreaSearchHistoryItemBinding,
+        private val binding: ItemSearchHistoryAreaBinding,
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: MainEventListener
     ) : RecyclerView.ViewHolder(binding.root) {

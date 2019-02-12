@@ -32,13 +32,13 @@
     <string name="confirm">CONFIRM</string>
 
     <string name="home">홈</string>
-    <string name="location">지역</string>
+    <string name="schedule">일정</string>
     <string name="profile">내정보</string>
 
     <string name="recommended_destination">추천 여행지</string>
     <string name="new_destination">신규 여행지</string>
 
-    <string name="recent_search">최근 </string>
+    <string name="recent_search">최근</string>
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

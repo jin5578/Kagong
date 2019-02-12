@@ -11,9 +11,9 @@
 
     <item
         android:id="@+id/location_menu"
-        android:icon="@drawable/ic_place_gray_24dp"
+        android:icon="@drawable/ic_event_note_gray_24dp"
         app:showAsAction="ifRoom"
-        android:title="@string/location"/>
+        android:title="@string/schedule"/>
 
     <item
         android:id="@+id/profile_menu"

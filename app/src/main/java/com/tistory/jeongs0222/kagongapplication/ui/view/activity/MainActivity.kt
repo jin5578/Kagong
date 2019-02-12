@@ -4,18 +4,15 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.HomeFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ProfileFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchAreaFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ScheduleFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
     private val messageProvider = MessageProviderImpl(this@MainActivity) as MessageProvider
 
     private val homeFragment = HomeFragment()
-    private val searchFragment = SearchFragment()
+    private val scheduleFragment = ScheduleFragment()
     private val profileFragment = ProfileFragment()
     private val searchAreaFragment = SearchAreaFragment()
 
@@ -48,10 +45,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
         fragmentProvider.initFragment(homeFragment)
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
-
-        //mainViewModel.bringNickname(FirebaseAuth.getInstance().uid!!)
-
-        //mainViewModel.bringHistory(FirebaseAuth.getInstance().uid!!)
 
         mainViewModel.bind(messageProvider)
 
@@ -73,7 +66,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
                 fragmentProvider.replaceFragment(homeFragment)
 
             R.id.location_menu ->
-                fragmentProvider.replaceFragment(searchFragment)
+                fragmentProvider.replaceFragment(scheduleFragment)
 
             R.id.profile_menu ->
                 fragmentProvider.replaceFragment(profileFragment)
