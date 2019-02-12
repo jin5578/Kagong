@@ -1,13 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
+import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
 import com.tistory.jeongs0222.kagongapplication.databinding.RecommendedAreaItemBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
@@ -15,7 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 class RecommendAreaAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<RecommendResult, RecommendAreaAdapter.ViewHolder>(areaDiff) {
+) : ListAdapter<RecommendAreaResult, RecommendAreaAdapter.ViewHolder>(areaDiff) {
 
     private val TAG = "RecommendAreaAdapter"
 
@@ -36,7 +35,7 @@ class RecommendAreaAdapter(
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: MainEventListener
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(r: RecommendResult) {
+        fun bind(r: RecommendAreaResult) {
             binding.recommendItem = r
 
             binding.eventListener = eventListener
@@ -45,17 +44,17 @@ class RecommendAreaAdapter(
         }
     }
 
-    object areaDiff: DiffUtil.ItemCallback<RecommendResult>() {
+    object areaDiff: DiffUtil.ItemCallback<RecommendAreaResult>() {
         override fun areItemsTheSame(
-            oldItem: RecommendResult,
-            newItem: RecommendResult
+            oldItem: RecommendAreaResult,
+            newItem: RecommendAreaResult
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: RecommendResult,
-            newItem: RecommendResult
+            oldItem: RecommendAreaResult,
+            newItem: RecommendAreaResult
         ): Boolean {
             return oldItem == newItem
         }

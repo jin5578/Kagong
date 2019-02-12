@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.FindAreaItemBinding
-import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
 

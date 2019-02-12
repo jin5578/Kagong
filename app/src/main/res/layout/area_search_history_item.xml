@@ -10,7 +10,7 @@
 
         <variable
                 name="areaItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult"/>
 
         <variable
                 name="eventListener"
@@ -23,7 +23,8 @@
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:onClick="@{() -> eventListener.historyClickEvent(areaItem.area)}">
 
         <ImageView
                 android:layout_width="0dp"

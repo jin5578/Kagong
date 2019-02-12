@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -8,14 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.AreaSearchHistoryItemBinding
-import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 
 
 class AreaSearchHistoryAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<AreaSearchResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
+) : ListAdapter<FindAreaHistoryResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
 
     private val TAG = "AreaSearchAdapter"
 
@@ -38,7 +37,7 @@ class AreaSearchHistoryAdapter(
         private val eventListener: MainEventListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(a: AreaSearchResult) {
+        fun bind(a: FindAreaHistoryResult) {
             binding.areaItem = a
 
             binding.eventListener = eventListener
@@ -47,17 +46,17 @@ class AreaSearchHistoryAdapter(
         }
     }
 
-    object areaDiff : DiffUtil.ItemCallback<AreaSearchResult>() {
+    object areaDiff : DiffUtil.ItemCallback<FindAreaHistoryResult>() {
         override fun areItemsTheSame(
-            oldItem: AreaSearchResult,
-            newItem: AreaSearchResult
+            oldItem: FindAreaHistoryResult,
+            newItem: FindAreaHistoryResult
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: AreaSearchResult,
-            newItem: AreaSearchResult
+            oldItem: FindAreaHistoryResult,
+            newItem: FindAreaHistoryResult
         ): Boolean {
             return oldItem == newItem
         }

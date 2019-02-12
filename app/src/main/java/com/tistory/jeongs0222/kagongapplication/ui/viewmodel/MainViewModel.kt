@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResult
-import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResult
-import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
+import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -15,10 +15,12 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(), MainEventListener {
 
+
     //MainActivity
     private val _viewFinish = MutableLiveData<Boolean>()
     val viewFinish: LiveData<Boolean>
         get() = _viewFinish
+
 
     //HomeFragment
     private val _searchAreaClick = SingleLiveEvent<Any>()
@@ -29,8 +31,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val userNickname: LiveData<String>
         get() = _userNickname
 
-    private val _recommendArea = MutableLiveData<MutableList<RecommendResult>>()
-    val recommendArea: LiveData<MutableList<RecommendResult>>
+    private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
+    val recommendArea: LiveData<MutableList<RecommendAreaResult>>
         get() = _recommendArea
 
 
@@ -39,8 +41,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val previousClick: LiveData<Any>
         get() = _previousClick
 
-    private val _areaSearchHistory = MutableLiveData<MutableList<AreaSearchResult>>()
-    val areaSearchHistory: LiveData<MutableList<AreaSearchResult>>
+    private val _selectedHistory = MutableLiveData<String>()
+    val selectedHistory: LiveData<String>
+        get() = _selectedHistory
+
+    private val _areaSearchHistory = MutableLiveData<MutableList<FindAreaHistoryResult>>()
+    val areaSearchHistory: LiveData<MutableList<FindAreaHistoryResult>>
         get() = _areaSearchHistory
 
     private val _findArea = MutableLiveData<MutableList<FindAreaResult>>()
@@ -54,13 +60,17 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     private lateinit var messageProvider: MessageProvider
 
+    private var uid: String
+
 
     init {
         _viewFinish.value = false
 
+        uid = FirebaseAuth.getInstance().uid!!
+
         bringRecommendArea()
-        bringNickname(FirebaseAuth.getInstance().uid!!)
-        bringHistory(FirebaseAuth.getInstance().uid!!)
+        bringNickname(uid)
+        bringHistory(uid)
     }
 
     fun bind(messageProvider: MessageProvider) {
@@ -79,7 +89,20 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, "previousClick")
     }
 
-    fun bringNickname(googlekey: String) {
+    fun findAreaLog() {
+        mainRepository.findAreaLog(_selectedHistory.value!!, uid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                Log.e(TAG, it.toString())
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun bringNickname(googlekey: String) {
         mainRepository.bringNickname(googlekey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -94,7 +117,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribe()
     }
 
-    fun bringHistory(googlekey: String) {
+    private fun bringHistory(googlekey: String) {
         mainRepository.bringHistory(googlekey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -107,7 +130,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribe()
     }
 
-    fun bringRecommendArea() {
+    private fun bringRecommendArea() {
         mainRepository.bringRecommendArea()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -151,13 +174,15 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         }
     }
 
-    override fun clickEvent() {
+    override fun historyClickEvent(area: String) {
+        _selectedHistory.value = area
 
+        Log.e(TAG, area)
     }
 }
 
 interface MainEventListener {
 
-    fun clickEvent()
+    fun historyClickEvent(area: String)
 
 }

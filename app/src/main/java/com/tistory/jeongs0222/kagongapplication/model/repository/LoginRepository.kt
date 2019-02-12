@@ -1,6 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
-import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
+import com.tistory.jeongs0222.kagongapplication.model.host.keyCheck.KeyCheckResult
 import io.reactivex.Single
 
 

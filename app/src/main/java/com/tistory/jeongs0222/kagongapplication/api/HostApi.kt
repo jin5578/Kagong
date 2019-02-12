@@ -1,11 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
-import com.tistory.jeongs0222.kagongapplication.model.host.areasearch.AreaSearchResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.findarea.FindAreaResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.keycheck.KeyCheckResult
+import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
+import com.tistory.jeongs0222.kagongapplication.model.host.keyCheck.KeyCheckResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
-import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
 import io.reactivex.Single
 import retrofit2.http.Field
@@ -23,11 +24,13 @@ interface HostApi {
     //Register
     @FormUrlEncoded
     @POST("register.php")
-    fun register(@Field("userkey") userkey: String,
-                 @Field("usertoken") usertoken: String,
-                 @Field("nickname") nickname: String,
-                 @Field("sex") sex: String,
-                 @Field("age") age: String): Single<RegisterResult> //0: 가입성공, 1: 가입실패
+    fun register(
+        @Field("userkey") userkey: String,
+        @Field("usertoken") usertoken: String,
+        @Field("nickname") nickname: String,
+        @Field("sex") sex: String,
+        @Field("age") age: String
+    ): Single<RegisterResult> //0: 가입성공, 1: 가입실패
 
     //Key Check
     @FormUrlEncoded
@@ -42,15 +45,23 @@ interface HostApi {
     //Bring search area history
     @FormUrlEncoded
     @POST("areasearchhistory.php")
-    fun bringHistory(@Field("googlekey") googlekey: String): Single<AreaSearchResponse>
+    fun bringHistory(@Field("googlekey") googlekey: String): Single<FindAreaHistoryResponse>
 
     //Bring recommend area
     @GET("recommendarea.php")
-    fun bringRecommendArea(): Single<RecommendResponse>
+    fun bringRecommendArea(): Single<RecommendAreaResponse>
 
     //Bring search area
     @FormUrlEncoded
     @POST("findarea.php")
     fun findArea(@Field("findcontent") findcontent: String): Single<FindAreaResponse>
+
+    //Find Area Log
+    @FormUrlEncoded
+    @POST("findarealog.php")
+    fun findAreaLog(
+        @Field("area") area: String,
+        @Field("userid") userid: String
+    ): Single<FindAreaLogResult>    //0: 성공, 1: 실패
 
 }

@@ -10,7 +10,7 @@
 
         <variable
                 name="recommendItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendResult"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult"/>
 
         <variable
                 name="eventListener"
