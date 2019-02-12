@@ -31,6 +31,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val userNickname: LiveData<String>
         get() = _userNickname
 
+    private val _selectedRecommend = MutableLiveData<String>()
+    val selectedRecommend: LiveData<String>
+        get() = _selectedRecommend
+
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
         get() = _recommendArea
@@ -178,6 +182,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         }
     }
 
+    override fun recommendItemClickEvent(area: String) {
+        _selectedRecommend.value = area
+
+        Log.e(TAG, area)
+    }
+
     override fun historyItemClickEvent(area: String) {
         _selectedHistory.value = area
 
@@ -193,6 +203,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 }
 
 interface MainEventListener {
+
+    fun recommendItemClickEvent(area: String)
 
     fun historyItemClickEvent(area: String)
 
