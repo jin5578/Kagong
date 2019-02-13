@@ -187,7 +187,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
                         dbHelperProvider.getDBHelper().insertUser(userkey)
 
-                        intentProvider.intent(MainActivity::class.java)
+                        intentProvider.finishIntent(MainActivity::class.java)
                     }
 
                     it.value == 1 -> {

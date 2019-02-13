@@ -8,6 +8,8 @@ import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindA
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AreaDetailActivity
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -67,6 +69,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private var pressedTime: Long = 0
 
     private lateinit var messageProvider: MessageProvider
+    private lateinit var intentProvider: IntentProvider
 
     private var uid: String
 
@@ -81,8 +84,9 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         bringHistory(uid)
     }
 
-    fun bind(messageProvider: MessageProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.messageProvider = messageProvider
+        this.intentProvider = intentProvider
     }
 
     fun searchAreaClickEvent() {
@@ -102,6 +106,11 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
+                if(it.value == 0) {
+                    intentProvider.intent(AreaDetailActivity::class.java)
+                } else {
+                    messageProvider.toastMessage("잠시 후 다시 시도해주세요")
+                }
                 Log.e(TAG, it.toString())
             }
             .doOnError {

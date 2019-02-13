@@ -27,7 +27,7 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
 
         inAgreementViewModel.nextClick.observe(this@InAgreementActivity, Observer {
             if(inAgreementViewModel.agreement.value!!)
-                intentProvider.intent(RegisterActivity::class.java)
+                intentProvider.finishIntent(RegisterActivity::class.java)
             else
                 messageProvider.toastMessage("약관동의를 해주세요")
         })

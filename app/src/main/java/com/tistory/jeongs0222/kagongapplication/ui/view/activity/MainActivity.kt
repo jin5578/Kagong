@@ -30,6 +30,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@MainActivity) as DBHelperProvider
     private val messageProvider = MessageProviderImpl(this@MainActivity) as MessageProvider
+    private val intentProvider = IntentProviderImpl(this@MainActivity) as IntentProvider
 
     private val homeFragment = HomeFragment()
     private val scheduleFragment = ScheduleFragment()
@@ -46,7 +47,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
 
-        mainViewModel.bind(messageProvider)
+        mainViewModel.bind(messageProvider, intentProvider)
 
         mainViewModel.searchAreaClick.observe(this@MainActivity, Observer {
             fragmentProvider.replaceFragment(searchAreaFragment)

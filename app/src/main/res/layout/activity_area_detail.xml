@@ -20,9 +20,14 @@
             android:background="@color/colorWhite">
 
         <ImageView
+                android:id="@+id/areaImage"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:contentDescription="@string/imageView_description"/>
+                android:layout_height="270dp"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/paris"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

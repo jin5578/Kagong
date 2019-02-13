@@ -20,4 +20,8 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>() {
         viewDataBinding.dViewModel = areaDetailViewModel
         viewDataBinding.setLifecycleOwner(this@AreaDetailActivity)
     }
+
+    override fun onBackPressed() {
+        finish()
+    }
 }
