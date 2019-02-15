@@ -47,12 +47,12 @@ class SearchAreaFragment: Fragment(), TextWatcher {
             adapter = FindAreaAdapter(this@SearchAreaFragment, mainViewModel)
         }
 
-        mainViewModel.selectedHistory.observe(this@SearchAreaFragment, Observer {
-            mainViewModel.findAreaLog(it)
+        mainViewModel.selectedHistoryClick.observe(this@SearchAreaFragment, Observer {
+            mainViewModel.findAreaLog()
         })
 
-        mainViewModel.selectedSearch.observe(this@SearchAreaFragment, Observer {
-            mainViewModel.findAreaLog(it)
+        mainViewModel.selectedSearchClick.observe(this@SearchAreaFragment, Observer {
+            mainViewModel.findAreaLog()
         })
     }
 

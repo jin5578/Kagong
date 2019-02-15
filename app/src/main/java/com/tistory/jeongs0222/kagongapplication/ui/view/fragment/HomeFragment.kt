@@ -37,8 +37,8 @@ class HomeFragment: Fragment() {
             adapter = RecommendAreaAdapter(this@HomeFragment, mainViewModel)
         }
 
-        mainViewModel.selectedRecommend.observe(this@HomeFragment, Observer {
-            mainViewModel.findAreaLog(it)
+        mainViewModel.selectedRecommendClick.observe(this@HomeFragment, Observer {
+            mainViewModel.findAreaLog()
         })
     }
 }

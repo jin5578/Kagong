@@ -29,13 +29,13 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val searchAreaClick: LiveData<Any>
         get() = _searchAreaClick
 
+    private val _selectedRecommendClick = SingleLiveEvent<Any>()
+    val selectedRecommendClick: LiveData<Any>
+        get() = _selectedRecommendClick
+
     private val _userNickname = MutableLiveData<String>()
     val userNickname: LiveData<String>
         get() = _userNickname
-
-    private val _selectedRecommend = MutableLiveData<String>()
-    val selectedRecommend: LiveData<String>
-        get() = _selectedRecommend
 
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
@@ -47,13 +47,13 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val previousClick: LiveData<Any>
         get() = _previousClick
 
-    private val _selectedHistory = MutableLiveData<String>()
-    val selectedHistory: LiveData<String>
-        get() = _selectedHistory
+    private val _selectedHistoryClick = SingleLiveEvent<Any>()
+    val selectedHistoryClick: LiveData<Any>
+        get() = _selectedHistoryClick
 
-    private val _selectedSearch = MutableLiveData<String>()
-    val selectedSearch: LiveData<String>
-        get() = _selectedSearch
+    private val _selectedSearchClick = SingleLiveEvent<Any>()
+    val selectedSearchClick: LiveData<Any>
+        get() = _selectedSearchClick
 
     private val _areaSearchHistory = MutableLiveData<MutableList<FindAreaHistoryResult>>()
     val areaSearchHistory: LiveData<MutableList<FindAreaHistoryResult>>
@@ -62,6 +62,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private val _findArea = MutableLiveData<MutableList<FindAreaResult>>()
     val findArea: LiveData<MutableList<FindAreaResult>>
         get() = _findArea
+
+
+
+    private val _selectedArea = MutableLiveData<String>()
+    val selectedArea: LiveData<String>
+        get() = _selectedArea
 
 
     private val TAG = "MainViewModel"
@@ -101,13 +107,15 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, "previousClick")
     }
 
-    fun findAreaLog(area: String) {
-        mainRepository.findAreaLog(area, uid)
+    fun findAreaLog() {
+        mainRepository.findAreaLog(_selectedArea.value!!, uid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 if(it.value == 0) {
                     intentProvider.intent(AreaDetailActivity::class.java)
+
+                    Log.e("TAG", "intent")
                 } else {
                     messageProvider.toastMessage("잠시 후 다시 시도해주세요")
                 }
@@ -192,19 +200,26 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     override fun recommendItemClickEvent(area: String) {
-        _selectedRecommend.value = area
+        _selectedArea.value = area
+        //_selectedRecommend.value = area
+
+        _selectedRecommendClick.call()
 
         Log.e(TAG, area)
     }
 
     override fun historyItemClickEvent(area: String) {
-        _selectedHistory.value = area
+        _selectedArea.value = area
+
+        _selectedHistoryClick.call()
 
         Log.e(TAG, area)
     }
 
     override fun searchItemClickEvent(area: String) {
-        _selectedSearch.value = area
+        _selectedArea.value = area
+
+        _selectedSearchClick.call()
 
         Log.e(TAG, area)
     }
