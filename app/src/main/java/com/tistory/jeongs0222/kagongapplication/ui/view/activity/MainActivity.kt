@@ -9,17 +9,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.HomeFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ProfileFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.SearchAreaFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.ScheduleFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment.HomeFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment.ProfileFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment.SearchAreaFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment.ScheduleFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavigationItemSelectedListener,
-    BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val TAG = "MainActivity"
 

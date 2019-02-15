@@ -4,19 +4,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-            android:id="@+id/home_menu"
+            android:id="@+id/info_menu"
             app:showAsAction="ifRoom"
             android:icon="@drawable/ic_home_gray_24dp"
             android:title="@string/information"/>
 
     <item
-            android:id="@+id/location_menu"
+            android:id="@+id/weather_menu"
             app:showAsAction="ifRoom"
             android:icon="@drawable/ic_event_note_gray_24dp"
             android:title="@string/weather"/>
 
     <item
-            android:id="@+id/profile_menu"
+            android:id="@+id/toursim_menu"
             app:showAsAction="ifRoom"
             android:icon="@drawable/ic_person_gray_24dp"
             android:title="@string/spot"/>

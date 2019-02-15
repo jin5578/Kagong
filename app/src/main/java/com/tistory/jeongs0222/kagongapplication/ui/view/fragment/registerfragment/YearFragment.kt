@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.registerfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -42,6 +42,7 @@
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
+                android:onClick="@{() -> dViewModel.previousClickEvent()}"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"

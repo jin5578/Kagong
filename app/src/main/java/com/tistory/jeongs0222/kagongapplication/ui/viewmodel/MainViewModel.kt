@@ -64,7 +64,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         get() = _findArea
 
 
-
+    //Entire Fragment
     private val _selectedArea = MutableLiveData<String>()
     val selectedArea: LiveData<String>
         get() = _selectedArea

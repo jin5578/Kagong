@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentSearchAreaBinding
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.AreaSearchHistoryAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.FindAreaAdapter
