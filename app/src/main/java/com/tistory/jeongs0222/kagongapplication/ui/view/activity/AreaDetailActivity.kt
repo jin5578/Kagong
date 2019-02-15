@@ -42,25 +42,30 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
             finish()
         })
 
-        Log.e(TAG, "onCreate")
-
         viewDataBinding.dViewModel = areaDetailViewModel
         viewDataBinding.setLifecycleOwner(this@AreaDetailActivity)
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
-            R.id.info_menu ->
+        return when (menuItem.itemId) {
+            R.id.info_menu -> {
                 fragmentProvider.replaceFragment(informationFragment)
+                true
+            }
 
-            R.id.weather_menu ->
+            R.id.weather_menu -> {
                 fragmentProvider.replaceFragment(weatherFragment)
+                true
+            }
 
-            R.id.toursim_menu ->
+            R.id.toursim_menu -> {
                 fragmentProvider.replaceFragment(tourismFragment)
-        }
+                true
+            }
 
-        return false
+            else ->
+                false
+        }
     }
 
     override fun onBackPressed() {

@@ -61,18 +61,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
-            R.id.home_menu ->
+        return when (menuItem.itemId) {
+            R.id.home_menu -> {
                 fragmentProvider.replaceFragment(homeFragment)
 
-            R.id.location_menu ->
+                true
+            }
+
+            R.id.location_menu -> {
                 fragmentProvider.replaceFragment(scheduleFragment)
 
-            R.id.profile_menu ->
-                fragmentProvider.replaceFragment(profileFragment)
-        }
+                true
+            }
 
-        return false
+            R.id.profile_menu -> {
+                fragmentProvider.replaceFragment(profileFragment)
+
+                true
+            }
+
+            else -> {
+                false
+            }
+        }
     }
 
     override fun onBackPressed() {
