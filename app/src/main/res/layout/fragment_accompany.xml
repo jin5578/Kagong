@@ -19,9 +19,9 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <!--<TextView android:layout_width="0dp"
+        <TextView android:layout_width="0dp"
                   android:layout_height="0dp"
-                  android:text="InformationFragment"
+                  android:text="AccompanyFragment"
                   android:textColor="@color/colorBlack"
                   android:textSize="25sp"
                   android:fontFamily="@font/goyang"
@@ -29,22 +29,7 @@
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
                   app:layout_constraintTop_toTopOf="parent"
-                  app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                android:text="@string/temp_introduce"
-                android:textColor="@color/colorBlack"
-                android:textSize="15sp"
-                android:fontFamily="@font/goyang"
-                android:lineSpacingExtra="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                  app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

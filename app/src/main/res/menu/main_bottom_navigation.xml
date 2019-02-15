@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/profile_menu"
-        android:icon="@drawable/ic_person_gray_24dp"
+        android:icon="@drawable/ic_person_outline_gray_24dp"
         app:showAsAction="ifRoom"
         android:title="@string/profile"/>
 

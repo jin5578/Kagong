@@ -6,19 +6,25 @@
     <item
             android:id="@+id/info_menu"
             app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_home_gray_24dp"
+            android:icon="@drawable/ic_import_contacts_gray_24dp"
             android:title="@string/information"/>
 
     <item
             android:id="@+id/weather_menu"
             app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_event_note_gray_24dp"
+            android:icon="@drawable/ic_filter_drama_gray_24dp"
             android:title="@string/weather"/>
 
     <item
             android:id="@+id/toursim_menu"
             app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_person_gray_24dp"
+            android:icon="@drawable/location"
             android:title="@string/spot"/>
+
+    <item
+            android:id="@+id/accompany_menu"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_people_outline_gray_24dp"
+            android:title="@string/accompany"/>
 
 </menu>

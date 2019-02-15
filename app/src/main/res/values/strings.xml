@@ -43,6 +43,9 @@
     <string name="information">정보</string>
     <string name="weather">날씨</string>
     <string name="spot">관광</string>
+    <string name="accompany">동행</string>
+
+    <string name="temp_introduce">세계적인 경제, 문화, 예술의 중심지로 오랜 시간동안 수많은 관광객들의 사랑을 받아온 매력적인 도시. 패션과 미식, 문화와 예술을 향유할 수 있는 낭만과 자유가 넘쳐나는 곳. 프랑스의 매력에 한껏 취해보자.</string>
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

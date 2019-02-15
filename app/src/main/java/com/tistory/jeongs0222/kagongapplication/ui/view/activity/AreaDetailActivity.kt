@@ -1,12 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailBinding
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.AccompanyFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.InformationFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.TourismFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.WeatherFragment
@@ -30,6 +30,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
     private val informationFragment = InformationFragment()
     private val weatherFragment = WeatherFragment()
     private val tourismFragment = TourismFragment()
+    private val accompanyFragment = AccompanyFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,11 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
 
             R.id.toursim_menu -> {
                 fragmentProvider.replaceFragment(tourismFragment)
+                true
+            }
+
+            R.id.accompany_menu -> {
+                fragmentProvider.replaceFragment(accompanyFragment)
                 true
             }
 
