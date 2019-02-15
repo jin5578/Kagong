@@ -14,21 +14,82 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite">
+            android:background="@color/colorWhite"
+            app:layoutDescription="@xml/collapsing_toolbar">
 
         <ImageView
-                android:id="@+id/areaImage"
+                android:id="@+id/toolbar_image"
                 android:layout_width="0dp"
                 android:layout_height="270dp"
+                android:adjustViewBounds="true"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
+                android:scaleType="center"
+                android:src="@drawable/paris"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@android:id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/paris"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="24dp"
+                android:text="PARIS"
+                android:textColor="@color/colorBlack"
+                android:textSize="32sp"
+                android:fontFamily="@font/temporaryfont"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavi"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                app:itemTextAppearanceActive="@style/BottomNavigationTextActiveStyle"
+                app:itemTextAppearanceInactive="@style/BottomNavigationTextInActiveStyle"
+                app:itemIconTint="@drawable/bottom_navigation_selector"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                app:menu="@menu/area_detail_navigation"/>
+
+        <View
+                android:id="@+id/null12"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bottomNavi"/>
+
+        <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null12"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 </layout>

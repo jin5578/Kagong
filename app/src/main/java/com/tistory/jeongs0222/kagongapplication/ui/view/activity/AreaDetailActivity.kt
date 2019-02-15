@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
+import android.view.WindowManager
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel
