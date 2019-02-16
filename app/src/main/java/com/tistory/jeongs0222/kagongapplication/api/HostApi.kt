@@ -1,5 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
+import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
@@ -63,5 +65,12 @@ interface HostApi {
         @Field("area") area: String,
         @Field("userid") userid: String
     ): Single<FindAreaLogResult>    //0: 성공, 1: 실패
+
+    //Bring Area Information
+    @FormUrlEncoded
+    @POST("bringareainformation.php")
+    fun bringAreaInformation(
+        @Field("area") area: String
+    ): Single<AreaInformationResponse>
 
 }
