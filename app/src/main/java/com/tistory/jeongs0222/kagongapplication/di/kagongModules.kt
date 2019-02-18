@@ -7,5 +7,6 @@ val kagongModules = arrayListOf(
     inAgreementModules,
     registerModules,
     mainModules,
-    areaDetailModules
+    areaDetailModules,
+    addScheduleModule
 )

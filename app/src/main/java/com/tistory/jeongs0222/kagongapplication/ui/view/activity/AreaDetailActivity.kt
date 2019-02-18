@@ -1,18 +1,18 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.AccompanyFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.InformationFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.TourismFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.WeatherFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment.*
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import kotlinx.android.synthetic.main.activity_area_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,6 +26,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
     private val areaDetailViewModel by viewModel<AreaDetailViewModel>()
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
+    private val intentProvider = IntentProviderImpl(this@AreaDetailActivity) as IntentProvider
 
     private val informationFragment = InformationFragment()
     private val weatherFragment = WeatherFragment()
@@ -35,12 +36,21 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val area = intent.getStringExtra("area")
+
+
         fragmentProvider.initFragment(informationFragment)
 
         bottomNavi.setOnNavigationItemSelectedListener(this@AreaDetailActivity)
 
+        areaDetailViewModel.bringAreaInformation(area)
+
         areaDetailViewModel.previousClick.observe(this@AreaDetailActivity, Observer {
             finish()
+        })
+
+        areaDetailViewModel.addScheduleClick.observe(this@AreaDetailActivity, Observer {
+            intentProvider.intent(AddScheduleActivity::class.java)
         })
 
         viewDataBinding.dViewModel = areaDetailViewModel

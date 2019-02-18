@@ -32,7 +32,26 @@
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/add_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="30dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="@string/add_schedule"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                android:background="@drawable/toast_background"
+                android:onClick="@{() -> dViewModel.addScheduleClickEvent()}"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
                 android:id="@android:id/home"
@@ -46,7 +65,7 @@
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
                 android:id="@+id/title"
@@ -59,7 +78,7 @@
                 android:textSize="32sp"
                 android:fontFamily="@font/temporaryfont"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavi"

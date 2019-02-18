@@ -24,13 +24,13 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
 
+    private val _addScheduleClick = SingleLiveEvent<Any>()
+    val addScheduleClick: LiveData<Any>
+        get() = _addScheduleClick
+
 
     private val TAG = "AreaDetailViewModel"
 
-
-    init {
-        bringAreaInformation()
-    }
 
     fun previousClickEvent() {
         _previousClick.call()
@@ -38,8 +38,14 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
         Log.e(TAG, "previousClick")
     }
 
-    private fun bringAreaInformation() {
-        areaDetailRepository.bringAreaDetail("런던")
+    fun addScheduleClickEvent() {
+        _addScheduleClick.call()
+
+        Log.e(TAG, "addScheduleClick")
+    }
+
+    fun bringAreaInformation(area: String) {
+        areaDetailRepository.bringAreaDetail(area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

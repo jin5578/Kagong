@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="dViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel"/>
+                name="aViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleViewModel"/>
 
     </data>
 
@@ -19,15 +19,13 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scrollbars="none"
-                app:addInformationList="@{dViewModel.areaInformation}"
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AddScheduleActivity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_schedule"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

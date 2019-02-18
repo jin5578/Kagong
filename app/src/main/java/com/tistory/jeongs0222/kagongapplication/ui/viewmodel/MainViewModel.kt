@@ -113,7 +113,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 if(it.value == 0) {
-                    intentProvider.intent(AreaDetailActivity::class.java)
+                    intentProvider.intentPutExtra(AreaDetailActivity::class.java, _selectedArea.value!!)
 
                     Log.e("TAG", "intent")
                 } else {

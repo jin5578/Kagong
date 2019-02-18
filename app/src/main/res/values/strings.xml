@@ -45,7 +45,13 @@
     <string name="spot">관광</string>
     <string name="accompany">동행</string>
 
-    <string name="temp_introduce">런던 하면 떠 오르는 것들은 빅벤, 타워브리지, 셰익스피어, 엘리자베스 여왕, 근위병 등이다. 런던을 상징하면서도 너무나 전형적이라 조금은 식상한 것들. 그런 런던이 최근 확실히 변하고 있다. 오래된 도시 런던은 밀레니엄 이후로 미래를 향해 막 달려가는 모양을 하고 있다. 산업혁명과 자본주의, 의회 민주주의가 태동했던 영국. 그 심장부 런던에서 엘리스처럼 호기심 있는 사람에게만 보이는 숨은 매력들을 찾아 보자.</string>
+    <string name="temp_introduce">런던 하면 떠 오르는 것들은 빅벤, 타워브리지, 셰익스피어, 엘리자베스 여왕, 근위병 등이다. 런던을 상징하면서도 너무나 전형적이라 조금은 식상한 것들.
+        그런 런던이 최근 확실히 변하고 있다. 오래된 도시 런던은 밀레니엄 이후로 미래를 향해 막 달려가는 모양을 하고 있다. 산업혁명과 자본주의, 의회 민주주의가 태동했던 영국. 그 심장부 런던에서
+        엘리스처럼 호기심 있는 사람에게만 보이는 숨은 매력들을 찾아 보자.
+    </string>
+    <string name="add_schedule">일정을 추가해보세요</string>
+    <string name="abbreviation_add_schedule">일정 추가</string>
+
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 
