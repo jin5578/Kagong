@@ -52,6 +52,14 @@
     <string name="add_schedule">일정을 추가해보세요</string>
     <string name="abbreviation_add_schedule">일정 추가</string>
 
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="sat">토</string>
+    <string name="sun">일</string>
+
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

@@ -38,6 +38,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
 
         val area = intent.getStringExtra("area")
 
+        Log.e(TAG, area)
 
         fragmentProvider.initFragment(informationFragment)
 

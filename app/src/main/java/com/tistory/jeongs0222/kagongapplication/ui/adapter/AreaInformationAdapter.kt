@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -24,12 +25,6 @@ class AreaInformationAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
-
-
-        /*getItem(position)
-
-
-        AreaInformationType(MutableList<AreaInformationTypeResult>(")*/
 
         holder.bind(getItem(position))
     }
