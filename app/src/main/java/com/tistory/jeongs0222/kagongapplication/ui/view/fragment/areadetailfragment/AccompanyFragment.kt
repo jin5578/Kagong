@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAccompanyBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class AccompanyFragment: Fragment(){
+class AccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
     private val TAG = "AccompanyFragment"
 
@@ -25,6 +26,8 @@ class AccompanyFragment: Fragment(){
             setLifecycleOwner(this@AccompanyFragment)
         }
 
+        binding.tabLayout.addOnTabSelectedListener(this@AccompanyFragment)
+
         Log.e(TAG, "onCreateView")
 
         return binding.root
@@ -34,7 +37,18 @@ class AccompanyFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         Log.e(TAG, "onViewCreated")
+    }
+
+    override fun onTabSelected(p0: TabLayout.Tab?) {
+        Log.e(TAG, p0!!.position.toString())
 
     }
 
+    override fun onTabReselected(p0: TabLayout.Tab?) {
+
+    }
+
+    override fun onTabUnselected(p0: TabLayout.Tab?) {
+
+    }
 }
