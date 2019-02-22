@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.accompanylist.AccompanyListResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -10,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel() {
+class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel(), AreaDetailEventListener {
 
 
     //AreaDetailActivity
@@ -27,6 +28,12 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     private val _addScheduleClick = SingleLiveEvent<Any>()
     val addScheduleClick: LiveData<Any>
         get() = _addScheduleClick
+
+
+    //AccompanyFragment
+    private val _accompanyList = MutableLiveData<MutableList<AccompanyListResult>>()
+    val accompanyList: LiveData<MutableList<AccompanyListResult>>
+        get() = _accompanyList
 
 
     private val TAG = "AreaDetailViewModel"
@@ -56,5 +63,26 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             }
             .subscribe()
     }
+
+    fun bringAccompanyList() {
+        areaDetailRepository.bringAccompanyList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _accompanyList.value = it.accompanylist
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringAccompany(position: Int) {
+
+    }
+
+}
+
+interface AreaDetailEventListener {
 
 }

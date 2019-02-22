@@ -20,4 +20,9 @@
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
+    <style name="InnerTabLayoutTextStyle" parent="@android:style/TextAppearance.DeviceDefault.Widget.TabWidget">
+        <item name="android:fontFamily">@font/goyang</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

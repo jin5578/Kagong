@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
+import com.tistory.jeongs0222.kagongapplication.model.host.accompanylist.AccompanyListResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
@@ -72,5 +73,9 @@ interface HostApi {
     fun bringAreaInformation(
         @Field("area") area: String
     ): Single<AreaInformationResponse>
+
+    //Bring Accompany List
+    @GET("bringaccompanylist.php")
+    fun bringAccompanyList(): Single<AccompanyListResponse>
 
 }
