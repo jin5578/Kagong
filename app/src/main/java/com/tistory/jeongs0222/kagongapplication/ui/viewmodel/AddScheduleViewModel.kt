@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
@@ -18,13 +17,10 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
 
 
     init {
-
         setCalendarList()
-
     }
 
     private fun setCalendarList() {
-
         val cal = GregorianCalendar()
 
         val calendarList = ArrayList<Any>()
@@ -39,8 +35,7 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
 
                 calendarList.add(calendar.timeInMillis)
 
-                val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1 //해당 월에 시작하는 요일 -1 을 하면 빈칸을 구할 수 있겠죠 ?
-
+                val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1
                 val max = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
                 for(j in 0 until dayOfWeek) {
@@ -54,7 +49,6 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                 e.printStackTrace()
             }
         }
-
         _calendarList.value = calendarList
     }
 

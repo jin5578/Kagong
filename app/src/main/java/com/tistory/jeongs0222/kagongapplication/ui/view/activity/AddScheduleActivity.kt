@@ -20,7 +20,13 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addScheduleViewModel.calendarList.observe(this@AddScheduleActivity, Observer {
+        viewDataBinding.recyclerView.apply {
+            layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
+
+            adapter = CalendarListAdapter(this@AddScheduleActivity, addScheduleViewModel)
+        }
+
+        /*addScheduleViewModel.calendarList.observe(this@AddScheduleActivity, Observer {
             if(it.size != 0) {
                 viewDataBinding.recyclerView.apply {
                     Log.e("123", "123")
@@ -28,9 +34,8 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>(){
 
                     adapter = CalendarListAdapter(this@AddScheduleActivity, addScheduleViewModel, it)
                 }
-                //이 부분에 RecyclerView Apply를 해준다.
             }
-        })
+        })*/
 
         viewDataBinding.aViewModel = addScheduleViewModel
         viewDataBinding.setLifecycleOwner(this@AddScheduleActivity)

@@ -4,6 +4,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarDayBinding
@@ -13,7 +15,139 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventLis
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import java.util.*
 
+class CalendarListAdapter(
+    private val lifecycleOwner: LifecycleOwner,
+    private val eventListener: AddScheduleEventListener
+) : ListAdapter<Any, RecyclerView.ViewHolder>(calendarDiff) {
 
+    private val TAG = "CalendarListAdapter"
+
+    private val HEADER_TYPE = 0
+    private val EMPTY_TYPE = 1
+    private val DAY_TYPE = 2
+
+    private val dateFormatter = DateFormatter()
+
+
+    override fun getItemViewType(position: Int): Int {
+        val item = getItem(position)
+
+        return when (item) {
+            is Long -> HEADER_TYPE
+            is String -> EMPTY_TYPE
+            else -> DAY_TYPE
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            HEADER_TYPE -> {
+                val binding = ItemCalendarHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+                val params = binding.root.layoutParams as StaggeredGridLayoutManager.LayoutParams
+                params.isFullSpan = true
+
+                binding.root.layoutParams = params
+
+                HeaderViewHolder(lifecycleOwner, eventListener, binding, dateFormatter)
+            }
+            EMPTY_TYPE -> {
+                val binding = ItemCalendarEmptyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+                EmptyViewHolder(lifecycleOwner, eventListener, binding)
+            }
+            else -> {
+                val binding = ItemCalendarDayBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+                DayViewHolder(lifecycleOwner, eventListener, binding, dateFormatter)
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setIsRecyclable(false)
+
+        val viewType = getItemViewType(position)
+
+        if(viewType == HEADER_TYPE) {
+            val item = getItem(position)
+
+            if(item is Long) {
+                (holder as HeaderViewHolder).bind(item)
+            }
+        } else if(viewType == EMPTY_TYPE) {
+            (holder as EmptyViewHolder).bind()
+        } else {
+            val item = getItem(position)
+
+            if(item is Calendar) {
+                (holder as DayViewHolder).bind(item)
+            }
+        }
+    }
+
+    class HeaderViewHolder(
+        private val lifecycleOwner: LifecycleOwner,
+        private val eventListener: AddScheduleEventListener,
+        private val binding: ItemCalendarHeaderBinding,
+        private val dateFormatter: DateFormatter
+    ): RecyclerView.ViewHolder(binding.root) {
+        fun bind(month: Long) {
+            binding.header.text = dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT)
+
+            binding.setLifecycleOwner(lifecycleOwner)
+            binding.executePendingBindings()
+        }
+    }
+
+    class EmptyViewHolder(
+        private val lifecycleOwner: LifecycleOwner,
+        private val eventListener: AddScheduleEventListener,
+        private val binding: ItemCalendarEmptyBinding
+    ): RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+
+        }
+    }
+
+    class DayViewHolder(
+        private val lifecycleOwner: LifecycleOwner,
+        private val eventListener: AddScheduleEventListener,
+        private val binding: ItemCalendarDayBinding,
+        private val dateFormatter: DateFormatter
+    ): RecyclerView.ViewHolder(binding.root) {
+        fun bind(day: Calendar) {
+            val gregorianCalendar = GregorianCalendar(
+                day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(
+                    Calendar.DAY_OF_MONTH
+                ), 0, 0, 0
+            )
+            binding.day.text = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_DAY_FORMAT)
+
+            binding.setLifecycleOwner(lifecycleOwner)
+            binding.executePendingBindings()
+        }
+    }
+
+    object calendarDiff: DiffUtil.ItemCallback<Any>() {
+        override fun areItemsTheSame(
+            oldItem: Any,
+            newItem: Any
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Any,
+            newItem: Any
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
+}
+
+
+/*
 class CalendarListAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: AddScheduleEventListener,
@@ -111,7 +245,7 @@ class CalendarListAdapter(
         private val binding: ItemCalendarEmptyBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            Log.e("567", "567")
+
         }
     }
 
@@ -122,9 +256,6 @@ class CalendarListAdapter(
         private val dateFormatter: DateFormatter
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(day: Calendar) {
-            Log.e("890", "890")
-            val dateFormatter = DateFormatter()
-
             val gregorianCalendar = GregorianCalendar(
                 day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(
                     Calendar.DAY_OF_MONTH
@@ -137,4 +268,4 @@ class CalendarListAdapter(
         }
     }
 
-}
+}*/
