@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
@@ -52,14 +53,14 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
         _calendarList.value = calendarList
     }
 
-    override fun clickEvent() {
-
+    override fun dayClickEvent(day: String, position: Int) {
+        Log.e("DayItemClick", "day : " + day + " position : " + position.toString())
     }
 
 }
 
 interface AddScheduleEventListener {
 
-    fun clickEvent()
+    fun dayClickEvent(day: String, position: Int)
 
 }

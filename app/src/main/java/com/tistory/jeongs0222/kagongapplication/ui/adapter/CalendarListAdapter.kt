@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
+import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarDayBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarEmptyBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarHeaderBinding
+import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventListener
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import java.util.*
@@ -49,12 +51,12 @@ class CalendarListAdapter(
 
                 binding.root.layoutParams = params
 
-                HeaderViewHolder(lifecycleOwner, eventListener, binding, dateFormatter)
+                HeaderViewHolder(lifecycleOwner, binding, dateFormatter)
             }
             EMPTY_TYPE -> {
                 val binding = ItemCalendarEmptyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-                EmptyViewHolder(lifecycleOwner, eventListener, binding)
+                EmptyViewHolder(lifecycleOwner, binding)
             }
             else -> {
                 val binding = ItemCalendarDayBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -73,7 +75,7 @@ class CalendarListAdapter(
             val item = getItem(position)
 
             if(item is Long) {
-                (holder as HeaderViewHolder).bind(item)
+                (holder as HeaderViewHolder).bind(item, position)
             }
         } else if(viewType == EMPTY_TYPE) {
             (holder as EmptyViewHolder).bind()
@@ -81,19 +83,22 @@ class CalendarListAdapter(
             val item = getItem(position)
 
             if(item is Calendar) {
-                (holder as DayViewHolder).bind(item)
+                (holder as DayViewHolder).bind(item, position)
             }
         }
+
+        /*(holder as DayViewHolder).itemView.setOnClickListener {
+            Log.e("DayItem", "Click")
+        }*/
     }
 
     class HeaderViewHolder(
         private val lifecycleOwner: LifecycleOwner,
-        private val eventListener: AddScheduleEventListener,
         private val binding: ItemCalendarHeaderBinding,
         private val dateFormatter: DateFormatter
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(month: Long) {
-            binding.header.text = dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT)
+        fun bind(month: Long, position: Int) {
+            binding.monthItem = CalendarItem(dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT), position)
 
             binding.setLifecycleOwner(lifecycleOwner)
             binding.executePendingBindings()
@@ -102,11 +107,12 @@ class CalendarListAdapter(
 
     class EmptyViewHolder(
         private val lifecycleOwner: LifecycleOwner,
-        private val eventListener: AddScheduleEventListener,
         private val binding: ItemCalendarEmptyBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind() {
 
+            binding.setLifecycleOwner(lifecycleOwner)
+            binding.executePendingBindings()
         }
     }
 
@@ -116,13 +122,15 @@ class CalendarListAdapter(
         private val binding: ItemCalendarDayBinding,
         private val dateFormatter: DateFormatter
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(day: Calendar) {
+        fun bind(day: Calendar, position: Int) {
             val gregorianCalendar = GregorianCalendar(
                 day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(
                     Calendar.DAY_OF_MONTH
                 ), 0, 0, 0
             )
-            binding.day.text = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_DAY_FORMAT)
+            binding.dayItem = CalendarItem(dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_DAY_FORMAT), position)
+
+            binding.eventListener = eventListener
 
             binding.setLifecycleOwner(lifecycleOwner)
             binding.executePendingBindings()

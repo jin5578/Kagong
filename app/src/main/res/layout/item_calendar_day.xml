@@ -8,12 +8,21 @@
 
         <import type="android.view.View"/>
 
+        <variable
+                name="dayItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem"/>
+
+        <variable
+                name="eventListener"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventListener"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
+            android:background="@color/colorWhite"
+            android:onClick="@{() -> eventListener.dayClickEvent(dayItem.calendar, dayItem.position)}">
 
         <TextView
                 android:id="@+id/day"
@@ -21,13 +30,14 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:fontFamily="@font/goyang"
+                android:text="@{dayItem.calendar}"
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintDimensionRatio="2:2"
-        tools:text="24"/>
+                tools:text="24"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

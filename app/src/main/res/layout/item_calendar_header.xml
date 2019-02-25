@@ -8,6 +8,10 @@
 
         <import type="android.view.View"/>
 
+        <variable
+                name="monthItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +27,7 @@
                 android:paddingEnd="30dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
+                android:text="@{monthItem.calendar}"
                 android:textSize="20sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
