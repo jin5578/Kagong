@@ -1,10 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -61,12 +63,14 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
         _endPosition.value = 0
     }
 
+
+
     private fun setCalendarList() {
         val cal = GregorianCalendar()
 
         val calendarList = ArrayList<Any>()
 
-        for (i in -1..12) {
+        for (i in 0..12) {
             try {
                 val calendar = GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + i, 1, 0, 0, 0)
 
@@ -99,7 +103,7 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                 _startPosition.value = position
                 _startDay.value =
                         dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
-                
+
                 _bothSelected.value = false
             }
 
