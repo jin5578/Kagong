@@ -1,18 +1,20 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
-import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarDayBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarEmptyBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarHeaderBinding
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventListener
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import java.util.*
@@ -29,6 +31,9 @@ class CalendarListAdapter(
     private val DAY_TYPE = 2
 
     private val dateFormatter = DateFormatter()
+
+    var startPosition = -10
+    var endPosition = -10
 
 
     override fun getItemViewType(position: Int): Int {
@@ -69,7 +74,18 @@ class CalendarListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
+        Log.e("startPosition", startPosition.toString())
+        Log.e("endPosition", endPosition.toString())
+
         val viewType = getItemViewType(position)
+
+        if(position == startPosition) {
+            holder.itemView.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.day_selected_background)
+        }
+
+        if(position == endPosition) {
+            holder.itemView.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.day_selected_background)
+        }
 
         if(viewType == HEADER_TYPE) {
             val item = getItem(position)
@@ -87,9 +103,6 @@ class CalendarListAdapter(
             }
         }
 
-        /*(holder as DayViewHolder).itemView.setOnClickListener {
-            Log.e("DayItem", "Click")
-        }*/
     }
 
     class HeaderViewHolder(
