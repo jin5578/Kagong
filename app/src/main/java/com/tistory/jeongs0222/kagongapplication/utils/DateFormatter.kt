@@ -6,6 +6,8 @@ import java.util.*
 
 
 class DateFormatter {
+    val CALENDAR_FULL_FORMAT = "yyyy.MM.dd"
+    val CALENDAR_FORMAT = "MM.dd"
     val CALENDAR_HEADER_FORMAT = "MM월"
     val CALENDAR_DAY_FORMAT = "d"
 
@@ -21,15 +23,4 @@ class DateFormatter {
             ""
         }
     }
-
-    /*fun getDate(date: Long, pattern: String): String {
-        try {
-            val formatter = SimpleDateFormat(pattern, Locale.ENGLISH)
-            val d = Date(date)
-            return formatter.format(d).toUpperCase()
-        } catch (e: Exception) {
-            return " "
-        }
-
-    }*/
 }

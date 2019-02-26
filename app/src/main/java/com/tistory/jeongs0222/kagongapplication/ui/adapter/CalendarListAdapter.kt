@@ -13,6 +13,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarDayBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarEmptyBinding
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarHeaderBinding
+import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarDayItem
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventListener
@@ -91,7 +92,7 @@ class CalendarListAdapter(
             val item = getItem(position)
 
             if(item is Long) {
-                (holder as HeaderViewHolder).bind(item, position)
+                (holder as HeaderViewHolder).bind(item)
             }
         } else if(viewType == EMPTY_TYPE) {
             (holder as EmptyViewHolder).bind()
@@ -110,8 +111,8 @@ class CalendarListAdapter(
         private val binding: ItemCalendarHeaderBinding,
         private val dateFormatter: DateFormatter
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(month: Long, position: Int) {
-            binding.monthItem = CalendarItem(dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT), position)
+        fun bind(month: Long) {
+            binding.monthItem = CalendarItem(dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT))
 
             binding.setLifecycleOwner(lifecycleOwner)
             binding.executePendingBindings()
@@ -141,7 +142,7 @@ class CalendarListAdapter(
                     Calendar.DAY_OF_MONTH
                 ), 0, 0, 0
             )
-            binding.dayItem = CalendarItem(dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_DAY_FORMAT), position)
+            binding.dayItem = CalendarDayItem(dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_DAY_FORMAT), position, gregorianCalendar)
 
             binding.eventListener = eventListener
 

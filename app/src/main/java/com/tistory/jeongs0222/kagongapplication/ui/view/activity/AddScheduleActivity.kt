@@ -1,8 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.core.content.ContextCompat
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.tistory.jeongs0222.kagongapplication.R
@@ -26,6 +27,7 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
     private lateinit var calendarListAdapter: CalendarListAdapter
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +40,10 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
 
             adapter = calendarListAdapter
         }
+
+        addScheduleViewModel.previousClick.observe(this@AddScheduleActivity, Observer {
+            finish()
+        })
 
         addScheduleViewModel.startPosition.observe(this@AddScheduleActivity, Observer {
             if (it != 0) {
@@ -60,12 +66,24 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         })
 
         addScheduleViewModel.positionChange.observe(this@AddScheduleActivity, Observer {
+            Log.e("lastStartPosition", addScheduleViewModel.lastStartPosition.toString())
+            Log.e("lastEndPosition", addScheduleViewModel.lastEndPosition.toString())
+
             if (it == 0) {
                 calendarChangeProvider.calendarDeselected(addScheduleViewModel.lastStartPosition)
             } else if (it == 1) {
                 calendarChangeProvider.calendarDeselected(addScheduleViewModel.lastEndPosition)
 
                 calendarListAdapter.endPosition = -10
+            }
+        })
+
+        addScheduleViewModel.bothSelected.observe(this@AddScheduleActivity, Observer {
+            if(it) {
+                viewDataBinding.selectedDay.visibility = View.VISIBLE
+                viewDataBinding.selectedDay.text = addScheduleViewModel.startDay.value + " ~ " + addScheduleViewModel.endDay.value + " 추가하기"
+            } else {
+                viewDataBinding.selectedDay.visibility = View.GONE
             }
         })
 

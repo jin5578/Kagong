@@ -10,7 +10,7 @@
 
         <variable
                 name="dayItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarDayItem"/>
 
         <variable
                 name="eventListener"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:onClick="@{() -> eventListener.dayClickEvent(dayItem.calendar, dayItem.position)}">
+            android:onClick="@{() -> eventListener.dayClickEvent(dayItem.calendar, dayItem.position, dayItem.gregorianCalendar)}">
 
         <TextView
                 android:id="@+id/day"

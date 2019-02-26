@@ -3,10 +3,16 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
+import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import java.util.*
 
 
 class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
+
+    private val _previousClick = SingleLiveEvent<Any>()
+    val previousClick: LiveData<Any>
+        get() = _previousClick
 
     private val _calendarList = MutableLiveData<MutableList<Any>>()
     val calendarList: LiveData<MutableList<Any>>
@@ -24,13 +30,29 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
     val positionChange: LiveData<Int>
         get() = _positionChange
 
+    private val _startDay = MutableLiveData<String>()
+    val startDay: LiveData<String>
+        get() = _startDay
+
+    private val _endDay = MutableLiveData<String>()
+    val endDay: LiveData<String>
+        get() = _endDay
+
+    private val _bothSelected = MutableLiveData<Boolean>()
+    val bothSelected: LiveData<Boolean>
+        get() = _bothSelected
+
 
     private val TAG = "AddScheduleViewModel"
+
+    private val dateFormatter = DateFormatter()
 
     var mCenterPosition: Int = 0
 
     var lastStartPosition = 0
     var lastEndPosition = 0
+
+
 
     init {
         setCalendarList()
@@ -71,24 +93,37 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
         _calendarList.value = calendarList
     }
 
-    override fun dayClickEvent(day: String, position: Int) {
+    override fun dayClickEvent(day: String, position: Int, gregorianCalendar: GregorianCalendar) {
         when {
-            _startPosition.value == 0 -> //시작 값이 없는 경우
+            _startPosition.value == 0 -> {//시작 값이 없는 경우
                 _startPosition.value = position
+                _startDay.value =
+                        dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
+                
+                _bothSelected.value = false
+            }
 
             _endPosition.value == 0 -> //시작 값은 있지만 끝 값이 없는 경우
-
                 when {
                     position < _startPosition.value!! -> {     //시작 값이 있고 끝 값에 넣어야 하는 경우 중에 선택된 값이 시작 값 보다 작은 경우
                         _endPosition.value = _startPosition.value
+                        _endDay.value = _startDay.value!!.substring(5)
+
                         _startPosition.value = position
+                        _startDay.value = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
+
+                        _bothSelected.value = true
                     }
 
                     position == _startPosition.value!! -> //시작 값이 있고 끝 값에 넣어야 하는 경우 중에 선택된 값이 시작 값과 같은 경우
-                        Log.e(TAG, "position == _startPosition.value")
+                        _bothSelected.value = false
 
-                    else -> //시작 값이 있고 끝 값에 넣어야 하는 경우 중에 시작 값 보다 작거나 같지 않은 경우
+                    else -> {//시작 값이 있고 끝 값에 넣어야 하는 경우 중에 시작 값 보다 작거나 같지 않은 경우
                         _endPosition.value = position
+                        _endDay.value =
+                                dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FORMAT)
+                        _bothSelected.value = true
+                    }
                 }
 
             else -> {
@@ -99,15 +134,26 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                 _positionChange.value = 0
 
                 _startPosition.value = position
+                _startDay.value = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
+
                 _endPosition.value = 0
+
+                _bothSelected.value = false
             }
         }
 
         Log.e("DayItemClick", "day : " + day + " position : " + position.toString())
     }
 
+    fun previousClickEvent() {
+        _previousClick.call()
+
+        Log.e(TAG, "previousClick")
+    }
+
+
 }
 
 interface AddScheduleEventListener {
-    fun dayClickEvent(day: String, position: Int)
+    fun dayClickEvent(day: String, position: Int, gregorianCalendar: GregorianCalendar)
 }

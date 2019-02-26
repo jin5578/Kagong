@@ -12,21 +12,32 @@ interface CalendarChangeProvider {
     fun calendarDeselected(position: Int)
 }
 
-class CalendarChangeProviderImpl(private val viewDataBinding: ActivityAddScheduleBinding, private val context: Context): CalendarChangeProvider {
+class CalendarChangeProviderImpl(
+    private val viewDataBinding: ActivityAddScheduleBinding,
+    private val context: Context
+) : CalendarChangeProvider {
     override fun calendarSelected(position: Int) {
         viewDataBinding.recyclerView.findViewHolderForLayoutPosition(position)
             .apply {
-                this!!.itemView.background =
-                        ContextCompat.getDrawable(context, R.drawable.day_selected_background)
+                if(this != null) {
+                    this.itemView.background =
+                            ContextCompat.getDrawable(context, R.drawable.day_selected_background)
+                } else {
+                    ContextCompat.getDrawable(context, R.drawable.day_selected_background)
+                }
             }
     }
 
     override fun calendarDeselected(position: Int) {
         viewDataBinding.recyclerView.findViewHolderForLayoutPosition(position)
             .apply {
-                this!!.itemView.background =
-                        ContextCompat.getDrawable(context, R.drawable.day_background)
-            }
+                if(this != null) {
+                    this.itemView.background =
+                            ContextCompat.getDrawable(context, R.drawable.day_background)
+                } else {
+                    ContextCompat.getDrawable(context, R.drawable.day_background)
+                }
+        }
     }
 
 }
