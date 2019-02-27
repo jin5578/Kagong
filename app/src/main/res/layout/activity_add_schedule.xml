@@ -181,6 +181,7 @@
                 android:background="@drawable/selectedday_background"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
+                android:onClick="@{() -> aViewModel.selectDayClickEvent()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

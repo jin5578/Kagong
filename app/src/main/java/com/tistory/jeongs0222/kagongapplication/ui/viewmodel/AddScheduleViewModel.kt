@@ -1,20 +1,29 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
+import com.tistory.jeongs0222.kagongapplication.model.repository.AddScheduleRepository
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import java.text.SimpleDateFormat
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 
-class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
+class AddScheduleViewModel(private val addScheduleRepository: AddScheduleRepository) : DisposableViewModel(),
+    AddScheduleEventListener {
 
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
         get() = _previousClick
+
+    private val _selectDayClick = SingleLiveEvent<Any>()
+    val selectDayClick: LiveData<Any>
+        get() = _selectDayClick
 
     private val _calendarList = MutableLiveData<MutableList<Any>>()
     val calendarList: LiveData<MutableList<Any>>
@@ -44,10 +53,14 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
     val bothSelected: LiveData<Boolean>
         get() = _bothSelected
 
+    private lateinit var messageProvider: MessageProvider
+    private lateinit var intentProvider: IntentProvider
 
     private val TAG = "AddScheduleViewModel"
 
     private val dateFormatter = DateFormatter()
+
+    private var uid: String
 
     var mCenterPosition: Int = 0
 
@@ -55,15 +68,19 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
     var lastEndPosition = 0
 
 
-
     init {
         setCalendarList()
 
         _startPosition.value = 0
         _endPosition.value = 0
+
+        uid = FirebaseAuth.getInstance().uid!!
     }
 
-
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
+        this.messageProvider = messageProvider
+        this.intentProvider = intentProvider
+    }
 
     private fun setCalendarList() {
         val cal = GregorianCalendar()
@@ -97,6 +114,41 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
         _calendarList.value = calendarList
     }
 
+    fun addSchedule(area: String) {
+        addScheduleRepository.addSchedule(
+            uid,
+            area,
+            _startDay.value + " ~ " + _endDay.value
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    messageProvider.toastMessage(it.message)
+
+                    intentProvider.intentFinish()
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun previousClickEvent() {
+        _previousClick.call()
+
+        Log.e(TAG, "previousClick")
+    }
+
+    fun selectDayClickEvent() {
+        _selectDayClick.call()
+
+        Log.e(TAG, "selectDayClick")
+    }
+
     override fun dayClickEvent(day: String, position: Int, gregorianCalendar: GregorianCalendar) {
         when {
             _startPosition.value == 0 -> {//시작 값이 없는 경우
@@ -114,7 +166,10 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                         _endDay.value = _startDay.value!!.substring(5)
 
                         _startPosition.value = position
-                        _startDay.value = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
+                        _startDay.value = dateFormatter.getDate(
+                            gregorianCalendar.timeInMillis,
+                            dateFormatter.CALENDAR_FULL_FORMAT
+                        )
 
                         _bothSelected.value = true
                     }
@@ -125,7 +180,10 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                     else -> {//시작 값이 있고 끝 값에 넣어야 하는 경우 중에 시작 값 보다 작거나 같지 않은 경우
                         _endPosition.value = position
                         _endDay.value =
-                                dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FORMAT)
+                                dateFormatter.getDate(
+                                    gregorianCalendar.timeInMillis,
+                                    dateFormatter.CALENDAR_FULL_FORMAT
+                                )
                         _bothSelected.value = true
                     }
                 }
@@ -138,24 +196,15 @@ class AddScheduleViewModel : DisposableViewModel(), AddScheduleEventListener {
                 _positionChange.value = 0
 
                 _startPosition.value = position
-                _startDay.value = dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
+                _startDay.value =
+                        dateFormatter.getDate(gregorianCalendar.timeInMillis, dateFormatter.CALENDAR_FULL_FORMAT)
 
                 _endPosition.value = 0
 
                 _bothSelected.value = false
             }
         }
-
-        Log.e("DayItemClick", "day : " + day + " position : " + position.toString())
     }
-
-    fun previousClickEvent() {
-        _previousClick.call()
-
-        Log.e(TAG, "previousClick")
-    }
-
-
 }
 
 interface AddScheduleEventListener {

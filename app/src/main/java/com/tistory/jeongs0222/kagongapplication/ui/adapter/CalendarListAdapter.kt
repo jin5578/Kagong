@@ -1,8 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -17,7 +15,6 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarEmptyBin
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarHeaderBinding
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarDayItem
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem
-import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleEventListener
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import java.text.SimpleDateFormat
@@ -91,9 +88,6 @@ class CalendarListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
-
-        Log.e("startPosition", startPosition.toString())
-        Log.e("endPosition", endPosition.toString())
 
         val viewType = getItemViewType(position)
 

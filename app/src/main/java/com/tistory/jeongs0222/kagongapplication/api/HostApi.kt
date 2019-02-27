@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
+import com.tistory.jeongs0222.kagongapplication.model.host.addSchedule.AddScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
@@ -71,4 +72,14 @@ interface HostApi {
     fun bringAreaInformation(
         @Field("area") area: String
     ): Single<AreaInformationResponse>
+
+    //Add Schedule
+    @FormUrlEncoded
+    @POST("schedule_insert.php")
+    fun addSchedule(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String,
+        @Field("date") date: String
+    ): Single<AddScheduleResult>    //0: 성공, 1: 실패
+
 }

@@ -10,6 +10,8 @@ interface IntentProvider {
     fun intent(activityClass: Class<*>)
 
     fun intentPutExtra(activityClass: Class<*>, area: String)
+
+    fun intentFinish()
 }
 
 class IntentProviderImpl(private val activity: Activity): IntentProvider {
@@ -27,5 +29,9 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
         intent.putExtra("area", area)
 
         activity.startActivity(intent)
+    }
+
+    override fun intentFinish() {
+        activity.finish()
     }
 }

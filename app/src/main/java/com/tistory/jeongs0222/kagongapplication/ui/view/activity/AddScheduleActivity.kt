@@ -2,7 +2,6 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -10,8 +9,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddScheduleBinding
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.CalendarListAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddScheduleViewModel
-import com.tistory.jeongs0222.kagongapplication.utils.CalendarChangeProvider
-import com.tistory.jeongs0222.kagongapplication.utils.CalendarChangeProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
@@ -26,10 +24,13 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
 
     private lateinit var calendarListAdapter: CalendarListAdapter
 
+    private lateinit var area: String
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        area = intent.getStringExtra("area")
 
         calendarChangeProvider = CalendarChangeProviderImpl(viewDataBinding, this@AddScheduleActivity)
 
@@ -41,8 +42,17 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
             adapter = calendarListAdapter
         }
 
+        addScheduleViewModel.bind(
+            MessageProviderImpl(this) as MessageProvider,
+            IntentProviderImpl(this) as IntentProvider
+        )
+
         addScheduleViewModel.previousClick.observe(this@AddScheduleActivity, Observer {
             finish()
+        })
+
+        addScheduleViewModel.selectDayClick.observe(this@AddScheduleActivity, Observer {
+            addScheduleViewModel.addSchedule(area)
         })
 
         addScheduleViewModel.startPosition.observe(this@AddScheduleActivity, Observer {
@@ -66,9 +76,6 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         })
 
         addScheduleViewModel.positionChange.observe(this@AddScheduleActivity, Observer {
-            Log.e("lastStartPosition", addScheduleViewModel.lastStartPosition.toString())
-            Log.e("lastEndPosition", addScheduleViewModel.lastEndPosition.toString())
-
             if (it == 0) {
                 calendarChangeProvider.calendarDeselected(addScheduleViewModel.lastStartPosition)
             } else if (it == 1) {
@@ -81,7 +88,7 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         addScheduleViewModel.bothSelected.observe(this@AddScheduleActivity, Observer {
             if(it) {
                 viewDataBinding.selectedDay.visibility = View.VISIBLE
-                viewDataBinding.selectedDay.text = addScheduleViewModel.startDay.value + " ~ " + addScheduleViewModel.endDay.value + " 추가하기"
+                viewDataBinding.selectedDay.text = addScheduleViewModel.startDay.value + " ~ " + addScheduleViewModel.endDay.value!!.substring(5) + " 추가하기"
             } else {
                 viewDataBinding.selectedDay.visibility = View.GONE
             }

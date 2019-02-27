@@ -33,10 +33,12 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
     private val tourismFragment = TourismFragment()
     private val accompanyFragment = AccompanyFragment()
 
+    private lateinit var area: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val area = intent.getStringExtra("area")
+        area = intent.getStringExtra("area")
 
         Log.e(TAG, area)
 
@@ -51,7 +53,8 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
         })
 
         areaDetailViewModel.addScheduleClick.observe(this@AreaDetailActivity, Observer {
-            intentProvider.intent(AddScheduleActivity::class.java)
+            intentProvider.intentPutExtra(AddScheduleActivity::class.java,  area)
+            //intentProvider.intent(AddScheduleActivity::class.java)
         })
 
         viewDataBinding.dViewModel = areaDetailViewModel
