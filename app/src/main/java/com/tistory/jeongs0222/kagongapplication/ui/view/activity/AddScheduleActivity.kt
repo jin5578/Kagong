@@ -95,7 +95,7 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         })
 
         viewDataBinding.aViewModel = addScheduleViewModel
-        viewDataBinding.setLifecycleOwner(this@AddScheduleActivity)
+        viewDataBinding.lifecycleOwner = this@AddScheduleActivity
     }
 
 }

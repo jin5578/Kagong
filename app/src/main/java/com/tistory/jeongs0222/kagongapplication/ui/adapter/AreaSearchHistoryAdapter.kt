@@ -14,7 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 class AreaSearchHistoryAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<FindAreaHistoryResult, AreaSearchHistoryAdapter.ViewHolder>(areaDiff) {
+) : ListAdapter<FindAreaHistoryResult, AreaSearchHistoryAdapter.ViewHolder>(AreaDiff) {
 
     private val TAG = "AreaSearchAdapter"
 
@@ -41,12 +41,12 @@ class AreaSearchHistoryAdapter(
             binding.areaItem = a
 
             binding.eventListener = eventListener
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
 
-    object areaDiff : DiffUtil.ItemCallback<FindAreaHistoryResult>() {
+    object AreaDiff : DiffUtil.ItemCallback<FindAreaHistoryResult>() {
         override fun areItemsTheSame(
             oldItem: FindAreaHistoryResult,
             newItem: FindAreaHistoryResult

@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
 
         viewDataBinding.lViewModel = loginViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this@LoginActivity
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

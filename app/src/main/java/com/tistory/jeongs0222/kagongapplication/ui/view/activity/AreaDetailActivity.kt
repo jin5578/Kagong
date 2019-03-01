@@ -58,7 +58,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
         })
 
         viewDataBinding.dViewModel = areaDetailViewModel
-        viewDataBinding.setLifecycleOwner(this@AreaDetailActivity)
+        viewDataBinding.lifecycleOwner = this@AreaDetailActivity
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

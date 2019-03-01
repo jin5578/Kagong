@@ -6,8 +6,10 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringSc
 
 
 @BindingAdapter("myScheduleList")
-fun BringScheduleBindingAdapter(recyclerView: RecyclerView, list: MutableList<BringScheduleResult>) {
-    (recyclerView.adapter as BringScheduleAdapter).apply {
-        submitList(list)
+fun bringScheduleBindingAdapter(recyclerView: RecyclerView, list: MutableList<BringScheduleResult>?) {
+    if (list != null) {
+        (recyclerView.adapter as BringScheduleAdapter).apply {
+            submitList(list)
+        }
     }
 }

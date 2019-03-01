@@ -19,7 +19,7 @@ class TourismFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentTourismBinding.inflate(inflater, container, false).apply {
             dViewModel = areaDetailViewModel
-            setLifecycleOwner(this@TourismFragment)
+            lifecycleOwner = this@TourismFragment
         }
 
         return binding.root

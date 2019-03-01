@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
         })
 
         viewDataBinding.mViewModel = mainViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this@MainActivity
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

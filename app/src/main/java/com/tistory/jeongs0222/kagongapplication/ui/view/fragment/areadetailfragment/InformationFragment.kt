@@ -21,7 +21,7 @@ class InformationFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentInformationBinding.inflate(inflater, container, false).apply {
             dViewModel = areaDetailViewModel
-            setLifecycleOwner(this@InformationFragment)
+            lifecycleOwner = this@InformationFragment
         }
 
         return binding.root

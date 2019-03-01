@@ -25,7 +25,7 @@ class SearchAreaFragment: Fragment(), TextWatcher {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSearchAreaBinding.inflate(inflater, container, false).apply {
             mViewModel = mainViewModel
-            setLifecycleOwner(this@SearchAreaFragment)
+            lifecycleOwner = this@SearchAreaFragment
         }
 
         return binding.root

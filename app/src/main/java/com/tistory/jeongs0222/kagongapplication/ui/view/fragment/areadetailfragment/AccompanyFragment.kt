@@ -23,7 +23,7 @@ class AccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAccompanyBinding.inflate(inflater, container, false).apply {
             dViewModel = areaDetailViewModel
-            setLifecycleOwner(this@AccompanyFragment)
+            lifecycleOwner = this@AccompanyFragment
         }
 
         binding.tabLayout.addOnTabSelectedListener(this@AccompanyFragment)

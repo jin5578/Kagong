@@ -19,7 +19,7 @@ class ProfileFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false).apply {
             mViewModel = mainViewModel
-            setLifecycleOwner(this@ProfileFragment)
+            lifecycleOwner = this@ProfileFragment
         }
 
         return binding.root

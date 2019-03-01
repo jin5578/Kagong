@@ -14,7 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.RegisterEventListen
 class YearAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: RegisterEventListener
-) : ListAdapter<YearItem, YearAdapter.ViewHolder>(yearDiff) {
+) : ListAdapter<YearItem, YearAdapter.ViewHolder>(YearDiff) {
 
     private val TAG = "YearAdapter"
 
@@ -40,12 +40,12 @@ class YearAdapter(
             binding.yearItem = y
 
             binding.eventListener = eventListener
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
 
-    object yearDiff: DiffUtil.ItemCallback<YearItem>() {
+    object YearDiff: DiffUtil.ItemCallback<YearItem>() {
         override fun areItemsTheSame(
             oldItem: YearItem,
             newItem: YearItem

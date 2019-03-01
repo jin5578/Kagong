@@ -19,7 +19,7 @@ class WeatherFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentWeatherBinding.inflate(inflater, container, false).apply {
             dViewModel = areaDetailViewModel
-            setLifecycleOwner(this@WeatherFragment)
+            lifecycleOwner = this@WeatherFragment
         }
 
         return binding.root

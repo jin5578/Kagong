@@ -37,6 +37,6 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
         })
 
         viewDataBinding.iViewModel = inAgreementViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this@InAgreementActivity
     }
 }

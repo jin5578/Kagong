@@ -55,6 +55,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         })
 
         viewDataBinding.rViewModel = registerViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this@RegisterActivity
     }
 }

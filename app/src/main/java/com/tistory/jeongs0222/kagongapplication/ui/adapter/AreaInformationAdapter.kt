@@ -13,7 +13,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ItemAreaInformationB
 
 class AreaInformationAdapter(
     private val lifecycleOwner: LifecycleOwner
-): ListAdapter<AreaInformationResult, AreaInformationAdapter.ViewHolder>(iDiff) {
+): ListAdapter<AreaInformationResult, AreaInformationAdapter.ViewHolder>(InformationDiff) {
 
     private val TAG = "AreaInformationAdapter"
 
@@ -37,12 +37,12 @@ class AreaInformationAdapter(
         fun bind(i: AreaInformationResult) {
             binding.informationItem = i
 
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
 
-    object iDiff: DiffUtil.ItemCallback<AreaInformationResult>() {
+    object InformationDiff: DiffUtil.ItemCallback<AreaInformationResult>() {
         override fun areItemsTheSame(
             oldItem: AreaInformationResult,
             newItem: AreaInformationResult

@@ -23,7 +23,7 @@ import java.util.*
 class CalendarListAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: AddScheduleEventListener
-) : ListAdapter<Any, RecyclerView.ViewHolder>(calendarDiff) {
+) : ListAdapter<Any, RecyclerView.ViewHolder>(CalendarDiff) {
 
     private val TAG = "CalendarListAdapter"
 
@@ -171,7 +171,7 @@ class CalendarListAdapter(
         }
     }
 
-    object calendarDiff: DiffUtil.ItemCallback<Any>() {
+    object CalendarDiff: DiffUtil.ItemCallback<Any>() {
         override fun areItemsTheSame(
             oldItem: Any,
             newItem: Any

@@ -14,7 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 class FindAreaAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<FindAreaResult, FindAreaAdapter.ViewHolder>(areaDiff) {
+) : ListAdapter<FindAreaResult, FindAreaAdapter.ViewHolder>(AreaDiff) {
 
     private val TAG = "FindAreaAdapter"
 
@@ -41,12 +41,12 @@ class FindAreaAdapter(
             binding.areaItem = a
 
             binding.eventListener = eventListener
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
 
-    object areaDiff: DiffUtil.ItemCallback<FindAreaResult>() {
+    object AreaDiff: DiffUtil.ItemCallback<FindAreaResult>() {
         override fun areItemsTheSame(
             oldItem: FindAreaResult,
             newItem: FindAreaResult

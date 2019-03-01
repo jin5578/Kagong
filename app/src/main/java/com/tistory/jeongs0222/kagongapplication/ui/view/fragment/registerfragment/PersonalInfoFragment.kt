@@ -31,7 +31,7 @@ class PersonalInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentPersonalInfoBinding.inflate(inflater, container, false).apply {
             rViewModel = registerViewModel
-            setLifecycleOwner(this@PersonalInfoFragment)
+            lifecycleOwner = this@PersonalInfoFragment
         }
 
         return binding.root

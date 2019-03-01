@@ -23,7 +23,7 @@ class BasicInfoFragment : Fragment(), TextWatcher {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBasicInfoBinding.inflate(inflater, container, false).apply {
             rViewModel = registerViewModel
-            setLifecycleOwner(this@BasicInfoFragment)
+            lifecycleOwner = this@BasicInfoFragment
         }
 
         return binding.root

@@ -22,7 +22,7 @@ class YearFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentYearBinding.inflate(inflater, container, false).apply {
             rViewModel = registerViewModel
-            setLifecycleOwner(this@YearFragment)
+            lifecycleOwner = this@YearFragment
         }
 
         return binding.root

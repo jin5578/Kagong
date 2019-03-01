@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         })
 
         viewDataBinding.sViewModel = splashViewModel
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this@SplashActivity
     }
 
 }
