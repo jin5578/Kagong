@@ -53,8 +53,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
         })
 
         areaDetailViewModel.addScheduleClick.observe(this@AreaDetailActivity, Observer {
-            intentProvider.intentPutExtra(AddScheduleActivity::class.java,  area)
-            //intentProvider.intent(AddScheduleActivity::class.java)
+            intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)
         })
 
         viewDataBinding.dViewModel = areaDetailViewModel
@@ -86,6 +85,13 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
             else ->
                 false
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("onResume", "onResume")
+
+        areaDetailViewModel.validateSchedule(area)
     }
 
     override fun onBackPressed() {

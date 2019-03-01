@@ -245,6 +245,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, area)
     }
 
+    override fun myScheduleClickEvent(type: String) {
+
+    }
+
 }
 
 interface MainEventListener {
@@ -254,5 +258,7 @@ interface MainEventListener {
     fun historyItemClickEvent(area: String)
 
     fun searchItemClickEvent(area: String)
+
+    fun myScheduleClickEvent(type: String)
 
 }

@@ -11,6 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknam
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
+import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -66,6 +67,14 @@ interface HostApi {
         @Field("area") area: String,
         @Field("userid") userid: String
     ): Single<FindAreaLogResult>    //0: 성공, 1: 실패
+
+    //Check Validate Schedule
+    @FormUrlEncoded
+    @POST("validateschedule.php")
+    fun validateSchedule(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String
+    ): Single<ValidateScheduleResult>       //0: 없음, 1: 있음
 
     //Bring Area Information
     @FormUrlEncoded

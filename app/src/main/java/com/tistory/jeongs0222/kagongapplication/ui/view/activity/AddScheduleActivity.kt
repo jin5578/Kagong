@@ -88,7 +88,7 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         addScheduleViewModel.bothSelected.observe(this@AddScheduleActivity, Observer {
             if(it) {
                 viewDataBinding.selectedDay.visibility = View.VISIBLE
-                viewDataBinding.selectedDay.text = addScheduleViewModel.startDay.value + " ~ " + addScheduleViewModel.endDay.value!!.substring(5) + " 추가하기"
+                viewDataBinding.selectedDay.text = addScheduleViewModel.tempStartDay.value!!.replace("-", ".") + " ~ " + addScheduleViewModel.tempEndDay.value!!.substring(5).replace("-", ".") + " 추가하기"
             } else {
                 viewDataBinding.selectedDay.visibility = View.GONE
             }

@@ -53,6 +53,12 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
     val bothSelected: LiveData<Boolean>
         get() = _bothSelected
 
+    val tempStartDay: LiveData<String>
+        get() = _startDay
+
+    val tempEndDay: LiveData<String>
+        get() = _endDay
+
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
@@ -163,7 +169,7 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
                 when {
                     position < _startPosition.value!! -> {     //시작 값이 있고 끝 값에 넣어야 하는 경우 중에 선택된 값이 시작 값 보다 작은 경우
                         _endPosition.value = _startPosition.value
-                        _endDay.value = _startDay.value!!.substring(5)
+                        _endDay.value = _startDay.value!!
 
                         _startPosition.value = position
                         _startDay.value = dateFormatter.getDate(

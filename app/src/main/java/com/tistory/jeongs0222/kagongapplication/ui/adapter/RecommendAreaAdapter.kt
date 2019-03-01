@@ -14,7 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainEventListener
 class RecommendAreaAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<RecommendAreaResult, RecommendAreaAdapter.ViewHolder>(AreaDiff) {
+) : ListAdapter<RecommendAreaResult, RecommendAreaAdapter.ViewHolder>(RecommendAreaDiff) {
 
     private val TAG = "RecommendAreaAdapter"
 
@@ -44,7 +44,7 @@ class RecommendAreaAdapter(
         }
     }
 
-    object AreaDiff: DiffUtil.ItemCallback<RecommendAreaResult>() {
+    object RecommendAreaDiff: DiffUtil.ItemCallback<RecommendAreaResult>() {
         override fun areItemsTheSame(
             oldItem: RecommendAreaResult,
             newItem: RecommendAreaResult

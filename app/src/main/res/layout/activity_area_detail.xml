@@ -44,7 +44,7 @@
                 android:paddingBottom="10dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:text="@string/add_schedule"
+                android:text="@{dViewModel.validateSchedule}"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"

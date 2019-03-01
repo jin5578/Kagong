@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -10,13 +11,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel(), AreaDetailEventListener {
+class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel() {
 
 
     //AreaDetailActivity
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
         get() = _previousClick
+
+    private val _validateSchedue = MutableLiveData<String>()
+    val validateSchedule: LiveData<String>
+        get() = _validateSchedue
 
 
     //InformationFragment
@@ -30,6 +35,8 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
 
     private val TAG = "AreaDetailViewModel"
+
+    private var uid: String = FirebaseAuth.getInstance().uid!!
 
 
     fun previousClickEvent() {
@@ -57,13 +64,20 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .subscribe()
     }
 
-    fun bringAccompany(position: Int) {
-
+    fun validateSchedule(area: String) {
+        areaDetailRepository.validateSchedule(uid, area)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if (it.value == 0) {
+                    _validateSchedue.value = "일정을 추가해보세요"
+                } else {
+                    _validateSchedue.value = it.date.removeRange(13, 18).replace("-", ".")
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
-
-}
-
-interface AreaDetailEventListener {
-
-
 }
