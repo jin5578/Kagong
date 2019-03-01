@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
+import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
@@ -18,4 +19,6 @@ interface MainRepository {
     fun findArea(findcontent: String): Single<FindAreaResponse>
 
     fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
+
+    fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
 }

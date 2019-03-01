@@ -6,8 +6,8 @@ import java.util.*
 
 
 class DateFormatter {
-    val CALENDAR_FULL_FORMAT = "yyyy.MM.dd"
-    val CALENDAR_FORMAT = "MM.dd"
+    val CALENDAR_FULL_FORMAT = "yyyy-MM-dd"
+    val CALENDAR_FORMAT = "MM-dd"
     val CALENDAR_HEADER_FORMAT = "MM월"
     val CALENDAR_DAY_FORMAT = "d"
 

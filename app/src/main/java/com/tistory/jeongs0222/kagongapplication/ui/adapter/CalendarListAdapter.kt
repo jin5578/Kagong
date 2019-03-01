@@ -125,7 +125,7 @@ class CalendarListAdapter(
         fun bind(month: Long) {
             binding.monthItem = CalendarItem(dateFormatter.getDate(month, dateFormatter.CALENDAR_HEADER_FORMAT))
 
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
@@ -136,7 +136,7 @@ class CalendarListAdapter(
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind() {
 
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }
@@ -166,7 +166,7 @@ class CalendarListAdapter(
 
             binding.eventListener = eventListener
 
-            binding.setLifecycleOwner(lifecycleOwner)
+            binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
     }

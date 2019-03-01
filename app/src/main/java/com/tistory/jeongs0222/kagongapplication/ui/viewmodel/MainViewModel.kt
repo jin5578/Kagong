@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
@@ -40,6 +41,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
         get() = _recommendArea
+
+
+    //ScheduleFragment
+    private val _myScheduleList = MutableLiveData<MutableList<BringScheduleResult>>()
+    val myScheduleList: LiveData<MutableList<BringScheduleResult>>
+        get() = _myScheduleList
 
 
     //SearchAreaFragment
@@ -88,6 +95,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         bringRecommendArea()
         bringNickname(uid)
         bringHistory(uid)
+        bringSchedule(uid)
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
@@ -174,6 +182,19 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _findArea.value = it.findarea
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun bringSchedule(googlekey: String) {
+        mainRepository.bringSchedule(googlekey)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _myScheduleList.value = it.schedulelist
             }
             .doOnError {
                 it.printStackTrace()

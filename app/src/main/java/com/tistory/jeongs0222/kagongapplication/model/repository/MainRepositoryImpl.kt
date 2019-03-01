@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
+import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
@@ -24,4 +25,7 @@ class MainRepositoryImpl(private val hostApi: HostApi): MainRepository {
 
     override fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
             = hostApi.findAreaLog(area, userid)
+
+    override fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
+            = hostApi.bringSchedule(googlekey)
 }
