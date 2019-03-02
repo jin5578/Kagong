@@ -19,16 +19,60 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <TextView
+        <ImageView
+                android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="스케쥴 상세 정보 작성"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"
+                android:paddingBottom="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/null1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_schedule"
+                android:textSize="18sp"
                 android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/previous"
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
+
+        <ImageView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/ic_more_horiz_black_24dp"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+                android:id="@+id/null2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/previous"/>
+
+
+        <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

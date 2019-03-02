@@ -61,6 +61,10 @@
     <string name="sat">토</string>
     <string name="sun">일</string>
 
+    <string name="detail_schedule">세부일정</string>
+
+    <string name="dash">-</string>
+
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 
