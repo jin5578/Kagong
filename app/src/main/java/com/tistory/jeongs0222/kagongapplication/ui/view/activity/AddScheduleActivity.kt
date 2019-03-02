@@ -98,4 +98,8 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         viewDataBinding.lifecycleOwner = this@AddScheduleActivity
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
 }

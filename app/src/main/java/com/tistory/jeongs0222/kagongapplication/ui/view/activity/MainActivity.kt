@@ -98,4 +98,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        mainViewModel.bringHistory(uid)
+        mainViewModel.bringSchedule(uid)
+    }
 }

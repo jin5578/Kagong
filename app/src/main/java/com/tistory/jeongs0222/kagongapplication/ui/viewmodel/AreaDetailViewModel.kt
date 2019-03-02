@@ -3,10 +3,10 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -35,8 +35,6 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
 
     private val TAG = "AreaDetailViewModel"
-
-    private var uid: String = FirebaseAuth.getInstance().uid!!
 
 
     fun previousClickEvent() {

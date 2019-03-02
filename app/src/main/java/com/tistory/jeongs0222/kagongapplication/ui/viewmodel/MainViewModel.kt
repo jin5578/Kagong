@@ -3,16 +3,17 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
+import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AddDetailScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.AreaDetailActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -84,18 +85,14 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
-    private var uid: String
 
 
     init {
         _viewFinish.value = false
 
-        uid = FirebaseAuth.getInstance().uid!!
-
         bringRecommendArea()
         bringNickname(uid)
-        bringHistory(uid)
-        bringSchedule(uid)
+        //bringSchedule(uid)
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
@@ -115,26 +112,6 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, "previousClick")
     }
 
-    fun findAreaLog() {
-        mainRepository.findAreaLog(_selectedArea.value!!, uid)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess {
-                if(it.value == 0) {
-                    intentProvider.intentPutExtra(AreaDetailActivity::class.java, _selectedArea.value!!)
-
-                    Log.e("TAG", "intent")
-                } else {
-                    messageProvider.toastMessage("잠시 후 다시 시도해주세요")
-                }
-                Log.e(TAG, it.toString())
-            }
-            .doOnError {
-                it.printStackTrace()
-            }
-            .subscribe()
-    }
-
     private fun bringNickname(googlekey: String) {
         mainRepository.bringNickname(googlekey)
             .subscribeOn(Schedulers.io())
@@ -143,19 +120,6 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
                 if (it.value == 0) {
                     _userNickname.value = it.nickname + "님 어디로 떠나시나요?"
                 }
-            }
-            .doOnError {
-                it.printStackTrace()
-            }
-            .subscribe()
-    }
-
-    private fun bringHistory(googlekey: String) {
-        mainRepository.bringHistory(googlekey)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess {
-                _areaSearchHistory.value = it.areasearchhistory
             }
             .doOnError {
                 it.printStackTrace()
@@ -176,6 +140,19 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribe()
     }
 
+    fun bringHistory(googlekey: String) {
+        mainRepository.bringHistory(googlekey)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _areaSearchHistory.value = it.areasearchhistory
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
     fun findArea(charSequence: CharSequence) {
         mainRepository.findArea(charSequence.toString())
             .subscribeOn(Schedulers.io())
@@ -189,7 +166,27 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribe()
     }
 
-    private fun bringSchedule(googlekey: String) {
+    fun findAreaLog() {
+        mainRepository.findAreaLog(_selectedArea.value!!, uid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if (it.value == 0) {
+                    intentProvider.intentPutExtra(AreaDetailActivity::class.java, _selectedArea.value!!)
+
+                    Log.e("TAG", "intent")
+                } else {
+                    messageProvider.toastMessage("잠시 후 다시 시도해주세요")
+                }
+                Log.e(TAG, it.toString())
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringSchedule(googlekey: String) {
         mainRepository.bringSchedule(googlekey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -203,14 +200,14 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     fun backPressed() {
-        if(pressedTime == 0.toLong()) {
+        if (pressedTime == 0.toLong()) {
             messageProvider.toastMessage("한 번 더 누르면 종료됩니다")
 
             pressedTime = System.currentTimeMillis()
         } else {
             val secondsTime = (System.currentTimeMillis() - pressedTime).toInt()
 
-            if(secondsTime > 2000) {
+            if (secondsTime > 2000) {
                 messageProvider.toastMessage("한 번 더 누르면 종료됩니다")
 
                 pressedTime = 0
@@ -245,8 +242,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         Log.e(TAG, area)
     }
 
-    override fun myScheduleClickEvent(type: String) {
-
+    override fun myScheduleClickEvent(type: String, area: String) {
+        if (type != "past") {
+            intentProvider.intentPutExtra(AddDetailScheduleActivity::class.java, area)
+        }
     }
 
 }
@@ -259,6 +258,6 @@ interface MainEventListener {
 
     fun searchItemClickEvent(area: String)
 
-    fun myScheduleClickEvent(type: String)
+    fun myScheduleClickEvent(type: String, area: String)
 
 }

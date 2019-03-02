@@ -5,17 +5,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.RegisterRepository
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
 import com.tistory.jeongs0222.kagongapplication.ui.view.activity.MainActivity
-import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
-import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.*
 
 
 class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(), RegisterEventListener {
@@ -202,7 +198,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     }
 
     private fun getKey() {
-        _userkey.value = FirebaseAuth.getInstance().uid
+        _userkey.value = uid
 
         Log.e(TAG, _userkey.value)
     }

@@ -3,12 +3,8 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddScheduleRepository
-import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
-import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -66,8 +62,6 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
 
     private val dateFormatter = DateFormatter()
 
-    private var uid: String
-
     var mCenterPosition: Int = 0
 
     var lastStartPosition = 0
@@ -79,8 +73,6 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
 
         _startPosition.value = 0
         _endPosition.value = 0
-
-        uid = FirebaseAuth.getInstance().uid!!
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
