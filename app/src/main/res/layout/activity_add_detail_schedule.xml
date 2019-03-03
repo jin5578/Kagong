@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
 
         <variable
-                name="dViewModel"
+                name="aDViewModel"
                 type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddDetailScheduleViewModel"/>
 
     </data>
@@ -23,11 +23,9 @@
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
+                android:padding="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="@{() -> aDViewModel.previousClickEvent()}"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -37,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_schedule"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toEndOf="@id/previous"
                 app:layout_constraintTop_toTopOf="@id/previous"
@@ -47,11 +45,9 @@
                 android:id="@+id/more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
+                android:padding="16dp"
                 android:src="@drawable/ic_more_horiz_black_24dp"
+                android:onClick="@{() -> aDViewModel.moreClickEvent()}"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -65,15 +61,75 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"/>
 
-
-        <FrameLayout
-                android:id="@+id/frameLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/more_layout"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/selectedday_background"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:visibility="visible">
+
+            <TextView
+                    android:id="@+id/schedule_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/search_background"
+                    android:gravity="center"
+                    android:text="@string/edit_schedule"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                    android:id="@+id/schedule_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/search_background"
+                    android:gravity="center"
+                    android:text="@string/delete_schedule"
+                    android:textColor="@color/colorRed"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/schedule_edit"/>
+
+            <TextView
+                    android:id="@+id/schedule_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/search_background"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/goyang"
+                    android:onClick="@{() -> aDViewModel.cancelClickEvent()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/schedule_delete"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
