@@ -26,9 +26,9 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if(it) {
-                viewDataBinding.moreLayout.visibility = View.VISIBLE
+                viewDataBinding.includeMore.moreLayout.visibility = View.VISIBLE
             } else {
-                viewDataBinding.moreLayout.visibility = View.GONE
+                viewDataBinding.includeMore.moreLayout.visibility = View.GONE
             }
         })
 
