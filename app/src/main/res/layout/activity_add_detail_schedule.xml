@@ -62,7 +62,7 @@
 
         <include
                 android:id="@+id/include_more"
-                layout="@layout/layout_more"
+                layout="@layout/layout_more_contract"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"

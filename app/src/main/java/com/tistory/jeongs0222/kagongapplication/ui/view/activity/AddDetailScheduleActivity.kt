@@ -1,7 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 import android.view.View
+import android.view.animation.AnticipateInterpolator
+import android.view.animation.AnticipateOvershootInterpolator
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddDetailScheduleBinding
@@ -26,9 +31,9 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if(it) {
-                viewDataBinding.includeMore.moreLayout.visibility = View.VISIBLE
+                moreExpandAnimation()
             } else {
-                viewDataBinding.includeMore.moreLayout.visibility = View.GONE
+                moreContractAnimation()
             }
         })
 
@@ -36,6 +41,32 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         viewDataBinding.adViewModel = addDetailScheduleViewModel
         viewDataBinding.lifecycleOwner = this@AddDetailScheduleActivity
+    }
+
+    private fun moreExpandAnimation() {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(this, R.layout.layout_more_expand)
+
+        val transition = ChangeBounds()
+        transition.interpolator = AnticipateOvershootInterpolator(1.0f)
+        transition.duration = 700
+
+        TransitionManager.beginDelayedTransition(viewDataBinding.includeMore.moreLayout, transition)
+
+        constraintSet.applyTo(viewDataBinding.includeMore.moreLayout)
+    }
+
+    private fun moreContractAnimation() {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(this, R.layout.layout_more_contract)
+
+        val transition = ChangeBounds()
+        transition.interpolator = AnticipateOvershootInterpolator(1.0f)
+        transition.duration = 700
+
+        TransitionManager.beginDelayedTransition(viewDataBinding.includeMore.moreLayout, transition)
+
+        constraintSet.applyTo(viewDataBinding.includeMore.moreLayout)
     }
 
     override fun onBackPressed() {
