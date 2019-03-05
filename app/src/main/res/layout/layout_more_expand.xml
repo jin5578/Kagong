@@ -18,8 +18,7 @@
             android:id="@+id/more_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/selectedday_background"
-            tools:visibility="visible">
+            android:background="@drawable/selectedday_background">
 
         <TextView
                 android:id="@+id/schedule_edit"

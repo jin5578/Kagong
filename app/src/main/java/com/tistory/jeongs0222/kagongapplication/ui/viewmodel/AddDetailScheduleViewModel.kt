@@ -34,6 +34,10 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     val cancelClick: LiveData<Any>
         get() = _cancelClick
 
+    private val _floatingClick = SingleLiveEvent<Any>()
+    val floatingClick: LiveData<Any>
+        get() = _floatingClick
+
     private val _moreVisibility = MutableLiveData<Boolean>()
     val moreVisibility: LiveData<Boolean>
         get() = _moreVisibility
@@ -103,6 +107,12 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
         _moreVisibility.value = false
 
         Log.e(TAG, "cancelClick")
+    }
+
+    fun floatingClickEvent() {
+        _floatingClick.call()
+
+        Log.e(TAG, "FloatingClick")
     }
 
 

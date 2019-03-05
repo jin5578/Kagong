@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
@@ -29,7 +30,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     private lateinit var alertDialog: AlertDialog
 
 
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,11 +44,22 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if (it) {
+                constraintSetProvider.moreExpandAnimation(R.layout.layout_floating_invisible, viewDataBinding.includeFloating.moreFloating)
                 constraintSetProvider.moreExpandAnimation(R.layout.layout_more_expand, viewDataBinding.includeMore.moreLayout)
+
+                //viewDataBinding.floating.visibility = View.GONE
             } else {
                 constraintSetProvider.moreContractAnimation(R.layout.layout_more_contract, viewDataBinding.includeMore.moreLayout)
+                constraintSetProvider.moreContractAnimation(R.layout.layout_floating_visible, viewDataBinding.includeFloating.moreFloating)
+
+                //viewDataBinding.floating.visibility = View.VISIBLE
             }
         })
+
+        addDetailScheduleViewModel.floatingClick.observe(this@AddDetailScheduleActivity, Observer {
+            intentProvider.intentPutExtra(AddLocationActivity::class.java, area)
+        })
+
         addDetailScheduleViewModel.editScheduleClick.observe(this@AddDetailScheduleActivity, Observer {
             intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)
         })

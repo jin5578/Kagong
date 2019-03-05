@@ -54,6 +54,21 @@
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <TextView
+                android:id="@+id/itemNull"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:text="@string/item_schedule_null"
+                android:textSize="14sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:visibility="visible"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

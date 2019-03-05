@@ -63,6 +63,7 @@
 
     <string name="detail_schedule">세부일정</string>
 
+    <string name="item_schedule_null">일정을 등록해보세요.</string>
     <string name="dash">-</string>
 
     <string name="edit_schedule">일정 수정</string>
@@ -70,8 +71,10 @@
     <string name="cancel">취소</string>
     <string name="check">확인</string>
 
+    <string name="item_detail_null">세부 일정을 등록해보세요.</string>
     <string name="alertdialog_title">정말 진행하시겠습니가?</string>
     <string name="alertdialog_content">삭제된 일정은 복구할 수 없습니다.</string>
+    <string name="day">DAY</string>
 
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
