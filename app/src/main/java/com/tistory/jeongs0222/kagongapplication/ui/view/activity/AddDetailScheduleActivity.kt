@@ -38,9 +38,6 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.bind(intentProvider, messageProvider)
 
-        addDetailScheduleViewModel.previousClick.observe(this@AddDetailScheduleActivity, Observer {
-            finish()
-        })
 
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if (it) {
@@ -54,6 +51,10 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
                 //viewDataBinding.floating.visibility = View.VISIBLE
             }
+        })
+
+        addDetailScheduleViewModel.previousClick.observe(this@AddDetailScheduleActivity, Observer {
+            finish()
         })
 
         addDetailScheduleViewModel.floatingClick.observe(this@AddDetailScheduleActivity, Observer {
