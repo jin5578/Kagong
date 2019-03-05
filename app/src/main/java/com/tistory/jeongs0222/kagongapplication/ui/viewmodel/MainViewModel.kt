@@ -219,7 +219,6 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     override fun recommendItemClickEvent(area: String) {
         _selectedArea.value = area
-        //_selectedRecommend.value = area
 
         _selectedRecommendClick.call()
 

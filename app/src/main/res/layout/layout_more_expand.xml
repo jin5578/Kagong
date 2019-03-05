@@ -36,6 +36,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
+                android:onClick="@{() -> aDViewModel.editScheduleClickEvent()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -53,6 +54,7 @@
                 android:textColor="@color/colorRed"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
+                android:onClick="@{() -> aDViewModel.deleteScheduleClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/schedule_edit"/>

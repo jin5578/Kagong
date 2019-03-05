@@ -21,7 +21,7 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
 
     override fun toastMessage(message: String) {
         val toastView =
-            activity.layoutInflater.inflate(R.layout.toastmessage_layout, activity.findViewById(R.id.constraintLayout))
+            activity.layoutInflater.inflate(R.layout.custom_toastmessage_layout, activity.findViewById(R.id.constraintLayout))
 
         val textView = toastView.findViewById<TextView>(R.id.textView)
         textView.text = message

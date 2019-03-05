@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.api
 import com.tistory.jeongs0222.kagongapplication.model.host.addSchedule.AddScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.deleteSchedule.DeleteScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
@@ -98,5 +99,13 @@ interface HostApi {
     fun bringSchedule(
         @Field("googlekey") googlekey: String
     ): Single<BringScheduleResponse>
+
+    //Delete Schedule
+    @FormUrlEncoded
+    @POST("deleteschedule.php")
+    fun deleteSchedule(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String
+    ): Single<DeleteScheduleResult>   //0: 성공, 1: 실패
 
 }
