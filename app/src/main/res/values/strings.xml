@@ -76,8 +76,14 @@
     <string name="alertdialog_content">삭제된 일정은 복구할 수 없습니다.</string>
     <string name="day">DAY</string>
 
+    <!--AddLocationActivity-->
     <string name="add_location">이동 경로 표시</string>
 
+    <!--AddLocationActivity - AddLocationFragment-->
+    <string name="departure_input">출발지 입력</string>
+    <string name="arrival_input">도착지 입력</string>
+    <string name="delete">삭제</string>
+    <string name="addition">추가</string>
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

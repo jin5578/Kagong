@@ -11,7 +11,17 @@ class AddLocationViewModel: DisposableViewModel() {
     val previousClick: LiveData<Any>
         get() = _previousClick
 
+    private val _additionClick = SingleLiveEvent<Any>()
+    val additionClick: LiveData<Any>
+        get() = _additionClick
+
     private val TAG = "AddLocationViewModel"
+
+    fun additionClickEvent() {
+        _additionClick.call()
+
+        Log.e(TAG, "additionClick")
+    }
 
     fun previousClickEvent() {
         _previousClick.call()
