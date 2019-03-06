@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

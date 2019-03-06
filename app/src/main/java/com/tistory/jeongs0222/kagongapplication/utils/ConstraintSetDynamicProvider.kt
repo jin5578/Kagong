@@ -25,18 +25,19 @@ class ConstraintSetDynamicProviderImpl(
     private var temp = 1
     private var lasttemp = 1
 
-    private val params = ConstraintLayout.LayoutParams(
-        ConstraintLayout.LayoutParams.MATCH_PARENT,
-        ConstraintLayout.LayoutParams.WRAP_CONTENT
-    )
-
-
     override fun createDeparture(initView: ConstraintLayout) {
 
         val constraintSet = ConstraintSet()
 
+
         val departureView = activity.layoutInflater.inflate(R.layout.layout_departure, null)
         departureView.id = temp
+
+        val params = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
         departureView.layoutParams = params
 
         initView.addView(departureView)
@@ -56,10 +57,18 @@ class ConstraintSetDynamicProviderImpl(
 
     override fun createWayAndArrival(initView: ConstraintLayout) {
 
+        Log.e("temp And lasttemp", temp.toString() + " " + lasttemp.toString())
+
         val constraintSet = ConstraintSet()
 
         val wayView = activity.layoutInflater.inflate(R.layout.layout_way_and_arrival, null)
         wayView.id = temp
+
+        val params = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
         wayView.layoutParams = params
 
         initView.addView(wayView)
