@@ -20,33 +20,32 @@
             android:layout_height="match_parent"
             android:background="@color/colorGray1">
 
-        <include
-                android:id="@+id/include_departure"
-                layout="@layout/layout_departure"
-                app:aLViewModel="@{aLViewModel}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-        <include
-                android:id="@+id/include_way"
-                layout="@layout/layout_way"
-                app:aLViewModel="@{aLViewModel}"
+        <ScrollView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginBottom="59dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include_departure"/>
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        <include
-                android:id="@+id/include_arrival"
-                layout="@layout/layout_arrival"
-                app:aLViewModel="@{aLViewModel}"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/scrollView_entire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </ScrollView>
+
+        <View
+                android:id="@+id/null2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include_way"/>
+                app:layout_constraintBottom_toTopOf="@id/delete"/>
 
         <TextView
                 android:id="@+id/delete"
@@ -59,6 +58,7 @@
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
                 android:background="@color/colorWhite"
+                android:onClick="@{() -> aLViewModel.deleteClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/addition"/>

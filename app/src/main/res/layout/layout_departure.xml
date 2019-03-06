@@ -48,7 +48,7 @@
                 app:layout_constraintStart_toEndOf="@id/departure"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/departure"
-                    app:layout_constraintBottom_toBottomOf="@id/departure"/>
+                app:layout_constraintBottom_toBottomOf="@id/departure"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
