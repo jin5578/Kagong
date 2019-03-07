@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentSearchLocationBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
-import kotlinx.android.synthetic.main.activity_add_location.view.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

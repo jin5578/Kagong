@@ -17,20 +17,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite">
+            android:background="@color/colorGray1">
 
-        <TextView
-                android:layout_width="wrap_content"
+        <EditText
+                android:id="@+id/locationSearch"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="FragmentAddLocation"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/search_location_hint"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> aLViewModel.tempClickEvent()}"
+                android:padding="15dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:background="@drawable/edittext_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/locationRecycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationSearch"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

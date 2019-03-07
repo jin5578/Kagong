@@ -1,7 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -48,6 +47,8 @@ class AddLocationViewModel: DisposableViewModel() {
 
     private val TAG = "AddLocationViewModel"
 
+    private var fragmentPosition = 1
+
 
     init {
         _title.value = "이동 경로 표시"
@@ -56,7 +57,15 @@ class AddLocationViewModel: DisposableViewModel() {
     }
 
     fun previousClickEvent() {
-        _previousClick.call()
+        if(fragmentPosition == 1) {
+            _previousClick.call()
+        } else {
+            _title.value = "이동 경로 표시"
+            _confirmVisible.value = true
+            _searchFrameVisible.value = false
+
+            fragmentPosition = 1
+        }
 
         Log.e(TAG, "previousClick")
     }
@@ -85,14 +94,16 @@ class AddLocationViewModel: DisposableViewModel() {
         _title.value = "위치 검색하기"
         _confirmVisible.value = false
         _searchFrameVisible.value = true
+
+        fragmentPosition = 2
     }
 
-    fun tempClickEvent() {
+    /*fun tempClickEvent() {
         _tempClick.call()
 
         _title.value = "이동 경로 표시"
         _confirmVisible.value = true
         _searchFrameVisible.value = false
-    }
+    }*/
 
 }

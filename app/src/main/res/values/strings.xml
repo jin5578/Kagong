@@ -84,6 +84,9 @@
     <string name="arrival_input">도착지 입력</string>
     <string name="delete">삭제</string>
     <string name="addition">추가</string>
+
+    <!--AddLocationActivity - SearchLocationFragment-->
+    <string name="search_location_hint">위치를 검색해보세요</string>
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

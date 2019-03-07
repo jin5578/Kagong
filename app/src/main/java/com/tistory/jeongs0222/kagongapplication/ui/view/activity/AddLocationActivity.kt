@@ -1,8 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddLocationBinding
@@ -25,6 +23,7 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     private val addLocationFragment = AddLocationFragment()
     private val searchLocationFragment = SearchLocationFragment()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,6 +39,10 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     }
 
     override fun onBackPressed() {
-        finish()
+        addLocationViewModel.confirmVisible.observe(this@AddLocationActivity, Observer {
+            if(it) {
+                finish()
+            }
+        })
     }
 }
