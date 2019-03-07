@@ -2,11 +2,22 @@ package com.tistory.jeongs0222.kagongapplication.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.media.Image
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.tistory.jeongs0222.kagongapplication.R
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation.SearchLocationFragment
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
+import kotlinx.android.synthetic.main.layout_departure.view.*
+import kotlinx.android.synthetic.main.layout_way_and_arrival.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.sign
 
 
 interface ConstraintSetDynamicProvider {
@@ -17,13 +28,17 @@ interface ConstraintSetDynamicProvider {
 
     fun deleteWayAndArrival(initView: ConstraintLayout)
 
+    fun dynamicColorFilter(wayView: View, id: Int)
 }
 
 class ConstraintSetDynamicProviderImpl(
-    private val activity: FragmentActivity
+    private val activity: FragmentActivity,
+    private val addLocationViewModel: AddLocationViewModel
 ): ConstraintSetDynamicProvider {
     private var temp = 1
     private var lasttemp = 1
+
+    private var imageList = mutableListOf(R.id.walk, R.id.run, R.id.bike, R.id.car, R.id.taxi, R.id.bus)
 
     override fun createDeparture(initView: ConstraintLayout) {
 
@@ -42,6 +57,12 @@ class ConstraintSetDynamicProviderImpl(
 
         initView.addView(departureView)
 
+        departureView.departure.setOnClickListener {
+            //viewModel에 메소드로 호출
+            addLocationViewModel.searchLocationClickEvent()
+
+        }
+
         constraintSet.clone(initView)
 
         constraintSet.connect(temp, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0)
@@ -57,33 +78,41 @@ class ConstraintSetDynamicProviderImpl(
 
     override fun createWayAndArrival(initView: ConstraintLayout) {
 
-        Log.e("temp And lasttemp", temp.toString() + " " + lasttemp.toString())
+        if(lasttemp < 15) {
+            val constraintSet = ConstraintSet()
 
-        val constraintSet = ConstraintSet()
+            val wayView = activity.layoutInflater.inflate(R.layout.layout_way_and_arrival, null)
+            wayView.id = temp
 
-        val wayView = activity.layoutInflater.inflate(R.layout.layout_way_and_arrival, null)
-        wayView.id = temp
+            val params = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            )
 
-        val params = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.MATCH_PARENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
+            wayView.layoutParams = params
 
-        wayView.layoutParams = params
+            initView.addView(wayView)
 
-        initView.addView(wayView)
+            for(i in 0 until imageList.size) {
+                wayView.findViewById<ImageView>(imageList[i]).setOnClickListener {
+                    Log.e("id", it.id.toString())
 
-        constraintSet.clone(initView)
+                    dynamicColorFilter(wayView, it.id)
+                }
+            }
 
-        constraintSet.connect(temp, ConstraintSet.TOP, lasttemp, ConstraintSet.BOTTOM, 0)
-        constraintSet.connect(temp, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0)
-        constraintSet.connect(temp, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0)
+            constraintSet.clone(initView)
 
-        constraintSet.applyTo(initView)
+            constraintSet.connect(temp, ConstraintSet.TOP, lasttemp, ConstraintSet.BOTTOM, 0)
+            constraintSet.connect(temp, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0)
+            constraintSet.connect(temp, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0)
 
-        lasttemp = temp
+            constraintSet.applyTo(initView)
 
-        temp++
+            lasttemp = temp
+
+            temp++
+        }
     }
 
     override fun deleteWayAndArrival(initView: ConstraintLayout) {
@@ -92,6 +121,16 @@ class ConstraintSetDynamicProviderImpl(
 
             lasttemp--
             temp--
+        }
+    }
+
+    override fun dynamicColorFilter(wayView: View, id: Int) {
+        for(i in 0 until imageList.size) {
+            if(imageList[i] == id) {
+                wayView.findViewById<ImageView>(imageList[i]).setColorFilter(ContextCompat.getColor(activity.applicationContext, R.color.colorRed), android.graphics.PorterDuff.Mode.MULTIPLY)
+            } else {
+                wayView.findViewById<ImageView>(imageList[i]).setColorFilter(ContextCompat.getColor(activity.applicationContext, R.color.colorGray5), android.graphics.PorterDuff.Mode.MULTIPLY)
+            }
         }
     }
 }

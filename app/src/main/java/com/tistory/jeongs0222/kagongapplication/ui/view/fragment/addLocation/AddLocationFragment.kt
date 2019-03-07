@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAddLocationBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProvider
@@ -15,7 +18,8 @@ import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProvid
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class AddLocationFragment : Fragment() {
+@SuppressLint("ValidFragment")
+class AddLocationFragment: Fragment() {
 
     private val TAG = "AddLocationFragment"
 
@@ -33,7 +37,7 @@ class AddLocationFragment : Fragment() {
         }
 
         constraintSetDynamicProvider =
-                ConstraintSetDynamicProviderImpl(this@AddLocationFragment.activity!!)
+                ConstraintSetDynamicProviderImpl(this@AddLocationFragment.activity!!, addLocationViewModel)
 
         return binding.root
     }
@@ -42,7 +46,13 @@ class AddLocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.e("test", "test")
+
         initView()
+
+        addLocationViewModel.confirmClick.observe(this@AddLocationFragment, Observer {
+            val tempText: String = binding.scrollViewEntire.getViewById(1).findViewById<TextView>(R.id.departure).text.toString()
+        })
 
         addLocationViewModel.additionClick.observe(this@AddLocationFragment, Observer {
             constraintSetDynamicProvider.createWayAndArrival(binding.scrollViewEntire)
@@ -50,6 +60,8 @@ class AddLocationFragment : Fragment() {
 
         addLocationViewModel.deleteClick.observe(this@AddLocationFragment, Observer {
             constraintSetDynamicProvider.deleteWayAndArrival(binding.scrollViewEntire)
+
+            Log.e("size", binding.scrollViewEntire.size.toString())
         })
     }
 

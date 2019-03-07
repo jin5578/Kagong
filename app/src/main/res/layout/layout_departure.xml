@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorWhite">
 
-        <EditText
+        <TextView
                 android:id="@+id/departure"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -27,9 +27,7 @@
                 android:paddingBottom="20dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
-                android:hint="@string/departure_input"
-                android:maxLines="1"
-                android:inputType="text"
+                android:text="@string/departure_input"
                 android:background="@null"
                 android:textSize="18sp"
                 android:fontFamily="@font/goyang"
