@@ -3,10 +3,14 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
+import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
-class AddLocationViewModel: DisposableViewModel() {
+class AddLocationViewModel(private val addLocationRepository: AddLocationRepository): DisposableViewModel(), AddLocationEventListener {
 
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
@@ -45,15 +49,38 @@ class AddLocationViewModel: DisposableViewModel() {
     val searchFrameVisible: LiveData<Boolean>
         get() = _searchFrameVisible
 
+    private val _findLocation = MutableLiveData<MutableList<FindLocationResult>>()
+    val findLocation: LiveData<MutableList<FindLocationResult>>
+        get() = _findLocation
+
     private val TAG = "AddLocationViewModel"
 
     private var fragmentPosition = 1
+
+    private lateinit var area: String
 
 
     init {
         _title.value = "이동 경로 표시"
         _confirmVisible.value = true
         _searchFrameVisible.value = false
+    }
+
+    fun bind(area: String) {
+        this.area = area
+    }
+
+    fun findLocation(charSequence: CharSequence) {
+        addLocationRepository.findLocation(area, charSequence.toString())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _findLocation.value = it.findlocation
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
 
     fun previousClickEvent() {
@@ -105,5 +132,14 @@ class AddLocationViewModel: DisposableViewModel() {
         _confirmVisible.value = true
         _searchFrameVisible.value = false
     }*/
+
+    override fun locationItemClickEvent() {
+
+    }
+}
+
+interface AddLocationEventListener {
+
+    fun locationItemClickEvent()
 
 }

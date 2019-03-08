@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddLocationBinding
@@ -14,6 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
 
+    private val TAG = "AddLocationActivity"
+
     override val layoutResourceId: Int = R.layout.activity_add_location
 
     private val addLocationViewModel by viewModel<AddLocationViewModel>()
@@ -23,12 +26,20 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     private val addLocationFragment = AddLocationFragment()
     private val searchLocationFragment = SearchLocationFragment()
 
+    private lateinit var area: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        area = intent.getStringExtra("area")
+
+        Log.e(TAG, area)
+
         fragmentProvider.addLocationFragment(0, addLocationFragment)
         fragmentProvider.addLocationFragment(1, searchLocationFragment)
+
+        addLocationViewModel.bind(area)
 
         addLocationViewModel.previousClick.observe(this@AddLocationActivity, Observer {
             finish()

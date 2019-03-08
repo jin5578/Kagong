@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="locationItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult"/>
+
+        <variable
+                name="eventListener"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationEventListener"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+        <TextView
+                android:id="@+id/locationK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@{locationItem.locationK}"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="빅 벤"/>
+
+        <TextView
+                android:id="@+id/locationE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="@{locationItem.locationE}"
+                android:textSize="14sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/locationK"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Big Ben"/>
+
+        <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@{locationItem.address}"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationE"
+                tools:text="Westmunster London SW1A 0AA"/>
+
+        <View
+                android:id="@+id/null1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
