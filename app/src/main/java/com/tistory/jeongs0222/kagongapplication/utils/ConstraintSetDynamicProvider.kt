@@ -1,9 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.utils
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -12,12 +8,9 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.tistory.jeongs0222.kagongapplication.R
-import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation.SearchLocationFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
 import kotlinx.android.synthetic.main.layout_departure.view.*
 import kotlinx.android.synthetic.main.layout_way_and_arrival.view.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.sign
 
 
 interface ConstraintSetDynamicProvider {
@@ -44,9 +37,10 @@ class ConstraintSetDynamicProviderImpl(
 
         val constraintSet = ConstraintSet()
 
-
         val departureView = activity.layoutInflater.inflate(R.layout.layout_departure, null)
         departureView.id = temp
+
+        Log.e("departureViewId", departureView.id.toString())
 
         val params = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
@@ -58,8 +52,7 @@ class ConstraintSetDynamicProviderImpl(
         initView.addView(departureView)
 
         departureView.departure.setOnClickListener {
-            //viewModel에 메소드로 호출
-            addLocationViewModel.searchLocationClickEvent()
+            addLocationViewModel.searchLocationClickEvent(departureView.id)
 
         }
 
@@ -84,6 +77,9 @@ class ConstraintSetDynamicProviderImpl(
             val wayView = activity.layoutInflater.inflate(R.layout.layout_way_and_arrival, null)
             wayView.id = temp
 
+            Log.e("wayViewId", wayView.id.toString())
+
+
             val params = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -92,6 +88,10 @@ class ConstraintSetDynamicProviderImpl(
             wayView.layoutParams = params
 
             initView.addView(wayView)
+
+            wayView.arrival.setOnClickListener {
+                addLocationViewModel.searchLocationClickEvent(wayView.id)
+            }
 
             for(i in 0 until imageList.size) {
                 wayView.findViewById<ImageView>(imageList[i]).setOnClickListener {

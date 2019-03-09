@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
@@ -52,6 +51,8 @@ class AddLocationFragment: Fragment() {
 
         addLocationViewModel.confirmClick.observe(this@AddLocationFragment, Observer {
             val tempText: String = binding.scrollViewEntire.getViewById(1).findViewById<TextView>(R.id.departure).text.toString()
+
+            Log.e("tempText", tempText)
         })
 
         addLocationViewModel.additionClick.observe(this@AddLocationFragment, Observer {
@@ -60,8 +61,17 @@ class AddLocationFragment: Fragment() {
 
         addLocationViewModel.deleteClick.observe(this@AddLocationFragment, Observer {
             constraintSetDynamicProvider.deleteWayAndArrival(binding.scrollViewEntire)
+        })
 
-            Log.e("size", binding.scrollViewEntire.size.toString())
+        addLocationViewModel.selectedLocation.observe(this@AddLocationFragment, Observer {
+            if(addLocationViewModel.textPosition == 1) {
+                binding.scrollViewEntire.getViewById(addLocationViewModel.textPosition).findViewById<TextView>(R.id.departure).text = it
+            } else {
+                binding.scrollViewEntire.getViewById(addLocationViewModel.textPosition).findViewById<TextView>(R.id.arrival).text = it
+            }
+
+            addLocationViewModel.selectLocationClickEvent()
+
         })
     }
 

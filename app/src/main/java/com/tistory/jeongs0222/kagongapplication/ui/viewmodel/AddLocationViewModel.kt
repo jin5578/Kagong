@@ -12,10 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 class AddLocationViewModel(private val addLocationRepository: AddLocationRepository): DisposableViewModel(), AddLocationEventListener {
 
-    private val _previousClick = SingleLiveEvent<Any>()
-    val previousClick: LiveData<Any>
-        get() = _previousClick
-
+    //AddLocationFragment
     private val _confirmClick = SingleLiveEvent<Any>()
     val confirmClick: LiveData<Any>
         get() = _confirmClick
@@ -32,10 +29,25 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     val searchClick: LiveData<Any>
         get() = _searchClick
 
-    private val _tempClick = SingleLiveEvent<Any>()
-    val tempClick: LiveData<Any>
-        get() = _tempClick
 
+    //SearchLocationFragment
+    private val _selectLocationClick = SingleLiveEvent<Any>()
+    val selectLocationClick: LiveData<Any>
+        get() = _selectLocationClick
+
+    private val _findLocation = MutableLiveData<MutableList<FindLocationResult>>()
+    val findLocation: LiveData<MutableList<FindLocationResult>>
+        get() = _findLocation
+
+    private val _selectedLocation = MutableLiveData<String>()
+    val selectedLocation: LiveData<String>
+        get() = _selectedLocation
+
+
+    //AddLocationActivity
+    private val _previousClick = SingleLiveEvent<Any>()
+    val previousClick: LiveData<Any>
+        get() = _previousClick
 
     private val _title = MutableLiveData<String>()
     val title: LiveData<String>
@@ -49,15 +61,14 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     val searchFrameVisible: LiveData<Boolean>
         get() = _searchFrameVisible
 
-    private val _findLocation = MutableLiveData<MutableList<FindLocationResult>>()
-    val findLocation: LiveData<MutableList<FindLocationResult>>
-        get() = _findLocation
 
     private val TAG = "AddLocationViewModel"
 
     private var fragmentPosition = 1
 
     private lateinit var area: String
+
+    var textPosition = 0
 
 
     init {
@@ -115,31 +126,37 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         Log.e(TAG, "additionClick")
     }
 
-    fun searchLocationClickEvent() {
+    fun searchLocationClickEvent(id: Int) {
         _searchClick.call()
+
+        Log.e("id", id.toString())
 
         _title.value = "위치 검색하기"
         _confirmVisible.value = false
         _searchFrameVisible.value = true
 
         fragmentPosition = 2
+
+        textPosition = id
     }
 
-    /*fun tempClickEvent() {
-        _tempClick.call()
+    fun selectLocationClickEvent() {
+        _selectLocationClick.call()
 
         _title.value = "이동 경로 표시"
         _confirmVisible.value = true
         _searchFrameVisible.value = false
-    }*/
+    }
 
-    override fun locationItemClickEvent() {
+    override fun locationItemClickEvent(location: String) {
+        Log.e(TAG, location)
 
+        _selectedLocation.value = location
     }
 }
 
 interface AddLocationEventListener {
 
-    fun locationItemClickEvent()
+    fun locationItemClickEvent(location: String)
 
 }
