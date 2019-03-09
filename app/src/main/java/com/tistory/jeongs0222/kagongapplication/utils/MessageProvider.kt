@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.utils
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.graphics.Color
 import android.view.Gravity
 import android.view.View
@@ -9,15 +10,24 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddDetailScheduleViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.DisposableViewModel
 
 
 interface MessageProvider {
     fun toastMessage(message: String)
 
     fun snackbar(view: View, message: String, duration: Int)
+
+    fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String)
+
+    fun addLocationAlertDialog()
 }
 
 class MessageProviderImpl(private val activity: Activity) : MessageProvider {
+
+    private lateinit var alertDialog: AlertDialog
 
     override fun toastMessage(message: String) {
         val toastView =
@@ -63,4 +73,41 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
 
         snackbar.show()
     }
+
+    override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String) {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
+
+        builder.setView(inflater)
+
+        inflater.findViewById<TextView>(R.id.cancel).setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        inflater.findViewById<TextView>(R.id.check).setOnClickListener {
+            (viewModel as AddDetailScheduleViewModel).deleteSchedule(area)
+        }
+
+        alertDialog = builder.create()
+
+        alertDialog.show()
+    }
+
+    override fun addLocationAlertDialog() {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
+
+        builder.setView(inflater)
+
+        inflater.findViewById<TextView>(R.id.cancel).setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        inflater.findViewById<TextView>(R.id.check).setOnClickListener {
+            activity.finish()
+        }
+
+        alertDialog = builder.create()
+
+        alertDialog.show()    }
 }

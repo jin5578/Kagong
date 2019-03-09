@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -64,10 +65,11 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
 
     private val TAG = "AddLocationViewModel"
 
-    private var fragmentPosition = 1
 
     private lateinit var area: String
+    private lateinit var messageProvider: MessageProvider
 
+    var fragmentPosition = 1
     var textPosition = 0
 
 
@@ -77,8 +79,9 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         _searchFrameVisible.value = false
     }
 
-    fun bind(area: String) {
+    fun bind(area: String, messageProvider: MessageProvider) {
         this.area = area
+        this.messageProvider = messageProvider
     }
 
     fun findLocation(charSequence: CharSequence) {
@@ -96,7 +99,11 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
 
     fun previousClickEvent() {
         if(fragmentPosition == 1) {
-            _previousClick.call()
+            if(!_selectedLocation.value.isNullOrEmpty()) {
+                messageProvider.addLocationAlertDialog()
+            } else {
+                _previousClick.call()
+            }
         } else {
             _title.value = "이동 경로 표시"
             _confirmVisible.value = true

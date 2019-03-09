@@ -3,9 +3,6 @@ package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddDetailScheduleBinding
@@ -26,8 +23,6 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     private val constraintSetProvider = ConstraintSetProviderImpl(this@AddDetailScheduleActivity) as ConstraintSetProvider
 
     private lateinit var area: String
-
-    private lateinit var alertDialog: AlertDialog
 
 
     @SuppressLint("InflateParams", "RestrictedApi")
@@ -66,22 +61,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
         })
 
         addDetailScheduleViewModel.deleteScheduleClick.observe(this@AddDetailScheduleActivity, Observer {
-            val builder = AlertDialog.Builder(this@AddDetailScheduleActivity)
-            val inflater = layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
-
-            builder.setView(inflater)
-
-            inflater.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                alertDialog.dismiss()
-            }
-
-            inflater.findViewById<TextView>(R.id.check).setOnClickListener {
-                addDetailScheduleViewModel.deleteSchedule(area)
-            }
-
-            alertDialog = builder.create()
-
-            alertDialog.show()
+            messageProvider.addDetailScheduleAlertDialog(addDetailScheduleViewModel, area)
         })
 
         viewDataBinding.adViewModel = addDetailScheduleViewModel

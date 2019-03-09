@@ -10,6 +10,8 @@ import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation.Sea
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -22,6 +24,7 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     private val addLocationViewModel by viewModel<AddLocationViewModel>()
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
+    private val messageProvider = MessageProviderImpl(this@AddLocationActivity) as MessageProvider
 
     private val addLocationFragment = AddLocationFragment()
     private val searchLocationFragment = SearchLocationFragment()
@@ -39,7 +42,7 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
         fragmentProvider.addLocationFragment(0, addLocationFragment)
         fragmentProvider.addLocationFragment(1, searchLocationFragment)
 
-        addLocationViewModel.bind(area)
+        addLocationViewModel.bind(area, messageProvider)
 
         addLocationViewModel.previousClick.observe(this@AddLocationActivity, Observer {
             finish()
@@ -50,10 +53,6 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     }
 
     override fun onBackPressed() {
-        addLocationViewModel.confirmVisible.observe(this@AddLocationActivity, Observer {
-            if(it) {
-                finish()
-            }
-        })
+        addLocationViewModel.previousClickEvent()
     }
 }
