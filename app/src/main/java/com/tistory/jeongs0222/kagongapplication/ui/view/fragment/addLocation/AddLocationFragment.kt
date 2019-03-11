@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +17,8 @@ import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAddLocationB
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProvider
 import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProviderImpl
-import kotlinx.android.synthetic.main.activity_add_location.*
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -30,6 +32,9 @@ class AddLocationFragment: Fragment() {
     private val addLocationViewModel by sharedViewModel<AddLocationViewModel>()
 
     private lateinit var constraintSetDynamicProvider: ConstraintSetDynamicProvider
+    private lateinit var  messageProvider : MessageProvider
+
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +42,8 @@ class AddLocationFragment: Fragment() {
             alViewModel = addLocationViewModel
             lifecycleOwner = this@AddLocationFragment
         }
+
+        messageProvider = MessageProviderImpl(this@AddLocationFragment.activity as Activity)
 
         constraintSetDynamicProvider =
                 ConstraintSetDynamicProviderImpl(this@AddLocationFragment.activity!!, addLocationViewModel)
@@ -53,12 +60,11 @@ class AddLocationFragment: Fragment() {
         initView()
 
         addLocationViewModel.confirmClick.observe(this@AddLocationFragment, Observer {
-            /*val tempText: String = binding.scrollViewEntire.getViewById(1).findViewById<TextView>(R.id.departure).text.toString()
-
-            Log.e("tempText", tempText)
-
-            Log.e("sizesize", binding.scrollViewEntire.size.toString())*/
-            confirmPreprocessor(binding.scrollViewEntire.size)
+            if(checkPreprocessor()) {
+                addLocationViewModel.registerLocation(confirmPreprocessor(binding.scrollViewEntire.size))
+            } else {
+                messageProvider.toastMessage("모든 위치 정보를 입력하세요.")
+            }
         })
 
         addLocationViewModel.additionClick.observe(this@AddLocationFragment, Observer {
@@ -87,28 +93,42 @@ class AddLocationFragment: Fragment() {
         constraintSetDynamicProvider.createWayAndArrival(binding.scrollViewEntire)
     }
 
-    private fun confirmPreprocessor(size: Int) {
-        val location = arrayListOf<String>()
-        val way = arrayListOf<String>()
+    private fun checkPreprocessor(): Boolean {
+        for(i in 0 until binding.scrollViewEntire.size) {
+            if(i == 0) {
+                if(binding.scrollViewEntire.getViewById(i + 1).findViewById<TextView>(R.id.departure).text.toString() == "출발지 입력") {
+
+                    return false
+                }
+            } else {
+                if(binding.scrollViewEntire.getViewById(i+1).findViewById<TextView>(R.id.arrival).text.toString() == "도착지 입력") {
+                    return false
+                }
+            }
+        }
+
+        for(i in 0 until binding.scrollViewEntire.size-1) {
+            if(!addLocationViewModel.imageCheck[i]) {
+                return false
+            }
+        }
+
+        return true
+    }
+
+    private fun confirmPreprocessor(size: Int): String {
+        var location = ""
 
         for(i in 0 until size) {
             if(i == 0) {
-                location.add(binding.scrollViewEntire.getViewById(i+1).findViewById<TextView>(R.id.departure).text.toString())
+                location += binding.scrollViewEntire.getViewById(i + 1).findViewById<TextView>(R.id.departure).text.toString()
             } else {
-                location.add(binding.scrollViewEntire.getViewById(i+1).findViewById<TextView>(R.id.arrival).text.toString())
-                way.add(binding.scrollViewEntire.getViewById(i+1).findViewWithTag<ImageView>(1).transitionName)
+                location += ", " + binding.scrollViewEntire.getViewById(i + 1).findViewWithTag<ImageView>(1).transitionName
+                location += ", " + binding.scrollViewEntire.getViewById(i + 1).findViewById<TextView>(R.id.arrival).text.toString()
             }
-
         }
 
-        /*for(i in 0 until location.size) {
-            Log.e("location array", location[i])
-        }
-
-        for(j in 0 until way.size) {
-            Log.e("way array", way[j])
-        }*/
-
+        return location
     }
 
 }

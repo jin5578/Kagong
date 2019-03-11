@@ -32,7 +32,7 @@ class ConstraintSetDynamicProviderImpl(
     private var lasttemp = 1
 
     private var imageList = mutableListOf(R.id.walk, R.id.run, R.id.bike, R.id.car, R.id.taxi, R.id.bus)
-    private var imageString = mutableListOf("walk", "run", "bike", "car", "taxi", "bus")
+
 
     override fun createDeparture(initView: ConstraintLayout) {
 
@@ -40,8 +40,6 @@ class ConstraintSetDynamicProviderImpl(
 
         val departureView = activity.layoutInflater.inflate(R.layout.layout_departure, null)
         departureView.id = temp
-
-        Log.e("departureViewId", departureView.id.toString())
 
         val params = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
@@ -96,7 +94,7 @@ class ConstraintSetDynamicProviderImpl(
 
             for(i in 0 until imageList.size) {
                 wayView.findViewById<ImageView>(imageList[i]).setOnClickListener {
-                    Log.e("id", it.id.toString())
+                    addLocationViewModel.imageCheck[wayView.id-2] = true
 
                     dynamicColorFilter(wayView, it.id)
                 }

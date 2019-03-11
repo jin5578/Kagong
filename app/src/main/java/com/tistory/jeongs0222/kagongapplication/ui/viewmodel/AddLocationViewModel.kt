@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
+import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -67,10 +69,13 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
 
 
     private lateinit var area: String
+    private lateinit var sort: String
     private lateinit var messageProvider: MessageProvider
+    private lateinit var intentProvider: IntentProvider
 
     var fragmentPosition = 1
     var textPosition = 0
+    var imageCheck = arrayListOf(false, false, false, false, false, false, false, false, false, false, false, false, false, false)
 
 
     init {
@@ -79,9 +84,11 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         _searchFrameVisible.value = false
     }
 
-    fun bind(area: String, messageProvider: MessageProvider) {
+    fun bind(area: String, sort: String, messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.area = area
+        this.sort = sort
         this.messageProvider = messageProvider
+        this.intentProvider = intentProvider
     }
 
     fun findLocation(charSequence: CharSequence) {
@@ -90,6 +97,28 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _findLocation.value = it.findlocation
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun registerLocation(location: String) {
+        addLocationRepository
+            .registerLocation(uid,
+                area,
+                location,
+                sort)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    messageProvider.toastMessage(it.message)
+                    intentProvider.intentFinish()
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
             }
             .doOnError {
                 it.printStackTrace()

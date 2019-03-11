@@ -14,6 +14,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknam
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
+import com.tistory.jeongs0222.kagongapplication.model.host.registerLocation.RegisterLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
 import retrofit2.http.Field
@@ -128,5 +129,13 @@ interface HostApi {
         @Field("area") area: String
     ): Single<BringDetailScheduleResponse>
 
-
+    //Register Location
+    @FormUrlEncoded
+    @POST("registerlocation.php")
+    fun registerLocation(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String,
+        @Field("location") location: String,
+        @Field("sort") sort: String
+    ): Single<RegisterLocationResult>   //0: 성공, 1: 실패
 }

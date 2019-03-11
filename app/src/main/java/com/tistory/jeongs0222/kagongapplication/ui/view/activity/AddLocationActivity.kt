@@ -8,10 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddLocationB
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation.AddLocationFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.addLocation.SearchLocationFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,30 +22,31 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val messageProvider = MessageProviderImpl(this@AddLocationActivity) as MessageProvider
+    private val intentProvider = IntentProviderImpl(this@AddLocationActivity) as IntentProvider
 
     private val addLocationFragment = AddLocationFragment()
     private val searchLocationFragment = SearchLocationFragment()
 
     private lateinit var area: String
-    private lateinit var order: String
+    private lateinit var sort: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         area = intent.getStringExtra("area")
-        order = intent.getStringExtra("order")
+        sort = intent.getStringExtra("order")
 
         fragmentProvider.addLocationFragment(0, addLocationFragment)
         fragmentProvider.addLocationFragment(1, searchLocationFragment)
 
-        addLocationViewModel.bind(area, messageProvider)
+        addLocationViewModel.bind(area, sort, messageProvider, intentProvider)
 
         addLocationViewModel.previousClick.observe(this@AddLocationActivity, Observer {
             finish()
         })
 
-        viewDataBinding.alViewModel = addLocationViewModel
+       viewDataBinding.alViewModel = addLocationViewModel
         viewDataBinding.lifecycleOwner = this@AddLocationActivity
     }
 
