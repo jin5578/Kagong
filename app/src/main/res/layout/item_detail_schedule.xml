@@ -8,6 +8,13 @@
 
         <import type="android.view.View"/>
 
+        <variable
+                name="detailScheduleItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult"/>
+
+        <variable
+                name="eventListener"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddDetailScheduleEventListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +29,7 @@
                 android:layout_marginTop="50dp"
                 android:text="@string/day"
                 android:textSize="14sp"
+                android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -31,23 +39,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="1"
+                android:text="@{detailScheduleItem.dayorder}"
                 android:textStyle="bold"
                 android:textColor="@color/colorBlack"
                 android:textSize="30sp"
+                android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null1"/>
+                app:layout_constraintTop_toBottomOf="@id/null1"
+                tools:text="1"/>
 
         <TextView
+                android:id="@+id/day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="2019.03.05"
+                android:layout_marginBottom="50dp"
+                android:text="@{detailScheduleItem.day}"
                 android:textSize="14sp"
+                android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/order"/>
+                app:layout_constraintTop_toBottomOf="@id/order"
+                tools:text="2019-03-22"/>
+
+        <ImageView
+                android:id="@+id/detailMore"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/imageView_description"
+                android:src="@drawable/ic_more_horiz_black_24dp"
+                android:onClick="@{() -> eventListener.locationMoreClickEvent(detailScheduleItem.dayorder)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/null2" />
+
+        <View
+                android:id="@+id/null2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="50dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintTop_toBottomOf="@id/day"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

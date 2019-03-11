@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddDetailScheduleRepository
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
@@ -12,7 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDetailScheduleRepository): DisposableViewModel() {
+class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDetailScheduleRepository): DisposableViewModel(), AddDetailScheduleEventListener {
 
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
@@ -21,6 +22,7 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     private val _moreClick = SingleLiveEvent<Any>()
     val moreClick: LiveData<Any>
         get() = _moreClick
+
 
     private val _editScheduleClick = SingleLiveEvent<Any>()
     val editScheduleClick: LiveData<Any>
@@ -34,13 +36,36 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     val cancelClick: LiveData<Any>
         get() = _cancelClick
 
-    private val _floatingClick = SingleLiveEvent<Any>()
-    val floatingClick: LiveData<Any>
-        get() = _floatingClick
+
+    private val _editLocationClick = SingleLiveEvent<Any>()
+    val editLocationClick: LiveData<Any>
+        get() = _editLocationClick
+
+    private val _deleteLocationClick = SingleLiveEvent<Any>()
+    val deleteLocationClick: LiveData<Any>
+        get() = _deleteLocationClick
+
+    private val _cancelLocationClick = SingleLiveEvent<Any>()
+    val cancelLocationClick: LiveData<Any>
+        get() = _cancelLocationClick
+
+
+    private val _detailSchedule = MutableLiveData<MutableList<BringDetailScheduleResult>>()
+    val detailSchedule: LiveData<MutableList<BringDetailScheduleResult>>
+        get() = _detailSchedule
+
 
     private val _moreVisibility = MutableLiveData<Boolean>()
     val moreVisibility: LiveData<Boolean>
         get() = _moreVisibility
+
+    private val _moreLocationVisibility = MutableLiveData<Boolean>()
+    val moreLocationVisibility: LiveData<Boolean>
+        get() = _moreLocationVisibility
+
+    private val _selectedOrder = MutableLiveData<String>()
+    val selectedOrder: LiveData<String>
+        get() = _selectedOrder
 
     private val TAG = "AddDetaiViewModel"
 
@@ -51,6 +76,19 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     fun bind(intentProvider: IntentProvider, messageProvider: MessageProvider) {
         this.intentProvider = intentProvider
         this.messageProvider = messageProvider
+    }
+
+    fun bringDetailSchedule(area: String) {
+        addDetailScheduleRepository.bringDetailSchedule(uid, area)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _detailSchedule.value = it.bringdetailschedule
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
 
     fun deleteSchedule(area: String) {
@@ -109,11 +147,35 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
         Log.e(TAG, "cancelClick")
     }
 
-    fun floatingClickEvent() {
-        _floatingClick.call()
+    fun editLocationClickEvent() {
+        _editLocationClick.call()
 
-        Log.e(TAG, "FloatingClick")
+        Log.e(TAG, "editLocationClick")
     }
 
+    fun deleteLocationClickEvent() {
+        _deleteLocationClick.call()
+
+        Log.e(TAG, "deleteLocationClick")
+    }
+
+    fun cancelLocationClickEvent() {
+        _cancelLocationClick.call()
+
+        _moreLocationVisibility.value = false
+
+        Log.e(TAG, "cancelLocationClick")
+    }
+
+    override fun locationMoreClickEvent(order: String) {
+        Log.e("order", order)
+        _moreLocationVisibility.value = true
+        _selectedOrder.value = order
+    }
+}
+
+interface AddDetailScheduleEventListener {
+
+    fun locationMoreClickEvent(order: String)
 
 }

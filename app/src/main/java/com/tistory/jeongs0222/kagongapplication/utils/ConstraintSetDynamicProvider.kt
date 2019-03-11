@@ -32,6 +32,7 @@ class ConstraintSetDynamicProviderImpl(
     private var lasttemp = 1
 
     private var imageList = mutableListOf(R.id.walk, R.id.run, R.id.bike, R.id.car, R.id.taxi, R.id.bus)
+    private var imageString = mutableListOf("walk", "run", "bike", "car", "taxi", "bus")
 
     override fun createDeparture(initView: ConstraintLayout) {
 
@@ -128,8 +129,10 @@ class ConstraintSetDynamicProviderImpl(
         for(i in 0 until imageList.size) {
             if(imageList[i] == id) {
                 wayView.findViewById<ImageView>(imageList[i]).setColorFilter(ContextCompat.getColor(activity.applicationContext, R.color.colorRed), android.graphics.PorterDuff.Mode.MULTIPLY)
+                wayView.findViewById<ImageView>(imageList[i]).tag = 1
             } else {
                 wayView.findViewById<ImageView>(imageList[i]).setColorFilter(ContextCompat.getColor(activity.applicationContext, R.color.colorGray5), android.graphics.PorterDuff.Mode.MULTIPLY)
+                wayView.findViewById<ImageView>(imageList[i]).tag = 2
             }
         }
     }

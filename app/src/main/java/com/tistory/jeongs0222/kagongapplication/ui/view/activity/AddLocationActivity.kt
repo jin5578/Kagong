@@ -30,14 +30,14 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     private val searchLocationFragment = SearchLocationFragment()
 
     private lateinit var area: String
+    private lateinit var order: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         area = intent.getStringExtra("area")
-
-        Log.e(TAG, area)
+        order = intent.getStringExtra("order")
 
         fragmentProvider.addLocationFragment(0, addLocationFragment)
         fragmentProvider.addLocationFragment(1, searchLocationFragment)

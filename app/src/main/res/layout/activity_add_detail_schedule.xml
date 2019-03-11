@@ -62,6 +62,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                app:detailScheduleList="@{aDViewModel.detailSchedule}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
         <TextView
                 android:id="@+id/itemNull"
                 android:layout_width="0dp"
@@ -78,17 +90,20 @@
                 tools:visibility="visible"/>
 
         <include
-                android:id="@+id/include_floating"
-                layout="@layout/layout_floating_visible"
-                android:layout_width="100dp"
-                android:layout_height="95dp"
+                android:id="@+id/include_more"
+                layout="@layout/layout_more_contract"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 app:aDViewModel="@{aDViewModel}"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <include
-                android:id="@+id/include_more"
-                layout="@layout/layout_more_contract"
+                android:id="@+id/include_location_more"
+                layout="@layout/layout_location_more_contract"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"

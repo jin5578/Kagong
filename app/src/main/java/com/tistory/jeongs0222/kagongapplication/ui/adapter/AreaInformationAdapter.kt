@@ -33,7 +33,6 @@ class AreaInformationAdapter(
         private val binding: ItemAreaInformationBinding,
         private val lifecycleOwner: LifecycleOwner
     ): RecyclerView.ViewHolder(binding.root) {
-
         fun bind(i: AreaInformationResult) {
             binding.informationItem = i
 
@@ -56,6 +55,5 @@ class AreaInformationAdapter(
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 }

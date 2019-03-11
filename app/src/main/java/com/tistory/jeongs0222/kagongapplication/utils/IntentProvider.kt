@@ -11,6 +11,8 @@ interface IntentProvider {
 
     fun intentPutExtra(activityClass: Class<*>, area: String)
 
+    fun intentPutTwoExtra(activityClass: Class<*>, area: String, order: String)
+
     fun intentFinish()
 }
 
@@ -27,6 +29,14 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
     override fun intentPutExtra(activityClass: Class<*>, area: String) {
         val intent = Intent(activity, activityClass)
         intent.putExtra("area", area)
+
+        activity.startActivity(intent)
+    }
+
+    override fun intentPutTwoExtra(activityClass: Class<*>, area: String, order: String) {
+        val intent = Intent(activity, activityClass)
+        intent.putExtra("area", area)
+        intent.putExtra("order", order)
 
         activity.startActivity(intent)
     }
