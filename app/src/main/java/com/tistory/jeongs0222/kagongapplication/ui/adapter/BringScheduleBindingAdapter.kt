@@ -14,6 +14,8 @@ fun bringScheduleList(recyclerView: RecyclerView, list: MutableList<BringSchedul
     if (list != null) {
         (recyclerView.adapter as BringScheduleAdapter).apply {
             submitList(list)
+
+            notifyItemRangeChanged(0, list.size)
         }
     }
 }

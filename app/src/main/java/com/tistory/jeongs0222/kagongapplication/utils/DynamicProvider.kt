@@ -70,7 +70,7 @@ class DynamicProviderImpl(
                 )
 
                 wayView.layoutParams = params
-                
+
                 wayView.findViewById<ImageView>(R.id.way).setImageResource(imageDivider(location[i]))
 
                 initView.addView(wayView)

@@ -23,7 +23,7 @@ class BringScheduleAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewModel, position: Int) {
-        holder.setIsRecyclable(false)
+        holder.setIsRecyclable(true)
 
         val item = getItem(position)
 

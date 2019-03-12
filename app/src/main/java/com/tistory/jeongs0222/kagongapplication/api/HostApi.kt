@@ -5,6 +5,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaI
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.deleteLocation.DeleteLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.host.deleteSchedule.DeleteScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
@@ -138,4 +139,13 @@ interface HostApi {
         @Field("location") location: String,
         @Field("sort") sort: String
     ): Single<RegisterLocationResult>   //0: 성공, 1: 실패
+
+    //Delete Location
+    @FormUrlEncoded
+    @POST("deletelocation.php")
+    fun deleteLocation(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String,
+        @Field("sort") sort: String
+    ): Single<DeleteLocationResult>     //0: 성공, 1: 실패
 }

@@ -112,6 +112,25 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
             .subscribe()
     }
 
+    fun deleteLocation(area: String, position: String) {
+        addDetailScheduleRepository.deleteLocation(uid, area, position)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    messageProvider.toastMessage(it.message)
+
+                    intentProvider.intentFinish()
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
 
     fun previousClickEvent() {
         _previousClick.call()

@@ -20,7 +20,7 @@ interface MessageProvider {
 
     fun snackbar(view: View, message: String, duration: Int)
 
-    fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String)
+    fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int)
 
     fun addLocationAlertDialog()
 }
@@ -74,7 +74,7 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         snackbar.show()
     }
 
-    override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String) {
+    override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int) {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
 
@@ -85,7 +85,11 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         }
 
         inflater.findViewById<TextView>(R.id.check).setOnClickListener {
-            (viewModel as AddDetailScheduleViewModel).deleteSchedule(area)
+            if(sort == 0) {
+                (viewModel as AddDetailScheduleViewModel).deleteSchedule(area)
+            } else {
+                (viewModel as AddDetailScheduleViewModel).deleteLocation(area, position)
+            }
         }
 
         alertDialog = builder.create()

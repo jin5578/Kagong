@@ -76,11 +76,15 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
         })
 
         addDetailScheduleViewModel.deleteScheduleClick.observe(this@AddDetailScheduleActivity, Observer {
-            messageProvider.addDetailScheduleAlertDialog(addDetailScheduleViewModel, area)
+            messageProvider.addDetailScheduleAlertDialog(addDetailScheduleViewModel, area, "0", 0)
         })
 
         addDetailScheduleViewModel.editLocationClick.observe(this@AddDetailScheduleActivity, Observer {
             intentProvider.intentPutTwoExtra(AddLocationActivity::class.java, area, addDetailScheduleViewModel.selectedOrder.value!!)
+        })
+
+        addDetailScheduleViewModel.deleteLocationClick.observe(this@AddDetailScheduleActivity, Observer {
+            messageProvider.addDetailScheduleAlertDialog(addDetailScheduleViewModel, area, addDetailScheduleViewModel.selectedOrder.value!!, 1)
         })
 
         viewDataBinding.adViewModel = addDetailScheduleViewModel
