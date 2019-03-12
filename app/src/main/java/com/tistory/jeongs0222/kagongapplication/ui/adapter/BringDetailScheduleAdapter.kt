@@ -9,32 +9,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemDetailScheduleBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddDetailScheduleEventListener
+import com.tistory.jeongs0222.kagongapplication.utils.DynamicProvider
 
 
 class BringDetailScheduleAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    private val eventListener: AddDetailScheduleEventListener
+    private val eventListener: AddDetailScheduleEventListener,
+    private val dynamicProvider: DynamicProvider
 ): ListAdapter<BringDetailScheduleResult, BringDetailScheduleAdapter.ViewHolder>(DetailScheduleDiff) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemDetailScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return ViewHolder(binding, lifecycleOwner, eventListener)
+        return ViewHolder(binding, lifecycleOwner, eventListener, dynamicProvider)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setIsRecyclable(false)
+        holder.setIsRecyclable(true)
 
         holder.bind(getItem(position))
     }
 
     class ViewHolder(
-        private val binding: ItemDetailScheduleBinding,
+        val binding: ItemDetailScheduleBinding,
         private val lifecycleOwner: LifecycleOwner,
-        private val eventListener: AddDetailScheduleEventListener
+        private val eventListener: AddDetailScheduleEventListener,
+        private val dynamicProvider: DynamicProvider
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(d: BringDetailScheduleResult) {
+            if(d.location != "") {
+                dynamicProvider.location(binding.entire, stringPreprocessor(d.location))
+            }
             binding.detailScheduleItem = d
 
             binding.eventListener = eventListener
@@ -42,6 +48,8 @@ class BringDetailScheduleAdapter(
             binding.lifecycleOwner = lifecycleOwner
             binding.executePendingBindings()
         }
+
+        private fun stringPreprocessor(location: String): List<String> = location.split(", ")
     }
 
     object DetailScheduleDiff: DiffUtil.ItemCallback<BringDetailScheduleResult>() {

@@ -1,7 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -24,6 +23,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     private val intentProvider = IntentProviderImpl(this@AddDetailScheduleActivity) as IntentProvider
     private val messageProvider = MessageProviderImpl(this@AddDetailScheduleActivity) as MessageProvider
     private val constraintSetProvider = ConstraintSetProviderImpl(this@AddDetailScheduleActivity) as ConstraintSetProvider
+    private val dynamicProvider = DynamicProviderImpl(this@AddDetailScheduleActivity) as DynamicProvider
 
     private lateinit var area: String
 
@@ -36,12 +36,12 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         viewDataBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
-            adapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel)
+            adapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel, dynamicProvider)
         }
 
         addDetailScheduleViewModel.bind(intentProvider, messageProvider)
 
-        addDetailScheduleViewModel.bringDetailSchedule(area)
+        //addDetailScheduleViewModel.bringDetailSchedule(area)
 
         addDetailScheduleViewModel.detailSchedule.observe(this@AddDetailScheduleActivity, Observer {
             if(it.size == 0) {
@@ -89,7 +89,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
     override fun onResume() {
         super.onResume()
-        //addDetailScheduleViewModel.bringDetailSchedule()
+        addDetailScheduleViewModel.bringDetailSchedule(area)
     }
 
     override fun onBackPressed() {
