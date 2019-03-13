@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import com.tistory.jeongs0222.kagongapplication.utils.uid
@@ -11,7 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel() {
+class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel(), AreaDetailEventListener {
 
 
     //AreaDetailActivity
@@ -33,6 +34,11 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val addScheduleClick: LiveData<Any>
         get() = _addScheduleClick
 
+    //TourismFragment
+    private val _areaLocation = MutableLiveData<MutableList<BringAreaLocationResult>>()
+    val areaLocation: LiveData<MutableList<BringAreaLocationResult>>
+        get() = _areaLocation
+
 
     private val TAG = "AreaDetailViewModel"
 
@@ -50,11 +56,26 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     }
 
     fun bringAreaInformation(area: String) {
+        Log.e("bringAreaInformation", "call")
         areaDetailRepository.bringAreaDetail(area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _areaInformation.value = it.bringinformation
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringAreaLocation(area: String) {
+        Log.e("bringAreaLocation", "call")
+        areaDetailRepository.bringAreaLocation(area)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _areaLocation.value = it.bringAreaLocation
             }
             .doOnError {
                 it.printStackTrace()
@@ -78,4 +99,14 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             }
             .subscribe()
     }
+
+    override fun areaLocationClickEvent(order: Int) {
+        Log.e(TAG, order.toString())
+    }
+}
+
+interface AreaDetailEventListener {
+
+    fun areaLocationClickEvent(order: Int)
+
 }

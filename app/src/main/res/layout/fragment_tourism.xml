@@ -19,17 +19,16 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <TextView android:layout_width="0dp"
-                  android:layout_height="0dp"
-                  android:text="TourismFragment"
-                  android:textColor="@color/colorBlack"
-                  android:textSize="25sp"
-                  android:fontFamily="@font/goyang"
-                  android:gravity="center"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintTop_toTopOf="parent"
-                  app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/colorGray1"
+                app:areaLocationList="@{dViewModel.areaLocation}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

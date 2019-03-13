@@ -28,9 +28,10 @@
 
         <ImageView
                 android:id="@+id/detailMore"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:contentDescription="@string/imageView_description"
                 android:src="@drawable/ic_more_horiz_black_24dp"
                 android:onClick="@{() -> eventListener.locationMoreClickEvent(detailScheduleItem.dayorder)}"

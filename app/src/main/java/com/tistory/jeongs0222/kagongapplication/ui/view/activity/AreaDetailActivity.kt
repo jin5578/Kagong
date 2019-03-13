@@ -47,6 +47,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), BottomNavi
         bottomNavi.setOnNavigationItemSelectedListener(this@AreaDetailActivity)
 
         areaDetailViewModel.bringAreaInformation(area)
+        areaDetailViewModel.bringAreaLocation(area)
 
         areaDetailViewModel.previousClick.observe(this@AreaDetailActivity, Observer {
             finish()
