@@ -34,14 +34,9 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         area = intent.getStringExtra("area")
 
-        viewDataBinding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
-            adapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel, dynamicProvider)
-        }
-
         addDetailScheduleViewModel.bind(intentProvider, messageProvider)
 
-        //addDetailScheduleViewModel.bringDetailSchedule(area)
+        viewDataBinding.recyclerView.layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
 
         addDetailScheduleViewModel.detailSchedule.observe(this@AddDetailScheduleActivity, Observer {
             if(it.size == 0) {
@@ -94,6 +89,8 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     override fun onResume() {
         super.onResume()
         addDetailScheduleViewModel.bringDetailSchedule(area)
+
+        viewDataBinding.recyclerView.adapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel, dynamicProvider)
     }
 
     override fun onBackPressed() {

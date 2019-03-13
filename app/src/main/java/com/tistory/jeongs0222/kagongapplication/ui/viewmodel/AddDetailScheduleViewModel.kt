@@ -72,6 +72,10 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
 
+    init {
+        _selectedOrder.value = "0"
+    }
+
 
     fun bind(intentProvider: IntentProvider, messageProvider: MessageProvider) {
         this.intentProvider = intentProvider

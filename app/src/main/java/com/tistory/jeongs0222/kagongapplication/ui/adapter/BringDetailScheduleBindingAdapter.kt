@@ -10,8 +10,6 @@ fun detailScheduleList(recyclerView: RecyclerView, list: MutableList<BringDetail
     if (list != null) {
         (recyclerView.adapter as BringDetailScheduleAdapter).apply {
             submitList(list)
-
-            notifyItemRangeChanged(0, list.size)
         }
     }
 }

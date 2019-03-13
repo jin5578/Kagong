@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -26,9 +27,11 @@ class BringDetailScheduleAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setIsRecyclable(true)
+        holder.setIsRecyclable(false)
 
         holder.bind(getItem(position))
+
+        Log.e("position", position.toString())
     }
 
     class ViewHolder(

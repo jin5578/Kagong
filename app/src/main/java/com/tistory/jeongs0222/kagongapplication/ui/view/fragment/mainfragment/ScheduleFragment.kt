@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.mainfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,8 @@ class ScheduleFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Log.e("scheduleFragment", "onresume")
 
         mainViewModel.myScheduleList.observe(this@ScheduleFragment, Observer {
             if(it.size == 0) {
