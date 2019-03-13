@@ -1,22 +1,16 @@
 package com.tistory.jeongs0222.kagongapplication.api
 
-import com.tistory.jeongs0222.kagongapplication.model.host.addSchedule.AddScheduleResult
+import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.deleteLocation.DeleteLocationResult
-import com.tistory.jeongs0222.kagongapplication.model.host.deleteSchedule.DeleteScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
-import com.tistory.jeongs0222.kagongapplication.model.host.keyCheck.KeyCheckResult
 import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
-import com.tistory.jeongs0222.kagongapplication.model.host.nickname.NicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.register.RegisterResult
-import com.tistory.jeongs0222.kagongapplication.model.host.registerLocation.RegisterLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
 import retrofit2.http.Field
@@ -29,7 +23,7 @@ interface HostApi {
     //Nickname Validate
     @FormUrlEncoded
     @POST("nickname_validate.php")
-    fun nicknameValidate(@Field("nickname") nickname: String): Single<NicknameResult>  //0: 사용가능, 1: 이미 존재, 2: 2 ~ 6자
+    fun nicknameValidate(@Field("nickname") nickname: String): Single<BasicResult>  //0: 사용가능, 1: 이미 존재, 2: 2 ~ 6자
 
     //Register
     @FormUrlEncoded
@@ -40,12 +34,12 @@ interface HostApi {
         @Field("nickname") nickname: String,
         @Field("sex") sex: String,
         @Field("age") age: String
-    ): Single<RegisterResult> //0: 가입성공, 1: 가입실패
+    ): Single<BasicResult> //0: 가입성공, 1: 가입실패
 
     //Key Check
     @FormUrlEncoded
     @POST("keycheck.php")
-    fun keyCheck(@Field("googlekey") googlekey: String): Single<KeyCheckResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
+    fun keyCheck(@Field("googlekey") googlekey: String): Single<BasicResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
 
     //Bring Nickname
     @FormUrlEncoded
@@ -98,7 +92,7 @@ interface HostApi {
         @Field("googlekey") googlekey: String,
         @Field("area") area: String,
         @Field("date") date: String
-    ): Single<AddScheduleResult>    //0: 성공, 1: 실패
+    ): Single<BasicResult>    //0: 성공, 1: 실패
 
     //Bring Schedule
     @FormUrlEncoded
@@ -113,7 +107,7 @@ interface HostApi {
     fun deleteSchedule(
         @Field("googlekey") googlekey: String,
         @Field("area") area: String
-    ): Single<DeleteScheduleResult>   //0: 성공, 1: 실패
+    ): Single<BasicResult>   //0: 성공, 1: 실패
 
     //Bring Location
     @FormUrlEncoded
@@ -139,7 +133,7 @@ interface HostApi {
         @Field("area") area: String,
         @Field("location") location: String,
         @Field("sort") sort: String
-    ): Single<RegisterLocationResult>   //0: 성공, 1: 실패
+    ): Single<BasicResult>   //0: 성공, 1: 실패
 
     //Delete Location
     @FormUrlEncoded
@@ -148,7 +142,7 @@ interface HostApi {
         @Field("googlekey") googlekey: String,
         @Field("area") area: String,
         @Field("sort") sort: String
-    ): Single<DeleteLocationResult>     //0: 성공, 1: 실패
+    ): Single<BasicResult>     //0: 성공, 1: 실패
 
     //Area Location
     @FormUrlEncoded

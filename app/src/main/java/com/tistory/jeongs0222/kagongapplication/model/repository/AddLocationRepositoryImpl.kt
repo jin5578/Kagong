@@ -1,8 +1,8 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
+import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.registerLocation.RegisterLocationResult
 import io.reactivex.Single
 
 
@@ -15,6 +15,6 @@ class AddLocationRepositoryImpl(private val hostApi: HostApi): AddLocationReposi
         area: String,
         location: String,
         sort: String
-    ): Single<RegisterLocationResult>
+    ): Single<BasicResult>
         = hostApi.registerLocation(googlekey, area, location, sort)
 }
