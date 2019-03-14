@@ -68,6 +68,8 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.editScheduleClick.observe(this@AddDetailScheduleActivity, Observer {
             intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)
+
+            constraintSetProvider.moreContractAnimation(R.layout.layout_more_contract, viewDataBinding.includeMore.moreLayout)
         })
 
         addDetailScheduleViewModel.deleteScheduleClick.observe(this@AddDetailScheduleActivity, Observer {
@@ -76,6 +78,8 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         addDetailScheduleViewModel.editLocationClick.observe(this@AddDetailScheduleActivity, Observer {
             intentProvider.intentPutTwoExtra(AddLocationActivity::class.java, area, addDetailScheduleViewModel.selectedOrder.value!!)
+
+            constraintSetProvider.moreContractAnimation(R.layout.layout_location_more_contract, viewDataBinding.includeLocationMore.moreLayout)
         })
 
         addDetailScheduleViewModel.deleteLocationClick.observe(this@AddDetailScheduleActivity, Observer {
