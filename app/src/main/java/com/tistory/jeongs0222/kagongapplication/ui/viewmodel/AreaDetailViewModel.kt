@@ -26,6 +26,10 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
 
+    private val _likeStatus = MutableLiveData<Int>()
+    val likeStatus: LiveData<Int>
+        get() = _likeStatus
+
     private val TAG = "AreaDetailViewModel"
 
 
@@ -33,6 +37,36 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
         _previousClick.call()
 
         Log.e(TAG, "previousClick")
+    }
+
+    fun areaLikeClick(area: String, status: Int) {
+        areaDetailRepository.areaLikeClick(uid, area, status)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 2) {
+                    _likeStatus.value = 0
+                } else if(it.value == 0) {
+                    _likeStatus.value = 1
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun areaLikeValidate(area: String) {
+        areaDetailRepository.areaLikeValidate(uid, area)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _likeStatus.value = it.value
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
 
     fun bringAreaInformation(area: String) {

@@ -26,6 +26,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     private lateinit var area: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,15 +47,21 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
             finish()
         })
 
+        areaDetailViewModel.likeStatus.observe(this@AreaDetailActivity, Observer {
+            if(it == 0) {
+                viewDataBinding.tabLayout.getTabAt(0)!!.icon!!.setTint(resources.getColor(R.color.colorGray3))
+            } else if(it == 1) {
+                viewDataBinding.tabLayout.getTabAt(0)!!.icon!!.setTint(resources.getColor(R.color.colorPink))
+            }
+        })
+
         viewDataBinding.dViewModel = areaDetailViewModel
         viewDataBinding.lifecycleOwner = this@AreaDetailActivity
     }
 
     override fun onTabSelected(p0: TabLayout.Tab?) {
         when(p0!!.position) {
-            0 -> {
-                //좋아요
-            }
+            0 -> areaDetailViewModel.areaLikeClick(area, areaDetailViewModel.likeStatus.value!!)
 
             1 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)       //일정
 
@@ -70,9 +77,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     override fun onTabReselected(p0: TabLayout.Tab?) {
         when(p0!!.position) {
-            0 -> {
-                //좋아요
-            }
+            0 -> areaDetailViewModel.areaLikeClick(area, areaDetailViewModel.likeStatus.value!!)
 
             1 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
 
@@ -92,6 +97,8 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
         super.onResume()
 
         areaDetailViewModel.validateSchedule(area)
+
+        areaDetailViewModel.areaLikeValidate(area)
     }
 
     override fun onBackPressed() {

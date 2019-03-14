@@ -150,4 +150,22 @@ interface HostApi {
     fun bringAreaLocation(
         @Field("area") area: String
     ): Single<BringAreaLocationResponse>
+
+    //Area Like Click
+    @FormUrlEncoded
+    @POST("arealikeclick.php")
+    fun areaLikeClick(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String,
+        @Field("status") status: Int
+    ): Single<BasicResult>
+
+    //Area Like Validate
+    @FormUrlEncoded
+    @POST("arealikevalidate.php")
+    fun areaLikeValidate(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String
+    ): Single<BasicResult>  //0: 좋아요 X 1: 좋아요 O
+
 }
