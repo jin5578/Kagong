@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="dViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel"/>
+                name="tViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel"/>
 
     </data>
 
@@ -58,17 +58,7 @@
                     android:text="기타"/>
 
         </com.google.android.material.tabs.TabLayout>
-
-        <RelativeLayout
-                android:id="@+id/recyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scrollbars="none"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLayout"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

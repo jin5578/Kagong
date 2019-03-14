@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemAreaLocationBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabEventListener
 
 
 class BringAreaLocationAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    private val eventListener: AreaDetailEventListener
+    private val eventListener: AreaDetailTabEventListener
 ): ListAdapter<BringAreaLocationResult, BringAreaLocationAdapter.ViewHolder>(AreaLocationDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BringAreaLocationAdapter.ViewHolder {
@@ -31,7 +31,7 @@ class BringAreaLocationAdapter(
     class ViewHolder(
         private val binding: ItemAreaLocationBinding,
         private val lifecycleOwner: LifecycleOwner,
-        private val eventListener: AreaDetailEventListener
+        private val eventListener: AreaDetailTabEventListener
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(b: BringAreaLocationResult) {
 

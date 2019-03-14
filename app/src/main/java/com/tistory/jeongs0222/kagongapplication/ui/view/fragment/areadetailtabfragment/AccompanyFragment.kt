@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment
+package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAccompanyBinding
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -18,11 +18,11 @@ class AccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
     private lateinit var binding: FragmentAccompanyBinding
 
-    private val areaDetailViewModel by sharedViewModel<AreaDetailViewModel>()
+    private val areaDetailTabViewModel by sharedViewModel<AreaDetailTabViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAccompanyBinding.inflate(inflater, container, false).apply {
-            dViewModel = areaDetailViewModel
+            tViewModel = areaDetailTabViewModel
             lifecycleOwner = this@AccompanyFragment
         }
 

@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailfragment
+package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentTourismBinding
 import com.tistory.jeongs0222.kagongapplication.ui.adapter.BringAreaLocationAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -16,11 +16,11 @@ class TourismFragment: Fragment() {
 
     private lateinit var binding: FragmentTourismBinding
 
-    private val areaDetailViewModel by sharedViewModel<AreaDetailViewModel>()
+    private val areaDetailTabViewModel by sharedViewModel<AreaDetailTabViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentTourismBinding.inflate(inflater, container, false).apply {
-            dViewModel = areaDetailViewModel
+            tViewModel = areaDetailTabViewModel
             lifecycleOwner = this@TourismFragment
         }
 
@@ -32,7 +32,7 @@ class TourismFragment: Fragment() {
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@TourismFragment.context)
-            adapter = BringAreaLocationAdapter(this@TourismFragment, areaDetailViewModel)
+            adapter = BringAreaLocationAdapter(this@TourismFragment, areaDetailTabViewModel)
         }
     }
 }

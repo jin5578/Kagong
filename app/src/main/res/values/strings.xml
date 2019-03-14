@@ -52,6 +52,12 @@
     <string name="add_schedule">일정을 추가해보세요</string>
     <string name="abbreviation_add_schedule">일정 추가</string>
 
+    <string name="addDetail_tabLayout1">좋아요</string>
+    <string name="addDetail_tabLayout2">일정</string>
+    <string name="addDetail_tabLayout3">관광지</string>
+    <string name="addDetail_tabLayout4">맛집</string>
+    <string name="addDetail_tabLayout5">동행</string>
+
 
     <string name="mon">월</string>
     <string name="tue">화</string>

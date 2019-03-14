@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="dViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel"/>
+                name="tViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel"/>
 
     </data>
 

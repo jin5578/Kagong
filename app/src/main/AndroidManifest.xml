@@ -25,6 +25,7 @@
         <activity android:name=".ui.view.activity.RegisterActivity"/>
         <activity android:name=".ui.view.activity.MainActivity"/>
         <activity android:name=".ui.view.activity.AreaDetailActivity"/>
+        <activity android:name=".ui.view.activity.AreaDetailTabActivity"/>
         <activity android:name=".ui.view.activity.AddScheduleActivity"/>
         <activity android:name=".ui.view.activity.AddDetailScheduleActivity"/>
         <activity android:name=".ui.view.activity.AddLocationActivity"/>

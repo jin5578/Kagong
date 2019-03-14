@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="dViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailViewModel"/>
+                name="tViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel"/>
 
     </data>
 
@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/colorGray1"
-                app:areaLocationList="@{dViewModel.areaLocation}"
+                app:areaLocationList="@{tViewModel.areaLocation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

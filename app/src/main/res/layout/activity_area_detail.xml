@@ -49,7 +49,6 @@
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 android:background="@drawable/toast_background"
-                android:onClick="@{() -> dViewModel.addScheduleClickEvent()}"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -80,34 +79,69 @@
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavi"
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
-                app:itemTextAppearanceActive="@style/BottomNavigationTextActiveStyle"
-                app:itemTextAppearanceInactive="@style/BottomNavigationTextInActiveStyle"
-                app:itemIconTint="@drawable/bottom_navigation_selector"
+                android:layout_height="70dp"
+                app:tabTextColor="@color/colorBlack"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/InnerTabLayoutTextStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
-                app:menu="@menu/area_detail_navigation"/>
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_favorite_gray_24dp"
+                    android:text="@string/addDetail_tabLayout1"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_event_note_gray_24dp"
+                    android:text="@string/addDetail_tabLayout2"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_place_gray_24dp"
+                    android:text="@string/addDetail_tabLayout3"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_local_dining_gray_24dp"
+                    android:text="@string/addDetail_tabLayout4"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_people_gray_24dp"
+                    android:text="@string/addDetail_tabLayout5"/>
+
+        </com.google.android.material.tabs.TabLayout>
 
         <View
-                android:id="@+id/null12"
+                android:id="@+id/null2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottomNavi"/>
+                app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
 
-        <FrameLayout
-                android:id="@+id/frameLayout"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                app:addInformationList="@{dViewModel.areaInformation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null12"
+                app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
