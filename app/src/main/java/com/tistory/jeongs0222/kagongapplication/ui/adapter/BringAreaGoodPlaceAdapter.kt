@@ -6,35 +6,35 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tistory.jeongs0222.kagongapplication.databinding.ItemAreaLocationBinding
-import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
+import com.tistory.jeongs0222.kagongapplication.databinding.ItemAreaGoodplaceBinding
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResult
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabEventListener
 
 
-class BringAreaLocationAdapter(
+class BringAreaGoodPlaceAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: AreaDetailTabEventListener
-): ListAdapter<BringAreaLocationResult, BringAreaLocationAdapter.ViewHolder>(AreaLocationDiff) {
+): ListAdapter<BringAreaGoodPlaceResult, BringAreaGoodPlaceAdapter.ViewHolder>(AreaGoodPlaceDiff) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BringAreaLocationAdapter.ViewHolder {
-        val binding = ItemAreaLocationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemAreaGoodplaceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding, lifecycleOwner, eventListener)
     }
 
-    override fun onBindViewHolder(holder: BringAreaLocationAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
         holder.bind(getItem(position))
     }
 
     class ViewHolder(
-        private val binding: ItemAreaLocationBinding,
+        private val binding: ItemAreaGoodplaceBinding,
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: AreaDetailTabEventListener
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(b: BringAreaLocationResult) {
-            binding.areaLocationItem = b
+        fun bind(g: BringAreaGoodPlaceResult) {
+            binding.areaGoodPlaceItem = g
 
             binding.eventListener = eventListener
 
@@ -43,17 +43,17 @@ class BringAreaLocationAdapter(
         }
     }
 
-    object AreaLocationDiff: DiffUtil.ItemCallback<BringAreaLocationResult>() {
+    object AreaGoodPlaceDiff: DiffUtil.ItemCallback<BringAreaGoodPlaceResult>() {
         override fun areItemsTheSame(
-            oldItem: BringAreaLocationResult,
-            newItem: BringAreaLocationResult
+            oldItem: BringAreaGoodPlaceResult,
+            newItem: BringAreaGoodPlaceResult
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: BringAreaLocationResult,
-            newItem: BringAreaLocationResult
+            oldItem: BringAreaGoodPlaceResult,
+            newItem: BringAreaGoodPlaceResult
         ): Boolean {
             return oldItem == newItem
         }

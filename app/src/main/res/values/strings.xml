@@ -98,4 +98,7 @@
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 
+    <string name="tourism">관광지</string>
+    <string name="good_place">맛집</string>
+
 </resources>

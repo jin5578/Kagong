@@ -1,14 +1,17 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.activity
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailTabBinding
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment.AccompanyFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment.GoodPlaceFragment
+import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment.SearchFragment
 import com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment.TourismFragment
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
+import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,6 +28,7 @@ class AreaDetailTabActivity : BaseActivity<ActivityAreaDetailTabBinding>() {
     private val tourismFragment = TourismFragment()
     private val goodPlaceFragment = GoodPlaceFragment()
     private val accompanyFragment = AccompanyFragment()
+    private val searchFragment = SearchFragment()
 
     private lateinit var area: String
     private lateinit var order: String
@@ -38,7 +42,28 @@ class AreaDetailTabActivity : BaseActivity<ActivityAreaDetailTabBinding>() {
 
         initView()
 
-        areaDetailTabViewModel.bringAreaLocation(area)
+        areaDetailTabViewModel.bind(area)
+
+        areaDetailTabViewModel.previousClick.observe(this@AreaDetailTabActivity, Observer {
+            finish()
+        })
+
+        areaDetailTabViewModel.searchLocationClick.observe(this@AreaDetailTabActivity, Observer {
+            fragmentProvider.replaceFragment(searchFragment)
+        })
+
+        areaDetailTabViewModel.searchGoodPlace.observe(this@AreaDetailTabActivity, Observer {
+            fragmentProvider.replaceFragment(searchFragment)
+        })
+
+        areaDetailTabViewModel.closeClick.observe(this@AreaDetailTabActivity, Observer {
+            when(areaDetailTabViewModel.fragmentPosition.value) {
+                1 -> fragmentProvider.replaceFragment(tourismFragment)
+
+                2 -> fragmentProvider.replaceFragment(goodPlaceFragment)
+            }
+        })
+
 
         viewDataBinding.tViewModel = areaDetailTabViewModel
         viewDataBinding.lifecycleOwner = this@AreaDetailTabActivity

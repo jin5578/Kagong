@@ -5,23 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.tistory.jeongs0222.kagongapplication.databinding.FragmentGoodPlaceBinding
-import com.tistory.jeongs0222.kagongapplication.ui.adapter.BringAreaGoodPlaceAdapter
+import com.tistory.jeongs0222.kagongapplication.databinding.FragmentSearchBinding
 import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AreaDetailTabViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class GoodPlaceFragment: Fragment() {
+class SearchFragment: Fragment() {
 
-    private lateinit var binding: FragmentGoodPlaceBinding
+    private lateinit var binding: FragmentSearchBinding
 
     private val areaDetailTabViewModel by sharedViewModel<AreaDetailTabViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentGoodPlaceBinding.inflate(inflater, container, false).apply {
+        binding = FragmentSearchBinding.inflate(inflater, container, false).apply {
             tViewModel = areaDetailTabViewModel
-            lifecycleOwner = this@GoodPlaceFragment
+            lifecycleOwner = this@SearchFragment
         }
 
         return binding.root
@@ -30,11 +28,6 @@ class GoodPlaceFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        areaDetailTabViewModel.bringAreaGoodPlace()
 
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@GoodPlaceFragment.context)
-            adapter = BringAreaGoodPlaceAdapter(this@GoodPlaceFragment, areaDetailTabViewModel)
-        }
     }
 }

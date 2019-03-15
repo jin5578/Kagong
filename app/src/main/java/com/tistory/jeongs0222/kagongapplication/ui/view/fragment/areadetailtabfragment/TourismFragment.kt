@@ -1,6 +1,8 @@
 package com.tistory.jeongs0222.kagongapplication.ui.view.fragment.areadetailtabfragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,8 @@ class TourismFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        areaDetailTabViewModel.bringAreaLocation()
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@TourismFragment.context)

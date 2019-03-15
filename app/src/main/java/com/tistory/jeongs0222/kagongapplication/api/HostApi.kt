@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.api
 
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResponse
@@ -168,4 +169,10 @@ interface HostApi {
         @Field("area") area: String
     ): Single<BasicResult>  //0: 좋아요 X 1: 좋아요 O
 
+    //Area Good Place
+    @FormUrlEncoded
+    @POST("bringAreaGoodPlace.php")
+    fun bringAreaGoodPlace(
+        @Field("area") area: String
+    ): Single<BringAreaGoodPlaceResponse>
 }

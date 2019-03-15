@@ -28,7 +28,7 @@
                 android:background="@color/colorPrimary"
                 android:fitsSystemWindows="true"
                 android:scaleType="center"
-                android:src="@drawable/paris"
+                android:src="@drawable/parisinfo"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
