@@ -95,6 +95,8 @@
 
     <!--AddLocationActivity - SearchLocationFragment-->
     <string name="search_location_hint">위치를 검색해보세요</string>
+    <string name="search_tourism_hint">관광지를 검색해보세요</string>
+    <string name="search_goodPlace_hint">맛집을 검색해보세요</string>
     <!--<string name="mainWelcome">어디로 떠나시나요?</string>
     <string name="areaSearchHint">여행지를 검색해보세요</string>-->
 

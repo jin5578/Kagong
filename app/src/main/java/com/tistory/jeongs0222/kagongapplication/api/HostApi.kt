@@ -149,7 +149,9 @@ interface HostApi {
     @FormUrlEncoded
     @POST("bringAreaLocation.php")
     fun bringAreaLocation(
-        @Field("area") area: String
+        @Field("area") area: String,
+        @Field("sort") sort: Int,
+        @Field("findlocation") findlocation: String
     ): Single<BringAreaLocationResponse>
 
     //Area Like Click
@@ -173,6 +175,8 @@ interface HostApi {
     @FormUrlEncoded
     @POST("bringAreaGoodPlace.php")
     fun bringAreaGoodPlace(
-        @Field("area") area: String
+        @Field("area") area: String,
+        @Field("sort") sort: Int,
+        @Field("findGoodPlace") findGoodPlace: String
     ): Single<BringAreaGoodPlaceResponse>
 }

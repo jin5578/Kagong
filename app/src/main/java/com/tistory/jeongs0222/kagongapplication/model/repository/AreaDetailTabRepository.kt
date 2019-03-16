@@ -8,11 +8,15 @@ import io.reactivex.Single
 interface AreaDetailTabRepository {
 
     fun bringAreaLocation(
-        area: String
+        area: String,
+        sort: Int,
+        findlocation: String
     ): Single<BringAreaLocationResponse>
 
     fun bringAreaGoodPlace(
-        area: String
+        area: String,
+        sort: Int,
+        findGoodPlace: String
     ): Single<BringAreaGoodPlaceResponse>
 
 }

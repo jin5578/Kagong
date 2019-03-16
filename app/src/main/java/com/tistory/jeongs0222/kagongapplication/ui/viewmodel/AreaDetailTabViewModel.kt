@@ -18,32 +18,18 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
     val previousClick: LiveData<Any>
         get() = _previousClick
 
-    private val _fragmentPosition = MutableLiveData<Int>()
-    val fragmentPosition: LiveData<Int>
-        get() = _fragmentPosition
-
-
-    //SearchFragment
-    private val _closeClick = SingleLiveEvent<Any>()
-    val closeClick: LiveData<Any>
-        get() = _closeClick
+    private val _searchClick = SingleLiveEvent<Any>()
+    val searchClick: LiveData<Any>
+        get() = _searchClick
 
 
     //TourismFragment
-    private val _searchLocationClick = SingleLiveEvent<Any>()
-    val searchLocationClick: LiveData<Any>
-        get() = _searchLocationClick
-
     private val _areaLocation = MutableLiveData<MutableList<BringAreaLocationResult>>()
     val areaLocation: LiveData<MutableList<BringAreaLocationResult>>
         get() = _areaLocation
 
 
     //GoodPlaceFragment
-    private val _searchGoodPlaceClick = SingleLiveEvent<Any>()
-    val searchGoodPlace: LiveData<Any>
-        get() = _searchGoodPlaceClick
-
     private val _areaGoodPlace = MutableLiveData<MutableList<BringAreaGoodPlaceResult>>()
     val areaGoodPlace: LiveData<MutableList<BringAreaGoodPlaceResult>>
         get() = _areaGoodPlace
@@ -64,25 +50,13 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
         Log.e(TAG, "previousClick")
     }
 
-    fun closeClickEvent() {
-        _closeClick.call()
+    fun searchClickEvent() {
+        _searchClick.call()
     }
 
-    fun searchLocationClickEvent() {
-        _searchLocationClick.call()
-
-        _fragmentPosition.value = 1
-    }
-
-    fun searchGoodPlaceClickEvent() {
-        _searchGoodPlaceClick.call()
-
-        _fragmentPosition.value = 2
-    }
-
-    fun bringAreaLocation() {
+    fun bringAreaLocation(sort: Int, findlocation: CharSequence) {
         Log.e("bringAreaLocation", "call")
-        areaDetailTabRepository.bringAreaLocation(area)
+        areaDetailTabRepository.bringAreaLocation(area, sort, findlocation.toString())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -94,8 +68,8 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
             .subscribe()
     }
 
-    fun bringAreaGoodPlace() {
-        areaDetailTabRepository.bringAreaGoodPlace(area)
+    fun bringAreaGoodPlace(sort: Int, findGoodPlace: String) {
+        areaDetailTabRepository.bringAreaGoodPlace(area, sort, findGoodPlace)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

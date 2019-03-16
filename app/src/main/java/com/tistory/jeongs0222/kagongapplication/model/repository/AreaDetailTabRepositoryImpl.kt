@@ -7,9 +7,9 @@ import io.reactivex.Single
 
 
 class AreaDetailTabRepositoryImpl(private val hostApi: HostApi): AreaDetailTabRepository {
-    override fun bringAreaLocation(area: String): Single<BringAreaLocationResponse>
-            = hostApi.bringAreaLocation(area)
+    override fun bringAreaLocation(area: String, sort: Int, findlocation: String): Single<BringAreaLocationResponse>
+            = hostApi.bringAreaLocation(area, sort, findlocation)
 
-    override fun bringAreaGoodPlace(area: String): Single<BringAreaGoodPlaceResponse>
-            = hostApi.bringAreaGoodPlace(area)
+    override fun bringAreaGoodPlace(area: String, sort: Int, findGoodPlace: String): Single<BringAreaGoodPlaceResponse>
+            = hostApi.bringAreaGoodPlace(area, sort, findGoodPlace)
 }
