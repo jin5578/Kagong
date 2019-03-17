@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.register.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentPersonalInfoBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.RegisterViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.UserSexProvider

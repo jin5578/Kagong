@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

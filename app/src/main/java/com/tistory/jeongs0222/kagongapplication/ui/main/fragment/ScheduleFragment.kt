@@ -1,7 +1,6 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.main.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentScheduleBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.adapter.BringScheduleAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.main.adapter.BringScheduleAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

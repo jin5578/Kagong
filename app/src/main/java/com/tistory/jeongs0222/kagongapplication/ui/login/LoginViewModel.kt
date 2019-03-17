@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.login
+package com.tistory.jeongs0222.kagongapplication.ui.login
 
 import android.annotation.SuppressLint
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,9 +8,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.tistory.jeongs0222.kagongapplication.model.repository.LoginRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.inareement.InAgreementActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.inareement.InAgreementActivity
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -10,7 +10,7 @@
 
         <variable
                 name="rViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.register.RegisterViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.register.RegisterViewModel"/>
 
     </data>
 

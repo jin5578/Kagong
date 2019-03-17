@@ -1,12 +1,12 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.splash
+package com.tistory.jeongs0222.kagongapplication.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivitySplashBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.login.LoginActivity
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.login.LoginActivity
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {

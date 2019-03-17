@@ -1,12 +1,12 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddLocationBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.fragment.AddLocationFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.fragment.SearchLocationFragment
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.fragment.AddLocationFragment
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.fragment.SearchLocationFragment
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

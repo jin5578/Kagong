@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view
+package com.tistory.jeongs0222.kagongapplication.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

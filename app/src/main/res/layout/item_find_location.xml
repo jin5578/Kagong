@@ -14,7 +14,7 @@
 
         <variable
                 name="eventListener"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationEventListener"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationEventListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

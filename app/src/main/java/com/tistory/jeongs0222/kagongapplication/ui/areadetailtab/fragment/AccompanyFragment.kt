@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAccompanyBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.AreaDetailTabViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

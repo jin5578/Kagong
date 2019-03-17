@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.register.fragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentBasicInfoBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.RegisterViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

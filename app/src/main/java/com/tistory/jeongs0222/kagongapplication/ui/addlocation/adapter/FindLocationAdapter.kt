@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemFindLocationBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationEventListener
 
 
 class FindLocationAdapter(

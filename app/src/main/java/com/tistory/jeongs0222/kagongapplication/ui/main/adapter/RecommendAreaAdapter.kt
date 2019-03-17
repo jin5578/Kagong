@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,20 +8,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemRecommendedAreaBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainEventListener
 
 
 class RecommendAreaAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<RecommendAreaResult, RecommendAreaAdapter.ViewHolder>(RecommendAreaDiff) {
+) : ListAdapter<RecommendAreaResult, RecommendAreaAdapter.ViewHolder>(
+    RecommendAreaDiff
+) {
 
     private val TAG = "RecommendAreaAdapter"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemRecommendedAreaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return ViewHolder(binding, lifecycleOwner, eventListener)
+        return ViewHolder(
+            binding,
+            lifecycleOwner,
+            eventListener
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

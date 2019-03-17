@@ -1,10 +1,10 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent

@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.register.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

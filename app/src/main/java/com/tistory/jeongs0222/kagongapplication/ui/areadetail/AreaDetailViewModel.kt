@@ -1,10 +1,10 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetail
+package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers

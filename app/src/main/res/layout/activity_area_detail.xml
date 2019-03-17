@@ -10,7 +10,7 @@
 
         <variable
                 name="dViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.areadetail.AreaDetailViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.areadetail.AreaDetailViewModel"/>
 
     </data>
 

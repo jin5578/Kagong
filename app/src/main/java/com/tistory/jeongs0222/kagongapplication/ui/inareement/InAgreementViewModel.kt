@@ -1,8 +1,8 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.inareement
+package com.tistory.jeongs0222.kagongapplication.ui.inareement
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 
 

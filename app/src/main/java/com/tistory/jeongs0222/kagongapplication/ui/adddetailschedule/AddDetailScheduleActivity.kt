@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule
+package com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,10 +7,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddDetailScheduleBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.adapter.BringDetailScheduleAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.AddScheduleActivity
+import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.adapter.BringDetailScheduleAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationActivity
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,7 +38,12 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         area = intent.getStringExtra("area")
 
-        bringDetailScheduleAdapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel, dynamicProvider)
+        bringDetailScheduleAdapter =
+                BringDetailScheduleAdapter(
+                    this@AddDetailScheduleActivity,
+                    addDetailScheduleViewModel,
+                    dynamicProvider
+                )
 
         addDetailScheduleViewModel.bind(intentProvider, messageProvider)
 

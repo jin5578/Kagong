@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.register.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemYearBinding
 import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.RegisterEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterEventListener
 
 
 class YearAdapter(

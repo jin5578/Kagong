@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetail.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

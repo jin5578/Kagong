@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addschedule
+package com.tistory.jeongs0222.kagongapplication.ui.addschedule
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAddScheduleBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.adapter.CalendarListAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.addschedule.adapter.CalendarListAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

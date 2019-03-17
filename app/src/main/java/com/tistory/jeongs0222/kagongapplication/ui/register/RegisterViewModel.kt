@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register
+package com.tistory.jeongs0222.kagongapplication.ui.register
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -10,8 +10,8 @@ import io.reactivex.schedulers.Schedulers
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.tistory.jeongs0222.kagongapplication.model.dump.year.YearItem
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 
 

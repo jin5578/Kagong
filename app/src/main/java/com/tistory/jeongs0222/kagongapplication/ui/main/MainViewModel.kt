@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main
+package com.tistory.jeongs0222.kagongapplication.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,9 +7,9 @@ import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindA
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.AddDetailScheduleActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetail.AreaDetailActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleActivity
+import com.tistory.jeongs0222.kagongapplication.ui.areadetail.AreaDetailActivity
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -18,7 +18,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(), MainEventListener {
+class MainViewModel(private val mainRepository: MainRepository) : DisposableViewModel(),
+    MainEventListener {
 
     //MainActivity
     private val _viewFinish = MutableLiveData<Boolean>()

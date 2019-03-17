@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.login
+package com.tistory.jeongs0222.kagongapplication.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

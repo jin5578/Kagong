@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation.adapter
 
 import android.view.View
 import android.widget.FrameLayout

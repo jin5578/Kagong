@@ -1,13 +1,13 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab
+package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailTabBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.fragment.AccompanyFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.fragment.GoodPlaceFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.fragment.TourismFragment
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.AccompanyFragment
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.GoodPlaceFragment
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.TourismFragment
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel

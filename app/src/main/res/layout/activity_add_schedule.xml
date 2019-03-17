@@ -10,7 +10,7 @@
 
         <variable
                 name="aViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.AddScheduleViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleViewModel"/>
 
     </data>
 

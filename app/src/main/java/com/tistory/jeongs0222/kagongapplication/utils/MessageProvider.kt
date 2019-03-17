@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
-import com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.AddDetailScheduleViewModel
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 
 
 interface MessageProvider {

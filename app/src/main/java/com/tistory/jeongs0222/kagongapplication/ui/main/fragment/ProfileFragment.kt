@@ -1,13 +1,12 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.main.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentProfileBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemFindAreaBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.MainEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainEventListener
 
 
 class FindAreaAdapter(

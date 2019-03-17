@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemAreaGoodplaceBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResult
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.AreaDetailTabEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabEventListener
 
 
 class BringAreaGoodPlaceAdapter(

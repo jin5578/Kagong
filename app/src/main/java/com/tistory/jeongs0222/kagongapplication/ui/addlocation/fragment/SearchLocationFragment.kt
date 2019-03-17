@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentSearchLocationBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.adapter.FindLocationAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.adapter.FindLocationAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

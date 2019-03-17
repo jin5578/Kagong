@@ -1,9 +1,9 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addschedule
+package com.tistory.jeongs0222.kagongapplication.ui.addschedule
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddScheduleRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

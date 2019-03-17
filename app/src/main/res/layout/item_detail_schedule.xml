@@ -14,7 +14,7 @@
 
         <variable
                 name="eventListener"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.AddDetailScheduleEventListener"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleEventListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,5 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.main.adapter
 
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

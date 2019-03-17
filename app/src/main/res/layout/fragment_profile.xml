@@ -10,7 +10,7 @@
 
         <variable
                 name="mViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.main.MainViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel"/>
 
     </data>
 

@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.addschedule.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarEmptyBin
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemCalendarHeaderBinding
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarDayItem
 import com.tistory.jeongs0222.kagongapplication.model.dump.calendar.CalendarItem
-import com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.AddScheduleEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleEventListener
 import com.tistory.jeongs0222.kagongapplication.utils.DateFormatter
 import java.text.SimpleDateFormat
 import java.util.*

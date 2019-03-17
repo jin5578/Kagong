@@ -1,5 +1,6 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,12 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentGoodPlaceBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.adapter.BringAreaGoodPlaceAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.AreaDetailTabViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.adapter.BringAreaGoodPlaceAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -21,6 +23,9 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
     private lateinit var binding: FragmentGoodPlaceBinding
 
     private val areaDetailTabViewModel by sharedViewModel<AreaDetailTabViewModel>()
+
+    private lateinit var imm: InputMethodManager
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentGoodPlaceBinding.inflate(inflater, container, false).apply {
@@ -33,6 +38,8 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        imm = view.context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
         binding.goodPlaceSearch.addTextChangedListener(this@GoodPlaceFragment)
 
@@ -47,12 +54,15 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
         areaDetailTabViewModel.bringAreaGoodPlace(0, "")
 
         areaDetailTabViewModel.searchClick.observe(this@GoodPlaceFragment, Observer {
+            imm.hideSoftInputFromWindow(binding.goodPlaceSearch.windowToken, 0)
+
             areaDetailTabViewModel.bringAreaGoodPlace(1, binding.goodPlaceSearch.text.toString())
 
-            binding.recyclerView.adapter = BringAreaGoodPlaceAdapter(
-                this@GoodPlaceFragment,
-                areaDetailTabViewModel
-            )
+            binding.recyclerView.adapter =
+                    BringAreaGoodPlaceAdapter(
+                        this@GoodPlaceFragment,
+                        areaDetailTabViewModel
+                    )
         })
 
     }
@@ -62,10 +72,11 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
             Log.e("empty", "empty")
             areaDetailTabViewModel.bringAreaGoodPlace(0, "")
 
-            binding.recyclerView.adapter = BringAreaGoodPlaceAdapter(
-                this@GoodPlaceFragment,
-                areaDetailTabViewModel
-            )
+            binding.recyclerView.adapter =
+                    BringAreaGoodPlaceAdapter(
+                        this@GoodPlaceFragment,
+                        areaDetailTabViewModel
+                    )
         }
     }
 

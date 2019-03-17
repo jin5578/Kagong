@@ -10,7 +10,7 @@
 
         <variable
                 name="lViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.view.login.LoginViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.login.LoginViewModel"/>
 
     </data>
 

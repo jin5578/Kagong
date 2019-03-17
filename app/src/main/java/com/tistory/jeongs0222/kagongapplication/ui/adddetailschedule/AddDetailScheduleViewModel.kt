@@ -1,11 +1,11 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule
+package com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddDetailScheduleRepository
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent

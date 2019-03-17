@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.addlocation.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAddLocationBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProvider
 import com.tistory.jeongs0222.kagongapplication.utils.ConstraintSetDynamicProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider

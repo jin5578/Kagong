@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.main
+package com.tistory.jeongs0222.kagongapplication.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -6,11 +6,11 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment.HomeFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment.ProfileFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment.SearchAreaFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.main.fragment.ScheduleFragment
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.HomeFragment
+import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.ProfileFragment
+import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.SearchAreaFragment
+import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.ScheduleFragment
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

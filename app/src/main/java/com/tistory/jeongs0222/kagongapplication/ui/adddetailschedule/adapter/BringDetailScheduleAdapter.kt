@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemDetailScheduleBinding
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult
-import com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.AddDetailScheduleEventListener
+import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleEventListener
 import com.tistory.jeongs0222.kagongapplication.utils.DynamicProvider
 
 

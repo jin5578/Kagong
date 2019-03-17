@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.areadetail
+package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAreaDetailBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetail.adapter.AreaInformationAdapter
-import com.tistory.jeongs0222.kagongapplication.ui.view.addschedule.AddScheduleActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.areadetailtab.AreaDetailTabActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AreaInformationAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivity
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabActivity
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -1,12 +1,12 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.inareement
+package com.tistory.jeongs0222.kagongapplication.ui.inareement
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityInagreementBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.RegisterActivity
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider

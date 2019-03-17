@@ -1,7 +1,7 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.splash
+package com.tistory.jeongs0222.kagongapplication.ui.splash
 
 import androidx.lifecycle.LiveData
-import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers

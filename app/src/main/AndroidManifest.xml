@@ -13,22 +13,24 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.view.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.view.login.LoginActivity"/>
-        <activity android:name=".ui.view.inareement.InAgreementActivity"/>
-        <activity android:name=".ui.view.register.RegisterActivity"/>
-        <activity android:name=".ui.view.main.MainActivity"/>
-        <activity android:name=".ui.view.areadetail.AreaDetailActivity"/>
-        <activity android:name=".ui.view.areadetailtab.AreaDetailTabActivity"/>
-        <activity android:name=".ui.view.addschedule.AddScheduleActivity"/>
-        <activity android:name=".ui.view.adddetailschedule.AddDetailScheduleActivity"/>
-        <activity android:name=".ui.view.addlocation.AddLocationActivity"/>
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.inareement.InAgreementActivity"/>
+        <activity android:name=".ui.register.RegisterActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.areadetail.AreaDetailActivity"/>
+        <activity
+                android:name=".ui.areadetailtab.AreaDetailTabActivity"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".ui.addschedule.AddScheduleActivity"/>
+        <activity android:name=".ui.adddetailschedule.AddDetailScheduleActivity"/>
+        <activity android:name=".ui.addlocation.AddLocationActivity"/>
     </application>
 
 </manifest>

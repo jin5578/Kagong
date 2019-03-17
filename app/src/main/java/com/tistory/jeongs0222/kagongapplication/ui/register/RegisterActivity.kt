@@ -1,13 +1,13 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.register
+package com.tistory.jeongs0222.kagongapplication.ui.register
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityRegisterBinding
-import com.tistory.jeongs0222.kagongapplication.ui.view.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.fragment.YearFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.fragment.BasicInfoFragment
-import com.tistory.jeongs0222.kagongapplication.ui.view.register.fragment.PersonalInfoFragment
+import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.YearFragment
+import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.BasicInfoFragment
+import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.PersonalInfoFragment
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +22,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val registerViewModel by viewModel<RegisterViewModel>()
 
-    private val personalInfoFragment = PersonalInfoFragment()
+    private val personalInfoFragment =
+        PersonalInfoFragment()
     private val basicInfoFragment = BasicInfoFragment()
     private val yearFragment = YearFragment()
 

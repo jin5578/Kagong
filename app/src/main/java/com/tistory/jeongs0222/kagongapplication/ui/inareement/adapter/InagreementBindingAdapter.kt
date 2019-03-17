@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.view.inareement.adapter
+package com.tistory.jeongs0222.kagongapplication.ui.inareement.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
