@@ -10,7 +10,7 @@
 
         <variable
                 name="mViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.view.main.MainViewModel"/>
 
     </data>
 
@@ -43,6 +43,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:maxLines="1"
                 android:inputType="text"
                 android:background="@drawable/edittext_background"

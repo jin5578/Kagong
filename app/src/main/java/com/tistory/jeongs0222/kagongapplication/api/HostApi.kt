@@ -21,12 +21,17 @@ import retrofit2.http.POST
 
 interface HostApi {
 
-    //Nickname Validate
+    //Key Check - LoginActivity
+    @FormUrlEncoded
+    @POST("keycheck.php")
+    fun keyCheck(@Field("googlekey") googlekey: String): Single<BasicResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
+
+    //Nickname Validate - RegisterActivity
     @FormUrlEncoded
     @POST("nickname_validate.php")
     fun nicknameValidate(@Field("nickname") nickname: String): Single<BasicResult>  //0: 사용가능, 1: 이미 존재, 2: 2 ~ 6자
 
-    //Register
+    //Register - RegisterActivity
     @FormUrlEncoded
     @POST("register.php")
     fun register(
@@ -37,33 +42,28 @@ interface HostApi {
         @Field("age") age: String
     ): Single<BasicResult> //0: 가입성공, 1: 가입실패
 
-    //Key Check
-    @FormUrlEncoded
-    @POST("keycheck.php")
-    fun keyCheck(@Field("googlekey") googlekey: String): Single<BasicResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
-
-    //Bring Nickname
+    //Bring Nickname - MainActivity
     @FormUrlEncoded
     @POST("bringNickname.php")
     fun bringNickname(@Field("googlekey") googlekey: String): Single<BringNicknameResult>
 
-    //Bring search area history
+    //Bring search area history - MainActivity
     @FormUrlEncoded
     @POST("areasearchhistory.php")
     fun bringHistory(@Field("googlekey") googlekey: String): Single<FindAreaHistoryResponse>
 
-    //Bring recommend area
+    //Bring recommend area - MainActivity
     @GET("recommendarea.php")
     fun bringRecommendArea(): Single<RecommendAreaResponse>
 
-    //Bring search area
+    //Bring search area - MainActivity
     @FormUrlEncoded
     @POST("findarea.php")
     fun findArea(
         @Field("findcontent") findcontent: String
     ): Single<FindAreaResponse>
 
-    //Find Area Log
+    //Find Area Log - MainActivity
     @FormUrlEncoded
     @POST("findarealog.php")
     fun findAreaLog(
@@ -71,7 +71,31 @@ interface HostApi {
         @Field("userid") userid: String
     ): Single<FindAreaLogResult>    //0: 성공, 1: 실패
 
-    //Check Validate Schedule
+    //Bring Schedule - MainActivity
+    @FormUrlEncoded
+    @POST("bringschedule.php")
+    fun bringSchedule(
+        @Field("googlekey") googlekey: String
+    ): Single<BringScheduleResponse>
+
+    //Area Like Click - AreaDetailActivity
+    @FormUrlEncoded
+    @POST("arealikeclick.php")
+    fun areaLikeClick(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String,
+        @Field("status") status: Int
+    ): Single<BasicResult>
+
+    //Area Like Validate - AreaDetailActivity
+    @FormUrlEncoded
+    @POST("arealikevalidate.php")
+    fun areaLikeValidate(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String
+    ): Single<BasicResult>  //0: 좋아요 X 1: 좋아요 O
+
+    //Check Validate Schedule - AreaDetailActivity
     @FormUrlEncoded
     @POST("validateschedule.php")
     fun validateSchedule(
@@ -79,14 +103,14 @@ interface HostApi {
         @Field("area") area: String
     ): Single<ValidateScheduleResult>       //0: 없음, 1: 있음
 
-    //Bring Area Information
+    //Bring Area Information - AreaDetailActivity
     @FormUrlEncoded
     @POST("bringareainformation.php")
     fun bringAreaInformation(
         @Field("area") area: String
     ): Single<AreaInformationResponse>
 
-    //Add Schedule
+    //Add Schedule - AddScheduleActivity
     @FormUrlEncoded
     @POST("schedule_insert.php")
     fun addSchedule(
@@ -95,20 +119,36 @@ interface HostApi {
         @Field("date") date: String
     ): Single<BasicResult>    //0: 성공, 1: 실패
 
-    //Bring Schedule
+    //Area Location - AreaDetailTabActivity
     @FormUrlEncoded
-    @POST("bringschedule.php")
-    fun bringSchedule(
-        @Field("googlekey") googlekey: String
-    ): Single<BringScheduleResponse>
+    @POST("bringAreaLocation.php")
+    fun bringAreaLocation(
+        @Field("area") area: String,
+        @Field("sort") sort: Int,
+        @Field("findlocation") findlocation: String
+    ): Single<BringAreaLocationResponse>
 
-    //Delete Schedule
+    //Area Good Place - AreaDetailTabActivity
+    @FormUrlEncoded
+    @POST("bringAreaGoodPlace.php")
+    fun bringAreaGoodPlace(
+        @Field("area") area: String,
+        @Field("sort") sort: Int,
+        @Field("findGoodPlace") findGoodPlace: String
+    ): Single<BringAreaGoodPlaceResponse>
+
+    //Delete Schedule - AddDetailScheduleActivity
     @FormUrlEncoded
     @POST("deleteschedule.php")
     fun deleteSchedule(
         @Field("googlekey") googlekey: String,
         @Field("area") area: String
     ): Single<BasicResult>   //0: 성공, 1: 실패
+
+
+
+
+
 
     //Bring Location
     @FormUrlEncoded
@@ -144,39 +184,4 @@ interface HostApi {
         @Field("area") area: String,
         @Field("sort") sort: String
     ): Single<BasicResult>     //0: 성공, 1: 실패
-
-    //Area Location
-    @FormUrlEncoded
-    @POST("bringAreaLocation.php")
-    fun bringAreaLocation(
-        @Field("area") area: String,
-        @Field("sort") sort: Int,
-        @Field("findlocation") findlocation: String
-    ): Single<BringAreaLocationResponse>
-
-    //Area Like Click
-    @FormUrlEncoded
-    @POST("arealikeclick.php")
-    fun areaLikeClick(
-        @Field("googlekey") googlekey: String,
-        @Field("area") area: String,
-        @Field("status") status: Int
-    ): Single<BasicResult>
-
-    //Area Like Validate
-    @FormUrlEncoded
-    @POST("arealikevalidate.php")
-    fun areaLikeValidate(
-        @Field("googlekey") googlekey: String,
-        @Field("area") area: String
-    ): Single<BasicResult>  //0: 좋아요 X 1: 좋아요 O
-
-    //Area Good Place
-    @FormUrlEncoded
-    @POST("bringAreaGoodPlace.php")
-    fun bringAreaGoodPlace(
-        @Field("area") area: String,
-        @Field("sort") sort: Int,
-        @Field("findGoodPlace") findGoodPlace: String
-    ): Single<BringAreaGoodPlaceResponse>
 }

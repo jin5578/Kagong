@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.tistory.jeongs0222.kagongapplication.R
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationViewModel
 import kotlinx.android.synthetic.main.layout_departure.view.*
 import kotlinx.android.synthetic.main.layout_way_and_arrival.view.*
 

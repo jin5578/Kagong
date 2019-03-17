@@ -10,7 +10,7 @@
 
         <variable
                 name="aLViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.view.addlocation.AddLocationViewModel"/>
 
     </data>
 

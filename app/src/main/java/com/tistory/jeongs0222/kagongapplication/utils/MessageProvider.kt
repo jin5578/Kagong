@@ -10,9 +10,8 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddDetailScheduleViewModel
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.AddLocationViewModel
-import com.tistory.jeongs0222.kagongapplication.ui.viewmodel.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.view.adddetailschedule.AddDetailScheduleViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.view.DisposableViewModel
 
 
 interface MessageProvider {
@@ -65,7 +64,7 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
             typeface = ResourcesCompat.getFont(activity, R.font.goyang)
         }
 
-        snackbar.setAction("확인") {
+        snackbar.setAction(view.context.getString(R.string.check)) {
             snackbar.dismiss()
 
             activity.finish()

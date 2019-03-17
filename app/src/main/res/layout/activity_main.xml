@@ -10,7 +10,7 @@
 
         <variable
                 name="mViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.MainViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.view.main.MainViewModel"/>
 
     </data>
 
@@ -26,10 +26,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/null3"/>
+                app:layout_constraintBottom_toTopOf="@id/null1"/>
 
         <View
-                android:id="@+id/null3"
+                android:id="@+id/null1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/colorGray1"

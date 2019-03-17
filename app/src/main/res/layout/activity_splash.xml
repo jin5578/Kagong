@@ -10,7 +10,7 @@
 
         <variable
                 name="sViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.SplashViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.view.splash.SplashViewModel"/>
 
     </data>
 

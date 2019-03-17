@@ -10,7 +10,7 @@
 
         <variable
                 name="lViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.viewmodel.LoginViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.view.login.LoginViewModel"/>
 
     </data>
 
@@ -43,7 +43,7 @@
 
         <include
                 android:id="@+id/null3"
-                layout="@layout/googlebutton_layout"
+                layout="@layout/layout_google_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:lViewModel="@{lViewModel}"
