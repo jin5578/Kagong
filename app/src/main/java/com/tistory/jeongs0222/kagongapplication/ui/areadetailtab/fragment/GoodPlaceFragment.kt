@@ -48,6 +48,11 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
 
         areaDetailTabViewModel.searchClick.observe(this@GoodPlaceFragment, Observer {
             areaDetailTabViewModel.bringAreaGoodPlace(1, binding.goodPlaceSearch.text.toString())
+
+            binding.recyclerView.adapter = BringAreaGoodPlaceAdapter(
+                this@GoodPlaceFragment,
+                areaDetailTabViewModel
+            )
         })
 
     }
@@ -56,6 +61,11 @@ class GoodPlaceFragment: Fragment(), TextWatcher {
         if(charSequence!!.isEmpty()) {
             Log.e("empty", "empty")
             areaDetailTabViewModel.bringAreaGoodPlace(0, "")
+
+            binding.recyclerView.adapter = BringAreaGoodPlaceAdapter(
+                this@GoodPlaceFragment,
+                areaDetailTabViewModel
+            )
         }
     }
 

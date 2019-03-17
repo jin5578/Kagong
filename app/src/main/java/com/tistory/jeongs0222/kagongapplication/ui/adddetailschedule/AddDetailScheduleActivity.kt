@@ -27,6 +27,8 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     private val constraintSetProvider = ConstraintSetProviderImpl(this@AddDetailScheduleActivity) as ConstraintSetProvider
     private val dynamicProvider = DynamicProviderImpl(this@AddDetailScheduleActivity) as DynamicProvider
 
+    private lateinit var bringDetailScheduleAdapter: BringDetailScheduleAdapter
+
     private lateinit var area: String
 
 
@@ -35,6 +37,8 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
         super.onCreate(savedInstanceState)
 
         area = intent.getStringExtra("area")
+
+        bringDetailScheduleAdapter = BringDetailScheduleAdapter(this@AddDetailScheduleActivity, addDetailScheduleViewModel, dynamicProvider)
 
         addDetailScheduleViewModel.bind(intentProvider, messageProvider)
 

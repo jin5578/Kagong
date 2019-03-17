@@ -47,6 +47,11 @@ class TourismFragment: Fragment(), TextWatcher {
 
         areaDetailTabViewModel.searchClick.observe(this@TourismFragment, Observer {
             areaDetailTabViewModel.bringAreaLocation(1, binding.locationSearch.text.toString())
+
+            binding.recyclerView.adapter = BringAreaLocationAdapter(
+                this@TourismFragment,
+                areaDetailTabViewModel
+            )
         })
 
     }
@@ -54,6 +59,11 @@ class TourismFragment: Fragment(), TextWatcher {
     override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
         if(charSequence!!.isEmpty()) {
             areaDetailTabViewModel.bringAreaLocation(0, "")
+
+            binding.recyclerView.adapter = BringAreaLocationAdapter(
+                this@TourismFragment,
+                areaDetailTabViewModel
+            )
         }
     }
 
