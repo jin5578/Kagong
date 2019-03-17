@@ -5,7 +5,6 @@ import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaI
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
@@ -78,6 +77,14 @@ interface HostApi {
         @Field("googlekey") googlekey: String
     ): Single<BringScheduleResponse>
 
+    //Bring Detail Schedule - MainActivity
+    @FormUrlEncoded
+    @POST("bringdetailschedule.php")
+    fun bringDetailSchedule(
+        @Field("googlekey") googlekey: String,
+        @Field("area") area: String
+    ): Single<BringDetailScheduleResponse>
+
     //Area Like Click - AreaDetailActivity
     @FormUrlEncoded
     @POST("arealikeclick.php")
@@ -119,7 +126,7 @@ interface HostApi {
         @Field("date") date: String
     ): Single<BasicResult>    //0: 성공, 1: 실패
 
-    //Area Location - AreaDetailTabActivity
+    //Area Location - AreaDetailTabActivity, AddLocationActivity
     @FormUrlEncoded
     @POST("bringAreaLocation.php")
     fun bringAreaLocation(
@@ -145,28 +152,7 @@ interface HostApi {
         @Field("area") area: String
     ): Single<BasicResult>   //0: 성공, 1: 실패
 
-
-
-
-
-
-    //Bring Location
-    @FormUrlEncoded
-    @POST("findlocation.php")
-    fun bringLocation(
-        @Field("area") area: String,
-        @Field("findlocation") findlocation: String
-    ): Single<FindLocationResponse>
-
-    //Bring Detail Schedule
-    @FormUrlEncoded
-    @POST("bringdetailschedule.php")
-    fun bringDetailSchedule(
-        @Field("googlekey") googlekey: String,
-        @Field("area") area: String
-    ): Single<BringDetailScheduleResponse>
-
-    //Register Location
+    //Register Location - AddLocationActivity
     @FormUrlEncoded
     @POST("registerlocation.php")
     fun registerLocation(
@@ -176,7 +162,7 @@ interface HostApi {
         @Field("sort") sort: String
     ): Single<BasicResult>   //0: 성공, 1: 실패
 
-    //Delete Location
+    //Delete Location - AddLocationActivity
     @FormUrlEncoded
     @POST("deletelocation.php")
     fun deleteLocation(

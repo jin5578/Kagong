@@ -2,7 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.addlocation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
@@ -37,8 +37,8 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     //SearchLocationFragment
     private val _selectLocationClick = SingleLiveEvent<Any>()
 
-    private val _findLocation = MutableLiveData<MutableList<FindLocationResult>>()
-    val findLocation: LiveData<MutableList<FindLocationResult>>
+    private val _findLocation = MutableLiveData<MutableList<BringAreaLocationResult>>()
+    val findLocation: LiveData<MutableList<BringAreaLocationResult>>
         get() = _findLocation
 
     private val _selectedLocation = MutableLiveData<String>()
@@ -90,12 +90,12 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         this.intentProvider = intentProvider
     }
 
-    fun findLocation(charSequence: CharSequence) {
-        addLocationRepository.findLocation(area, charSequence.toString())
+    fun bringAreaLocation(sort: Int, findlocation: String) {
+        addLocationRepository.bringAreaLocation(area, sort, findlocation)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                _findLocation.value = it.findlocation
+                _findLocation.value = it.bringAreaLocation
             }
             .doOnError {
                 it.printStackTrace()

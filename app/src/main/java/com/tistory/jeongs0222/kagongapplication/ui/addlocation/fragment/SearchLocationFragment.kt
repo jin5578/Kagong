@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentSearchLocationBinding
@@ -16,7 +19,8 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 @SuppressLint("ValidFragment")
-class SearchLocationFragment: Fragment(), TextWatcher {
+class SearchLocationFragment : Fragment(), TextView.OnEditorActionListener, TextWatcher {
+
     private lateinit var binding: FragmentSearchLocationBinding
 
     private val addLocationViewModel by sharedViewModel<AddLocationViewModel>()
@@ -33,7 +37,12 @@ class SearchLocationFragment: Fragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.locationSearch.addTextChangedListener(this@SearchLocationFragment)
+        binding.locationSearch.apply {
+            setOnEditorActionListener(this@SearchLocationFragment)
+            addTextChangedListener(this@SearchLocationFragment)
+        }
+
+        addLocationViewModel.bringAreaLocation(0, "")
 
         binding.locationRecycler.apply {
             layoutManager = LinearLayoutManager(this@SearchLocationFragment.context)
@@ -42,10 +51,21 @@ class SearchLocationFragment: Fragment(), TextWatcher {
                 addLocationViewModel
             )
         }
+
+    }
+
+    override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
+        if (tv!!.id == binding.locationSearch.id && actionId == EditorInfo.IME_ACTION_DONE) {
+            postPreprocessor(1, binding.locationSearch.text.toString())
+        }
+
+        return false
     }
 
     override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        addLocationViewModel.findLocation(charSequence!!)
+        if (charSequence!!.isEmpty()) {
+            postPreprocessor(0, "")
+        }
     }
 
     override fun afterTextChanged(p0: Editable?) {
@@ -56,4 +76,13 @@ class SearchLocationFragment: Fragment(), TextWatcher {
 
     }
 
+    private fun postPreprocessor(sort: Int, findlocation: String) {
+        addLocationViewModel.bringAreaLocation(sort, findlocation)
+
+        binding.locationRecycler.adapter =
+                FindLocationAdapter(
+                    this@SearchLocationFragment,
+                    addLocationViewModel
+                )
+    }
 }

@@ -4,10 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +20,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabVi
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class TourismFragment: Fragment(), TextWatcher {
+class TourismFragment: Fragment(), TextWatcher, TextView.OnEditorActionListener {
 
     private lateinit var binding: FragmentTourismBinding
 
@@ -40,7 +43,10 @@ class TourismFragment: Fragment(), TextWatcher {
 
         imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        binding.locationSearch.addTextChangedListener(this@TourismFragment)
+        binding.locationSearch.apply {
+            addTextChangedListener(this@TourismFragment)
+            setOnEditorActionListener(this@TourismFragment)
+        }
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@TourismFragment.context)
@@ -55,26 +61,22 @@ class TourismFragment: Fragment(), TextWatcher {
         areaDetailTabViewModel.searchClick.observe(this@TourismFragment, Observer {
             imm.hideSoftInputFromWindow(binding.locationSearch.windowToken, 0)
 
-            areaDetailTabViewModel.bringAreaLocation(1, binding.locationSearch.text.toString())
-
-            binding.recyclerView.adapter =
-                    BringAreaLocationAdapter(
-                        this@TourismFragment,
-                        areaDetailTabViewModel
-                    )
+            postPreprocessor(1, binding.locationSearch.text.toString())
         })
 
     }
 
+    override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
+        if(tv!!.id == binding.locationSearch.id && actionId == EditorInfo.IME_ACTION_DONE) {
+            postPreprocessor(1, binding.locationSearch.text.toString())
+        }
+
+        return false
+    }
+
     override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
         if(charSequence!!.isEmpty()) {
-            areaDetailTabViewModel.bringAreaLocation(0, "")
-
-            binding.recyclerView.adapter =
-                    BringAreaLocationAdapter(
-                        this@TourismFragment,
-                        areaDetailTabViewModel
-                    )
+            postPreprocessor(0, "")
         }
     }
 
@@ -84,6 +86,16 @@ class TourismFragment: Fragment(), TextWatcher {
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
+    }
+
+    private fun postPreprocessor(sort: Int, findlocation: String) {
+        areaDetailTabViewModel.bringAreaLocation(sort, findlocation)
+
+        binding.recyclerView.adapter =
+                BringAreaLocationAdapter(
+                    this@TourismFragment,
+                    areaDetailTabViewModel
+                )
     }
 
 }

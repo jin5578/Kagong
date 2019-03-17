@@ -39,8 +39,8 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
 
     private lateinit var area: String
 
-
     private val TAG = "AreaDetailViewModel"
+
 
     fun bind(area: String) {
         this.area = area
@@ -48,17 +48,14 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
 
     fun previousClickEvent() {
         _previousClick.call()
-
-        Log.e(TAG, "previousClick")
     }
 
     fun searchClickEvent() {
         _searchClick.call()
     }
 
-    fun bringAreaLocation(sort: Int, findlocation: CharSequence) {
-        Log.e("bringAreaLocation", "call")
-        areaDetailTabRepository.bringAreaLocation(area, sort, findlocation.toString())
+    fun bringAreaLocation(sort: Int, findlocation: String) {
+        areaDetailTabRepository.bringAreaLocation(area, sort, findlocation)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

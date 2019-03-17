@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.jeongs0222.kagongapplication.databinding.ItemFindLocationBinding
-import com.tistory.jeongs0222.kagongapplication.model.host.findLocation.FindLocationResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationEventListener
 
 
 class FindLocationAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: AddLocationEventListener
-): ListAdapter<FindLocationResult, FindLocationAdapter.ViewHolder>(
+): ListAdapter<BringAreaLocationResult, FindLocationAdapter.ViewHolder>(
     LocationDiff
 ) {
 
@@ -39,7 +39,7 @@ class FindLocationAdapter(
         private val lifecycleOwner: LifecycleOwner,
         private val eventListener: AddLocationEventListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(l: FindLocationResult) {
+        fun bind(l: BringAreaLocationResult) {
             binding.locationItem = l
 
             binding.eventListener = eventListener
@@ -48,17 +48,17 @@ class FindLocationAdapter(
         }
     }
 
-    object LocationDiff: DiffUtil.ItemCallback<FindLocationResult>() {
+    object LocationDiff: DiffUtil.ItemCallback<BringAreaLocationResult>() {
         override fun areItemsTheSame(
-            oldItem: FindLocationResult,
-            newItem: FindLocationResult
+            oldItem: BringAreaLocationResult,
+            newItem: BringAreaLocationResult
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: FindLocationResult,
-            newItem: FindLocationResult
+            oldItem: BringAreaLocationResult,
+            newItem: BringAreaLocationResult
         ): Boolean {
             return oldItem == newItem
         }
