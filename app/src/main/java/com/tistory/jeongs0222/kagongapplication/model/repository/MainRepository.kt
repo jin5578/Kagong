@@ -16,7 +16,7 @@ interface MainRepository {
 
     fun bringRecommendArea(): Single<RecommendAreaResponse>
 
-    fun findArea(findcontent: String): Single<FindAreaResponse>
+    fun findArea(findcontent: String, sort: Int): Single<FindAreaResponse>
 
     fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
 

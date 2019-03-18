@@ -20,8 +20,8 @@ class MainRepositoryImpl(private val hostApi: HostApi): MainRepository {
     override fun bringRecommendArea(): Single<RecommendAreaResponse>
             = hostApi.bringRecommendArea()
 
-    override fun findArea(findcontent: String): Single<FindAreaResponse>
-            = hostApi.findArea(findcontent)
+    override fun findArea(findcontent: String, sort: Int): Single<FindAreaResponse>
+            = hostApi.findArea(findcontent, sort)
 
     override fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
             = hostApi.findAreaLog(area, userid)

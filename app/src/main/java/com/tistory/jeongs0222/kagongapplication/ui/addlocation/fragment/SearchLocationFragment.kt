@@ -42,8 +42,6 @@ class SearchLocationFragment : Fragment(), TextView.OnEditorActionListener, Text
             addTextChangedListener(this@SearchLocationFragment)
         }
 
-        addLocationViewModel.bringAreaLocation(0, "")
-
         binding.locationRecycler.apply {
             layoutManager = LinearLayoutManager(this@SearchLocationFragment.context)
             adapter = FindLocationAdapter(
@@ -52,6 +50,7 @@ class SearchLocationFragment : Fragment(), TextView.OnEditorActionListener, Text
             )
         }
 
+        addLocationViewModel.bringAreaLocation(0, "")
     }
 
     override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {

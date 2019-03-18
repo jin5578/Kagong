@@ -59,7 +59,8 @@ interface HostApi {
     @FormUrlEncoded
     @POST("findarea.php")
     fun findArea(
-        @Field("findcontent") findcontent: String
+        @Field("findcontent") findcontent: String,
+        @Field("sort") sort: Int
     ): Single<FindAreaResponse>
 
     //Find Area Log - MainActivity

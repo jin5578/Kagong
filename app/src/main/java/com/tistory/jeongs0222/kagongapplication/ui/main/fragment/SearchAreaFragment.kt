@@ -3,9 +3,12 @@ package com.tistory.jeongs0222.kagongapplication.ui.main.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +19,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class SearchAreaFragment: Fragment(), TextWatcher {
+class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatcher {
 
     private lateinit var binding: FragmentSearchAreaBinding
 
@@ -33,7 +36,11 @@ class SearchAreaFragment: Fragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.areaSearch.addTextChangedListener(this@SearchAreaFragment)
+        binding.areaSearch.apply {
+            setOnEditorActionListener(this@SearchAreaFragment)
+            addTextChangedListener(this@SearchAreaFragment)
+        }
+        binding.areaSearch.setOnEditorActionListener(this@SearchAreaFragment)
 
         binding.recentRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@SearchAreaFragment.context, LinearLayoutManager.HORIZONTAL, false)
@@ -51,6 +58,8 @@ class SearchAreaFragment: Fragment(), TextWatcher {
             )
         }
 
+        mainViewModel.findArea("", 0)
+
         mainViewModel.selectedHistoryClick.observe(this@SearchAreaFragment, Observer {
             mainViewModel.findAreaLog()
         })
@@ -60,8 +69,18 @@ class SearchAreaFragment: Fragment(), TextWatcher {
         })
     }
 
+    override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
+        if(tv!!.id == binding.areaSearch.id && actionId == EditorInfo.IME_ACTION_DONE) {
+            postPreprocessor(binding.areaSearch.text.toString(), 1)
+        }
+
+        return false
+    }
+
     override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        mainViewModel.findArea(charSequence!!)
+        if(charSequence!!.isEmpty()) {
+            postPreprocessor("", 0)
+        }
     }
 
     override fun afterTextChanged(p0: Editable?) {
@@ -70,5 +89,15 @@ class SearchAreaFragment: Fragment(), TextWatcher {
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
+    }
+
+    private fun postPreprocessor(findcontent: String, sort: Int) {
+        mainViewModel.findArea(findcontent, sort)
+
+        binding.findRecyclerView.adapter =
+                FindAreaAdapter(
+                    this@SearchAreaFragment,
+                    mainViewModel
+                )
     }
 }

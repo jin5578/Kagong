@@ -146,8 +146,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribe()
     }
 
-    fun findArea(charSequence: CharSequence) {
-        mainRepository.findArea(charSequence.toString())
+    fun findArea(findcontent: String, sort: Int) {
+        mainRepository.findArea(findcontent, sort)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
