@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.R
@@ -10,6 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AreaInform
 import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabActivity
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AccuWeatherAdapter
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,6 +35,13 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         area = intent.getStringExtra("area")
 
+        viewDataBinding.accuweatherRecycler.apply {
+            layoutManager = GridLayoutManager(this@AreaDetailActivity, 5)
+            adapter = AccuWeatherAdapter(
+                this@AreaDetailActivity
+            )
+        }
+
         viewDataBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AreaDetailActivity)
             adapter =
@@ -41,7 +50,9 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         viewDataBinding.tabLayout.addOnTabSelectedListener(this@AreaDetailActivity)
 
-        areaDetailViewModel.bringAreaInformation(area)
+        areaDetailViewModel.bind(area)
+
+        areaDetailViewModel.bringAreaInformation()
 
         areaDetailViewModel.previousClick.observe(this@AreaDetailActivity, Observer {
             finish()
@@ -74,9 +85,9 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
     override fun onResume() {
         super.onResume()
 
-        areaDetailViewModel.validateSchedule(area)
+        areaDetailViewModel.validateSchedule()
 
-        areaDetailViewModel.areaLikeValidate(area)
+        areaDetailViewModel.areaLikeValidate()
     }
 
     override fun onBackPressed() {
@@ -85,7 +96,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     private fun tabSelected(position: Int) {
         when(position) {
-            0 -> areaDetailViewModel.areaLikeClick(area, areaDetailViewModel.likeStatus.value!!)
+            0 -> areaDetailViewModel.areaLikeClick(areaDetailViewModel.likeStatus.value!!)
 
             1 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
 

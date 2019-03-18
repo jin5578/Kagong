@@ -13,6 +13,6 @@ val areaDetailModules = module {
     }
 
     factory {
-        AreaDetailRepositoryImpl(get()) as AreaDetailRepository
+        AreaDetailRepositoryImpl(get(), get()) as AreaDetailRepository
     }
 }

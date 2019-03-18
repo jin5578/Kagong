@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="weatherItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse3"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@color/colorWhite">
+
+        <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="03.19"/>
+
+        <TextView
+                android:id="@+id/null1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:text="/"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+                android:id="@+id/minimum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/goyang"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                app:temperature="@{weatherItem.minimum.value}"
+                app:layout_constraintEnd_toStartOf="@id/null1"
+                app:layout_constraintTop_toTopOf="@id/null1"
+                app:layout_constraintBottom_toBottomOf="@id/null1"
+                tools:text="14°"/>
+
+        <TextView
+                android:id="@+id/maximum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/goyang"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                app:temperature="@{weatherItem.maximum.value}"
+                app:layout_constraintStart_toEndOf="@id/null1"
+                app:layout_constraintTop_toTopOf="@id/null1"
+                app:layout_constraintBottom_toBottomOf="@id/null1"
+                tools:text="28°"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

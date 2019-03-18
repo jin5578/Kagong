@@ -34,6 +34,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
+        <ImageView
+                android:id="@+id/add_weather"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/sunny"
+                app:layout_constraintEnd_toStartOf="@id/add_schedule"
+                app:layout_constraintTop_toTopOf="@id/add_schedule"
+                app:layout_constraintBottom_toBottomOf="@id/add_schedule"/>
+
         <TextView
                 android:id="@+id/add_schedule"
                 android:layout_width="wrap_content"
@@ -132,17 +142,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
 
+        <TextView
+                android:id="@+id/null3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="날씨"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/accuweatherRecycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                app:accuWeatherList="@{dViewModel.accuWeather}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null3"/>
+        
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:overScrollMode="never"
                 app:addInformationList="@{dViewModel.areaInformation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/accuweatherRecycler"/>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

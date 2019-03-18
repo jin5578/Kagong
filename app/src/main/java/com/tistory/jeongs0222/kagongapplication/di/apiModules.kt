@@ -1,7 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.di
 
 import com.tistory.jeongs0222.kagongapplication.BuildConfig
+import com.tistory.jeongs0222.kagongapplication.api.AccuWeatherApi
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
+import com.tistory.jeongs0222.kagongapplication.utils.accuWeatherUrl
 import com.tistory.jeongs0222.kagongapplication.utils.hostUrl
 import com.tistory.jeongs0222.kagongapplication.utils.loggingInterceptor
 import okhttp3.Interceptor
@@ -26,6 +28,20 @@ val apiModules: Module = module {
             .baseUrl(hostUrl)
             .build()
             .create(HostApi::class.java)
+    }
+
+    single {
+        Retrofit.Builder()
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(get(loggingInterceptor))
+                    .build()
+            )
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(accuWeatherUrl)
+            .build()
+            .create(AccuWeatherApi::class.java)
     }
 
     single(loggingInterceptor) {

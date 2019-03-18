@@ -1,7 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse2
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
@@ -22,6 +24,10 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val validateSchedule: LiveData<String>
         get() = _validateSchedue
 
+    private val _accuWeather = MutableLiveData<MutableList<AccuWeatherResponse2>>()
+    val accuWeather: LiveData<MutableList<AccuWeatherResponse2>>
+        get() = _accuWeather
+
     private val _areaInformation = MutableLiveData<MutableList<AreaInformationResult>>()
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
@@ -32,12 +38,48 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
     private val TAG = "AreaDetailViewModel"
 
+    private lateinit var area: String
+
+    init {
+
+    }
+
+    fun bind(area: String) {
+        this.area = area
+
+        areaForecast(areaDivider(area))
+    }
 
     fun previousClickEvent() {
         _previousClick.call()
     }
 
-    fun areaLikeClick(area: String, status: Int) {
+    private fun areaForecast(locationKey: String) {
+        areaDetailRepository.areaForecast(locationKey,"AQHvbOfPGdmG0fTCG2vk7Mf2a8WA9nsK")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _accuWeather.value = it.DailyForecasts
+            }.doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+
+    }
+
+    private fun areaDivider(area: String): String {
+        return when(area) {
+            "런던" -> "328328"
+
+            "파리" -> "623"
+
+            "바르셀로나" -> "307297"
+
+            else -> "308526"    //마드리드
+        }
+    }
+
+    fun areaLikeClick(status: Int) {
         areaDetailRepository.areaLikeClick(uid, area, status)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -54,7 +96,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .subscribe()
     }
 
-    fun areaLikeValidate(area: String) {
+    fun areaLikeValidate() {
         areaDetailRepository.areaLikeValidate(uid, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -67,7 +109,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .subscribe()
     }
 
-    fun bringAreaInformation(area: String) {
+    fun bringAreaInformation() {
         areaDetailRepository.bringAreaDetail(area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -80,7 +122,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .subscribe()
     }
 
-    fun validateSchedule(area: String) {
+    fun validateSchedule() {
         areaDetailRepository.validateSchedule(uid, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
