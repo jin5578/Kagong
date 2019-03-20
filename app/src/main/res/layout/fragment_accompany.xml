@@ -19,6 +19,45 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
+        <ImageView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="@{() -> tViewModel.previousClickEvent()}"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/goodPlaceSearch"
+                app:layout_constraintBottom_toBottomOf="@id/goodPlaceSearch"/>
+
+        <ImageView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:onClick="@{() -> tViewModel.searchClickEvent()}"
+                android:src="@drawable/ic_search_black_24dp"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintEnd_toStartOf="@id/write"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+                android:id="@+id/write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:onClick="@{() -> tViewModel.writeClickEvent()}"
+                android:src="@drawable/ic_edit_pink_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="0dp"
@@ -30,7 +69,7 @@
                 app:tabTextAppearance="@style/InnerTabLayoutTextStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/previous">
 
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -72,8 +111,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:accompanyList="@{tViewModel.accompanyList}"
                 android:overScrollMode="never"
+                app:accompanyList="@{tViewModel.accompanyList}"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

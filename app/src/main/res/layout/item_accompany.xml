@@ -107,7 +107,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 tools:text="히키코모리"/>
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

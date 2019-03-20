@@ -39,6 +39,10 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
 
 
     //AccompanyFragment
+    private val _writeClick = SingleLiveEvent<Any>()
+    val writeClick: LiveData<Any>
+        get() = _writeClick
+
     private val _accompanyList = MutableLiveData<MutableList<BringAccompanyResult>>()
     val accompanyList: LiveData<MutableList<BringAccompanyResult>>
         get() = _accompanyList
@@ -59,6 +63,10 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
 
     fun searchClickEvent() {
         _searchClick.call()
+    }
+
+    fun writeClickEvent() {
+        _writeClick.call()
     }
 
     fun bringAreaLocation(sort: Int, findlocation: String) {
