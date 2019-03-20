@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailTabRepository
@@ -35,6 +36,12 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
     private val _areaGoodPlace = MutableLiveData<MutableList<BringAreaGoodPlaceResult>>()
     val areaGoodPlace: LiveData<MutableList<BringAreaGoodPlaceResult>>
         get() = _areaGoodPlace
+
+
+    //AccompanyFragment
+    private val _accompanyList = MutableLiveData<MutableList<BringAccompanyResult>>()
+    val accompanyList: LiveData<MutableList<BringAccompanyResult>>
+        get() = _accompanyList
 
 
     private lateinit var area: String
@@ -73,6 +80,19 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _areaGoodPlace.value = it.bringAreaGoodPlace
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringAccompany(tab: Int) {
+        areaDetailTabRepository.bringAccompany(area, tab)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _accompanyList.value = it.bringAccompany
             }
             .doOnError {
                 it.printStackTrace()

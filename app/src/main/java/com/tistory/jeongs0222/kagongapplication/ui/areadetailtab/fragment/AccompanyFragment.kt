@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentAccompanyBinding
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.adapter.BringAccompanyAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -28,20 +30,23 @@ class AccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
         binding.tabLayout.addOnTabSelectedListener(this@AccompanyFragment)
 
-        Log.e(TAG, "onCreateView")
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e(TAG, "onViewCreated")
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@AccompanyFragment.context)
+            adapter = BringAccompanyAdapter(this@AccompanyFragment, areaDetailTabViewModel)
+        }
+
+        areaDetailTabViewModel.bringAccompany(0)
     }
 
     override fun onTabSelected(p0: TabLayout.Tab?) {
+        areaDetailTabViewModel.bringAccompany(p0!!.position)
         Log.e(TAG, p0!!.position.toString())
-
     }
 
     override fun onTabReselected(p0: TabLayout.Tab?) {

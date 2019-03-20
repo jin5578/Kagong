@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import io.reactivex.Single
@@ -18,5 +19,10 @@ interface AreaDetailTabRepository {
         sort: Int,
         findGoodPlace: String
     ): Single<BringAreaGoodPlaceResponse>
+
+    fun bringAccompany(
+        area: String,
+        tab: Int
+    ): Single<BringAccompanyResponse>
 
 }
