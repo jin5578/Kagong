@@ -20,6 +20,14 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val previousClick: LiveData<Any>
         get() = _previousClick
 
+    private val _entireClick = SingleLiveEvent<Any>()
+    val entireClick: LiveData<Any>
+        get() = _entireClick
+
+    private val _accuWeatherClick = SingleLiveEvent<Any>()
+    val accuWeatherClick: LiveData<Any>
+        get() = _accuWeatherClick
+
     private val _validateSchedue = MutableLiveData<String>()
     val validateSchedule: LiveData<String>
         get() = _validateSchedue
@@ -36,12 +44,16 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val likeStatus: LiveData<Int>
         get() = _likeStatus
 
+    private val _accuWeatherVisibility = MutableLiveData<Boolean>()
+    val accuWeatherVisibility: LiveData<Boolean>
+        get() = _accuWeatherVisibility
+
     private val TAG = "AreaDetailViewModel"
 
     private lateinit var area: String
 
     init {
-
+        _accuWeatherVisibility.value = false
     }
 
     fun bind(area: String) {
@@ -52,6 +64,18 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun entireClickEvent() {
+        _entireClick.call()
+
+        _accuWeatherVisibility.value = false
+    }
+
+    fun accuWeatherClickEvent() {
+        _accuWeatherClick.call()
+
+        _accuWeatherVisibility.value = true
     }
 
     private fun areaForecast(locationKey: String) {

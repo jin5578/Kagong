@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -23,6 +24,8 @@ class AccuWeatherAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position).Date, getItem(position).Temperature)
+
+        Log.e("weather icon", getItem(position).Day.IconPhrase)
     }
 
     class ViewHolder(
