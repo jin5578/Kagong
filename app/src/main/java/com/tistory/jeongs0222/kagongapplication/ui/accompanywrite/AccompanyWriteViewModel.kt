@@ -1,18 +1,22 @@
 package com.tistory.jeongs0222.kagongapplication.ui.accompanywrite
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.dump.category.CategoryItem
 import com.tistory.jeongs0222.kagongapplication.model.repository.AccompanyWriteRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
 
 
-class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWriteRepository): DisposableViewModel(), AccompanyWriteEventListener {
+class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWriteRepository) : DisposableViewModel(),
+    AccompanyWriteEventListener {
 
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
@@ -31,7 +35,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         get() = _area
 
     private val _categoryList = MutableLiveData<MutableList<CategoryItem>>()
-    val categoryList : LiveData<MutableList<CategoryItem>>
+    val categoryList: LiveData<MutableList<CategoryItem>>
         get() = _categoryList
 
     private val _recyclerVisibility = MutableLiveData<Int>()
@@ -52,6 +56,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
 
 
     private lateinit var intentProvider: IntentProvider
+    private lateinit var messageProvider: MessageProvider
 
     init {
         _recyclerVisibility.value = 1
@@ -61,28 +66,76 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         categoryPreprocessor()
     }
 
+    private fun bringNickname() {
+        accompanyWriteRepository.bringNickname(uid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _userNickName.value = it.nickname
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
     private fun categoryPreprocessor() {
         val list = arrayListOf("종일동행", "반일동행", "식사", "술", "기타")
         val categoryItem: MutableList<CategoryItem> = arrayListOf()
 
-        for(i in 0 until list.size) {
+        for (i in 0 until list.size) {
             categoryItem.add(CategoryItem(list[i]))
         }
 
         _categoryList.value = categoryItem
     }
 
-    fun bind(area: String, intentProvider: IntentProvider) {
-        _area.value = "#$area"
-        this.intentProvider = intentProvider
+    private fun sortPreprocessor(category: String): Int {
+        return when (category) {
+            "종일동행" -> 0
+
+            "반일동행" -> 1
+
+            "식사" -> 2
+
+            "술" -> 3
+
+            else -> 4
+        }
     }
 
-    fun bringNickname() {
-        accompanyWriteRepository.bringNickname(uid)
+    @SuppressLint("SimpleDateFormat")
+    private fun writtenTime(): String {
+        val format1 = SimpleDateFormat("yyyy-MM-dd HH:mm")
+
+        return format1.format(System.currentTimeMillis())
+    }
+
+    fun bind(area: String, intentProvider: IntentProvider, messageProvider: MessageProvider) {
+        _area.value = "#$area"
+        this.intentProvider = intentProvider
+        this.messageProvider = messageProvider
+    }
+
+    fun accompanyWrite(title: String, content: String) {
+        accompanyWriteRepository
+            .accompanyWrite(
+                _area.value!!.substring(1),
+                sortPreprocessor(_selectedCategory.value!!),
+                uid,
+                title,
+                content,
+                writtenTime(),
+                _selectedDate.value!!
+            )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                _userNickName.value = it.nickname
+                if(it.value == 0) {
+                    intentProvider.intentFinish()
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
             }
             .doOnError {
                 it.printStackTrace()

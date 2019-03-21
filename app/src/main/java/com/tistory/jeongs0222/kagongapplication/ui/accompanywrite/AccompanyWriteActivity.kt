@@ -13,10 +13,12 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAccompanyWri
 import com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.adapter.CategoryAdapter
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccompanyWriteActivity: BaseActivity<ActivityAccompanyWriteBinding>() {
+class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>() {
 
 
     override val layoutResourceId: Int = R.layout.activity_accompany_write
@@ -28,6 +30,7 @@ class AccompanyWriteActivity: BaseActivity<ActivityAccompanyWriteBinding>() {
     private lateinit var sheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     private val intentProvider = IntentProviderImpl(this@AccompanyWriteActivity) as IntentProvider
+    private val messageProvider = MessageProviderImpl(this@AccompanyWriteActivity) as MessageProvider
 
 
     @SuppressLint("SetTextI18n")
@@ -37,7 +40,7 @@ class AccompanyWriteActivity: BaseActivity<ActivityAccompanyWriteBinding>() {
         area = intent.getStringExtra("area")
 
         sheetBehavior = BottomSheetBehavior.from(viewDataBinding.include.bottomSheet)
-        sheetBehavior.setBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
+        sheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(p0: View, p1: Float) {
             }
 
@@ -46,17 +49,17 @@ class AccompanyWriteActivity: BaseActivity<ActivityAccompanyWriteBinding>() {
         })
 
         viewDataBinding.include.calendar.setOnDateChangeListener { p0, p1, p2, p3 ->
-            if((p2+1) < 10) {
-                if(p3 < 10) {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2+1).toString() + "-" + "0" + p3.toString())
+            if ((p2 + 1) < 10) {
+                if (p3 < 10) {
+                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + "0" + p3.toString())
                 } else {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2+1).toString() + "-" + p3.toString())
+                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + p3.toString())
                 }
             } else {
-                if(p3 < 10) {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2+1).toString() + "-" + "0" + p3.toString())
+                if (p3 < 10) {
+                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2 + 1).toString() + "-" + "0" + p3.toString())
                 } else {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2+1).toString() + "-" + p3.toString())
+                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2 + 1).toString() + "-" + p3.toString())
                 }
             }
         }
@@ -66,14 +69,22 @@ class AccompanyWriteActivity: BaseActivity<ActivityAccompanyWriteBinding>() {
             adapter = CategoryAdapter(this@AccompanyWriteActivity, accompanyWriteViewModel)
         }
 
-        accompanyWriteViewModel.bind(area, intentProvider)
+        accompanyWriteViewModel.bind(area, intentProvider, messageProvider)
 
         accompanyWriteViewModel.previousClick.observe(this@AccompanyWriteActivity, Observer {
             finish()
         })
 
         accompanyWriteViewModel.confirmClick.observe(this@AccompanyWriteActivity, Observer {
-
+            if (viewDataBinding.title.text.isNotEmpty()
+                && viewDataBinding.content.text.isNotEmpty()
+                && !accompanyWriteViewModel.selectedCategory.value.isNullOrBlank()
+                && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank())
+            {
+                accompanyWriteViewModel.accompanyWrite(viewDataBinding.title.text.toString(), viewDataBinding.content.text.toString())
+            } else {
+                messageProvider.toastMessage("빈 칸 없이 입력하세요.")
+            }
         })
 
         viewDataBinding.awViewModel = accompanyWriteViewModel

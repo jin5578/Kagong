@@ -181,4 +181,17 @@ interface HostApi {
         @Field("sort") sort: String
     ): Single<BasicResult>     //0: 성공, 1: 실패
 
+    //Accompany Write - AccompanyWriteActivity
+    @FormUrlEncoded
+    @POST("accompanyWrite.php")
+    fun accompanyWrite(
+        @Field("area") area: String,
+        @Field("sort") sort: Int,
+        @Field("googlekey") googlekey: String,
+        @Field("title") title: String,
+        @Field("content") content: String,
+        @Field("writtenTime") writtenTime: String,
+        @Field("meetingDate") meetingDate: String
+        ): Single<BasicResult>  //0: 성공, 1: 실패
+
 }
