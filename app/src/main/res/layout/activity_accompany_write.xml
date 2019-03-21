@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="awViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.AccompanyWriteViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+        <ImageView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="@{() -> awViewModel.previousClickEvent()}"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/null1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/find_accompany"
+                android:textSize="16sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/previous"
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
+
+        <ImageView
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_check_black_24dp"
+                android:onClick="@{() -> awViewModel.confirmClickEvent()}"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+                android:id="@+id/null2"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/previous"/>
+
+        <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
+                tools:text="히키코모리"/>
+
+        <TextView
+                android:id="@+id/null3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="님의 여행 "
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/nickname"
+                app:layout_constraintTop_toTopOf="@id/nickname"
+                app:layout_constraintBottom_toBottomOf="@id/nickname"/>
+
+        <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toEndOf="@id/null3"
+                app:layout_constraintTop_toTopOf="@id/null3"
+                app:layout_constraintBottom_toBottomOf="@id/null3"
+                tools:text="#런던"/>
+
+        <EditText
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:hint="@string/title_hint_accompany"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nickname"/>
+
+        <View
+                android:id="@+id/null4"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorGray4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"/>
+
+        <EditText
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="@string/content_hint_accompany"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null4"/>
+
+        <View
+                android:id="@+id/null5"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorGray4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

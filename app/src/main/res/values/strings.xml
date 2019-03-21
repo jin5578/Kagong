@@ -121,4 +121,8 @@
 
     <string name="write">글쓰기</string>
 
+    <string name="find_accompany">동행 구하기</string>
+    <string name="title_hint_accompany">어떤 동행을 하시고 싶으신가요?</string>
+    <string name="content_hint_accompany">새로운 장소, 새로운 인연과 동행하는건 어떤가요?</string>
+
 </resources>

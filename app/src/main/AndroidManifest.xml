@@ -31,6 +31,7 @@
         <activity android:name=".ui.addschedule.AddScheduleActivity"/>
         <activity android:name=".ui.adddetailschedule.AddDetailScheduleActivity"/>
         <activity android:name=".ui.addlocation.AddLocationActivity"/>
+        <activity android:name=".ui.accompanywrite.AccompanyWriteActivity"/>
     </application>
 
 </manifest>
