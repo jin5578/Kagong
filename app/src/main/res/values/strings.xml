@@ -128,4 +128,11 @@
     <string name="select_date">일정 등록</string>
     <string name="add_post">게시물 추가</string>
 
+    <!--MainActivity - ProfileFragment-->
+    <string name="modify_profile">프로필 확인 및 수정</string>
+    <string name="setting">설정</string>
+    <string name="leave_feedback">피드백을 남겨주세요</string>
+    <string name="invite_friends">친구를 초대하세요</string>
+    <string name="notice">공지사항</string>
+
 </resources>

@@ -59,7 +59,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     fun bind(area: String) {
         this.area = area
 
-        areaForecast(areaDivider(area))
+        //areaForecast(areaDivider(area))
     }
 
     fun previousClickEvent() {

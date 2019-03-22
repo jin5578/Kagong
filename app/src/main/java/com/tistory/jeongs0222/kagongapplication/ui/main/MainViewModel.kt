@@ -40,6 +40,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val userNickname: LiveData<String>
         get() = _userNickname
 
+    private val _nickname = MutableLiveData<String>()
+    val nickname: LiveData<String>
+        get() = _nickname
+
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
         get() = _recommendArea
@@ -112,6 +116,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .doOnSuccess {
                 if (it.value == 0) {
                     _userNickname.value = it.nickname + "님 어디로 떠나시나요?"
+
+                    _nickname.value = it.nickname
                 }
             }
             .doOnError {
