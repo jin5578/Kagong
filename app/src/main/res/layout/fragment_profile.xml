@@ -50,6 +50,7 @@
                 android:layout_marginTop="50dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
+                android:onClick="@{() -> mViewModel.profileDetailClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2">
@@ -62,29 +63,34 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp"
                     android:fontFamily="@font/goyang"
+                    app:layout_constraintVertical_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/modify_profile"
                     tools:text="히키코모리"/>
 
             <TextView
                     android:id="@+id/modify_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="@string/modify_profile"
                     android:textSize="14sp"
                     android:fontFamily="@font/goyang"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintVertical_weight="1"
                     app:layout_constraintTop_toBottomOf="@id/nickname"
-                    app:layout_constraintStart_toStartOf="@id/nickname"/>
+                    app:layout_constraintStart_toStartOf="@id/nickname"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageView
                     android:id="@+id/image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/boy"
+                    android:contentDescription="@string/imageView_description"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/nickname"
-                    app:layout_constraintBottom_toBottomOf="@id/modify_profile"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

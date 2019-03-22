@@ -77,6 +77,40 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         get() = _findArea
 
 
+    //ProfileFragment
+    private val _profileDetailClick = SingleLiveEvent<Any>()
+    val profileDetailClick: LiveData<Any>
+        get() = _profileDetailClick
+
+
+    //ProfileDetailFragment
+    private val _profilePreviousClick = SingleLiveEvent<Any>()
+    val profilePreviousClick: LiveData<Any>
+        get() = _profilePreviousClick
+
+    private val _modifyClick = SingleLiveEvent<Any>()
+    val modifyClick: LiveData<Any>
+        get() = _modifyClick
+
+    private val _introduce = MutableLiveData<String>()
+    val introduce: LiveData<String>
+        get() = _introduce
+
+
+    //ProfileModifyFragment
+    private val _modifyPreviousClick = SingleLiveEvent<Any>()
+    val modifyPreviousClick: LiveData<Any>
+        get() = _modifyPreviousClick
+
+    private val _validateClick = SingleLiveEvent<Any>()
+    val validateClick: LiveData<Any>
+        get() = _validateClick
+
+    private val _validateCheck = MutableLiveData<Boolean>()
+    val validateCheck: LiveData<Boolean>
+        get() = _validateCheck
+
+
     //Entire Fragment
     private val _selectedArea = MutableLiveData<String>()
 
@@ -107,6 +141,26 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun profilePreviousClickEvent() {
+        _profilePreviousClick.call()
+    }
+
+    fun modifyPreviousClickEvent() {
+        _modifyPreviousClick.call()
+    }
+
+    fun profileDetailClickEvent() {
+        _profileDetailClick.call()
+    }
+
+    fun modifyClickEvent() {
+        _modifyClick.call()
+    }
+
+    fun validateClickEvent() {
+        _validateClick.call()
     }
 
     private fun bringNickname() {
@@ -188,6 +242,34 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _myScheduleList.value = it.schedulelist
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun nicknameValidate(nickname: String) {
+        mainRepository.nicknameValidate(nickname)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                when(it.value) {
+                    0 -> {
+                        messageProvider.toastMessage(it.message)
+                        _validateCheck.value = true
+                    }
+
+                    1 -> {
+                        messageProvider.toastMessage(it.message)
+                        _validateCheck.value = false
+                    }
+
+                    2 -> {
+                        messageProvider.toastMessage(it.message)
+                        _validateCheck.value = false
+                    }
+                }
             }
             .doOnError {
                 it.printStackTrace()
