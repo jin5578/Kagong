@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:hint="@{mViewModel.userNickname}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/goyang"
@@ -47,6 +46,7 @@
                 android:maxLines="1"
                 android:inputType="text"
                 android:background="@drawable/edittext_background"
+                app:searchText="@{mViewModel.userNickname}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"/>

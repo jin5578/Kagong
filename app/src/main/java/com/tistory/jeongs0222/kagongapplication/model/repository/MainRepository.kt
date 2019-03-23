@@ -1,17 +1,17 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
-import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import io.reactivex.Single
 
 
 interface MainRepository {
-    fun bringNickname(googlekey: String): Single<BringNicknameResult>
+    fun bringNicknameAndIntro(googlekey: String): Single<BringNicknameAndIntroResult>
 
     fun bringHistory(googlekey: String): Single<FindAreaHistoryResponse>
 
@@ -24,4 +24,6 @@ interface MainRepository {
     fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
 
     fun nicknameValidate(nickname: String): Single<BasicResult>
+
+    fun updateProfile(googlekey: String, nickname: String, introduce: String): Single<BasicResult>
 }

@@ -53,10 +53,25 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:fontFamily="@font/goyang"
-                app:nicknameText="@{mViewModel.nickname}"
+                app:nicknameText="@{mViewModel.userNickname}"
+                app:layout_constraintVertical_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"
-                tools:text="히키코모리님\n안녕하세요"/>
+                app:layout_constraintBottom_toTopOf="@id/null0"
+                tools:text="히키코모리님"/>
+
+        <TextView
+                android:id="@+id/null0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/hi"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintVertical_weight="1"
+                app:layout_constraintStart_toStartOf="@id/nickname"
+                app:layout_constraintTop_toBottomOf="@id/nickname"/>
 
         <ImageView
                 android:id="@+id/image"
@@ -67,7 +82,7 @@
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/nickname"
-                app:layout_constraintBottom_toBottomOf="@id/nickname"/>
+                app:layout_constraintBottom_toBottomOf="@id/null0"/>
 
         <View
                 android:id="@+id/null1"
@@ -79,7 +94,7 @@
                 android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nickname"/>
+                app:layout_constraintTop_toBottomOf="@id/null0"/>
 
         <TextView
                 android:id="@+id/null2"

@@ -27,38 +27,13 @@
                 android:background="@color/colorWhite">
 
             <TextView
-                    android:id="@+id/null1"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:gravity="center"
-                    android:text="@string/appName"
-                    android:textColor="@color/colorBlack"
-                    android:fontFamily="@font/temporaryfont"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/frameLayout"/>
-
-            <View
-                    android:id="@+id/null2"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorGray1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null1"
-                    app:layout_constraintBottom_toTopOf="@id/frameLayout"/>
-
-            <TextView
                     android:id="@+id/areaSearch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:gravity="center"
-                    android:text="@{mViewModel.userNickname}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:fontFamily="@font/goyang"
@@ -66,9 +41,10 @@
                     android:maxLines="1"
                     android:background="@drawable/edittext_background"
                     android:onClick="@{() -> mViewModel.searchAreaClickEvent()}"
+                    app:homeSearchText="@{mViewModel.userNickname}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null2"/>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                     android:id="@+id/null3"
@@ -76,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginStart="30dp"
-                    android:text="@string/recommended_destination"
+                    android:text="@string/select"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp"
                     android:fontFamily="@font/goyang"
@@ -87,8 +63,11 @@
                     android:id="@+id/recommend_recyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:scrollbars="none"
+                    android:overScrollMode="never"
                     app:addRecommendList="@{mViewModel.recommendArea}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -9,6 +9,7 @@
     <string name="appName">Serendipity</string>
     <string name="imageView_description">이미지가 열리지 않습니다.</string>
     <string name="check">확인</string>
+    <string name="appNameK">세렌디피티</string>
 
     <!-- LoginActivity-->
     <string name="google_login">Sign in with Google</string>
@@ -27,7 +28,7 @@
     <string name="register">회원가입</string>
     <string name="basic_information">기본정보</string>
     <string name="nickname">NICKNAME</string>
-    <string name="validate">중복확인</string>
+    <string name="validate">중복체크</string>
     <string name="validate_null">중복확인을 먼저 해주세요.</string>
     <string name="personal_information">개인정보</string>
     <string name="sex">성별</string>
@@ -43,6 +44,7 @@
     <string name="home">홈</string>
     <string name="schedule">일정</string>
     <string name="profile">내정보</string>
+    <string name="select">세렌디피티 select</string>
     <string name="recommended_destination">추천 여행지</string>
     <string name="new_destination">신규 여행지</string>
 
@@ -139,5 +141,6 @@
     <string name="introduceE">INTRODUCE</string>
     <string name="save">저장하기</string>
     <string name="introduce_hint">회원님에 대해 알 수 있도록 간략하게 자기소개를 해주세요.</string>
+    <string name="hi">안녕하세요.</string>
 
 </resources>

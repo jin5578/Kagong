@@ -39,6 +39,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
+                android:onClick="@{() -> mViewModel.saveClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
@@ -137,6 +138,7 @@
                 android:fontFamily="@font/goyang"
                 android:background="@drawable/edittext_background"
                 android:padding="40dp"
+                app:introduceHint="@{mViewModel.introduce}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null4"/>

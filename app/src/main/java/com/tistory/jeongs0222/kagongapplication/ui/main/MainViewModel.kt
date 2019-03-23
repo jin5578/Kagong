@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResult
@@ -27,6 +28,12 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         get() = _viewFinish
 
 
+    //HomeFragment, SearchAreaFragment, ProfileFragment, ProfileDetailFragment
+    private val _userNickname = MutableLiveData<String>()
+    val userNickname: LiveData<String>
+        get() = _userNickname
+
+
     //HomeFragment
     private val _searchAreaClick = SingleLiveEvent<Any>()
     val searchAreaClick: LiveData<Any>
@@ -35,14 +42,6 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private val _selectedRecommendClick = SingleLiveEvent<Any>()
     val selectedRecommendClick: LiveData<Any>
         get() = _selectedRecommendClick
-
-    private val _userNickname = MutableLiveData<String>()
-    val userNickname: LiveData<String>
-        get() = _userNickname
-
-    private val _nickname = MutableLiveData<String>()
-    val nickname: LiveData<String>
-        get() = _nickname
 
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
@@ -106,9 +105,13 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val validateClick: LiveData<Any>
         get() = _validateClick
 
-    private val _validateCheck = MutableLiveData<Boolean>()
-    val validateCheck: LiveData<Boolean>
-        get() = _validateCheck
+    private val _saveClick = SingleLiveEvent<Any>()
+    val saveClick: LiveData<Any>
+        get() = _saveClick
+
+    private val _finishRequest = SingleLiveEvent<Int>()
+    val finishRequest: LiveData<Int>
+        get() = _finishRequest
 
 
     //Entire Fragment
@@ -122,12 +125,14 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
+    var validateCheck: Boolean = false
+    var profileModified: Boolean = false
 
     init {
         _viewFinish.value = false
 
         bringRecommendArea()
-        bringNickname()
+        bringNicknameAndIntro()
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
@@ -159,20 +164,23 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         _modifyClick.call()
     }
 
+    fun saveClickEvent() {
+        _saveClick.call()
+    }
+
     fun validateClickEvent() {
         _validateClick.call()
     }
 
-    private fun bringNickname() {
-        mainRepository.bringNickname(uid)
+    fun bringNicknameAndIntro() {
+        Log.e("bringNicknameAndIntro", "call")
+        mainRepository.bringNicknameAndIntro(uid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                if (it.value == 0) {
-                    _userNickname.value = it.nickname + "님 어디로 떠나시나요?"
+                _userNickname.value = it.nickname
 
-                    _nickname.value = it.nickname
-                }
+                _introduce.value = it.introduce
             }
             .doOnError {
                 it.printStackTrace()
@@ -254,20 +262,20 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                when(it.value) {
+                when (it.value) {
                     0 -> {
                         messageProvider.toastMessage(it.message)
-                        _validateCheck.value = true
+                        validateCheck = true
                     }
 
                     1 -> {
                         messageProvider.toastMessage(it.message)
-                        _validateCheck.value = false
+                        validateCheck = false
                     }
 
                     2 -> {
                         messageProvider.toastMessage(it.message)
-                        _validateCheck.value = false
+                        validateCheck = false
                     }
                 }
             }
@@ -293,6 +301,36 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
                 _viewFinish.value = true
             }
         }
+    }
+
+    fun updateProfile(nickname: String, introduce: String) {
+        mainRepository
+            .updateProfile(
+                uid,
+                nickname,
+                introduce
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    messageProvider.toastMessage(it.message)
+
+                    profileModified = true
+
+                    _finishRequest.value = 0
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun validateMessage() {
+        messageProvider.toastMessage("중복체크를 먼저 해주세요.")
     }
 
     override fun recommendItemClickEvent(area: String) {

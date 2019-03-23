@@ -6,11 +6,12 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringA
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
-import com.tistory.jeongs0222.kagongapplication.model.host.nickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
@@ -42,10 +43,12 @@ interface HostApi {
         @Field("age") age: String
     ): Single<BasicResult> //0: 가입성공, 1: 가입실패
 
-    //Bring Nickname - MainActivity
+    //Bring Nickname And Introduce - MainActivity
     @FormUrlEncoded
-    @POST("bringNickname.php")
-    fun bringNickname(@Field("googlekey") googlekey: String): Single<BringNicknameResult>
+    @POST("bringNicknameAndIntro.php")
+    fun bringNicknameAndIntro(
+        @Field("googlekey") googlekey: String
+    ): Single<BringNicknameAndIntroResult>
 
     //Bring search area history - MainActivity
     @FormUrlEncoded
@@ -86,6 +89,16 @@ interface HostApi {
         @Field("googlekey") googlekey: String,
         @Field("area") area: String
     ): Single<BringDetailScheduleResponse>
+
+    //Modify Profile - MainActivity
+    @FormUrlEncoded
+    @POST("updateProfile.php")
+    fun updateProfile(
+        @Field("googlekey") googlekey: String,
+        @Field("nickname") nickname: String,
+        @Field("introduce") introduce: String
+    ): Single<BasicResult>
+
 
     //Area Like Click - AreaDetailActivity
     @FormUrlEncoded
@@ -180,6 +193,13 @@ interface HostApi {
         @Field("area") area: String,
         @Field("sort") sort: String
     ): Single<BasicResult>     //0: 성공, 1: 실패
+
+    //Bring Nickname - AccompanyWriteActivity
+    @FormUrlEncoded
+    @POST("bringNicknameAndIntro.php")
+    fun bringNickname(
+        @Field("googlekey") googlekey: String
+    ): Single<BringNicknameResult>
 
     //Accompany Write - AccompanyWriteActivity
     @FormUrlEncoded

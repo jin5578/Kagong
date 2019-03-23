@@ -28,5 +28,10 @@ class ProfileDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(mainViewModel.profileModified) {
+            mainViewModel.bringNicknameAndIntro()
+
+            mainViewModel.profileModified = false
+        }
     }
 }

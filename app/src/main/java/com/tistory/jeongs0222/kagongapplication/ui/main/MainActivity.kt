@@ -66,6 +66,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
             fragmentProvider.replaceFragment(profileModifyFragment)
         })
 
+        mainViewModel.finishRequest.observe(this@MainActivity, Observer {
+            fragmentProvider.replaceFragment(profileDetailFragment)
+        })
+
         viewDataBinding.mViewModel = mainViewModel
         viewDataBinding.lifecycleOwner = this@MainActivity
     }

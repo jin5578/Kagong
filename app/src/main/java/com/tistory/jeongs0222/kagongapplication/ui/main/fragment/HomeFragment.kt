@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentHomeBinding
 import com.tistory.jeongs0222.kagongapplication.ui.main.adapter.RecommendAreaAdapter
@@ -32,8 +33,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recommendRecyclerView.apply {
-            isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(this@HomeFragment.context)
+            layoutManager = GridLayoutManager(this@HomeFragment.context, 2)
             adapter = RecommendAreaAdapter(
                 this@HomeFragment,
                 mainViewModel
