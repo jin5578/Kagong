@@ -6,5 +6,7 @@ data class BringAccompanyResult(
     val nickname: String,
     val title: String,
     val content: String,
-    val written_time: String
+    val written_time: String,
+    val area: String,
+    val meeting_date: String
 )

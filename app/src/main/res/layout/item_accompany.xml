@@ -20,48 +20,78 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/accompany_background">
+            android:padding="15dp"
+            android:background="@color/colorWhite">
+
+        <ImageView
+                android:id="@+id/image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/boy"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{accompanyItem.nickname}"
+                android:textSize="14sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintBottom_toTopOf="@id/writtenDate"
+                tools:text="히키코모리"/>
+
+        <TextView
+                android:id="@+id/writtenDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:writtenDateText="@{accompanyItem.written_time}"
+                app:layout_constraintStart_toStartOf="@id/nickname"
+                app:layout_constraintTop_toBottomOf="@id/nickname"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                tools:text="03.20 20:00"/>
 
         <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
                 android:textColor="@color/colorBlack"
                 android:text="@{accompanyItem.title}"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/goyang"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="런던 종일동행 구합니다~"/>
 
         <View
                 android:id="@+id/null1"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="0.5dp"
-                android:background="@color/colorGray1"
+                android:background="@color/colorGray3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title"/>
 
         <TextView
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
                 android:text="@{accompanyItem.content}"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:fontFamily="@font/goyang"
+                android:lineSpacingExtra="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title"
@@ -69,44 +99,39 @@
 
         <View
                 android:id="@+id/null2"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="0.5dp"
-                android:background="@color/colorGray1"
+                android:background="@color/colorGray3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/content"/>
 
         <TextView
-                android:id="@+id/writtenDate"
+                android:id="@+id/area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@{accompanyItem.written_time.replace('-', '.').substring(5)}"
-                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorBlue2"
                 android:fontFamily="@font/goyang"
+                app:tagAreaText="@{accompanyItem.area}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content"
+                app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="03.20 20:00"/>
+                tools:text="# 런던"/>
 
         <TextView
-                android:id="@+id/nickname"
+                android:id="@+id/meetingDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@{accompanyItem.nickname}"
-                android:textSize="12sp"
+                android:layout_marginStart="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorBlue2"
                 android:fontFamily="@font/goyang"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                tools:text="히키코모리"/>
+                app:tagMeetingDateText="@{accompanyItem.meeting_date}"
+                app:layout_constraintStart_toEndOf="@id/area"
+                app:layout_constraintTop_toTopOf="@id/area"
+                app:layout_constraintBottom_toBottomOf="@id/area"
+                tools:text="# 02.22"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
