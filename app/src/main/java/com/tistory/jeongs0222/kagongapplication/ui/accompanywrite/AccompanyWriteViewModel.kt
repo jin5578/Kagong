@@ -46,6 +46,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     val calendarVisibility: LiveData<Int>
         get() = _calendarVisibility
 
+    private val _linkVisibility = MutableLiveData<Int>()
+    val linkVisibility: LiveData<Int>
+        get() = _linkVisibility
+
     private val _selectedCategory = MutableLiveData<String>()
     val selectedCategory: LiveData<String>
         get() = _selectedCategory
@@ -54,6 +58,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     val selectedDate: LiveData<String>
         get() = _selectedDate
 
+    private val _selectedLink = MutableLiveData<String>()
+    val selectedLink: LiveData<String>
+        get() = _selectedLink
+
 
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
@@ -61,6 +69,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     init {
         _recyclerVisibility.value = 1
         _calendarVisibility.value = 1
+        _linkVisibility.value = 1
 
         bringNickname()
         categoryPreprocessor()
@@ -126,12 +135,13 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
                 title,
                 content,
                 writtenTime(),
-                _selectedDate.value!!
+                _selectedDate.value!!,
+                _selectedLink.value!!
             )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                if(it.value == 0) {
+                if (it.value == 0) {
                     intentProvider.intentFinish()
                 } else {
                     messageProvider.toastMessage(it.message)
@@ -149,6 +159,12 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         _calendarVisibility.value = 1
     }
 
+    fun linkSelected(link: String) {
+        _selectedLink.value = link
+
+        _linkVisibility.value = 1
+    }
+
     fun previousClickEvent() {
         _previousClick.call()
     }
@@ -163,7 +179,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
 
     fun dateClickEvent() {
         _calendarVisibility.value = 0
+    }
 
+    fun linkClickEvent() {
+        _linkVisibility.value = 0
     }
 
     override fun categoryItemClickEvent(category: String) {

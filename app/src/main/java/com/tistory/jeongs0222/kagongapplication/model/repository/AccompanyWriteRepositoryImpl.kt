@@ -16,7 +16,8 @@ class AccompanyWriteRepositoryImpl(private val hostApi: HostApi) : AccompanyWrit
         title: String,
         content: String,
         writtenTime: String,
-        meetingDate: String
+        meetingDate: String,
+        link: String
     ): Single<BasicResult> = hostApi.accompanyWrite(
         area,
         sort,
@@ -24,6 +25,7 @@ class AccompanyWriteRepositoryImpl(private val hostApi: HostApi) : AccompanyWrit
         title,
         content,
         writtenTime,
-        meetingDate
+        meetingDate,
+        link
     )
 }

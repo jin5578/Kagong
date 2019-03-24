@@ -211,7 +211,8 @@ interface HostApi {
         @Field("title") title: String,
         @Field("content") content: String,
         @Field("writtenTime") writtenTime: String,
-        @Field("meetingDate") meetingDate: String
+        @Field("meetingDate") meetingDate: String,
+        @Field("link") link: String
         ): Single<BasicResult>  //0: 성공, 1: 실패
 
 }

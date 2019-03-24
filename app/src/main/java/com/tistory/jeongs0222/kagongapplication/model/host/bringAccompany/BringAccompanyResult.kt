@@ -8,5 +8,6 @@ data class BringAccompanyResult(
     val content: String,
     val written_time: String,
     val area: String,
-    val meeting_date: String
+    val meeting_date: String,
+    val link: String
 )

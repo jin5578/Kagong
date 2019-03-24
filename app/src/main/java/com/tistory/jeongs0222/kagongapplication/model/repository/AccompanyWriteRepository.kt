@@ -15,5 +15,6 @@ interface AccompanyWriteRepository {
         title: String,
         content: String,
         writtenTime: String,
-        meetingDate: String): Single<BasicResult>
+        meetingDate: String,
+        link: String): Single<BasicResult>
 }

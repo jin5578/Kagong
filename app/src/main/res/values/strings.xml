@@ -128,6 +128,8 @@
     <string name="content_hint_accompany">새로운 장소, 새로운 인연과 동행하는건 어떤가요?</string>
     <string name="select_board">게시판 선택</string>
     <string name="select_date">일정 등록</string>
+    <string name="open_chatting">오픈채팅 URL</string>
+    <string name="link_hint">오픈채팅 URL을 입력해주세요.</string>
     <string name="add_post">게시물 추가</string>
 
     <!--MainActivity - ProfileFragment-->

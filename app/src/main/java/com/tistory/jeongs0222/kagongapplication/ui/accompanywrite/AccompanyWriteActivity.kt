@@ -2,7 +2,11 @@ package com.tistory.jeongs0222.kagongapplication.ui.accompanywrite
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,8 +22,7 @@ import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>() {
-
+class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), TextView.OnEditorActionListener {
 
     override val layoutResourceId: Int = R.layout.activity_accompany_write
 
@@ -47,6 +50,8 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>() {
             override fun onStateChanged(p0: View, p1: Int) {
             }
         })
+
+        viewDataBinding.include.editLink.setOnEditorActionListener(this@AccompanyWriteActivity)
 
         viewDataBinding.include.calendar.setOnDateChangeListener { p0, p1, p2, p3 ->
             if ((p2 + 1) < 10) {
@@ -79,9 +84,13 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>() {
             if (viewDataBinding.title.text.isNotEmpty()
                 && viewDataBinding.content.text.isNotEmpty()
                 && !accompanyWriteViewModel.selectedCategory.value.isNullOrBlank()
-                && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank())
-            {
-                accompanyWriteViewModel.accompanyWrite(viewDataBinding.title.text.toString(), viewDataBinding.content.text.toString())
+                && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank()
+                && !accompanyWriteViewModel.selectedLink.value.isNullOrBlank()
+            ) {
+                accompanyWriteViewModel.accompanyWrite(
+                    viewDataBinding.title.text.toString(),
+                    viewDataBinding.content.text.toString()
+                )
             } else {
                 messageProvider.toastMessage("빈 칸 없이 입력하세요.")
             }
@@ -90,6 +99,17 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>() {
         viewDataBinding.awViewModel = accompanyWriteViewModel
         viewDataBinding.lifecycleOwner = this@AccompanyWriteActivity
     }
+
+    override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
+        Log.e("456", "456")
+        if (tv!!.id == viewDataBinding.include.editLink.id && actionId == EditorInfo.IME_ACTION_DONE) {
+            Log.e("123", "123")
+            accompanyWriteViewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
+        }
+
+        return false
+    }
+
 
     override fun onBackPressed() {
         finish()

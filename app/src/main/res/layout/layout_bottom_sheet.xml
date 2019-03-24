@@ -157,6 +157,74 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/date"/>
 
+        <View
+                android:id="@+id/null10"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendar"/>
+
+        <ImageView
+                android:id="@+id/null11"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/kakaolink_btn_small"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/link"
+                app:layout_constraintBottom_toBottomOf="@id/link"/>
+
+        <TextView
+                android:id="@+id/link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:text="@string/open_chatting"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                android:onClick="@{() -> awViewModel.linkClickEvent()}"
+                app:layout_constraintStart_toEndOf="@id/null11"
+                app:layout_constraintTop_toBottomOf="@id/null10"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+                android:id="@+id/selected_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:text="@{awViewModel.selectedLink}"
+                android:textSize="13sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/link"
+                app:layout_constraintBottom_toBottomOf="@id/link"
+                tools:text="https://open.kakao.com/o/g5QSBvjb"/>
+
+        <EditText
+                android:id="@+id/edit_link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:gravity="center"
+                android:hint="@string/link_hint"
+                android:textSize="13sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/goyang"
+                android:background="@null"
+                android:maxLines="1"
+                android:inputType="text"
+                app:linkVisibility="@{awViewModel.linkVisibility}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/link"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
