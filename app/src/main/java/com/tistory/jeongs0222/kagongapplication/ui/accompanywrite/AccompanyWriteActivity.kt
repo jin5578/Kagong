@@ -86,6 +86,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
                 && !accompanyWriteViewModel.selectedCategory.value.isNullOrBlank()
                 && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank()
                 && !accompanyWriteViewModel.selectedLink.value.isNullOrBlank()
+                && accompanyWriteViewModel.selectedLink.value!!.contains("https://open.kakao.com/")
             ) {
                 accompanyWriteViewModel.accompanyWrite(
                     viewDataBinding.title.text.toString(),
@@ -101,10 +102,12 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
     }
 
     override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
-        Log.e("456", "456")
         if (tv!!.id == viewDataBinding.include.editLink.id && actionId == EditorInfo.IME_ACTION_DONE) {
-            Log.e("123", "123")
-            accompanyWriteViewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
+            if(viewDataBinding.include.editLink.text.contains("https://open.kakao.com/")) {
+                accompanyWriteViewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
+            } else {
+                messageProvider.toastMessage("유효한 오픈채팅 URL이 아닙니다.")
+            }
         }
 
         return false

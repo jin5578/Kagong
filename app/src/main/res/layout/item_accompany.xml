@@ -59,6 +59,18 @@
                 app:layout_constraintBottom_toBottomOf="@id/image"
                 tools:text="03.20 20:00"/>
 
+        <ImageView
+                android:id="@+id/kakao_link"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/speech_bubble"
+                android:contentDescription="@string/imageView_description"
+                android:onClick="@{() -> eventListener.kakaoLinkClickEvent(accompanyItem.link)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintBottom_toBottomOf="@id/image"/>
+
         <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
@@ -130,7 +142,7 @@
                 app:tagMeetingDateText="@{accompanyItem.meeting_date}"
                 app:layout_constraintStart_toEndOf="@id/area"
                 app:layout_constraintTop_toTopOf="@id/area"
-                app:layout_constraintBottom_toBottomOf="@id/area"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="# 02.22"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

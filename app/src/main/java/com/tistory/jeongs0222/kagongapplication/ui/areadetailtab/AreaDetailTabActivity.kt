@@ -43,7 +43,7 @@ class AreaDetailTabActivity : BaseActivity<ActivityAreaDetailTabBinding>() {
 
         initView()
 
-        areaDetailTabViewModel.bind(area)
+        areaDetailTabViewModel.bind(area, intentProvider)
 
         areaDetailTabViewModel.previousClick.observe(this@AreaDetailTabActivity, Observer {
             finish()

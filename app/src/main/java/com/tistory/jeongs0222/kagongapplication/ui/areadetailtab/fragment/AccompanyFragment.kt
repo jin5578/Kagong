@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +48,6 @@ class AccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
     override fun onTabSelected(p0: TabLayout.Tab?) {
         areaDetailTabViewModel.bringAccompany(p0!!.position)
-        Log.e(TAG, p0!!.position.toString())
     }
 
     override fun onTabReselected(p0: TabLayout.Tab?) {

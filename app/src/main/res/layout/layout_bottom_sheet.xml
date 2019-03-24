@@ -168,10 +168,10 @@
 
         <ImageView
                 android:id="@+id/null11"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/kakaolink_btn_small"
+                android:src="@drawable/ic_insert_link_yellow_24dp"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/link"

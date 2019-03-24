@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 
 
 interface IntentProvider {
@@ -12,6 +13,8 @@ interface IntentProvider {
     fun intentPutExtra(activityClass: Class<*>, area: String)
 
     fun intentPutTwoExtra(activityClass: Class<*>, area: String, order: String)
+
+    fun intentActionView(variable: String)
 
     fun intentFinish()
 }
@@ -37,6 +40,12 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
         val intent = Intent(activity, activityClass)
         intent.putExtra("area", area)
         intent.putExtra("order", order)
+
+        activity.startActivity(intent)
+    }
+
+    override fun intentActionView(variable: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(variable))
 
         activity.startActivity(intent)
     }
