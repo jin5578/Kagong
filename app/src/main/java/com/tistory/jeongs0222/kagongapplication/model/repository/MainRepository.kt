@@ -22,8 +22,4 @@ interface MainRepository {
     fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
 
     fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
-
-    fun nicknameValidate(nickname: String): Single<BasicResult>
-
-    fun updateProfile(googlekey: String, nickname: String, introduce: String): Single<BasicResult>
 }

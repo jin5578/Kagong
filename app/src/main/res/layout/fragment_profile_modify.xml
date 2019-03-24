@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="mViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel"/>
+                name="pViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileViewModel"/>
 
     </data>
 
@@ -26,7 +26,7 @@
                 android:padding="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> mViewModel.modifyPreviousClickEvent()}"
+                android:onClick="@{() -> pViewModel.modifyPreviousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -39,7 +39,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> mViewModel.saveClickEvent()}"
+                android:onClick="@{() -> pViewModel.saveClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
@@ -95,7 +95,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> mViewModel.validateClickEvent()}"
+                android:onClick="@{() -> pViewModel.validateClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/nickname"/>
@@ -138,7 +138,7 @@
                 android:fontFamily="@font/goyang"
                 android:background="@drawable/edittext_background"
                 android:padding="40dp"
-                app:introduceHint="@{mViewModel.introduce}"
+                app:introduceHint="@{pViewModel.introduce}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null4"/>

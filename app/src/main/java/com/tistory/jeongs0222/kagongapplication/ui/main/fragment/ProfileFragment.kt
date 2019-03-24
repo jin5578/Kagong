@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentProfileBinding
 import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -28,6 +29,7 @@ class ProfileFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 }

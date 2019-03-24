@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.main.fragment
+package com.tistory.jeongs0222.kagongapplication.ui.profile.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentProfileDetailBinding
-import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -14,11 +14,11 @@ class ProfileDetailFragment: Fragment() {
 
     private lateinit var binding: FragmentProfileDetailBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val profileViewModel by sharedViewModel<ProfileViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentProfileDetailBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            pViewModel = profileViewModel
             lifecycleOwner = this@ProfileDetailFragment
         }
 
@@ -28,10 +28,11 @@ class ProfileDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(mainViewModel.profileModified) {
-            mainViewModel.bringNicknameAndIntro()
+        if(profileViewModel.profileModified) {
+            profileViewModel.bringNicknameAndIntro()
 
-            mainViewModel.profileModified = false
+            profileViewModel.profileModified = false
         }
     }
+
 }

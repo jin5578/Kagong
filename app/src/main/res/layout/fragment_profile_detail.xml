@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="mViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel"/>
+                name="pViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileViewModel"/>
 
     </data>
 
@@ -26,7 +26,7 @@
                 android:padding="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> mViewModel.profilePreviousClickEvent()}"
+                android:onClick="@{() -> pViewModel.detailPreviousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -39,7 +39,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/goyang"
-                android:onClick="@{() -> mViewModel.modifyClickEvent()}"
+                android:onClick="@{() -> pViewModel.modifyClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
@@ -53,7 +53,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:nicknameText="@{mViewModel.userNickname}"
+                app:nicknameText="@{pViewModel.nickname}"
                 app:layout_constraintVertical_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"
@@ -132,7 +132,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
-                app:introduceText="@{mViewModel.introduce}"
+                app:introduceText="@{pViewModel.introduce}"
                 tools:text="안녕하세요. 만나서 반갑습니다."/>
 
         <View

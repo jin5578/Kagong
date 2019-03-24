@@ -29,10 +29,4 @@ class MainRepositoryImpl(private val hostApi: HostApi): MainRepository {
 
     override fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
             = hostApi.bringSchedule(googlekey)
-
-    override fun nicknameValidate(nickname: String): Single<BasicResult>
-            = hostApi.nicknameValidate(nickname)
-
-    override fun updateProfile(googlekey: String, nickname: String, introduce: String): Single<BasicResult>
-            = hostApi.updateProfile(googlekey, nickname, introduce)
 }

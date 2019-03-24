@@ -8,6 +8,8 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.*
+import com.tistory.jeongs0222.kagongapplication.ui.notice.NoticeActivity
+import com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,8 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     private val scheduleFragment = ScheduleFragment()
     private val profileFragment = ProfileFragment()
     private val searchAreaFragment = SearchAreaFragment()
-    private val profileDetailFragment = ProfileDetailFragment()
-    private val profileModifyFragment = ProfileModifyFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,23 +51,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
         })
 
         mainViewModel.profileDetailClick.observe(this@MainActivity, Observer {
-            fragmentProvider.replaceFragment(profileDetailFragment)
+            intentProvider.intent(ProfileActivity::class.java)
         })
 
-        mainViewModel.profilePreviousClick.observe(this@MainActivity, Observer {
-            fragmentProvider.replaceFragment(profileFragment)
-        })
-
-        mainViewModel.modifyPreviousClick.observe(this@MainActivity, Observer {
-            fragmentProvider.replaceFragment(profileDetailFragment)
-        })
-
-        mainViewModel.modifyClick.observe(this@MainActivity, Observer {
-            fragmentProvider.replaceFragment(profileModifyFragment)
-        })
-
-        mainViewModel.finishRequest.observe(this@MainActivity, Observer {
-            fragmentProvider.replaceFragment(profileDetailFragment)
+        mainViewModel.noticeClick.observe(this@MainActivity, Observer {
+            intentProvider.intent(NoticeActivity::class.java)
         })
 
         viewDataBinding.mViewModel = mainViewModel
@@ -116,6 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     override fun onResume() {
         super.onResume()
 
+        mainViewModel.bringNicknameAndIntro()
         mainViewModel.bringHistory()
         mainViewModel.bringSchedule()
     }
