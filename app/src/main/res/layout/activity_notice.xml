@@ -19,16 +19,14 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
-        <ImageView
-                android:id="@+id/previous"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> nViewModel.previousClickEvent()}"
+        <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

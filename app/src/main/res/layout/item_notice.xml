@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="noticeItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.bringNotice.BringNoticeResult"/>
+
+        <variable
+                name="eventListener"
+                type="com.tistory.jeongs0222.kagongapplication.ui.notice.NoticeEventListener"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:onClick="@{() -> eventListener.noticeItemClickEvent(noticeItem.order)}">
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{noticeItem.title}"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="세렌디피티 개인정보 처리방침 변경 안내드립니다."/>
+
+        <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{noticeItem.date}"
+                android:textSize="12sp"
+                android:fontFamily="@font/goyang"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="2019.03.25"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

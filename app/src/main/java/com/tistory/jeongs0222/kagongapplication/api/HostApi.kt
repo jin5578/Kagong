@@ -8,6 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.Bri
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringNotice.BringNoticeResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
@@ -27,7 +28,7 @@ interface HostApi {
     @POST("keycheck.php")
     fun keyCheck(@Field("googlekey") googlekey: String): Single<BasicResult> //0: 처음 연동, 가입하는 경우 1: 연동은 하였지만 가입을 하지 않은 경우 2: 이미 연동, 가입한 경우
 
-    //Nickname Validate - RegisterActivity
+    //Nickname Validate - RegisterActivity, ProfileActivity
     @FormUrlEncoded
     @POST("nickname_validate.php")
     fun nicknameValidate(@Field("nickname") nickname: String): Single<BasicResult>  //0: 사용가능, 1: 이미 존재, 2: 2 ~ 6자
@@ -43,7 +44,7 @@ interface HostApi {
         @Field("age") age: String
     ): Single<BasicResult> //0: 가입성공, 1: 가입실패
 
-    //Bring Nickname And Introduce - MainActivity
+    //Bring Nickname And Introduce - MainActivity, ProfileActivity
     @FormUrlEncoded
     @POST("bringNicknameAndIntro.php")
     fun bringNicknameAndIntro(
@@ -90,7 +91,7 @@ interface HostApi {
         @Field("area") area: String
     ): Single<BringDetailScheduleResponse>
 
-    //Modify Profile - MainActivity
+    //Modify Profile - ProfileActivity
     @FormUrlEncoded
     @POST("updateProfile.php")
     fun updateProfile(
@@ -214,5 +215,9 @@ interface HostApi {
         @Field("meetingDate") meetingDate: String,
         @Field("link") link: String
         ): Single<BasicResult>  //0: 성공, 1: 실패
+
+    //Bring Notice - NoticeActivity
+    @GET("bringNotice.php")
+    fun bringNotice(): Single<BringNoticeResponse>
 
 }
