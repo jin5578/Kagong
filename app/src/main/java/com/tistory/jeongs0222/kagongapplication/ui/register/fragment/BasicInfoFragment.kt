@@ -1,11 +1,13 @@
 package com.tistory.jeongs0222.kagongapplication.ui.register.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentBasicInfoBinding
@@ -18,6 +20,8 @@ class BasicInfoFragment : Fragment(), TextWatcher {
     private lateinit var binding: FragmentBasicInfoBinding
 
     private val registerViewModel by sharedViewModel<RegisterViewModel>()
+
+    private lateinit var imm: InputMethodManager
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,9 +36,13 @@ class BasicInfoFragment : Fragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
         binding.nickname.addTextChangedListener(this@BasicInfoFragment)
 
         registerViewModel.validateClick.observe(this@BasicInfoFragment, Observer {
+            imm.hideSoftInputFromWindow(binding.nickname.windowToken, 0)
+
             registerViewModel.nicknameValidate(binding.nickname.text.toString())
         })
     }

@@ -31,14 +31,6 @@ class ScheduleFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainViewModel.myScheduleList.observe(this@ScheduleFragment, Observer {
-            if(it.size == 0) {
-                binding.itemNull.visibility = View.VISIBLE
-            } else {
-                binding.itemNull.visibility = View.GONE
-            }
-        })
-
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
             adapter = BringScheduleAdapter(

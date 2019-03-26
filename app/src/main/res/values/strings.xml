@@ -147,7 +147,7 @@
 
     <string name="version_info">버전정보</string>
     <string name="terms_of_service">서비스 이용약관</string>
-    <string name="privacy_policy">개인정보 처리방</string>
+    <string name="privacy_policy">개인정보 처리방침</string>
     <string name="withdrawal">회원탈퇴</string>
 
 </resources>

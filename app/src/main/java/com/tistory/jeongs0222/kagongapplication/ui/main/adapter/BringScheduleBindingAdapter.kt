@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.main.adapter
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -17,6 +18,15 @@ fun bringScheduleList(recyclerView: RecyclerView, list: MutableList<BringSchedul
 
             notifyDataSetChanged()
         }
+    }
+}
+
+@BindingAdapter("itemNullVisibility")
+fun itemNullVisibility(textView: TextView, list: MutableList<BringScheduleResult>?) {
+    if(list!!.size == 0) {
+        textView.visibility = View.VISIBLE
+    } else {
+        textView.visibility = View.GONE
     }
 }
 
