@@ -112,5 +112,7 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
 
         alertDialog = builder.create()
 
-        alertDialog.show()    }
+        alertDialog.show()
+    }
+
 }

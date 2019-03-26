@@ -33,7 +33,7 @@ class NoticeActivity: BaseActivity<ActivityNoticeBinding>() {
         })
 
         noticeViewModel.detailPreviousClick.observe(this@NoticeActivity, Observer {
-            fragmentProvider.replaceFragment(noticeDetailFragment)
+            fragmentProvider.replaceFragment(noticeListFragment)
         })
 
         noticeViewModel.noticeItemClick.observe(this@NoticeActivity, Observer {

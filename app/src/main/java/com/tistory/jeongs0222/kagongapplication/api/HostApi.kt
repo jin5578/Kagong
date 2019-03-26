@@ -220,4 +220,11 @@ interface HostApi {
     @GET("bringNotice.php")
     fun bringNotice(): Single<BringNoticeResponse>
 
+    //withdrawal User - SettingActivity
+    @FormUrlEncoded
+    @POST("deleteUser.php")
+    fun deleteUser(
+        @Field("googlekey") googlekey: String
+    ): Single<BasicResult>  //0: 성공, 1: 실패
+
 }

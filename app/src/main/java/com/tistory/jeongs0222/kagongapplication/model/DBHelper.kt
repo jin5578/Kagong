@@ -41,4 +41,12 @@ class DBHelper(context: Context, name: String, factory: SQLiteDatabase.CursorFac
         return key
     }
 
+    fun deleteGooglekey() {
+        val db = writableDatabase
+
+        db.execSQL("DELETE FROM USERINFO")
+
+        db.close()
+    }
+
 }

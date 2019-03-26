@@ -14,5 +14,6 @@ val kagongModules = arrayListOf(
     areaDetailTabModules,
     accompanyWriteModules,
     profileModules,
-    noticeModules
+    noticeModules,
+    settingModules
 )

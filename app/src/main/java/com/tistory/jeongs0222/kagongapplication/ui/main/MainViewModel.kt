@@ -81,6 +81,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val profileDetailClick: LiveData<Any>
         get() = _profileDetailClick
 
+    private val _settingClick = SingleLiveEvent<Any>()
+    val settingClick: LiveData<Any>
+        get() = _settingClick
+
     private val _noticeClick = SingleLiveEvent<Any>()
     val noticeClick: LiveData<Any>
         get() = _noticeClick
@@ -116,6 +120,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun settingClickEvent() {
+        _settingClick.call()
     }
 
     fun noticeClickEvent() {

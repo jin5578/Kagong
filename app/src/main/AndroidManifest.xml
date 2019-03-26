@@ -34,6 +34,7 @@
         <activity android:name=".ui.accompanywrite.AccompanyWriteActivity"/>
         <activity android:name=".ui.notice.NoticeActivity"/>
         <activity android:name=".ui.profile.ProfileActivity"/>
+        <activity android:name=".ui.setting.SettingActivity"/>
     </application>
 
 </manifest>

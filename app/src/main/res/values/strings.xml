@@ -145,4 +145,9 @@
     <string name="introduce_hint">회원님에 대해 알 수 있도록 간략하게 자기소개를 해주세요.</string>
     <string name="hi">안녕하세요.</string>
 
+    <string name="version_info">버전정보</string>
+    <string name="terms_of_service">서비스 이용약관</string>
+    <string name="privacy_policy">개인정보 처리방</string>
+    <string name="withdrawal">회원탈퇴</string>
+
 </resources>
