@@ -1,7 +1,11 @@
 package com.tistory.jeongs0222.kagongapplication.ui.main
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
@@ -33,9 +37,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     private val profileFragment = ProfileFragment()
     private val searchAreaFragment = SearchAreaFragment()
 
+    private val checkList = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+    private val PERMISSION = 111;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        permissionCheck()
 
         fragmentProvider.initFragment(homeFragment)
 
@@ -89,6 +99,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
             else -> {
                 false
+            }
+        }
+    }
+
+    private fun permissionCheck() {
+        if((ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            && (ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this, checkList, PERMISSION)
             }
         }
     }

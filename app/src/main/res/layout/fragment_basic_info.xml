@@ -27,7 +27,7 @@
                 android:layout_marginTop="50dp"
                 android:text="@string/basic_information"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>

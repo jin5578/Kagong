@@ -31,12 +31,14 @@ android {
         disable 'GoogleAppIndexingWarning'
         baseline file("lint-baseline.xml")
     }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
@@ -66,10 +68,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     //Design
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.1.0-alpha04'
 
     //RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha03'
     implementation 'androidx.cardview:cardview:1.0.0-beta01'
 
     //Http Interceptor

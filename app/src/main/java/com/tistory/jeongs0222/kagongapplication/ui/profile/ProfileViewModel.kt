@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.ui.profile
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.ProfileRepository
@@ -33,6 +32,10 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
     private val _modifyPreviousClick = SingleLiveEvent<Any>()
     val modifyPreviousClick: LiveData<Any>
         get() = _modifyPreviousClick
+
+    private val _imageClick = SingleLiveEvent<Any>()
+    val imageClick: LiveData<Any>
+        get() = _imageClick
 
     private val _nickname = MutableLiveData<String>()
     val nickname: LiveData<String>
@@ -81,6 +84,10 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
 
     fun validateClickEvent() {
         _validateClick.call()
+    }
+
+    fun imageClickEvent() {
+        _imageClick.call()
     }
 
     fun bringNicknameAndIntro() {
