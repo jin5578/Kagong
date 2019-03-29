@@ -43,7 +43,7 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
     private val PICK_FROM_GALLERY = 111
     private val CROP_FROM_CAMERA = 222
 
-    private lateinit var temp: Uri
+    private lateinit var dataUri: Uri
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -86,6 +86,16 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
                 profileViewModel.updateProfile(binding.nickname.text.toString(), binding.introduce.text.toString())
             else
                 profileViewModel.validateMessage()
+        })
+
+        profileViewModel.uploadImageValue.observe(this@ProfileModifyFragment, Observer {
+            if(it == 0) {
+                Glide.with(binding.image)
+                    .asBitmap()
+                    .load(dataUri)
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(binding.image)
+            }
         })
     }
 
@@ -135,21 +145,18 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
             if(resultCode == Activity.RESULT_OK) {
 
                 if(data != null) {
-                    temp = data.data!!
+                    val temp = data.data!!
 
                     imageCropProvider.cropImage(temp)
                 }
             }
         } else if(requestCode == CROP_FROM_CAMERA) {
-            Log.e("123", "123")
-            Glide.with(binding.image)
-                .asBitmap()
-                .load(data!!.data)
-                .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                .into(binding.image)
+            if(data != null) {
+                dataUri = data.data!!
 
-            Log.e("tempname", data.toString())
+                val cropFile = imageCropProvider.galleryAddPic()
+                profileViewModel.uploadProfileImage(cropFile)
+            }
         }
     }
-
 }

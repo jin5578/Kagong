@@ -16,10 +16,9 @@ import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaL
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface HostApi {
 
@@ -98,6 +97,14 @@ interface HostApi {
         @Field("googlekey") googlekey: String,
         @Field("nickname") nickname: String,
         @Field("introduce") introduce: String
+    ): Single<BasicResult>
+
+    //Upload Profile Image - ProfileActivity
+    @Multipart
+    @POST("uploadProfileImage.php")
+    fun uploadProfileImage(
+        @Part up_image: List<MultipartBody.Part>,
+        @PartMap params: Map<String, @JvmSuppressWildcards RequestBody>
     ): Single<BasicResult>
 
 

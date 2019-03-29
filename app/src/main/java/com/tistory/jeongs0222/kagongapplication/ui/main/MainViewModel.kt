@@ -33,6 +33,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val userNickname: LiveData<String>
         get() = _userNickname
 
+    private val _userImage = MutableLiveData<String>()
+        val userImage: LiveData<String>
+        get() = _userImage
+
 
     //HomeFragment
     private val _searchAreaClick = SingleLiveEvent<Any>()
@@ -140,6 +144,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _userNickname.value = it.nickname
+
+                _userImage.value = it.image
             }
             .doOnError {
                 it.printStackTrace()

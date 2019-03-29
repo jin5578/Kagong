@@ -90,6 +90,7 @@
                 android:layout_marginEnd="30dp"
                 android:src="@drawable/boy"
                 android:contentDescription="@string/imageView_description"
+                app:userImage="@{pViewModel.userImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/nickname"
                 app:layout_constraintBottom_toBottomOf="@id/null0"/>

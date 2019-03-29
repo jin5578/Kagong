@@ -5,8 +5,10 @@ import android.content.ComponentName
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import androidx.core.content.FileProvider
 import com.tistory.jeongs0222.kagongapplication.ui.profile.fragment.ProfileModifyFragment
 import java.io.File
@@ -18,6 +20,8 @@ import java.util.*
 interface ImageCropProvider {
 
     fun cropImage(temp: Uri)
+
+    fun galleryAddPic(): File
 }
 
 class ImageCropProviderImpl(
@@ -25,7 +29,10 @@ class ImageCropProviderImpl(
 ) : ImageCropProvider {
 
     private val CROP_FROM_CAMERA = 222
+    private lateinit var mCurrentPhotoPath: String
 
+
+    @SuppressLint("ObsoleteSdkInt")
     override fun cropImage(temp: Uri) {
         val intent = Intent("com.android.camera.action.CROP")
         intent.setDataAndType(temp, "image/*")
@@ -57,19 +64,32 @@ class ImageCropProviderImpl(
                 e.printStackTrace()
             }
 
-            val folder = File(Environment.getExternalStorageDirectory().toString() + "/Serendipity/")
+            val folder = File(Environment.getExternalStorageDirectory().absolutePath + "/Picture/Serendipity")
 
             val tempFile = File(folder.toString(), croppedFileName!!.name)
 
-            val convertedTemp = FileProvider.getUriForFile(
-                activity.context!!.applicationContext,
-                "com.tistory.jeongs0222.kagongapplication.provider",
-                tempFile
-            )
+            mCurrentPhotoPath = tempFile.absolutePath
+
+            Log.e("tempFile", tempFile.path.toString())
+
+            val convertedTemp: Uri
+
+            //SDK에 따른 분류
+            convertedTemp = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                FileProvider.getUriForFile(
+                    activity.context!!.applicationContext,
+                    "com.tistory.jeongs0222.kagongapplication.provider",
+                    tempFile
+                )
+            } else {
+                Uri.fromFile(tempFile)
+            }
+
+
 
             intent.putExtra("return-data", false)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, convertedTemp)
-            intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString())
 
             val i = Intent(intent)
 
@@ -95,12 +115,24 @@ class ImageCropProviderImpl(
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat("HHmmss").format(Date())
         val imageFileName = timeStamp + "_"
-        val storageDir = File(Environment.getExternalStorageDirectory().toString() + "/Serendipity/")
+        val storageDir = File(Environment.getExternalStorageDirectory().absolutePath + "/Picture/Serendipity")
         if (!storageDir.exists()) {
             storageDir.mkdirs()
         }
 
-        return File.createTempFile(imageFileName, ".jpg", storageDir)
+        return File.createTempFile(imageFileName, ".png", storageDir)
+    }
+
+    override fun galleryAddPic(): File {
+        val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+
+        val file = File(mCurrentPhotoPath)
+
+        mediaScanIntent.data = Uri.fromFile(file)
+
+        activity.context!!.sendBroadcast(mediaScanIntent)
+
+        return file
     }
 
 }

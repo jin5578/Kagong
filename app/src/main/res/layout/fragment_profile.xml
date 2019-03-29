@@ -65,6 +65,7 @@
                     android:layout_height="50dp"
                     android:src="@drawable/boy"
                     android:contentDescription="@string/imageView_description"
+                    app:userImage="@{mViewModel.userImage}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>

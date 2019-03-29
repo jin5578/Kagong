@@ -9,9 +9,15 @@ import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import java.util.ArrayList
+import java.util.HashMap
 
 
-class ProfileViewModel(private val profileRepository: ProfileRepository): DisposableViewModel() {
+class ProfileViewModel(private val profileRepository: ProfileRepository) : DisposableViewModel() {
 
     private val _detailPreviousClick = SingleLiveEvent<Any>()
     val profileDetailPreviousClick: LiveData<Any>
@@ -37,6 +43,10 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
     val imageClick: LiveData<Any>
         get() = _imageClick
 
+    private val _finishRequest = SingleLiveEvent<Int>()
+    val finishRequest: LiveData<Int>
+        get() = _finishRequest
+
     private val _nickname = MutableLiveData<String>()
     val nickname: LiveData<String>
         get() = _nickname
@@ -45,12 +55,18 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
     val introduce: LiveData<String>
         get() = _introduce
 
-    private val _finishRequest = SingleLiveEvent<Int>()
-    val finishRequest: LiveData<Int>
-        get() = _finishRequest
+    private val _userImage = MutableLiveData<String>()
+    val userImage: LiveData<String>
+        get() = _userImage
+
+    private val _uploadImageValue = MutableLiveData<Int>()
+    val uploadImageValue: LiveData<Int>
+        get() = _uploadImageValue
 
 
     private lateinit var messageProvider: MessageProvider
+
+    private var parts: MutableList<MultipartBody.Part> = ArrayList()
 
     var validateCheck: Boolean = false
 
@@ -98,6 +114,8 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
                 _nickname.value = it.nickname
 
                 _introduce.value = it.introduce
+
+                _userImage.value = it.image
             }
             .doOnError {
                 it.printStackTrace()
@@ -143,7 +161,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                if(it.value == 0) {
+                if (it.value == 0) {
                     messageProvider.toastMessage(it.message)
 
                     profileModified = true
@@ -158,6 +176,45 @@ class ProfileViewModel(private val profileRepository: ProfileRepository): Dispos
             }
             .subscribe()
     }
+
+    fun uploadProfileImage(file: File) {
+        parts.add(prepareFilePart(file))
+
+        profileRepository
+            .uploadProfileImage(
+                parts,
+                getData()
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    _uploadImageValue.value = 0
+                } else {
+                    _uploadImageValue.value = 1
+
+                    messageProvider.toastMessage(it.message)
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun prepareFilePart(file: File): MultipartBody.Part {
+        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        return MultipartBody.Part.createFormData("up_image[]", file.name, requestBody)
+    }
+
+    private fun getData(): HashMap<String, RequestBody> {
+        return HashMap<String, RequestBody>().apply {
+            this["googlekey"] = toRequestBody(uid)
+        }
+    }
+
+    private fun toRequestBody(value: String): RequestBody =
+        RequestBody.create(MediaType.parse("text/plain"), value)
 
     fun validateMessage() {
         messageProvider.toastMessage("중복체크를 먼저 해주세요.")
