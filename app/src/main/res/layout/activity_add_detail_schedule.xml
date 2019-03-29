@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/detail_schedule"
                 android:textSize="16sp"
-                android:fontFamily="@font/goyang"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toEndOf="@id/previous"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
@@ -74,21 +75,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-                android:id="@+id/itemNull"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
-                android:gravity="center"
-                android:text="@string/item_detail_null"
-                android:textSize="14sp"
-                android:fontFamily="@font/goyang"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:visibility="visible"/>
 
         <include
                 android:id="@+id/include_more"

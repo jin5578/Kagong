@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/notice"
                 android:textSize="16sp"
-                android:fontFamily="@font/goyang"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toEndOf="@id/previous"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>

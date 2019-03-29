@@ -11,4 +11,12 @@
             app:fontWeight="400"
             app:font="@font/goyang"/>
 
+    <font
+            android:fontStyle="normal"
+            android:fontWeight="400"
+            android:font="@font/nanumotfl"
+            app:fontStyle="normal"
+            app:fontWeight="400"
+            app:font="@font/nanumotfl"/>
+
 </font-family>

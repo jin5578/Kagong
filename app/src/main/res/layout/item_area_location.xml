@@ -30,7 +30,6 @@
                 android:id="@+id/image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/paris"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -40,23 +39,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:fontFamily="@font/goyang"
                 android:text="@{areaLocationItem.locationK}"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/introduce"
-                tools:text="에팔탑"/>
+                tools:text="에펠탑"/>
 
         <TextView
                 android:id="@+id/locationE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/goyang"
                 android:text="@{areaLocationItem.locationE}"
-                android:textSize="12sp"
+                android:textSize="10sp"
+                android:fontFamily="@font/nanumotfl"
                 app:layout_constraintStart_toEndOf="@id/locationK"
                 app:layout_constraintTop_toTopOf="@id/locationK"
                 app:layout_constraintBottom_toBottomOf="@id/locationK"
@@ -69,8 +68,8 @@
                 android:layout_marginStart="20dp"
                 android:text="관광지 소개 1줄 넣을 부분"
                 android:textColor="@color/colorGray2"
-                android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintTop_toBottomOf="@id/locationK"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image"/>

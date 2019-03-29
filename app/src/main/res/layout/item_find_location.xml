@@ -30,9 +30,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@{locationItem.locationK}"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="빅 벤"/>
@@ -41,13 +41,13 @@
                 android:id="@+id/locationE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:text="@{locationItem.locationE}"
-                android:textSize="14sp"
-                android:fontFamily="@font/goyang"
+                android:textSize="10sp"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toEndOf="@id/locationK"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/locationK"
+                app:layout_constraintBottom_toBottomOf="@id/locationK"
                 tools:text="Big Ben"/>
 
         <TextView
@@ -57,8 +57,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@{locationItem.address}"
-                android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/locationE"
                 tools:text="Westmunster London SW1A 0AA"/>

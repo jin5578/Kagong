@@ -32,7 +32,7 @@
                 android:text="@{yearItem.year}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

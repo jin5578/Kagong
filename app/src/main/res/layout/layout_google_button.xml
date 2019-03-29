@@ -40,6 +40,8 @@
                 android:gravity="center"
                 android:text="@string/google_login"
                 android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

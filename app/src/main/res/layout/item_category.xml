@@ -31,7 +31,7 @@
                 android:paddingBottom="15dp"
                 android:gravity="center"
                 android:text="@{categoryItem.category}"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/goyang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

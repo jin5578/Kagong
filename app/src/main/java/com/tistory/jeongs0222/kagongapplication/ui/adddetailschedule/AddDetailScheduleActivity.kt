@@ -49,14 +49,6 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
 
         viewDataBinding.recyclerView.layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
 
-        addDetailScheduleViewModel.detailSchedule.observe(this@AddDetailScheduleActivity, Observer {
-            if(it.size == 0) {
-                viewDataBinding.itemNull.visibility = View.VISIBLE
-            } else {
-                viewDataBinding.itemNull.visibility = View.GONE
-            }
-        })
-
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if (it) {
                 constraintSetProvider.moreExpandAnimation(R.layout.layout_more_expand, viewDataBinding.includeMore.moreLayout)

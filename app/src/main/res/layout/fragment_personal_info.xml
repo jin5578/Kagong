@@ -28,7 +28,7 @@
                 android:text="@string/personal_information"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -40,7 +40,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/sex"
                 android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"/>
 
@@ -52,9 +52,9 @@
                 android:layout_marginStart="40dp"
                 android:gravity="center"
                 android:padding="15dp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfl"
                 android:text="@string/female"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:background="@drawable/edittext_background"
                 android:onClick="@{() -> rViewModel.femaleClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +69,9 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:padding="15dp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfl"
                 android:text="@string/male"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:background="@drawable/edittext_background"
                 android:onClick="@{() -> rViewModel.maleClickEvent()}"
                 app:layout_constraintStart_toEndOf="@id/female"
@@ -87,7 +87,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/age"
                 android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/female"/>
 
@@ -101,9 +101,10 @@
                 android:hint="@string/age"
                 android:gravity="center"
                 android:padding="15dp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfl"
                 android:text="@{rViewModel.userYear}"
-                android:textSize="12sp"
+                android:textSize="10sp"
+                android:textColor="@color/colorBlack"
                 android:background="@drawable/edittext_background"
                 android:onClick="@{() -> rViewModel.ageClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +121,7 @@
                 android:text="@string/previous"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 android:onClick="@{() -> rViewModel.previousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -135,7 +136,7 @@
                 android:text="@string/confirm"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 android:onClick="@{() -> rViewModel.confirmClickEvent()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

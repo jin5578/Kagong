@@ -9,20 +9,20 @@
     </style>
 
     <style name="BottomNavigationTextActiveStyle" parent="@android:style/TextAppearance.DeviceDefault.Widget.TabWidget">
-        <item name="android:fontFamily">@font/goyang</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/nanumotfb</item>
+        <item name="android:textSize">9sp</item>
         <item name="android:textColor">@color/colorPink</item>
     </style>
 
     <style name="BottomNavigationTextInActiveStyle" parent="@android:style/TextAppearance.DeviceDefault.Widget.TabWidget">
-        <item name="android:fontFamily">@font/goyang</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/nanumotfb</item>
+        <item name="android:textSize">9sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
     <style name="InnerTabLayoutTextStyle" parent="@android:style/TextAppearance.DeviceDefault.Widget.TabWidget">
-        <item name="android:fontFamily">@font/goyang</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/nanumotfb</item>
+        <item name="android:textSize">9sp</item>
     </style>
 
 </resources>

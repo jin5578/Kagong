@@ -28,14 +28,14 @@
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="@{monthItem.calendar}"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorBlack"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="2월"/>
+                tools:text="02월"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

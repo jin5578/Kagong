@@ -12,7 +12,7 @@
     <string name="appNameK">세렌디피티</string>
 
     <!-- LoginActivity-->
-    <string name="google_login">Sign in with Google</string>
+    <string name="google_login">구글로 로그인</string>
 
     <!--InAgreementActivity-->
     <string name="please_inagreement">약관동의를 먼저 해주세요.</string>
@@ -88,7 +88,7 @@
 
     <string name="detail_schedule">세부일정</string>
 
-    <string name="item_schedule_null">일정을 등록해보세요.</string>
+    <string name="item_schedule_null">일정을 등록해보세요</string>
     <string name="dash">-</string>
 
     <string name="edit_schedule">일정 수정</string>
@@ -123,7 +123,7 @@
 
     <string name="write">글쓰기</string>
 
-    <string name="find_accompany">동행 구하기</string>
+    <string name="find_accompany">동행구하기</string>
     <string name="title_hint_accompany">어떤 동행을 하시고 싶으신가요?</string>
     <string name="content_hint_accompany">새로운 장소, 새로운 인연과 동행하는건 어떤가요?</string>
     <string name="select_board">게시판 선택</string>
@@ -149,5 +149,7 @@
     <string name="terms_of_service">서비스 이용약관</string>
     <string name="privacy_policy">개인정보 처리방침</string>
     <string name="withdrawal">회원탈퇴</string>
+
+
 
 </resources>

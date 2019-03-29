@@ -58,7 +58,7 @@
                 android:text="@{dViewModel.validateSchedule}"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfl"
                 android:background="@drawable/toast_background"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -86,7 +86,7 @@
                 android:text="PARIS"
                 android:textColor="@color/colorBlack"
                 android:textSize="32sp"
-                android:fontFamily="@font/temporaryfont"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -173,11 +173,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="날씨"
+                    android:layout_marginBottom="14dp"
+                    android:text="@string/weather"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"
-                    android:fontFamily="@font/goyang"
+                    android:fontFamily="@font/nanumotfr"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/accuweatherRecycler"/>
 

@@ -107,7 +107,6 @@ interface HostApi {
         @PartMap params: Map<String, @JvmSuppressWildcards RequestBody>
     ): Single<BasicResult>
 
-
     //Area Like Click - AreaDetailActivity
     @FormUrlEncoded
     @POST("arealikeclick.php")

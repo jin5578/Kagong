@@ -40,8 +40,7 @@
                 android:text="@string/hello"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null1"/>
 
@@ -54,7 +53,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"/>
 
@@ -66,7 +65,7 @@
                 android:text="@string/entire_agreement"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintTop_toTopOf="@id/null3"
                 app:layout_constraintEnd_toStartOf="@id/entire_check"
                 app:layout_constraintBottom_toBottomOf="@id/null3"/>
@@ -94,7 +93,7 @@
                 android:text="@string/kagong_inAgreement"
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"
-                android:fontFamily="@font/goyang"
+                android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null3"/>
 
@@ -115,26 +114,17 @@
                 android:id="@+id/null6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginEnd="30dp"
+                android:padding="15dp"
                 android:text="@string/next"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:fontFamily="@font/goyang"
-                app:layout_constraintBottom_toBottomOf="@id/next"
-                app:layout_constraintTop_toTopOf="@id/next"
-                app:layout_constraintEnd_toStartOf="@id/next"/>
-
-        <ImageView
-                android:id="@+id/next"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="50dp"
-                android:layout_marginEnd="30dp"
-                android:src="@mipmap/ic_next_pinck_circle"
                 android:onClick="@{() -> iViewModel.nextClickEvent()}"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:contentDescription="@string/imageView_description"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
