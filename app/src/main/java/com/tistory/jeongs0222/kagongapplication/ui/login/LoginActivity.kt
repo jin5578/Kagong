@@ -1,7 +1,10 @@
 package com.tistory.jeongs0222.kagongapplication.ui.login
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -20,6 +23,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private val loginViewModel by viewModel<LoginViewModel>()
 
+    private val networkCheckProvider = NetworkCheckProviderImpl(this@LoginActivity) as NetworkCheckProvider
     private val googleSignProvider = GoogleSignProviderImpl(this@LoginActivity) as GoogleSignProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@LoginActivity) as DBHelperProvider
     private val messageProvider = MessageProviderImpl(this@LoginActivity) as MessageProvider
@@ -29,10 +33,32 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loginViewModel.bind(googleSignProvider, dbHelperProvider, messageProvider, intentProvider)
+        Log.e("onCreate", "onCreate")
 
-        loginViewModel.googleLogin.observe(this, Observer {
-            loginViewModel.googleLogin()
+        loginViewModel.bind(networkCheckProvider, googleSignProvider, dbHelperProvider, messageProvider, intentProvider)
+
+        loginViewModel.networkStatus.observe(this@LoginActivity, Observer {
+            if (it) {
+                loginViewModel.bbind()
+
+                loginViewModel.googleLogin.observe(this, Observer {
+                    loginViewModel.googleLogin()
+                })
+            } else {
+                AlertDialog.Builder(this@LoginActivity)
+                    .apply {
+                        setTitle("알림")
+                        setMessage("인터넷 연결이 끊어졌습니다. \n다시 시도해보세요.")
+                        setNeutralButton("설정") { dialogInterface, which ->
+                            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+
+                            startActivity(intent)
+                        }
+                        setCancelable(false)
+                    }
+                    .create()
+                    .show()
+            }
         })
 
         viewDataBinding.lViewModel = loginViewModel
@@ -56,5 +82,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        loginViewModel.networkCheck()
+    }
+
 
 }

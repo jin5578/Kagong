@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.login
 import android.annotation.SuppressLint
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -22,8 +23,13 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
     val googleLogin: LiveData<ConstraintLayout>
         get() = _googleLogin
 
+    private val _networkStatue = MutableLiveData<Boolean>()
+    val networkStatus: LiveData<Boolean>
+        get() = _networkStatue
+
     private val TAG = "LoginViewModel"
 
+    private lateinit var networkCheckProvider: NetworkCheckProvider
     private lateinit var googleSignProvider: GoogleSignProvider
     private lateinit var dbHelperProvider: DBHelperProvider
     private lateinit var messageProvider: MessageProvider
@@ -34,17 +40,24 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
 
     private lateinit var user: String
 
-    fun bind(googleSignProvider: GoogleSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
+    fun bind(networkCheckProvider: NetworkCheckProvider, googleSignProvider: GoogleSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
+        this.networkCheckProvider = networkCheckProvider
         this.googleSignProvider = googleSignProvider
         this.dbHelperProvider = dbHelperProvider
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
+    }
 
+    fun bbind() {
         validateUserCheck()
 
         gso = googleSignProvider.getGoogleSignInOptions()
 
         mGoogleSignInClient = googleSignProvider.getGoogleSignInClient(gso)
+    }
+
+    fun networkCheck() {
+        _networkStatue.value = networkCheckProvider.isNetworkConeected()
     }
 
     fun googleLoginClick() {
@@ -70,7 +83,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
     }
 
     private fun validateUserCheck() {
-        if(!dbHelperProvider.getDBHelper().getGooglekey().isEmpty()) {
+        if(dbHelperProvider.getDBHelper().getGooglekey().isNotEmpty()) {
             intentProvider.finishIntent(MainActivity::class.java)
         }
     }
