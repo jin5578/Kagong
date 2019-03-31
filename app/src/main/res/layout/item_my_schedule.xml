@@ -20,7 +20,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="230dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginTop="5dp"
@@ -42,13 +42,13 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:textSize="14sp"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/nanumotfb"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/null1"
                 tools:text="다가오는 여행"/>
 
         <TextView
@@ -74,14 +74,14 @@
                 android:id="@+id/null1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:text="@string/dash"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title"/>
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintBottom_toTopOf="@id/area"/>
 
         <TextView
                 android:id="@+id/date2"
@@ -106,8 +106,6 @@
                 android:id="@+id/area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
                 android:text="@{scheduleItem.area}"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"

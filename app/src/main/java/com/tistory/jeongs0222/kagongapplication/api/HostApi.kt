@@ -4,6 +4,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaImage.BringAreaImageResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
@@ -138,6 +139,13 @@ interface HostApi {
     fun bringAreaInformation(
         @Field("area") area: String
     ): Single<AreaInformationResponse>
+
+    //Bring Area Image = AreaDetailActivity
+    @FormUrlEncoded
+    @POST("bringAreaImage.php")
+    fun bringAreaImage(
+        @Field("area") area: String
+    ): Single<BringAreaImageResult>
 
     //Add Schedule - AddScheduleActivity
     @FormUrlEncoded

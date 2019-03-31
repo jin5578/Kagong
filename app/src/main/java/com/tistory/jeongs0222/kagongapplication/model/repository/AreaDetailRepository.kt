@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.model.repository
 import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaImage.BringAreaImageResult
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
 
@@ -18,4 +19,6 @@ interface AreaDetailRepository {
     fun areaLikeClick(googlekey: String, area: String, status: Int): Single<BasicResult>
 
     fun areaForecast(location: String, apikey: String): Single<AccuWeatherResponse>
+
+    fun bringAreaImage(area: String): Single<BringAreaImageResult>
 }

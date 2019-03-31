@@ -40,6 +40,14 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
 
+    private val _areaE = MutableLiveData<String>()
+    val areaE: LiveData<String>
+        get() = _areaE
+
+    private val _imageIntro = MutableLiveData<String>()
+    val imageIntro: LiveData<String>
+        get() = _imageIntro
+
     private val _likeStatus = MutableLiveData<Int>()
     val likeStatus: LiveData<Int>
         get() = _likeStatus
@@ -59,7 +67,9 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     fun bind(area: String) {
         this.area = area
 
+        areaTranslator()
         areaForecast(areaDivider(area))
+        bringAreaImage()
     }
 
     fun previousClickEvent() {
@@ -78,6 +88,19 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
         _accuWeatherVisibility.value = true
     }
 
+    fun bringAreaImage() {
+        areaDetailRepository.bringAreaImage(area)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _imageIntro.value = it.imageinfo
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
     private fun areaForecast(locationKey: String) {
         areaDetailRepository.areaForecast(locationKey,"AQHvbOfPGdmG0fTCG2vk7Mf2a8WA9nsK")
             .subscribeOn(Schedulers.io())
@@ -89,6 +112,26 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             }
             .subscribe()
 
+    }
+
+    private fun areaTranslator() {
+        when(area) {
+            "런던" -> {
+                _areaE.value = "LONDON"
+            }
+
+            "파리" -> {
+                _areaE.value = "PARIS"
+            }
+
+            "바르셀로나" -> {
+                _areaE.value = "BARCELONA"
+            }
+
+            else -> {
+                _areaE.value = "MADRID"
+            }
+        }
     }
 
     private fun areaDivider(area: String): String {
@@ -139,6 +182,8 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _areaInformation.value = it.bringinformation
+
+                _imageIntro.value = it.imageinfo
             }
             .doOnError {
                 it.printStackTrace()

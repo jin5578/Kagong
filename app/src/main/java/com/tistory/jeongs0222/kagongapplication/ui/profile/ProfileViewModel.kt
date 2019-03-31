@@ -68,7 +68,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
 
     private var parts: MutableList<MultipartBody.Part> = ArrayList()
 
-    var validateCheck: Boolean = false
+    var validateCheck: Boolean = true
 
     var profileModified: Boolean = false
 

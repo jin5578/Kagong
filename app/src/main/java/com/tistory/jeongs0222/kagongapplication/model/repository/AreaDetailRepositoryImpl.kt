@@ -5,6 +5,7 @@ import com.tistory.jeongs0222.kagongapplication.api.HostApi
 import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaImage.BringAreaImageResult
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import io.reactivex.Single
 
@@ -25,4 +26,6 @@ class AreaDetailRepositoryImpl(private val hostApi: HostApi, private val accuWea
     override fun areaForecast(location: String, apikey: String): Single<AccuWeatherResponse>
             = accuWeatherApi.areaForecast(location, apikey)
 
+    override fun bringAreaImage(area: String): Single<BringAreaImageResult>
+            = hostApi.bringAreaImage(area)
 }

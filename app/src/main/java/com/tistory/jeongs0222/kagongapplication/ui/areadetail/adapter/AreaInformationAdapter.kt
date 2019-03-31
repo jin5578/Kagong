@@ -30,7 +30,9 @@ class AreaInformationAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        holder.bind(getItem(position))
+        if(position != 6) {
+            holder.bind(getItem(position))
+        }
     }
 
     class ViewHolder(

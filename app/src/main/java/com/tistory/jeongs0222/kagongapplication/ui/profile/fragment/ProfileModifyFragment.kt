@@ -87,16 +87,6 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
             else
                 profileViewModel.validateMessage()
         })
-
-        profileViewModel.uploadImageValue.observe(this@ProfileModifyFragment, Observer {
-            if(it == 0) {
-                Glide.with(binding.image)
-                    .asBitmap()
-                    .load(dataUri)
-                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                    .into(binding.image)
-            }
-        })
     }
 
     @SuppressLint("IntentReset")
@@ -128,10 +118,12 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        Log.e("onTextChanged", "called")
         profileViewModel.validateCheck = false
     }
 
     override fun afterTextChanged(p0: Editable?) {
+        profileViewModel.validateCheck = profileViewModel.nickname.value == p0.toString()
     }
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

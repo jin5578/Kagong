@@ -50,6 +50,12 @@ class ProfileActivity: BaseActivity<ActivityProfileBinding>() {
             fragmentProvider.replaceFragment(profileDetailFragment)
         })
 
+        profileViewModel.uploadImageValue.observe(this@ProfileActivity, Observer {
+            if(it == 0) {
+                finish()
+            }
+        })
+
         viewDataBinding.pViewModel = profileViewModel
         viewDataBinding.lifecycleOwner = this@ProfileActivity
     }
