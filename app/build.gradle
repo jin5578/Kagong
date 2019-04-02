@@ -77,5 +77,6 @@ dependencies {
     //Http Interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //Kakao Login
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 }

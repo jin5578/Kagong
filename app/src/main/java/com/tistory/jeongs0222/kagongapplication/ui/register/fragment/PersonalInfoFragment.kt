@@ -53,8 +53,6 @@ class PersonalInfoFragment : Fragment() {
                     if(!registerViewModel.userYear.value.isNullOrBlank()) {
                         registerViewModel
                             .register(
-                                registerViewModel.userkey.value!!,
-                                registerViewModel.token.value!!,
                                 registerViewModel.userNickname.value!!,
                                 registerViewModel.userSex.value!!,
                                 registerViewModel.userYear.value!!)

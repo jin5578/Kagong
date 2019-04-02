@@ -13,6 +13,7 @@ val mainModules = module {
     }
 
     viewModel {
+
         MainViewModel(get())
     }
 }

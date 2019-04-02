@@ -58,6 +58,8 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
+    private lateinit var userKey: String
+
     private val TAG = "AddScheduleViewModel"
 
     private val dateFormatter = DateFormatter()
@@ -75,9 +77,11 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
         _endPosition.value = 0
     }
 
-    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
 
     private fun setCalendarList() {
@@ -114,7 +118,7 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
 
     fun addSchedule(area: String) {
         addScheduleRepository.addSchedule(
-            uid,
+            userKey,
             area,
             _startDay.value + " ~ " + _endDay.value
         )

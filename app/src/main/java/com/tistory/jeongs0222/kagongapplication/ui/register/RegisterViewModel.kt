@@ -82,19 +82,23 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     private lateinit var intentProvider: IntentProvider
     private lateinit var dbHelperProvider: DBHelperProvider
 
+    private lateinit var userKey: String
+    private lateinit var loginMethod: String
+
     var validateCheck: Boolean = false
 
 
     init {
-        getKey()
-        getToken()
         getYearList()
     }
 
-    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider, userKey: String, loginMethod: String) {
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
         this.dbHelperProvider = dbHelperProvider
+
+        this.userKey = userKey
+        this.loginMethod = loginMethod
     }
 
     fun nextClickEvent() {
@@ -159,9 +163,11 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     }
 
     @SuppressLint("CheckResult")
-    fun register(userkey: String, token: String, nickname: String, sex: String, age: String) {
+    fun register(nickname: String, sex: String, age: String) {
+        getToken()
+
         registerRepository
-            .register(userkey, token, nickname, sex, age)
+            .register(userKey, _token.value!!, nickname, sex, age, loginMethod)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -169,7 +175,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                     it.value == 0 -> {
                         messageProvider.toastMessage(it.message)
 
-                        dbHelperProvider.getDBHelper().insertUser(userkey)
+                        dbHelperProvider.getDBHelper().insertUser(userKey)
 
                         intentProvider.finishIntent(MainActivity::class.java)
                     }
@@ -185,18 +191,19 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
             .subscribe()
     }
 
-    private fun getKey() {
-        _userkey.value = uid
-    }
-
     private fun getToken() {
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    return@OnCompleteListener
-                }
-                _token.value = task.result!!.token
-            })
+        if(loginMethod == "Google") {
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+                    _token.value = task.result!!.token
+                })
+        } else {
+            _token.value = ""
+        }
+
     }
 
     private fun getYearList() {

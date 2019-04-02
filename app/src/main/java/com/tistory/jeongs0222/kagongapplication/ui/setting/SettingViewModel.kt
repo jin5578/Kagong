@@ -1,14 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.setting
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.SettingRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,10 +31,14 @@ class SettingViewModel(private val settingRepository: SettingRepository): Dispos
     private lateinit var dbHelperProvider: DBHelperProvider
     private lateinit var messageProvider: MessageProvider
 
+    private lateinit var userKey: String
+
 
     fun bind(dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider) {
         this.dbHelperProvider = dbHelperProvider
         this.messageProvider = messageProvider
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
 
     fun homePreviousClickEvent() {
@@ -48,13 +50,13 @@ class SettingViewModel(private val settingRepository: SettingRepository): Dispos
     }
 
     fun deleteSQLite() {
-        dbHelperProvider.getDBHelper().deleteGooglekey()
+        dbHelperProvider.getDBHelper().deleteUserKey()
 
         deleteHost()
     }
 
     private fun deleteHost() {
-        settingRepository.deleteUser(uid)
+        settingRepository.deleteUser(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

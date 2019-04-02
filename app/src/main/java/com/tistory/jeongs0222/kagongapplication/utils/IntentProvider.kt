@@ -8,6 +8,8 @@ import android.net.Uri
 interface IntentProvider {
     fun finishIntent(activityClass: Class<*>)
 
+    fun finishPutTwoExtraIntent(activityClass: Class<*>, value1: String, value2: String)
+
     fun intent(activityClass: Class<*>)
 
     fun intentPutExtra(activityClass: Class<*>, area: String)
@@ -22,6 +24,16 @@ interface IntentProvider {
 class IntentProviderImpl(private val activity: Activity): IntentProvider {
     override fun finishIntent(activityClass: Class<*>) {
         activity.startActivity(Intent(activity, activityClass))
+        activity.finish()
+    }
+
+    override fun finishPutTwoExtraIntent(activityClass: Class<*>, value1: String, value2: String) {
+        val intent = Intent(activity, activityClass)
+        intent.putExtra("value1", value1)
+        intent.putExtra("value2", value2)
+
+        activity.startActivity(intent)
+
         activity.finish()
     }
 

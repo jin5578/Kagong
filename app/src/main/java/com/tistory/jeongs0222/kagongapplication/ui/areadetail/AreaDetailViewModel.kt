@@ -7,8 +7,8 @@ import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherRes
 import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaInformationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -59,13 +59,16 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     private val TAG = "AreaDetailViewModel"
 
     private lateinit var area: String
+    private lateinit var userKey: String
 
     init {
         _accuWeatherVisibility.value = false
     }
 
-    fun bind(area: String) {
+    fun bind(area: String, dbHelperProvider: DBHelperProvider) {
         this.area = area
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
 
         areaTranslator()
         areaForecast(areaDivider(area))
@@ -147,7 +150,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     }
 
     fun areaLikeClick(status: Int) {
-        areaDetailRepository.areaLikeClick(uid, area, status)
+        areaDetailRepository.areaLikeClick(userKey, area, status)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -164,7 +167,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     }
 
     fun areaLikeValidate() {
-        areaDetailRepository.areaLikeValidate(uid, area)
+        areaDetailRepository.areaLikeValidate(userKey, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -192,7 +195,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     }
 
     fun validateSchedule() {
-        areaDetailRepository.validateSchedule(uid, area)
+        areaDetailRepository.validateSchedule(userKey, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

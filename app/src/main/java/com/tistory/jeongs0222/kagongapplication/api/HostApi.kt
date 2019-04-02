@@ -41,7 +41,8 @@ interface HostApi {
         @Field("usertoken") usertoken: String,
         @Field("nickname") nickname: String,
         @Field("sex") sex: String,
-        @Field("age") age: String
+        @Field("age") age: String,
+        @Field("loginMethod") loginMethod: String
     ): Single<BasicResult> //0: 가입성공, 1: 가입실패
 
     //Bring Nickname And Introduce - MainActivity, ProfileActivity

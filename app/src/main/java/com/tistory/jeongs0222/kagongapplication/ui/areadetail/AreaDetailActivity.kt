@@ -12,6 +12,8 @@ import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivi
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabActivity
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AccuWeatherAdapter
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +28,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
     private val areaDetailViewModel by viewModel<AreaDetailViewModel>()
 
     private val intentProvider = IntentProviderImpl(this@AreaDetailActivity) as IntentProvider
+    private val dbHelperProvider = DBHelperProviderImpl(this@AreaDetailActivity) as DBHelperProvider
 
     private lateinit var area: String
 
@@ -50,7 +53,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         viewDataBinding.tabLayout.addOnTabSelectedListener(this@AreaDetailActivity)
 
-        areaDetailViewModel.bind(area)
+        areaDetailViewModel.bind(area, dbHelperProvider)
 
         areaDetailViewModel.bringAreaInformation()
 

@@ -7,5 +7,5 @@ import io.reactivex.Single
 interface RegisterRepository {
     fun nicknameValidate(nickname: String): Single<BasicResult>
 
-    fun register(userkey: String, token: String, nickname: String, sex: String, age: String): Single<BasicResult>
+    fun register(userkey: String, token: String, nickname: String, sex: String, age: String, loginMethod: String): Single<BasicResult>
 }

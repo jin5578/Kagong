@@ -7,10 +7,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityProfileBindi
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.profile.fragment.ProfileDetailFragment
 import com.tistory.jeongs0222.kagongapplication.ui.profile.fragment.ProfileModifyFragment
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -22,6 +19,7 @@ class ProfileActivity: BaseActivity<ActivityProfileBinding>() {
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val messageProvider = MessageProviderImpl(this@ProfileActivity) as MessageProvider
+    private val dbHelperProvider = DBHelperProviderImpl(this@ProfileActivity) as DBHelperProvider
 
     private val profileDetailFragment = ProfileDetailFragment()
     private val profileModifyFragment = ProfileModifyFragment()
@@ -32,7 +30,7 @@ class ProfileActivity: BaseActivity<ActivityProfileBinding>() {
 
         fragmentProvider.initFragment(profileDetailFragment)
 
-        profileViewModel.bind(messageProvider)
+        profileViewModel.bind(messageProvider, dbHelperProvider)
 
         profileViewModel.profileDetailPreviousClick.observe(this@ProfileActivity, Observer {
             finish()

@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.login
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.kakao.auth.AuthType
+import com.kakao.auth.KakaoSDK
+import com.kakao.auth.Session
 import com.tistory.jeongs0222.kagongapplication.model.repository.LoginRepository
 import com.tistory.jeongs0222.kagongapplication.ui.inareement.InAgreementActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
@@ -15,17 +19,26 @@ import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 class LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
 
-    private val _googleLogin = SingleLiveEvent<ConstraintLayout>()
-    val googleLogin: LiveData<ConstraintLayout>
-        get() = _googleLogin
+    private val _googleLoginClick = SingleLiveEvent<ConstraintLayout>()
+    val googleLoginClick: LiveData<ConstraintLayout>
+        get() = _googleLoginClick
+
+    private val _kakaoLoginClick = SingleLiveEvent<Any>()
+    val kakaoLoginClick: LiveData<Any>
+        get() = _kakaoLoginClick
 
     private val _networkStatue = MutableLiveData<Boolean>()
     val networkStatus: LiveData<Boolean>
         get() = _networkStatue
+
+    private val _loginMethod = MutableLiveData<String>()
+    val loginMethod: LiveData<String>
+        get() = _loginMethod
 
     private val TAG = "LoginViewModel"
 
@@ -60,8 +73,16 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
         _networkStatue.value = networkCheckProvider.isNetworkConeected()
     }
 
-    fun googleLoginClick() {
-        _googleLogin.call()
+    fun googleLoginClickEvent() {
+        _loginMethod.value = "Google"
+
+        _googleLoginClick.call()
+    }
+
+    fun kakaoLoginClickEvent() {
+        _loginMethod.value = "Kakao"
+
+        _kakaoLoginClick.call()
     }
 
     fun googleLogin() {
@@ -83,27 +104,32 @@ class LoginViewModel(private val loginRepository: LoginRepository) : DisposableV
     }
 
     private fun validateUserCheck() {
-        if(dbHelperProvider.getDBHelper().getGooglekey().isNotEmpty()) {
+        if(dbHelperProvider.getDBHelper().getUserKey().isNotEmpty()) {
             intentProvider.finishIntent(MainActivity::class.java)
         }
     }
 
     @SuppressLint("CheckResult")
-    private fun keyCheck(userkey: String) {
+    fun keyCheck(userkey: String) {
         loginRepository.keyCheck(userkey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 when {
                     it.value == 0 -> {
-                        intentProvider.finishIntent(InAgreementActivity::class.java)
+                        Log.e("1", "1")
+                        //intentProvider.finishIntent(InAgreementActivity::class.java)
+                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, _loginMethod.value!!)
                     }
 
                     it.value == 1 -> {
-                        intentProvider.finishIntent(InAgreementActivity::class.java)
+                        Log.e("2", "2")
+                        //intentProvider.finishIntent(InAgreementActivity::class.java)
+                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, _loginMethod.value!!)
                     }
 
                     it.value == 2 -> {
+                        Log.e("3", "3")
                         intentProvider.finishIntent(MainActivity::class.java)
 
                         dbHelperProvider.getDBHelper().insertUser(userkey)

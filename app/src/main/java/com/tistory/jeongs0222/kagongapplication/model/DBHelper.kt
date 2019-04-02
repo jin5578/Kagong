@@ -8,27 +8,27 @@ import android.database.sqlite.SQLiteOpenHelper
 class DBHelper(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int): SQLiteOpenHelper(context, name, factory, version) {
 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE USERINFO (googlekey TEXT)")
+        sqLiteDatabase.execSQL("CREATE TABLE USERINFO (userkey TEXT)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
 
     }
 
-    fun insertUser(googlekey: String) {
+    fun insertUser(userkey: String) {
         val db = writableDatabase
 
-        db.execSQL("INSERT INTO USERINFO VALUES('$googlekey');")
+        db.execSQL("INSERT INTO USERINFO VALUES('$userkey');")
 
         db.close()
     }
 
-    fun getGooglekey(): String {
+    fun getUserKey(): String {
         var key = ""
 
         val db = readableDatabase
 
-        val cursor = db.rawQuery("SELECT googlekey FROM USERINFO", null)
+        val cursor = db.rawQuery("SELECT userkey FROM USERINFO", null)
 
         while(cursor.moveToNext()) {
             key = cursor.getString(0)
@@ -41,7 +41,7 @@ class DBHelper(context: Context, name: String, factory: SQLiteDatabase.CursorFac
         return key
     }
 
-    fun deleteGooglekey() {
+    fun deleteUserKey() {
         val db = writableDatabase
 
         db.execSQL("DELETE FROM USERINFO")

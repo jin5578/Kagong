@@ -22,6 +22,7 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val messageProvider = MessageProviderImpl(this@AddLocationActivity) as MessageProvider
     private val intentProvider = IntentProviderImpl(this@AddLocationActivity) as IntentProvider
+    private val dbHelperProvider = DBHelperProviderImpl(this@AddLocationActivity) as DBHelperProvider
 
     private val addLocationFragment =
         AddLocationFragment()
@@ -41,7 +42,7 @@ class AddLocationActivity: BaseActivity<ActivityAddLocationBinding>() {
         fragmentProvider.addLocationFragment(0, addLocationFragment)
         fragmentProvider.addLocationFragment(1, searchLocationFragment)
 
-        addLocationViewModel.bind(area, sort, messageProvider, intentProvider)
+        addLocationViewModel.bind(area, sort, messageProvider, intentProvider, dbHelperProvider)
 
         addLocationViewModel.previousClick.observe(this@AddLocationActivity, Observer {
             finish()

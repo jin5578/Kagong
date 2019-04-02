@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.dump.category.CategoryItem
 import com.tistory.jeongs0222.kagongapplication.model.repository.AccompanyWriteRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
@@ -66,17 +66,18 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
 
+    private lateinit var userKey: String
+
     init {
         _recyclerVisibility.value = 1
         _calendarVisibility.value = 1
         _linkVisibility.value = 1
 
-        bringNickname()
         categoryPreprocessor()
     }
 
     private fun bringNickname() {
-        accompanyWriteRepository.bringNickname(uid)
+        accompanyWriteRepository.bringNickname(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -120,10 +121,14 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         return format1.format(System.currentTimeMillis())
     }
 
-    fun bind(area: String, intentProvider: IntentProvider, messageProvider: MessageProvider) {
+    fun bind(area: String, intentProvider: IntentProvider, messageProvider: MessageProvider, dbHelperProvider: DBHelperProvider) {
         _area.value = "#$area"
         this.intentProvider = intentProvider
         this.messageProvider = messageProvider
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
+
+        bringNickname()
     }
 
     fun accompanyWrite(title: String, content: String) {
@@ -131,7 +136,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
             .accompanyWrite(
                 _area.value!!.substring(1),
                 sortPreprocessor(_selectedCategory.value!!),
-                uid,
+                userKey,
                 title,
                 content,
                 writtenTime(),

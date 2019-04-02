@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddLocationRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -69,6 +69,7 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
 
     private lateinit var area: String
     private lateinit var sort: String
+    private lateinit var userKey: String
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
@@ -83,11 +84,12 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         _searchFrameVisible.value = false
     }
 
-    fun bind(area: String, sort: String, messageProvider: MessageProvider, intentProvider: IntentProvider) {
+    fun bind(area: String, sort: String, messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
         this.area = area
         this.sort = sort
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
+        this.userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
 
     fun bringAreaLocation(sort: Int, findlocation: String) {
@@ -105,7 +107,7 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
 
     fun registerLocation(location: String) {
         addLocationRepository
-            .registerLocation(uid,
+            .registerLocation(userKey,
                 area,
                 location,
                 sort)

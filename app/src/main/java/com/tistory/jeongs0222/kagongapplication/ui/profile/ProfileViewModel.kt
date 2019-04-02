@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.ProfileRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
@@ -66,6 +66,8 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
 
     private lateinit var messageProvider: MessageProvider
 
+    private lateinit var userKey: String
+
     private var parts: MutableList<MultipartBody.Part> = ArrayList()
 
     var validateCheck: Boolean = true
@@ -73,12 +75,12 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
     var profileModified: Boolean = false
 
 
-    init {
-        bringNicknameAndIntro()
-    }
-
-    fun bind(messageProvider: MessageProvider) {
+    fun bind(messageProvider: MessageProvider, dbHelperProvider: DBHelperProvider) {
         this.messageProvider = messageProvider
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
+
+        bringNicknameAndIntro()
     }
 
 
@@ -107,7 +109,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
     }
 
     fun bringNicknameAndIntro() {
-        profileRepository.bringNicknameAndIntro(uid)
+        profileRepository.bringNicknameAndIntro(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -154,7 +156,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
     fun updateProfile(nickname: String, introduce: String) {
         profileRepository
             .updateProfile(
-                uid,
+                userKey,
                 nickname,
                 introduce
             )
@@ -209,7 +211,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : Dispo
 
     private fun getData(): HashMap<String, RequestBody> {
         return HashMap<String, RequestBody>().apply {
-            this["googlekey"] = toRequestBody(uid)
+            this["googlekey"] = toRequestBody(userKey)
         }
     }
 

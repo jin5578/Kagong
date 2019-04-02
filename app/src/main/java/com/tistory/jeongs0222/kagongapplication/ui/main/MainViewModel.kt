@@ -11,10 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.model.repository.MainRepository
 import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.areadetail.AreaDetailActivity
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
-import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -105,17 +102,21 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
+    private lateinit var userKey: String
+
 
     init {
         _viewFinish.value = false
+    }
+
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
+        this.messageProvider = messageProvider
+        this.intentProvider = intentProvider
+
+        userKey = dbHelperProvider.getDBHelper().getUserKey()
 
         bringRecommendArea()
         bringNicknameAndIntro()
-    }
-
-    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider) {
-        this.messageProvider = messageProvider
-        this.intentProvider = intentProvider
     }
 
     fun searchAreaClickEvent() {
@@ -139,7 +140,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     fun bringNicknameAndIntro() {
-        mainRepository.bringNicknameAndIntro(uid)
+        mainRepository.bringNicknameAndIntro(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -167,7 +168,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     fun bringHistory() {
-        mainRepository.bringHistory(uid)
+        mainRepository.bringHistory(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -193,7 +194,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     fun findAreaLog() {
-        mainRepository.findAreaLog(_selectedArea.value!!, uid)
+        mainRepository.findAreaLog(_selectedArea.value!!, userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -210,7 +211,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     fun bringSchedule() {
-        mainRepository.bringSchedule(uid)
+        mainRepository.bringSchedule(userKey)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

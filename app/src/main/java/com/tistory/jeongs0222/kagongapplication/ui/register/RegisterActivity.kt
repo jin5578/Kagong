@@ -12,7 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
+class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val TAG = "RegisterActivity"
 
@@ -22,20 +22,27 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val registerViewModel by viewModel<RegisterViewModel>()
 
-    private val personalInfoFragment =
-        PersonalInfoFragment()
+    private val personalInfoFragment = PersonalInfoFragment()
     private val basicInfoFragment = BasicInfoFragment()
     private val yearFragment = YearFragment()
 
+    private lateinit var userKey: String
+    private lateinit var loginMethod: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        userKey = intent.getStringExtra("value1")
+        loginMethod = intent.getStringExtra("value2")
 
         fragmentProvider.initFragment(basicInfoFragment)
 
         registerViewModel.bind(
             MessageProviderImpl(this) as MessageProvider,
             IntentProviderImpl(this) as IntentProvider,
-            DBHelperProviderImpl(this) as DBHelperProvider
+            DBHelperProviderImpl(this) as DBHelperProvider,
+            userKey,
+            loginMethod
         )
 
         registerViewModel.nextClick.observe(this@RegisterActivity, Observer {

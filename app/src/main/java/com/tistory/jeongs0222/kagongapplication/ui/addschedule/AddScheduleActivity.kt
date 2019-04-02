@@ -46,8 +46,9 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         }
 
         addScheduleViewModel.bind(
-            MessageProviderImpl(this) as MessageProvider,
-            IntentProviderImpl(this) as IntentProvider
+            MessageProviderImpl(this@AddScheduleActivity) as MessageProvider,
+            IntentProviderImpl(this@AddScheduleActivity) as IntentProvider,
+            DBHelperProviderImpl(this@AddScheduleActivity) as DBHelperProvider
         )
 
         addScheduleViewModel.previousClick.observe(this@AddScheduleActivity, Observer {

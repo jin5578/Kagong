@@ -15,10 +15,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAccompanyWriteBinding
 import com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.adapter.CategoryAdapter
-import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -34,6 +31,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
 
     private val intentProvider = IntentProviderImpl(this@AccompanyWriteActivity) as IntentProvider
     private val messageProvider = MessageProviderImpl(this@AccompanyWriteActivity) as MessageProvider
+    private val dbHelperProvider = DBHelperProviderImpl(this@AccompanyWriteActivity) as DBHelperProvider
 
 
     @SuppressLint("SetTextI18n")
@@ -74,7 +72,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
             adapter = CategoryAdapter(this@AccompanyWriteActivity, accompanyWriteViewModel)
         }
 
-        accompanyWriteViewModel.bind(area, intentProvider, messageProvider)
+        accompanyWriteViewModel.bind(area, intentProvider, messageProvider, dbHelperProvider)
 
         accompanyWriteViewModel.previousClick.observe(this@AccompanyWriteActivity, Observer {
             finish()

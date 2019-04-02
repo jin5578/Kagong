@@ -17,49 +17,128 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite">
+            android:background="@drawable/gradation_background">
 
         <TextView
                 android:id="@+id/null1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="180dp"
-                android:text="@string/app_introduce"
+                android:text="@string/appName"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp"
-                android:fontFamily="@font/goyang"
+                android:textSize="25sp"
+                android:fontFamily="@font/temporaryfont"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-        <View
-                android:id="@+id/null2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/colorGray1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/null3"/>
-
-        <include
-                android:id="@+id/null3"
-                layout="@layout/layout_google_button"
-                android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/kakaoLogin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:lViewModel="@{lViewModel}"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{() -> lViewModel.kakaoLoginClickEvent()}"
+                android:background="@drawable/kakao_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/null4"/>
+                app:layout_constraintBottom_toTopOf="@id/googleLogin">
 
-        <View
-                android:id="@+id/null4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="150dp"
-                android:background="@color/colorGray1"
+            <ImageView
+                    android:id="@+id/null5"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/kakao_account_logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/null7"
+                    android:contentDescription="@string/imageView_description"/>
+
+            <View
+                    android:id="@+id/null7"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toEndOf="@id/null5"
+                    app:layout_constraintTop_toTopOf="@id/null5"
+                    app:layout_constraintEnd_toStartOf="@id/null6"
+                    app:layout_constraintBottom_toBottomOf="@id/null5"/>
+
+            <TextView
+                    android:id="@+id/null6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginEnd="95dp"
+                    android:gravity="center"
+                    android:text="@string/kakao_login"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toEndOf="@id/null7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/null5"
+                    app:layout_constraintBottom_toBottomOf="@id/null5"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/googleLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:onClick="@{() -> lViewModel.googleLoginClickEvent()}"
+                android:background="@drawable/google_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                    android:id="@+id/null2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/google"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/null4"
+                    android:contentDescription="@string/imageView_description"/>
+
+            <View
+                    android:id="@+id/null4"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toEndOf="@id/null2"
+                    app:layout_constraintTop_toTopOf="@id/null2"
+                    app:layout_constraintEnd_toStartOf="@id/null3"
+                    app:layout_constraintBottom_toBottomOf="@id/null2"/>
+
+            <TextView
+                    android:id="@+id/null3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp"
+                    android:gravity="center"
+                    android:text="@string/google_login"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toEndOf="@id/null4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/null2"
+                    app:layout_constraintBottom_toBottomOf="@id/null2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.inareement
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.tistory.jeongs0222.kagongapplication.R
@@ -23,12 +24,22 @@ class InAgreementActivity : BaseActivity<ActivityInagreementBinding>() {
     private val intentProvider = IntentProviderImpl(this@InAgreementActivity) as IntentProvider
     private val  messageProvider = MessageProviderImpl(this@InAgreementActivity) as MessageProvider
 
+    private lateinit var userKey: String
+    private lateinit var loginMethod: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        userKey = intent.getStringExtra("value1")
+        loginMethod = intent.getStringExtra("value2")
+
+        Log.e("userKey", userKey)
+        Log.e("loginMethod", loginMethod)
+
         inAgreementViewModel.nextClick.observe(this@InAgreementActivity, Observer {
             if(inAgreementViewModel.agreement.value!!)
-                intentProvider.finishIntent(RegisterActivity::class.java)
+                //intentProvider.finishIntent(RegisterActivity::class.java)
+            intentProvider.finishPutTwoExtraIntent(RegisterActivity::class.java, userKey, loginMethod)
             else
                 messageProvider.toastMessage(applicationContext.getString(R.string.please_inagreement))
         })

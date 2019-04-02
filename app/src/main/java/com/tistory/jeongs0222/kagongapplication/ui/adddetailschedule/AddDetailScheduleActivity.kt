@@ -26,6 +26,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
     private val messageProvider = MessageProviderImpl(this@AddDetailScheduleActivity) as MessageProvider
     private val constraintSetProvider = ConstraintSetProviderImpl(this@AddDetailScheduleActivity) as ConstraintSetProvider
     private val dynamicProvider = DynamicProviderImpl(this@AddDetailScheduleActivity) as DynamicProvider
+    private val dbHelperProvider = DBHelperProviderImpl(this@AddDetailScheduleActivity) as DBHelperProvider
 
     private lateinit var bringDetailScheduleAdapter: BringDetailScheduleAdapter
 
@@ -45,7 +46,7 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
                     dynamicProvider
                 )
 
-        addDetailScheduleViewModel.bind(intentProvider, messageProvider)
+        addDetailScheduleViewModel.bind(intentProvider, messageProvider, dbHelperProvider)
 
         viewDataBinding.recyclerView.layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
 

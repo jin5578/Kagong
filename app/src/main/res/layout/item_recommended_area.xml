@@ -32,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:recommendImageUrl="@{recommendItem.image}"
-                tools:src="@drawable/paris"
                 android:contentDescription="@string/imageView_description"/>
 
     </androidx.cardview.widget.CardView>

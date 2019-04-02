@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AddDetailScheduleRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
-import com.tistory.jeongs0222.kagongapplication.utils.uid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -65,18 +65,22 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
 
+    private lateinit var userKey: String
+
     init {
         _selectedOrder.value = "0"
     }
 
 
-    fun bind(intentProvider: IntentProvider, messageProvider: MessageProvider) {
+    fun bind(intentProvider: IntentProvider, messageProvider: MessageProvider, dbHelperProvider: DBHelperProvider) {
         this.intentProvider = intentProvider
         this.messageProvider = messageProvider
+
+        this.userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
 
     fun bringDetailSchedule(area: String) {
-        addDetailScheduleRepository.bringDetailSchedule(uid, area)
+        addDetailScheduleRepository.bringDetailSchedule(userKey, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -89,7 +93,7 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     }
 
     fun deleteSchedule(area: String) {
-        addDetailScheduleRepository.deleteSchedule(uid, area)
+        addDetailScheduleRepository.deleteSchedule(userKey, area)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -108,7 +112,7 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     }
 
     fun deleteLocation(area: String, position: String) {
-        addDetailScheduleRepository.deleteLocation(uid, area, position)
+        addDetailScheduleRepository.deleteLocation(userKey, area, position)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
