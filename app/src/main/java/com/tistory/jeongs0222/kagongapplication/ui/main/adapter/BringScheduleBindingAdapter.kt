@@ -55,3 +55,15 @@ fun date2Text(textView: TextView, date: String?) {
         textView.text = date.substring(13)
     }
 }
+
+@BindingAdapter("areaConverter")
+fun areaConverter(textView: TextView, area: String?) {
+    if(area != null) {
+        when(area) {
+            "런던" -> textView.text = "LONDON"
+            "마드리드" -> textView.text = "MADRID"
+            "바르셀로나" -> textView.text = "BARCELONA"
+            "파리" -> textView.text = "PARIS"
+        }
+    }
+}

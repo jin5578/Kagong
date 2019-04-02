@@ -1,6 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.HorizontalScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +35,8 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     private lateinit var area: String
 
+    private var accuVisibility = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,8 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
         area = intent.getStringExtra("area")
 
         viewDataBinding.accuweatherRecycler.apply {
-            layoutManager = GridLayoutManager(this@AreaDetailActivity, 5)
+            //layoutManager = GridLayoutManager(this@AreaDetailActivity, 5)
+            layoutManager = LinearLayoutManager(this@AreaDetailActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = AccuWeatherAdapter(
                 this@AreaDetailActivity
             )
@@ -101,13 +107,24 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
         when(position) {
             0 -> areaDetailViewModel.areaLikeClick(areaDetailViewModel.likeStatus.value!!)
 
-            1 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
+            1 -> {
+                /*Log.e("weatherTabClick", "weatherTabClick")
+                if(accuVisibility) {
+                    viewDataBinding.accuConstraint.visibility = View.VISIBLE
+                    !accuVisibility
+                } else {
+                    viewDataBinding.accuConstraint.visibility = View.GONE
+                    !accuVisibility
+                }*/
+            }
 
-            2 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "1")     //관광지
+            2 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
 
-            3 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "2")     //맛집
+            3 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "1")     //관광지
 
-            4 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "3")     //동행
+            4 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "2")     //맛집
+
+            5 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "3")     //동행
         }
     }
 }

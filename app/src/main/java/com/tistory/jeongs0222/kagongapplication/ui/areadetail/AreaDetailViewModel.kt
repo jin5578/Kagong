@@ -40,6 +40,10 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
 
+    private val _todayWeather = MutableLiveData<Int>()
+    val todayWeather: LiveData<Int>
+        get() = _todayWeather
+
     private val _areaE = MutableLiveData<String>()
     val areaE: LiveData<String>
         get() = _areaE
@@ -110,6 +114,8 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _accuWeather.value = it.DailyForecasts
+
+                _todayWeather.value = it.DailyForecasts[0].Day.Icon
             }.doOnError {
                 it.printStackTrace()
             }

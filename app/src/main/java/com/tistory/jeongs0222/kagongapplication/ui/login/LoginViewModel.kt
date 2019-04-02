@@ -9,9 +9,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.kakao.auth.AuthType
-import com.kakao.auth.KakaoSDK
-import com.kakao.auth.Session
 import com.tistory.jeongs0222.kagongapplication.model.repository.LoginRepository
 import com.tistory.jeongs0222.kagongapplication.ui.inareement.InAgreementActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
@@ -19,10 +16,9 @@ import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 
 
-class LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
+class  LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
 
     private val _googleLoginClick = SingleLiveEvent<ConstraintLayout>()
     val googleLoginClick: LiveData<ConstraintLayout>

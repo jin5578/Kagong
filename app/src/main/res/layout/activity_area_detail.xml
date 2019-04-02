@@ -41,6 +41,7 @@
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/sunny"
                 android:onClick="@{() -> dViewModel.accuWeatherClickEvent()}"
+                app:todayWeather="@{dViewModel.todayWeather}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@android:id/home"
                 app:layout_constraintBottom_toBottomOf="@android:id/home"/>
@@ -111,6 +112,12 @@
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:icon="@drawable/sunny"
+                    android:text="날씨"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:icon="@drawable/ic_event_note_gray_24dp"
                     android:text="@string/addDetail_tabLayout2"/>
 
@@ -143,6 +150,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/accu_constraint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                    android:id="@+id/null3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/weather"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/accuweatherRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    app:accuWeatherList="@{dViewModel.accuWeather}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/null3"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
@@ -152,10 +195,10 @@
                 app:addInformationList="@{dViewModel.areaInformation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintTop_toBottomOf="@id/accu_constraint"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#CC000000"
@@ -173,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginBottom="14dp"
+                    and  roid:layout_marginBottom="14dp"
                     android:text="@string/weather"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"
@@ -194,7 +237,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

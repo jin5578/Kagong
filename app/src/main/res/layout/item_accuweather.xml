@@ -8,15 +8,16 @@
 
         <variable
                 name="weatherItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse3"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse2"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
+            android:layout_marginStart="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/accuweather_background">
 
         <TextView
@@ -24,13 +25,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="03.19"/>
+
+
+        <ImageView
+                android:id="@+id/day_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/imageView_description"
+                app:accuWeatherItem="@{weatherItem.Day.Icon}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                tools:src="@drawable/sunny"/>
 
         <TextView
                 android:id="@+id/null1"
@@ -40,10 +54,10 @@
                 android:layout_marginBottom="30dp"
                 android:text="/"
                 android:textSize="12sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintTop_toBottomOf="@id/day_img"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -52,9 +66,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/nanumotfr"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                app:temperature="@{weatherItem.minimum.value}"
+                app:temperature="@{weatherItem.Temperature.Minimum.Value}"
                 app:layout_constraintEnd_toStartOf="@id/null1"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
@@ -66,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/nanumotfr"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                app:temperature="@{weatherItem.maximum.value}"
+                app:temperature="@{weatherItem.Temperature.Maximum.Value}"
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
