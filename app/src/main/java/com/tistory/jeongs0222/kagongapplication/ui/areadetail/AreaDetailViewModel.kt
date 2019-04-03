@@ -1,6 +1,5 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse2
@@ -19,14 +18,6 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     private val _previousClick = SingleLiveEvent<Any>()
     val previousClick: LiveData<Any>
         get() = _previousClick
-
-    private val _entireClick = SingleLiveEvent<Any>()
-    val entireClick: LiveData<Any>
-        get() = _entireClick
-
-    private val _accuWeatherClick = SingleLiveEvent<Any>()
-    val accuWeatherClick: LiveData<Any>
-        get() = _accuWeatherClick
 
     private val _validateSchedue = MutableLiveData<String>()
     val validateSchedule: LiveData<String>
@@ -65,9 +56,6 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     private lateinit var area: String
     private lateinit var userKey: String
 
-    init {
-        _accuWeatherVisibility.value = false
-    }
 
     fun bind(area: String, dbHelperProvider: DBHelperProvider) {
         this.area = area
@@ -81,18 +69,6 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
     fun previousClickEvent() {
         _previousClick.call()
-    }
-
-    fun entireClickEvent() {
-        _entireClick.call()
-
-        _accuWeatherVisibility.value = false
-    }
-
-    fun accuWeatherClickEvent() {
-        _accuWeatherClick.call()
-
-        _accuWeatherVisibility.value = true
     }
 
     fun bringAreaImage() {

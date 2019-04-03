@@ -26,15 +26,6 @@ fun temperature(textView: TextView, temperature: Double) {
     textView.text = (Math.round(((5.0/9)*(temperature-32.0))).toString()+"°")
 }
 
-@BindingAdapter("accuWeatherVisibility")
-fun accuWeatherVisibility(constraintLayout: ConstraintLayout, sort: Boolean) {
-    if (sort) {
-        constraintLayout.visibility = View.VISIBLE
-    } else {
-        constraintLayout.visibility = View.GONE
-    }
-}
-
 @BindingAdapter("accuWeatherItem")
 fun accuWeatherItem(imageView: ImageView, imageIcon: Int?) {
     if (imageIcon != null) {
