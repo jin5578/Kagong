@@ -5,19 +5,19 @@
 
     <item
         android:id="@+id/home_menu"
-        android:icon="@drawable/ic_home_gray_24dp"
+        android:icon="@drawable/home"
         app:showAsAction="ifRoom"
         android:title="@string/home"/>
 
     <item
         android:id="@+id/location_menu"
-        android:icon="@drawable/ic_event_note_gray_24dp"
+        android:icon="@drawable/schedule"
         app:showAsAction="ifRoom"
         android:title="@string/schedule"/>
 
     <item
         android:id="@+id/profile_menu"
-        android:icon="@drawable/ic_person_outline_gray_24dp"
+        android:icon="@drawable/profile"
         app:showAsAction="ifRoom"
         android:title="@string/profile"/>
 

@@ -31,7 +31,7 @@ class ConstraintSetDynamicProviderImpl(
     private var temp = 1
     private var lasttemp = 1
 
-    private var imageList = mutableListOf(R.id.walk, R.id.run, R.id.bike, R.id.car, R.id.taxi, R.id.bus)
+    private var imageList = mutableListOf(R.id.walk, R.id.run, R.id.bike, R.id.car, R.id.taxi, R.id.bus, R.id.subway, R.id.train, R.id.boat)
 
 
     override fun createDeparture(initView: ConstraintLayout) {

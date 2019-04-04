@@ -102,7 +102,13 @@ class DynamicProviderImpl(
 
             "taxi" -> R.drawable.ic_local_taxi_gray_24dp
 
-            else -> R.drawable.ic_directions_bus_gray_24dp
+            "bus" -> R.drawable.ic_directions_bus_gray_24dp
+
+            "subway" -> R.drawable.ic_directions_subway_gray_24dp
+
+            "train" -> R.drawable.ic_directions_train_gray_24dp
+
+            else -> R.drawable.ic_directions_boat_gray_24dp
         }
     }
 }

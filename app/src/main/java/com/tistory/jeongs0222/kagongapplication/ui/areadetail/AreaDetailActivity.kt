@@ -62,9 +62,9 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         areaDetailViewModel.likeStatus.observe(this@AreaDetailActivity, Observer {
             if(it == 0) {
-                viewDataBinding.tabLayout.getTabAt(0)!!.icon!!.setTint(resources.getColor(R.color.colorGray3))
+                viewDataBinding.tabLayout.getTabAt(0)!!.setIcon(R.drawable.dislike)
             } else if(it == 1) {
-                viewDataBinding.tabLayout.getTabAt(0)!!.icon!!.setTint(resources.getColor(R.color.colorPink))
+                viewDataBinding.tabLayout.getTabAt(0)!!.setIcon(R.drawable.like)
             }
         })
 

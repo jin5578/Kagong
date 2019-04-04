@@ -62,10 +62,10 @@
 
         <ImageView
                 android:id="@+id/kakao_link"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:padding="10dp"
-                android:src="@drawable/speech_bubble"
+                android:src="@drawable/message"
                 android:contentDescription="@string/imageView_description"
                 android:onClick="@{() -> eventListener.kakaoLinkClickEvent(accompanyItem.link)}"
                 app:layout_constraintEnd_toEndOf="parent"

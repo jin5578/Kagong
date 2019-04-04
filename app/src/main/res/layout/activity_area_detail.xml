@@ -105,25 +105,25 @@
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_favorite_gray_24dp"
+                    android:icon="@drawable/dislike"
                     android:text="@string/addDetail_tabLayout1"/>
 
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/sunny"
+                    android:icon="@drawable/sun"
                     android:text="날씨"/>
 
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_event_note_gray_24dp"
+                    android:icon="@drawable/schedule"
                     android:text="@string/addDetail_tabLayout2"/>
 
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_place_gray_24dp"
+                    android:icon="@drawable/location_pin"
                     android:text="@string/addDetail_tabLayout3"/>
 
             <com.google.android.material.tabs.TabItem
@@ -135,7 +135,7 @@
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_people_gray_24dp"
+                    android:icon="@drawable/accompany"
                     android:text="@string/addDetail_tabLayout5"/>
 
         </com.google.android.material.tabs.TabLayout>

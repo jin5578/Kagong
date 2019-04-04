@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabItem
 import com.tistory.jeongs0222.kagongapplication.R
 
 

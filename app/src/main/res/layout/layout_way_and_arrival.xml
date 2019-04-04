@@ -107,6 +107,42 @@
                         app:layout_constraintTop_toTopOf="@id/taxi"
                         app:layout_constraintBottom_toBottomOf="@id/taxi"/>
 
+                <ImageView
+                        android:id="@+id/subway"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:padding="20dp"
+                        android:transitionName="subway"
+                        android:src="@drawable/ic_directions_subway_gray_24dp"
+                        android:contentDescription="@string/imageView_description"
+                        app:layout_constraintStart_toEndOf="@id/bus"
+                        app:layout_constraintTop_toTopOf="@id/bus"
+                        app:layout_constraintBottom_toBottomOf="@id/bus"/>
+
+                <ImageView
+                        android:id="@+id/train"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:padding="20dp"
+                        android:transitionName="train"
+                        android:src="@drawable/ic_directions_train_gray_24dp"
+                        android:contentDescription="@string/imageView_description"
+                        app:layout_constraintStart_toEndOf="@id/subway"
+                        app:layout_constraintTop_toTopOf="@id/subway"
+                        app:layout_constraintBottom_toBottomOf="@id/subway"/>
+
+                <ImageView
+                        android:id="@+id/boat"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:padding="20dp"
+                        android:transitionName="boat"
+                        android:src="@drawable/ic_directions_boat_gray_24dp"
+                        android:contentDescription="@string/imageView_description"
+                        app:layout_constraintStart_toEndOf="@id/train"
+                        app:layout_constraintTop_toTopOf="@id/train"
+                        app:layout_constraintBottom_toBottomOf="@id/train"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </HorizontalScrollView>

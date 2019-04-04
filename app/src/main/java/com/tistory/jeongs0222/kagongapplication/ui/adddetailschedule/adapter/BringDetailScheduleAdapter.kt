@@ -21,7 +21,6 @@ class BringDetailScheduleAdapter(
     DetailScheduleDiff
 ) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemDetailScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
