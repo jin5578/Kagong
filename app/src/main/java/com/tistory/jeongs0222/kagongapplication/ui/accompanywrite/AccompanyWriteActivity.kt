@@ -79,15 +79,13 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
         })
 
         accompanyWriteViewModel.confirmClick.observe(this@AccompanyWriteActivity, Observer {
-            if (viewDataBinding.title.text.isNotEmpty()
-                && viewDataBinding.content.text.isNotEmpty()
+            if (viewDataBinding.content.text.isNotEmpty()
                 && !accompanyWriteViewModel.selectedCategory.value.isNullOrBlank()
                 && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank()
                 && !accompanyWriteViewModel.selectedLink.value.isNullOrBlank()
                 && accompanyWriteViewModel.selectedLink.value!!.contains("https://open.kakao.com/")
             ) {
                 accompanyWriteViewModel.accompanyWrite(
-                    viewDataBinding.title.text.toString(),
                     viewDataBinding.content.text.toString()
                 )
             } else {

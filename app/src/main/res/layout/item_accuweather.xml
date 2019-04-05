@@ -18,7 +18,7 @@
             android:layout_marginStart="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/accuweather_background">
+            android:background="@color/colorWhite">
 
         <TextView
                 android:id="@+id/date"

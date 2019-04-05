@@ -224,7 +224,6 @@ interface HostApi {
         @Field("area") area: String,
         @Field("sort") sort: Int,
         @Field("googlekey") googlekey: String,
-        @Field("title") title: String,
         @Field("content") content: String,
         @Field("writtenTime") writtenTime: String,
         @Field("meetingDate") meetingDate: String,

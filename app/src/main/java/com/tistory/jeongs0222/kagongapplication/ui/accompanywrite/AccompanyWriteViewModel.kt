@@ -131,13 +131,12 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         bringNickname()
     }
 
-    fun accompanyWrite(title: String, content: String) {
+    fun accompanyWrite(content: String) {
         accompanyWriteRepository
             .accompanyWrite(
                 _area.value!!.substring(1),
                 sortPreprocessor(_selectedCategory.value!!),
                 userKey,
-                title,
                 content,
                 writtenTime(),
                 _selectedDate.value!!,

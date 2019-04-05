@@ -43,19 +43,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
+'
+        <ImageView
+                android:id="@+id/null4"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="30dp"
+                android:contentDescription="@string/imageView_description"
+                android:src="@drawable/quotation1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nickname"
+                app:layout_constraintBottom_toTopOf="@id/nickname"/>
 
         <TextView
                 android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginStart="30dp"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
                 android:fontFamily="@font/nanumotfb"
                 app:nicknameText="@{pViewModel.nickname}"
                 app:layout_constraintVertical_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/null4"
                 app:layout_constraintTop_toBottomOf="@id/previous"
                 app:layout_constraintBottom_toTopOf="@id/null0"
                 tools:text="히키코모리님"/>
@@ -75,10 +86,11 @@
                 app:layout_constraintTop_toBottomOf="@id/nickname"/>
 
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="5dp"
                 android:contentDescription="@string/imageView_description"
-                android:src="@drawable/ic_format_quote_pink_24dp"
+                android:src="@drawable/quotation2"
                 app:layout_constraintStart_toEndOf="@id/null0"
                 app:layout_constraintTop_toTopOf="@id/null0"
                 app:layout_constraintBottom_toTopOf="@id/null0"/>
@@ -88,9 +100,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="30dp"
-                android:src="@drawable/boy"
                 android:contentDescription="@string/imageView_description"
-                app:userImage="@{pViewModel.userImage}"
+                app:pUserImage="@{pViewModel.userImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/nickname"
                 app:layout_constraintBottom_toBottomOf="@id/null0"/>

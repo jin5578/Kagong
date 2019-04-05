@@ -102,29 +102,15 @@
                     app:layout_constraintBottom_toBottomOf="@id/null3"
                     tools:text="#런던"/>
 
-            <EditText
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@null"
-                    android:hint="@string/title_hint_accompany"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/nanumotfr"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nickname"/>
-
             <View
                     android:id="@+id/null4"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
+                    android:layout_marginTop="30dp"
                     android:background="@color/colorGray4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title"/>
+                    app:layout_constraintTop_toBottomOf="@id/area"/>
 
             <EditText
                     android:id="@+id/content"

@@ -50,9 +50,8 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="60dp"
                 android:onClick="@{() -> pViewModel.imageClickEvent()}"
-                android:src="@drawable/boy"
                 android:contentDescription="@string/imageView_description"
-                app:userImage="@{pViewModel.userImage}"
+                app:pUserImage="@{pViewModel.userImage}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>

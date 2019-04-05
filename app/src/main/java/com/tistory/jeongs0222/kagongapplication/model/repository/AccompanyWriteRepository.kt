@@ -12,7 +12,6 @@ interface AccompanyWriteRepository {
         area: String,
         sort: Int,
         googlekey: String,
-        title: String,
         content: String,
         writtenTime: String,
         meetingDate: String,

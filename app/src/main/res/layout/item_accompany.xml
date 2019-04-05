@@ -28,9 +28,8 @@
                 android:id="@+id/image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/boy"
                 android:contentDescription="@string/imageView_description"
-                app:userImage="@{accompanyItem.image}"
+                app:accompanyProfile="@{accompanyItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -72,42 +71,28 @@
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintBottom_toBottomOf="@id/image"/>
 
-        <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textColor="@color/colorBlack"
-                android:text="@{accompanyItem.title}"
-                android:textSize="13sp"
-                android:fontFamily="@font/nanumotfr"
-                app:layout_constraintTop_toBottomOf="@id/image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="런던 종일동행 구합니다~"/>
-
         <View
                 android:id="@+id/null1"
-                android:layout_width="50dp"
+                android:layout_width="100dp"
                 android:layout_height="0.5dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/colorGray3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title"/>
+                app:layout_constraintTop_toBottomOf="@id/image"/>
 
         <TextView
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:text="@{accompanyItem.content}"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 android:lineSpacingExtra="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/null1"
                 tools:text="런던 종일동행 하실분 구합니다. 일정은 맞추도록 노력하겠습니다. 하지만 될 수 있으면 맨체스터 유나이티드 직관 가실분이였으면 좋겠습니다.."/>
 
         <View
