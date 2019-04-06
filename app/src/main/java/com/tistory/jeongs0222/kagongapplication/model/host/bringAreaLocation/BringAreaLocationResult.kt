@@ -5,4 +5,5 @@ data class BringAreaLocationResult(val order: Int,
                                    val image: String,
                                    val locationK: String,
                                    val locationE: String,
-                                   val address: String)
+                                   val address: String,
+                                   val introduce: String)

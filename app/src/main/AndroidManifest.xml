@@ -39,6 +39,7 @@
         <activity android:name=".ui.notice.NoticeActivity"/>
         <activity android:name=".ui.profile.ProfileActivity"/>
         <activity android:name=".ui.setting.SettingActivity"/>
+        <activity android:name=".ui.termsofuse.PrivacyPolicyActivity"/>
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="com.tistory.jeongs0222.kagongapplication.provider"

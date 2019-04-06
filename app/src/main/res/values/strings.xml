@@ -23,8 +23,9 @@
     <string name="agreement">약관동의가 필요해요</string>
     <string name="in_agreement">약관동의</string>
     <string name="entire_agreement">전체동의</string>
-    <string name="kagong_inAgreement">카공의민족 이용약관 동의</string>
+    <string name="kagong_inAgreement">세렌디피티 개인정보 처리방침</string>
     <string name="next">NEXT</string>
+    <string name="privacy_policy">개인정보 처리방침</string>
 
     <!--RegisterActivity-->
     <string name="register">회원가입</string>
@@ -90,7 +91,8 @@
 
     <string name="detail_schedule">세부일정</string>
 
-    <string name="item_schedule_null">일정을 등록해보세요</string>
+    <string name="travel_schedule">여행일정</string>
+    <string name="item_schedule_null">여행의 아름다운 여정을 등록해보세요</string>
     <string name="dash">-</string>
 
     <string name="edit_schedule">일정 수정</string>
@@ -149,9 +151,9 @@
 
     <string name="version_info">버전정보</string>
     <string name="terms_of_service">서비스 이용약관</string>
-    <string name="privacy_policy">개인정보 처리방침</string>
+    <string name="privacyPolicy">개인정보 처리방침</string>
     <string name="withdrawal">회원탈퇴</string>
 
-
+    <string name="trip">여행</string>
 
 </resources>

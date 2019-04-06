@@ -31,9 +31,25 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-                android:id="@+id/itemNull"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:id="@+id/itemNull1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="80dp"
+                android:text="@string/travel_schedule"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:fontFamily="@font/nanumotfeb"
+                app:itemNullVisibility="@{mViewModel.myScheduleList}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+                android:id="@+id/itemNull2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
                 android:visibility="gone"
                 android:gravity="center"
                 android:text="@string/item_schedule_null"
@@ -41,9 +57,7 @@
                 android:fontFamily="@font/nanumotfr"
                 app:itemNullVisibility="@{mViewModel.myScheduleList}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/itemNull1"
                 tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

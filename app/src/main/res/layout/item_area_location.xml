@@ -31,7 +31,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp    "
+                android:layout_marginBottom="5dp"
                 android:contentDescription="@string/imageView_description"
                 app:imageintro="@{areaLocationItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,16 +67,18 @@
 
         <TextView
                 android:id="@+id/introduce"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="관광지 소개 1줄 넣을 부분"
-                android:textColor="@color/colorGray2"
+                android:layout_marginEnd="5dp"
+                android:text="@{areaLocationItem.introduce}"
                 android:textSize="11sp"
+                android:lines="2"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintTop_toBottomOf="@id/locationK"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image"/>
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

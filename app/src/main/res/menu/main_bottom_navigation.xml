@@ -13,7 +13,7 @@
         android:id="@+id/location_menu"
         android:icon="@drawable/schedule"
         app:showAsAction="ifRoom"
-        android:title="@string/schedule"/>
+        android:title="@string/trip"/>
 
     <item
         android:id="@+id/profile_menu"

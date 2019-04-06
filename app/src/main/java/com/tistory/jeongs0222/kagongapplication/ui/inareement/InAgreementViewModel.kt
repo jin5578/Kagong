@@ -14,6 +14,10 @@ class InAgreementViewModel : DisposableViewModel() {
 
     private val _entireClick = SingleLiveEvent<Any>()
 
+    private val _privacyPolicyClick = SingleLiveEvent<Any>()
+    val privacyPolicyClick: LiveData<Any>
+        get() = _privacyPolicyClick
+
     private val _nextClick = SingleLiveEvent<Any>()
     val nextClick: LiveData<Any>
         get() = _nextClick
@@ -33,6 +37,10 @@ class InAgreementViewModel : DisposableViewModel() {
         _entireClick.call()
 
         _agreement.value = !(_agreement.value)!!
+    }
+
+    fun privacyPolicyClickEvent() {
+        _privacyPolicyClick.call()
     }
 
     fun nextClickEvent() {

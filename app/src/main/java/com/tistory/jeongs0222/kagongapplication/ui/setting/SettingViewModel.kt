@@ -13,11 +13,15 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 
-class SettingViewModel(private val settingRepository: SettingRepository): DisposableViewModel() {
+class SettingViewModel(private val settingRepository: SettingRepository) : DisposableViewModel() {
 
-    private val _homePreviousClick = SingleLiveEvent<Any>()
-    val homePreviousClick: LiveData<Any>
-        get() = _homePreviousClick
+    private val _previousClick = SingleLiveEvent<Any>()
+    val previousClick: LiveData<Any>
+        get() = _previousClick
+
+    private val _termsOfUseClick = SingleLiveEvent<Any>()
+    val termsOfUseClick: LiveData<Any>
+        get() = _termsOfUseClick
 
     private val _withdrawalClick = SingleLiveEvent<Any>()
     val withdrawalClick: LiveData<Any>
@@ -41,8 +45,12 @@ class SettingViewModel(private val settingRepository: SettingRepository): Dispos
         userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
 
-    fun homePreviousClickEvent() {
-        _homePreviousClick.call()
+    fun previousClickEvent() {
+        _previousClick.call()
+    }
+
+    fun termsOfUseClickEvent() {
+        _termsOfUseClick.call()
     }
 
     fun withdrawalClickEvent() {
@@ -60,7 +68,7 @@ class SettingViewModel(private val settingRepository: SettingRepository): Dispos
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                if(it.value == 0) {
+                if (it.value == 0) {
                     messageProvider.toastMessage(it.message)
 
                     appShutDownRequest()

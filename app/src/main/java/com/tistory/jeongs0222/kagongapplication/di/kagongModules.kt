@@ -15,5 +15,6 @@ val kagongModules = arrayListOf(
     accompanyWriteModules,
     profileModules,
     noticeModules,
-    settingModules
+    settingModules,
+    termsOfUseModules
 )

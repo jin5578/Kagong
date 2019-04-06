@@ -1,5 +1,8 @@
 package com.tistory.jeongs0222.kagongapplication.ui.main.adapter
 
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -7,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResult
 
 
@@ -36,8 +40,15 @@ fun setImage(view: ImageView, url: String?) {
         Glide.with(view)
             .asBitmap()
             .load(url)
-            .apply(RequestOptions().centerCrop())
+            .apply(RequestOptions
+                .encodeFormatOf(Bitmap.CompressFormat.PNG)
+                .placeholder(R.drawable.ic_error_outline_black_24dp)
+                .error(R.drawable.ic_error_outline_black_24dp)
+                .centerCrop()
+            )
             .into(view)
+
+        view.setColorFilter(Color.parseColor("#C3C3C3"), PorterDuff.Mode.MULTIPLY)
     }
 }
 
