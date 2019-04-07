@@ -25,9 +25,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
                 android:text="@string/appName"
-                android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:fontFamily="@font/temporaryfont"
+                android:textColor="@color/colorWhite"
+                android:textSize="35sp"
+                android:letterSpacing="0.1"
+                android:fontFamily="@font/dynalight_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
