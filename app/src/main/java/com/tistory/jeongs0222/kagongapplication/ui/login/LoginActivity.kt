@@ -58,6 +58,26 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         //네트워크 활성화 상태 확인
         loginViewModel.networkStatus.observe(this@LoginActivity, Observer {
             if (it) {
+                loginViewModel.remoteController()
+            } else {
+                AlertDialog.Builder(this@LoginActivity)
+                    .apply {
+                        setTitle("알림")
+                        setMessage("인터넷 연결이 끊어졌습니다. \n다시 시도해보세요.")
+                        setNeutralButton("설정") { dialogInterface, which ->
+                            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+
+                            startActivity(intent)
+                        }
+                        setCancelable(false)
+                    }
+                    .create()
+                    .show()
+            }
+        })
+
+        loginViewModel.activationStatus.observe(this@LoginActivity, Observer {
+            if(it == 0) {
                 loginViewModel.bbind()
 
                 callback = SessionCallback()
@@ -76,19 +96,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     }
                 })
             } else {
-                AlertDialog.Builder(this@LoginActivity)
-                    .apply {
-                        setTitle("알림")
-                        setMessage("인터넷 연결이 끊어졌습니다. \n다시 시도해보세요.")
-                        setNeutralButton("설정") { dialogInterface, which ->
-                            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
-
-                            startActivity(intent)
-                        }
-                        setCancelable(false)
-                    }
-                    .create()
-                    .show()
+                messageProvider.activationAlerDialog()
             }
         })
 

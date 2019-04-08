@@ -23,6 +23,10 @@ import retrofit2.http.*
 
 interface HostApi {
 
+    //App Activation Check - SplashActivity
+    @GET("remoteController.php")
+    fun remoteController(): Single<BasicResult> //0: 활성화 상태, 1: 비활성화 상태
+
     //Key Check - LoginActivity
     @FormUrlEncoded
     @POST("keycheck.php")

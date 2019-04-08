@@ -32,6 +32,11 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     val networkStatus: LiveData<Boolean>
         get() = _networkStatue
 
+    private val _activationStatus = MutableLiveData<Int>()
+    val activationStatus: LiveData<Int>
+        get() = _activationStatus
+
+
     private val _loginMethod = MutableLiveData<String>()
     val loginMethod: LiveData<String>
         get() = _loginMethod
@@ -79,6 +84,19 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
         _loginMethod.value = "Kakao"
 
         _kakaoLoginClick.call()
+    }
+
+    fun remoteController() {
+        loginRepository.remoteController()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _activationStatus.value = it.value
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
     }
 
     fun googleLogin() {

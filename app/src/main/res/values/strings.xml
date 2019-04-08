@@ -47,7 +47,7 @@
     <string name="home">홈</string>
     <string name="schedule">일정</string>
     <string name="profile">내정보</string>
-    <string name="select">세렌디피티 select</string>
+    <string name="open">Open</string>
     <string name="recommended_destination">추천 여행지</string>
     <string name="new_destination">신규 여행지</string>
 
@@ -156,4 +156,6 @@
 
     <string name="trip">여행</string>
 
+    <string name="sorry">죄송합니다</string>
+    <string name="inspection">서비스 점검 중입니다 \n잠시후 다시 시도해주세요</string>
 </resources>

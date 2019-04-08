@@ -19,6 +19,8 @@ interface MessageProvider {
 
     fun snackbar(view: View, message: String, duration: Int)
 
+    fun activationAlerDialog()
+
     fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int)
 
     fun addLocationAlertDialog()
@@ -71,6 +73,25 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         }
 
         snackbar.show()
+    }
+
+    override fun activationAlerDialog() {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater.inflate(R.layout.layout_activation_alertdialog, null)
+
+        builder.setView(inflater)
+
+        inflater.findViewById<TextView>(R.id.check).setOnClickListener {
+            activity.apply {
+                moveTaskToBack(true)
+                finishAffinity()
+                android.os.Process.killProcess(android.os.Process.myPid())
+            }
+        }
+
+        alertDialog = builder.create()
+
+        alertDialog.show()
     }
 
     override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int) {
