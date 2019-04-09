@@ -20,7 +20,7 @@
             android:paddingEnd="20dp"
             android:background="@color/colorWhite">
 
-        <TextView
+        <!--<TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
-                tools:text="28°"/>
+                tools:text="28°"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,7 +20,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="200dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginTop="5dp"
@@ -38,19 +38,53 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp"
+                android:fontFamily="@font/dynalight_regular"
+                app:areaConverter="@{scheduleItem.area}"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/date"
+                tools:text="LONDON"
+                tools:textColor="@color/colorBlack"/>
+
+        <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="10sp"
+                android:fontFamily="@font/nanumotfr"
+                android:textColor="@color/colorWhite"
+                app:date1Text="@{scheduleItem.date}"
+                app:layout_constraintTop_toBottomOf="@id/area"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="2018.02.22 ~ 2018.03.01"
+                tools:textColor="@color/colorBlack"/>
+
+        <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="10sp"
                 android:textColor="@color/colorWhite"
-                android:fontFamily="@font/nanumotfb"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/nanumotfr"
+                app:typeDivider="@{scheduleItem.type}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/null1"
-                tools:text="다가오는 여행"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="다가오는 여행"
+                tools:textColor="@color/colorBlack"/>
 
-        <TextView
+        <!--<TextView
                 android:id="@+id/date1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +101,8 @@
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintEnd_toStartOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
-                tools:text="2018.02.22"/>
+                tools:text="2018.02.22"
+                tools:textColor="@color/colorBlack"/>
 
         <TextView
                 android:id="@+id/null1"
@@ -80,7 +115,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title"
-                app:layout_constraintBottom_toTopOf="@id/area"/>
+                app:layout_constraintBottom_toTopOf="@id/area"
+                tools:textColor="@color/colorBlack"/>
 
         <TextView
                 android:id="@+id/date2"
@@ -99,21 +135,10 @@
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
-                tools:text="2018.02.22"/>
+                tools:text="2018.02.22"
+                tools:textColor="@color/colorBlack"/>-->
 
-        <TextView
-                android:id="@+id/area"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:fontFamily="@font/nanumotfb"
-                app:areaConverter="@{scheduleItem.area}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="LONDON"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

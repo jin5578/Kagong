@@ -10,7 +10,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AreaInform
 import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivity
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabActivity
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AccuWeatherAdapter
+//import com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter.AccuWeatherAdapter
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,11 +25,11 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     private val intentProvider = IntentProviderImpl(this@AreaDetailActivity) as IntentProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@AreaDetailActivity) as DBHelperProvider
-    private val constraintSetProvider = ConstraintSetProviderImpl(this@AreaDetailActivity) as ConstraintSetProvider
+    //private val constraintSetProvider = ConstraintSetProviderImpl(this@AreaDetailActivity) as ConstraintSetProvider
 
     private lateinit var area: String
 
-    private var weatherVisible = true
+    //private var weatherVisible = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +37,12 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         area = intent.getStringExtra("area")
 
-        viewDataBinding.weatherMore.accuweatherRecycler.apply {
+        /*viewDataBinding.weatherMore.accuweatherRecycler.apply {
             layoutManager = LinearLayoutManager(this@AreaDetailActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = AccuWeatherAdapter(
                 this@AreaDetailActivity
             )
-        }
+        }*/
 
         viewDataBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AreaDetailActivity)
@@ -100,7 +100,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
         when(position) {
             0 -> areaDetailViewModel.areaLikeClick(areaDetailViewModel.likeStatus.value!!)
 
-            1 -> {
+            /*1 -> {
                 if(weatherVisible) {
                     constraintSetProvider.moreExpandAnimation(R.layout.layout_accuweather_expand, viewDataBinding.weatherMore.moreLayout)
                     weatherVisible = false
@@ -108,15 +108,15 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
                     constraintSetProvider.moreExpandAnimation(R.layout.layout_accuweather_contract, viewDataBinding.weatherMore.moreLayout)
                     weatherVisible = true
                 }
-            }
+            }*/
 
-            2 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
+            1 -> intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
 
-            3 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "1")     //관광지
+            2 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "1")     //관광지
 
-            4 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "2")     //맛집
+            3 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "2")     //맛집
 
-            5 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "3")     //동행
+            4 -> intentProvider.intentPutTwoExtra(AreaDetailTabActivity::class.java, area, "3")     //동행
         }
     }
 }

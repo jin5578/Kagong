@@ -1,3 +1,4 @@
+/*
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter
 
 import android.view.View
@@ -22,7 +23,9 @@ fun accuWeatherList(recyclerView: RecyclerView, list: MutableList<AccuWeatherRes
 
 @BindingAdapter("temperature")
 fun temperature(textView: TextView, temperature: Double) {
-    /*textView.text = ((5.0/9)*(temperature-32.0)).toInt().toString()*/
+    */
+/*textView.text = ((5.0/9)*(temperature-32.0)).toInt().toString()*//*
+
     textView.text = (Math.round(((5.0/9)*(temperature-32.0))).toString()+"°")
 }
 
@@ -60,3 +63,4 @@ private fun imageDivider(imageIcon: Int): Int {
 }
 
 
+*/

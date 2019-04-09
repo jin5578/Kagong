@@ -43,12 +43,6 @@ class BringScheduleAdapter(
         private val eventListener: MainEventListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(i: BringScheduleResult) {
-            when(i.type) {
-                "past" -> binding.title.text = "지난 여행"
-                "future" -> binding.title.text = "다가오는 여행"
-                "present" -> binding.title.text = "여행중"
-            }
-
             binding.scheduleItem = i
             binding.eventListener = eventListener
 

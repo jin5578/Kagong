@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.register
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityRegisterBinding
@@ -33,6 +34,7 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         super.onCreate(savedInstanceState)
 
         userKey = intent.getStringExtra("value1")
+        Log.e("userKey", userKey)
         loginMethod = intent.getStringExtra("value2")
 
         fragmentProvider.initFragment(basicInfoFragment)

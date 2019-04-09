@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
+        <!--<ImageView
                 android:id="@+id/add_weather"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -43,7 +43,7 @@
                 app:todayWeather="@{dViewModel.todayWeather}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@android:id/home"
-                app:layout_constraintBottom_toBottomOf="@android:id/home"/>
+                app:layout_constraintBottom_toBottomOf="@android:id/home"/>-->
 
         <TextView
                 android:id="@+id/add_schedule"
@@ -108,11 +108,11 @@
                     android:icon="@drawable/dislike"
                     android:text="@string/addDetail_tabLayout1"/>
 
-            <com.google.android.material.tabs.TabItem
+            <!--<com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:icon="@drawable/sun"
-                    android:text="날씨"/>
+                    android:text="날씨"/>-->
 
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
 
-        <include
+        <!--<include
             android:id="@+id/weather_more"
             layout="@layout/layout_accuweather_contract"
             android:layout_width="0dp"
@@ -157,7 +157,7 @@
             app:dViewModel="@{dViewModel}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/null2"/>
+            app:layout_constraintTop_toBottomOf="@id/null2"/>-->
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -168,7 +168,7 @@
                 app:addInformationList="@{dViewModel.areaInformation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/weather_more"
+                app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>

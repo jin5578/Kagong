@@ -1,3 +1,4 @@
+/*
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail.adapter
 
 import android.util.Log
@@ -56,4 +57,4 @@ class AccuWeatherAdapter(
             return oldItem == newItem
         }
     }
-}
+}*/

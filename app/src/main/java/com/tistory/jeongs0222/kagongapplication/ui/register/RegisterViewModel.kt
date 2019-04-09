@@ -99,6 +99,8 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
         this.userKey = userKey
         this.loginMethod = loginMethod
+
+        getToken()
     }
 
     fun nextClickEvent() {
@@ -164,8 +166,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
     @SuppressLint("CheckResult")
     fun register(nickname: String, sex: String, age: String) {
-        getToken()
-
         registerRepository
             .register(userKey, _token.value!!, nickname, sex, age, loginMethod)
             .subscribeOn(Schedulers.io())

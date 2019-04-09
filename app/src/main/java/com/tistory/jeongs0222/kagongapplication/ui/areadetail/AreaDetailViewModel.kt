@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.accuweather.AccuWeatherResponse2
@@ -10,6 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 
 
 class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository): DisposableViewModel() {
@@ -23,17 +25,17 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val validateSchedule: LiveData<String>
         get() = _validateSchedue
 
-    private val _accuWeather = MutableLiveData<MutableList<AccuWeatherResponse2>>()
+    /*private val _accuWeather = MutableLiveData<MutableList<AccuWeatherResponse2>>()
     val accuWeather: LiveData<MutableList<AccuWeatherResponse2>>
-        get() = _accuWeather
+        get() = _accuWeather*/
 
     private val _areaInformation = MutableLiveData<MutableList<AreaInformationResult>>()
     val areaInformation: LiveData<MutableList<AreaInformationResult>>
         get() = _areaInformation
 
-    private val _todayWeather = MutableLiveData<Int>()
+    /*private val _todayWeather = MutableLiveData<Int>()
     val todayWeather: LiveData<Int>
-        get() = _todayWeather
+        get() = _todayWeather*/
 
     private val _areaE = MutableLiveData<String>()
     val areaE: LiveData<String>
@@ -47,9 +49,9 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val likeStatus: LiveData<Int>
         get() = _likeStatus
 
-    private val _accuWeatherVisibility = MutableLiveData<Boolean>()
+    /*private val _accuWeatherVisibility = MutableLiveData<Boolean>()
     val accuWeatherVisibility: LiveData<Boolean>
-        get() = _accuWeatherVisibility
+        get() = _accuWeatherVisibility*/
 
     private val TAG = "AreaDetailViewModel"
 
@@ -63,7 +65,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
         userKey = dbHelperProvider.getDBHelper().getUserKey()
 
         areaTranslator()
-        areaForecast(areaDivider(area))
+        //areaForecast(areaDivider(area))
         bringAreaImage()
     }
 
@@ -84,8 +86,8 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
             .subscribe()
     }
 
-    private fun areaForecast(locationKey: String) {
-        areaDetailRepository.areaForecast(locationKey,"AQHvbOfPGdmG0fTCG2vk7Mf2a8WA9nsK")
+    /*private fun areaForecast(locationKey: String) {
+        areaDetailRepository.areaForecast(locationKey,"QGNl9AEVGx1Yfg773swmDj2Ngc2HG3iP")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -96,8 +98,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
                 it.printStackTrace()
             }
             .subscribe()
-
-    }
+    }*/
 
     private fun areaTranslator() {
         when(area) {
@@ -119,7 +120,8 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
         }
     }
 
-    private fun areaDivider(area: String): String {
+    //AccuWeather 관련
+    /*private fun areaDivider(area: String): String {
         return when(area) {
             "런던" -> "328328"
 
@@ -129,7 +131,7 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
             else -> "308526"    //마드리드
         }
-    }
+    }*/
 
     fun areaLikeClick(status: Int) {
         areaDetailRepository.areaLikeClick(userKey, area, status)

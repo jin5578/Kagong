@@ -55,15 +55,18 @@ fun setImage(view: ImageView, url: String?) {
 @BindingAdapter("date1Text")
 fun date1Text(textView: TextView, date: String?) {
     if (date != null) {
-        textView.text = date.substring(0, 10)
+        textView.text = date.replace("-", ".")
     }
 }
 
-
-@BindingAdapter("date2Text")
-fun date2Text(textView: TextView, date: String?) {
-    if (date != null) {
-        textView.text = date.substring(13)
+@BindingAdapter("typeDivider")
+fun typeDivider(textView: TextView, type: String?) {
+    if(type != null) {
+        when(type) {
+            "past" -> textView.text = "지난 여정"
+            "future" -> textView.text = "다가오는 여정"
+            "present" ->textView.text = "여행중"
+        }
     }
 }
 
