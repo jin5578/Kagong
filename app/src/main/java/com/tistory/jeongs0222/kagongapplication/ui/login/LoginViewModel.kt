@@ -36,7 +36,6 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     val activationStatus: LiveData<Int>
         get() = _activationStatus
 
-
     private val _loginMethod = MutableLiveData<String>()
     val loginMethod: LiveData<String>
         get() = _loginMethod
