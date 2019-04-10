@@ -58,7 +58,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         //네트워크 활성화 상태 확인
         loginViewModel.networkStatus.observe(this@LoginActivity, Observer {
             if (it) {
-                loginViewModel.remoteController()
+                loginViewModel.bbind()
+
+                callback = SessionCallback()
+
+                loginViewModel.googleLoginClick.observe(this, Observer {
+                    loginViewModel.googleLogin()
+                })
+
+                loginViewModel.kakaoLoginClick.observe(this, Observer {
+
+                    Session.getCurrentSession().addCallback(callback)
+                    //Session.getCurrentSession().checkAndImplicitOpen()
+
+                    if (!Session.getCurrentSession().checkAndImplicitOpen()) {
+                        kakaoLoginClick()
+                    }
+                })
             } else {
                 AlertDialog.Builder(this@LoginActivity)
                     .apply {
@@ -73,30 +89,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     }
                     .create()
                     .show()
-            }
-        })
-
-        loginViewModel.activationStatus.observe(this@LoginActivity, Observer {
-            if(it == 0) {
-                loginViewModel.bbind()
-
-                callback = SessionCallback()
-
-                loginViewModel.googleLoginClick.observe(this, Observer {
-                    loginViewModel.googleLogin()
-                })
-
-                loginViewModel.kakaoLoginClick.observe(this, Observer {
-
-                    Session.getCurrentSession().addCallback(callback)
-                    //Session.getCurrentSession().checkAndImplicitOpen()
-
-                    if(!Session.getCurrentSession().checkAndImplicitOpen()) {
-                        kakaoLoginClick()
-                    }
-                })
-            } else {
-                messageProvider.activationAlerDialog()
             }
         })
 
@@ -258,7 +250,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             return
 
             //Kakao Login
-        } else if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+        } else if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             Log.d(TAG, "requestCode: $requestCode, resultCode: $resultCode")
 
             return
@@ -274,7 +266,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onDestroy() {
         super.onDestroy()
 
-        if(Session.getCurrentSession().isOpened) {
+        if (Session.getCurrentSession().isOpened) {
             Session.getCurrentSession().removeCallback(callback)
         }
 
@@ -288,8 +280,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 Logger.e(exception)
             }
         }
+
         override fun onSessionOpened() {
-            if(Session.getCurrentSession().tokenInfo != null) {
+            if (Session.getCurrentSession().tokenInfo != null) {
                 messageProvider.toastMessage("카카오 로그인에 성공하였습니다.")
 
                 requestMe()
@@ -298,13 +291,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun requestMe() {
-        UserManagement.getInstance().me(object: MeV2ResponseCallback() {
+        UserManagement.getInstance().me(object : MeV2ResponseCallback() {
             override fun onSuccess(result: MeV2Response?) {
                 loginViewModel.keyCheck(result!!.id.toString())
             }
 
             override fun onSessionClosed(errorResult: ErrorResult?) {
-                if(errorResult != null) {
+                if (errorResult != null) {
                     Log.e(TAG, errorResult.toString())
                 }
             }

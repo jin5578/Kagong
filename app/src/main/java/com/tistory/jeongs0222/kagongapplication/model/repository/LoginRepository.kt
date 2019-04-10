@@ -5,7 +5,5 @@ import io.reactivex.Single
 
 
 interface LoginRepository {
-    fun remoteController(): Single<BasicResult>
-
     fun keyCheck(googlekey: String): Single<BasicResult>
 }
