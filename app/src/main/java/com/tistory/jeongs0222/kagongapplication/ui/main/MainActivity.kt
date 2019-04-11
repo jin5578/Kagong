@@ -1,13 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.main
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
 import android.view.MenuItem
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
@@ -20,7 +14,6 @@ import com.tistory.jeongs0222.kagongapplication.ui.setting.SettingActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.security.MessageDigest
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
     private val mainViewModel by viewModel<MainViewModel>()
 
+    private val permissionProvider = PermissionProviderImpl(this@MainActivity) as PermissionProvider
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
     private val messageProvider = MessageProviderImpl(this@MainActivity) as MessageProvider
     private val intentProvider = IntentProviderImpl(this@MainActivity) as IntentProvider
@@ -41,16 +35,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     private val profileFragment = ProfileFragment()
     private val searchAreaFragment = SearchAreaFragment()
 
-    private val checkList =
-        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-    private val PERMISSION = 111;
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        permissionCheck()
+        permissionProvider.permissionCheck()
 
         fragmentProvider.initFragment(homeFragment)
 
@@ -104,24 +93,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
             else -> {
                 false
-            }
-        }
-    }
-
-    private fun permissionCheck() {
-        if ((ContextCompat.checkSelfPermission(
-                this@MainActivity,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED)
-            && (ContextCompat.checkSelfPermission(
-                this@MainActivity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED)
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-            } else {
-                ActivityCompat.requestPermissions(this, checkList, PERMISSION)
             }
         }
     }

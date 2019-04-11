@@ -40,7 +40,6 @@ class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatc
             setOnEditorActionListener(this@SearchAreaFragment)
             addTextChangedListener(this@SearchAreaFragment)
         }
-        binding.areaSearch.setOnEditorActionListener(this@SearchAreaFragment)
 
         binding.recentRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@SearchAreaFragment.context, LinearLayoutManager.HORIZONTAL, false)
