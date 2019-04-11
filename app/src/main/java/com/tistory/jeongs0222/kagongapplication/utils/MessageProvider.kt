@@ -71,7 +71,11 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         snackbar.setAction(view.context.getString(R.string.check)) {
             snackbar.dismiss()
 
-            activity.finish()
+            activity.apply {
+                moveTaskToBack(true)
+                finishAffinity()
+                android.os.Process.killProcess(android.os.Process.myPid())
+            }
         }
 
         snackbar.show()

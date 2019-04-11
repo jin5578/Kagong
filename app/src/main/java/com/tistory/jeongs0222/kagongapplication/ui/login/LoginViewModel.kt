@@ -1,13 +1,21 @@
 package com.tistory.jeongs0222.kagongapplication.ui.login
 
 import android.annotation.SuppressLint
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.kakao.auth.ISessionCallback
+import com.kakao.auth.Session
+import com.kakao.network.ErrorResult
+import com.kakao.usermgmt.UserManagement
+import com.kakao.usermgmt.callback.MeV2ResponseCallback
+import com.kakao.usermgmt.response.MeV2Response
+import com.kakao.util.exception.KakaoException
+import com.kakao.util.helper.log.Logger
 import com.tistory.jeongs0222.kagongapplication.model.repository.LoginRepository
 import com.tistory.jeongs0222.kagongapplication.ui.inareement.InAgreementActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
@@ -18,14 +26,6 @@ import io.reactivex.schedulers.Schedulers
 
 
 class  LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
-
-    private val _googleLoginClick = SingleLiveEvent<ConstraintLayout>()
-    val googleLoginClick: LiveData<ConstraintLayout>
-        get() = _googleLoginClick
-
-    private val _kakaoLoginClick = SingleLiveEvent<Any>()
-    val kakaoLoginClick: LiveData<Any>
-        get() = _kakaoLoginClick
 
     private val _networkStatue = MutableLiveData<Boolean>()
     val networkStatus: LiveData<Boolean>
@@ -39,6 +39,7 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
 
     private lateinit var networkCheckProvider: NetworkCheckProvider
     private lateinit var googleSignProvider: GoogleSignProvider
+    private lateinit var kakaoSignProvider: KakaoSignProvider
     private lateinit var dbHelperProvider: DBHelperProvider
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
@@ -46,13 +47,17 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     lateinit var gso: GoogleSignInOptions
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
+    private lateinit var callback: SessionCallback
+
     private lateinit var user: String
 
     lateinit var loginMethod: String
+    
 
-    fun bind(networkCheckProvider: NetworkCheckProvider, googleSignProvider: GoogleSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
+    fun bind(networkCheckProvider: NetworkCheckProvider, googleSignProvider: GoogleSignProvider, kakaoSignProvider: KakaoSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.networkCheckProvider = networkCheckProvider
         this.googleSignProvider = googleSignProvider
+        this.kakaoSignProvider = kakaoSignProvider
         this.dbHelperProvider = dbHelperProvider
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
@@ -60,6 +65,8 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
 
     fun bbind() {
         validateUserCheck()
+
+        callback = SessionCallback()
 
         gso = googleSignProvider.getGoogleSignInOptions()
 
@@ -73,16 +80,16 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     fun googleLoginClickEvent() {
         loginMethod = "Google"
 
-        _googleLoginClick.call()
+        googleLogin()
     }
 
     fun kakaoLoginClickEvent() {
         loginMethod = "Kakao"
 
-        _kakaoLoginClick.call()
+        kakaoLogin()
     }
 
-    fun googleLogin() {
+    private fun googleLogin() {
         googleSignProvider.googleSignIn(mGoogleSignInClient)
     }
 
@@ -132,4 +139,48 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
             .subscribe()
     }
 
+    inner class SessionCallback : ISessionCallback {
+        override fun onSessionOpenFailed(exception: KakaoException?) {
+            messageProvider.toastMessage("카카오 로그인에 실패하였습니다.")
+            if (exception != null) {
+                Logger.e(exception)
+            }
+        }
+
+        override fun onSessionOpened() {
+            if (Session.getCurrentSession().tokenInfo != null) {
+                messageProvider.toastMessage("카카오 로그인에 성공하였습니다.")
+
+                requestMe()
+            }
+        }
+    }
+
+    private fun kakaoLogin() {
+        Session.getCurrentSession().addCallback(callback)
+
+        if(!Session.getCurrentSession().checkAndImplicitOpen()) {
+            kakaoSignProvider.kakaoLogin()
+        }
+    }
+
+    private fun requestMe() {
+        UserManagement.getInstance().me(object : MeV2ResponseCallback() {
+            override fun onSuccess(result: MeV2Response?) {
+                keyCheck(result!!.id.toString())
+            }
+
+            override fun onSessionClosed(errorResult: ErrorResult?) {
+                if (errorResult != null)
+                    Log.e(TAG, errorResult.toString())
+
+            }
+        })
+    }
+
+    fun removeCallback() {
+        if(Session.getCurrentSession().isOpened)
+            Session.getCurrentSession().removeCallback(callback)
+
+    }
 }
