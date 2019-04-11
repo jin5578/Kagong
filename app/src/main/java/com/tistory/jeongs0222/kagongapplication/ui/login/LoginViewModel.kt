@@ -1,7 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.login
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,9 +31,9 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     val networkStatus: LiveData<Boolean>
         get() = _networkStatue
 
-    private val _loginMethod = MutableLiveData<String>()
-    val loginMethod: LiveData<String>
-        get() = _loginMethod
+    private val _validateUser = MutableLiveData<Boolean>()
+    val validateUser: LiveData<Boolean>
+        get() = _validateUser
 
     private val TAG = "LoginViewModel"
 
@@ -44,10 +43,12 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
-    private lateinit var gso: GoogleSignInOptions
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    lateinit var gso: GoogleSignInOptions
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     private lateinit var user: String
+
+    lateinit var loginMethod: String
 
     fun bind(networkCheckProvider: NetworkCheckProvider, googleSignProvider: GoogleSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.networkCheckProvider = networkCheckProvider
@@ -70,13 +71,13 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     }
 
     fun googleLoginClickEvent() {
-        _loginMethod.value = "Google"
+        loginMethod = "Google"
 
         _googleLoginClick.call()
     }
 
     fun kakaoLoginClickEvent() {
-        _loginMethod.value = "Kakao"
+        loginMethod = "Kakao"
 
         _kakaoLoginClick.call()
     }
@@ -100,9 +101,7 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     }
 
     private fun validateUserCheck() {
-        if(dbHelperProvider.getDBHelper().getUserKey().isNotEmpty()) {
-            intentProvider.finishIntent(MainActivity::class.java)
-        }
+        _validateUser.value = dbHelperProvider.getDBHelper().getUserKey().isNotEmpty()
     }
 
     @SuppressLint("CheckResult")
@@ -113,19 +112,14 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
             .doOnSuccess {
                 when {
                     it.value == 0 -> {
-                        Log.e("1", "1")
-                        //intentProvider.finishIntent(InAgreementActivity::class.java)
-                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, _loginMethod.value!!)
+                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, loginMethod)
                     }
 
                     it.value == 1 -> {
-                        Log.e("2", "2")
-                        //intentProvider.finishIntent(InAgreementActivity::class.java)
-                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, _loginMethod.value!!)
+                        intentProvider.finishPutTwoExtraIntent(InAgreementActivity::class.java, userkey, loginMethod)
                     }
 
                     it.value == 2 -> {
-                        Log.e("3", "3")
                         intentProvider.finishIntent(MainActivity::class.java)
 
                         dbHelperProvider.getDBHelper().insertUser(userkey)

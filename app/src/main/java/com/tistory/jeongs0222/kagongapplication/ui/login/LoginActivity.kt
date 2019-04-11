@@ -1,12 +1,10 @@
 package com.tistory.jeongs0222.kagongapplication.ui.login
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -26,6 +24,7 @@ import com.kakao.util.helper.log.Logger
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLoginBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.main.MainActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -51,8 +50,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.e("onCreate", "onCreate")
-
         loginViewModel.bind(networkCheckProvider, googleSignProvider, dbHelperProvider, messageProvider, intentProvider)
 
         //네트워크 활성화 상태 확인
@@ -62,6 +59,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
                 callback = SessionCallback()
 
+                loginViewModel.validateUser.observe(this@LoginActivity, Observer {
+                    if(it) {
+                        intentProvider.finishIntent(MainActivity::class.java)
+                    }
+                })
+
                 loginViewModel.googleLoginClick.observe(this, Observer {
                     loginViewModel.googleLogin()
                 })
@@ -69,26 +72,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 loginViewModel.kakaoLoginClick.observe(this, Observer {
 
                     Session.getCurrentSession().addCallback(callback)
-                    //Session.getCurrentSession().checkAndImplicitOpen()
 
                     if (!Session.getCurrentSession().checkAndImplicitOpen()) {
                         kakaoLoginClick()
                     }
                 })
             } else {
-                AlertDialog.Builder(this@LoginActivity)
-                    .apply {
-                        setTitle("알림")
-                        setMessage("인터넷 연결이 끊어졌습니다. \n다시 시도해보세요.")
-                        setNeutralButton("설정") { dialogInterface, which ->
-                            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
-
-                            startActivity(intent)
-                        }
-                        setCancelable(false)
-                    }
-                    .create()
-                    .show()
+                messageProvider.networkAlerDialog()
             }
         })
 
@@ -101,13 +91,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         val authTypes = getAuthTypes()
 
         if (authTypes.size == 1) {
-            Log.e("test", "test2")
             Session.getCurrentSession().open(authTypes[0], this)
         } else {
-            Log.e("test", "test3")
             val authItems = createAuthItemArray(authTypes)
             val adapter = createLoginAdapter(authItems)
             val dialog = createLoginDialog(authItems, adapter)
+
             dialog.show()
         }
     }
@@ -128,7 +117,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
         availableAuthTypes.retainAll(Arrays.asList(*authTypes))
 
-        // 개발자가 설정한 것과 available 한 타입이 없다면 직접계정 입력이 뜨도록 한다.
         if (availableAuthTypes.size == 0) {
             availableAuthTypes.add(AuthType.KAKAO_ACCOUNT)
         }
@@ -165,9 +153,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     //Kakao Login
     private fun createLoginAdapter(authItems: Array<Item>): ListAdapter {
-        /*
-      가능한 auth type들을 유저에게 보여주기 위한 준비.
-     */
+
         return object : ArrayAdapter<Item>(
             this,
             android.R.layout.select_dialog_item,
@@ -212,7 +198,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
 
         val closeButton = dialog.findViewById<Button>(com.kakao.usermgmt.R.id.login_close_button)
-        closeButton.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
         return dialog
     }
 
@@ -270,7 +259,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             Session.getCurrentSession().removeCallback(callback)
         }
 
-        //Google도 넣어줘야한다.
+        loginViewModel.mGoogleSignInClient.signOut()
     }
 
     private inner class SessionCallback : ISessionCallback {

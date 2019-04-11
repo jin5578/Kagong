@@ -2,7 +2,9 @@ package com.tistory.jeongs0222.kagongapplication.utils
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
+import android.provider.Settings
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
@@ -18,6 +20,8 @@ interface MessageProvider {
     fun toastMessage(message: String)
 
     fun snackbar(view: View, message: String, duration: Int)
+
+    fun networkAlerDialog()
 
     fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int)
 
@@ -71,6 +75,26 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         }
 
         snackbar.show()
+    }
+
+    override fun networkAlerDialog() {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater.inflate(R.layout.layout_networkcheck_alert, null)
+
+        builder.setView(inflater)
+
+        inflater.findViewById<TextView>(R.id.setting).setOnClickListener {
+            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+
+            activity.startActivity(intent)
+        }
+
+        builder.setCancelable(false)
+
+        alertDialog = builder.create()
+
+        alertDialog.show()
+
     }
 
     override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int) {
