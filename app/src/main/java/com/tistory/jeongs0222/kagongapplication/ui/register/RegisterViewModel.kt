@@ -18,17 +18,6 @@ import com.tistory.jeongs0222.kagongapplication.utils.*
 class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
     RegisterEventListener {
 
-    //RegisterActivity
-    private val _userkey = MutableLiveData<String>()
-    val userkey: LiveData<String>
-        get() = _userkey
-
-    private val _token = MutableLiveData<String>()
-    val token: LiveData<String>
-        get() = _token
-
-
-    //BasicInfoFragment
     private val _nextClick = SingleLiveEvent<Any>()
     val nextClick: LiveData<Any>
         get() = _nextClick
@@ -36,7 +25,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     private val _validateClick = SingleLiveEvent<Any>()
     val validateClick: LiveData<Any>
         get() = _validateClick
-
 
     private val _userNickname = MutableLiveData<String>()
     val userNickname: LiveData<String>
@@ -66,7 +54,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     val yearItem: LiveData<MutableList<YearItem>>
         get() = _yearItem
 
-
     private val _userSex = MutableLiveData<String>()
     val userSex: LiveData<String>
         get() = _userSex
@@ -84,6 +71,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
     private lateinit var userKey: String
     private lateinit var loginMethod: String
+    private lateinit var token: String
 
     var validateCheck: Boolean = false
 
@@ -165,9 +153,9 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     }
 
     @SuppressLint("CheckResult")
-    fun register(nickname: String, sex: String, age: String) {
+    fun register() {
         registerRepository
-            .register(userKey, _token.value!!, nickname, sex, age, loginMethod)
+            .register(userKey, token, _userNickname.value!!, _userSex.value!!, _userYear.value!!, loginMethod)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -198,10 +186,10 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                     if (!task.isSuccessful) {
                         return@OnCompleteListener
                     }
-                    _token.value = task.result!!.token
+                    token = task.result!!.token
                 })
         } else {
-            _token.value = ""
+            token = ""
         }
 
     }

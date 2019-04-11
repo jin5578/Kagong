@@ -51,11 +51,7 @@ class PersonalInfoFragment : Fragment() {
             if(registerViewModel.validateCheck) {
                 if(!registerViewModel.userSex.value.isNullOrBlank()) {
                     if(!registerViewModel.userYear.value.isNullOrBlank()) {
-                        registerViewModel
-                            .register(
-                                registerViewModel.userNickname.value!!,
-                                registerViewModel.userSex.value!!,
-                                registerViewModel.userYear.value!!)
+                        registerViewModel.register()
                     } else {
                         messageProvider.toastMessage(view.context.getString(R.string.please_select_age))
                     }

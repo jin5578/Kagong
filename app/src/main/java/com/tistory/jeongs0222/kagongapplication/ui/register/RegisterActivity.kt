@@ -19,9 +19,9 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_register
 
-    private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
-
     private val registerViewModel by viewModel<RegisterViewModel>()
+
+    private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
 
     private val personalInfoFragment = PersonalInfoFragment()
     private val basicInfoFragment = BasicInfoFragment()
@@ -30,11 +30,11 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     private lateinit var userKey: String
     private lateinit var loginMethod: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         userKey = intent.getStringExtra("value1")
-        Log.e("userKey", userKey)
         loginMethod = intent.getStringExtra("value2")
 
         fragmentProvider.initFragment(basicInfoFragment)
@@ -65,5 +65,14 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
         viewDataBinding.rViewModel = registerViewModel
         viewDataBinding.lifecycleOwner = this@RegisterActivity
+    }
+
+    override fun onBackPressed() {
+        this@RegisterActivity.apply {
+            moveTaskToBack(true)
+            finishAffinity()
+            android.os.Process.killProcess(android.os.Process.myPid())
+        }
+
     }
 }

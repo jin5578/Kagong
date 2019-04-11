@@ -52,7 +52,7 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     private lateinit var user: String
 
     lateinit var loginMethod: String
-    
+
 
     fun bind(networkCheckProvider: NetworkCheckProvider, googleSignProvider: GoogleSignProvider, kakaoSignProvider: KakaoSignProvider, dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, intentProvider: IntentProvider) {
         this.networkCheckProvider = networkCheckProvider
