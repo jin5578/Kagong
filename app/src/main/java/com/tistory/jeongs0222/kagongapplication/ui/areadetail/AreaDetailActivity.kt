@@ -46,8 +46,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         viewDataBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AreaDetailActivity)
-            adapter =
-                    AreaInformationAdapter(this@AreaDetailActivity)
+            adapter = AreaInformationAdapter(this@AreaDetailActivity)
         }
 
         viewDataBinding.tabLayout.addOnTabSelectedListener(this@AreaDetailActivity)

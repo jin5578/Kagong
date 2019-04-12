@@ -48,15 +48,12 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
         addScheduleViewModel.bind(
             MessageProviderImpl(this@AddScheduleActivity) as MessageProvider,
             IntentProviderImpl(this@AddScheduleActivity) as IntentProvider,
-            DBHelperProviderImpl(this@AddScheduleActivity) as DBHelperProvider
+            DBHelperProviderImpl(this@AddScheduleActivity) as DBHelperProvider,
+            area
         )
 
         addScheduleViewModel.previousClick.observe(this@AddScheduleActivity, Observer {
             finish()
-        })
-
-        addScheduleViewModel.selectDayClick.observe(this@AddScheduleActivity, Observer {
-            addScheduleViewModel.addSchedule(area)
         })
 
         addScheduleViewModel.startPosition.observe(this@AddScheduleActivity, Observer {
@@ -91,10 +88,7 @@ class AddScheduleActivity : BaseActivity<ActivityAddScheduleBinding>() {
 
         addScheduleViewModel.bothSelected.observe(this@AddScheduleActivity, Observer {
             if(it) {
-                viewDataBinding.selectedDay.visibility = View.VISIBLE
                 viewDataBinding.selectedDay.text = addScheduleViewModel.tempStartDay.value!!.replace("-", ".") + " ~ " + addScheduleViewModel.tempEndDay.value!!.substring(5).replace("-", ".") + " 추가하기"
-            } else {
-                viewDataBinding.selectedDay.visibility = View.GONE
             }
         })
 

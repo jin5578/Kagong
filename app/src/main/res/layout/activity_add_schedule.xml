@@ -182,10 +182,12 @@
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/nanumotfr"
                 android:onClick="@{() -> aViewModel.selectDayClickEvent()}"
+                app:bothSelectedVisibility="@{aViewModel.bothSelected}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="2018.02.22 ~ 02.23 추가하기"/>
+                tools:text="2018.02.22 ~ 02.23 추가하기"
+                tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

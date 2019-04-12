@@ -17,10 +17,6 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
     val previousClick: LiveData<Any>
         get() = _previousClick
 
-    private val _selectDayClick = SingleLiveEvent<Any>()
-    val selectDayClick: LiveData<Any>
-        get() = _selectDayClick
-
     private val _calendarList = MutableLiveData<MutableList<Any>>()
     val calendarList: LiveData<MutableList<Any>>
         get() = _calendarList
@@ -38,12 +34,8 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
         get() = _positionChange
 
     private val _startDay = MutableLiveData<String>()
-    val startDay: LiveData<String>
-        get() = _startDay
 
     private val _endDay = MutableLiveData<String>()
-    val endDay: LiveData<String>
-        get() = _endDay
 
     private val _bothSelected = MutableLiveData<Boolean>()
     val bothSelected: LiveData<Boolean>
@@ -57,6 +49,8 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
 
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
+
+    private lateinit var area: String
 
     private lateinit var userKey: String
 
@@ -77,9 +71,10 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
         _endPosition.value = 0
     }
 
-    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
+    fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider, area: String) {
         this.messageProvider = messageProvider
         this.intentProvider = intentProvider
+        this.area = area
 
         userKey = dbHelperProvider.getDBHelper().getUserKey()
     }
@@ -116,7 +111,7 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
         _calendarList.value = calendarList
     }
 
-    fun addSchedule(area: String) {
+    private fun addSchedule() {
         addScheduleRepository.addSchedule(
             userKey,
             area,
@@ -144,7 +139,7 @@ class AddScheduleViewModel(private val addScheduleRepository: AddScheduleReposit
     }
 
     fun selectDayClickEvent() {
-        _selectDayClick.call()
+        addSchedule()
     }
 
     override fun dayClickEvent(day: String, position: Int, gregorianCalendar: GregorianCalendar) {
