@@ -47,7 +47,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     }
                 })
             } else {
-                messageProvider.networkAlerDialog()
+                messageProvider.settingAlertDialog(0)
             }
         })
 

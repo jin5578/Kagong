@@ -93,6 +93,7 @@
 
     <string name="travel_schedule">여행일정</string>
     <string name="network_disabled">네트워크 연결이 끊어졌습니다.\n확인 후 다시 시도해주세요.</string>
+    <string name="permission_disabled">저장소 권한이 거부되었습니다.\n사용을 원하시면 설정에서 해당 권한을 직접 허용하셔야 합니다.</string>
     <string name="item_schedule_null">세렌디피티와 여행의 아름다운 여정을 계획해보세요</string>
     <string name="dash">-</string>
 

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.provider.Settings
 import android.view.Gravity
 import android.view.View
@@ -21,7 +22,7 @@ interface MessageProvider {
 
     fun snackbar(view: View, message: String, duration: Int)
 
-    fun networkAlerDialog()
+    fun settingAlertDialog(sort: Int)
 
     fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int)
 
@@ -81,16 +82,31 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         snackbar.show()
     }
 
-    override fun networkAlerDialog() {
+    override fun settingAlertDialog(sort: Int) {
         val builder = AlertDialog.Builder(activity)
-        val inflater = activity.layoutInflater.inflate(R.layout.layout_networkcheck_alert, null)
+        val inflater = activity.layoutInflater.inflate(R.layout.layout_setting_alert, null)
+
+        inflater.findViewById<TextView>(R.id.content).apply {
+            text = when(sort) {
+                0 -> activity.resources.getString(R.string.network_disabled)
+
+                else -> activity.resources.getString(R.string.permission_disabled)
+            }
+        }
 
         builder.setView(inflater)
 
         inflater.findViewById<TextView>(R.id.setting).setOnClickListener {
-            val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+
+            val intent = when(sort) {
+                0 -> Intent(Settings.ACTION_WIFI_SETTINGS)
+
+                else  -> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(Uri.parse("package:" + activity.packageName))
+            }
 
             activity.startActivity(intent)
+
+            alertDialog.dismiss()
         }
 
         builder.setCancelable(false)

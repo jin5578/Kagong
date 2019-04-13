@@ -3,6 +3,8 @@ package com.tistory.jeongs0222.kagongapplication.utils
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.provider.MediaStore
+import com.tistory.jeongs0222.kagongapplication.BuildConfig
 
 
 interface IntentProvider {
@@ -19,6 +21,10 @@ interface IntentProvider {
     fun intentActionView(variable: String)
 
     fun intentFinish()
+
+    fun intentGallery()
+
+    fun intentReview()
 }
 
 class IntentProviderImpl(private val activity: Activity): IntentProvider {
@@ -64,5 +70,36 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
 
     override fun intentFinish() {
         activity.finish()
+    }
+
+    override fun intentGallery() {
+        val PICK_FROM_GALLERY = 111
+
+        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+
+        activity.startActivityForResult(intent, PICK_FROM_GALLERY)
+    }
+
+    override fun intentReview() {
+        val uri = Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)
+
+        var intent = Intent(Intent.ACTION_VIEW, uri)
+
+        intent.addFlags(
+            Intent.FLAG_ACTIVITY_NO_HISTORY or
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        )
+
+        if (intent.resolveActivity(activity.packageManager) != null) {
+            activity.startActivity(intent)
+        } else {
+            intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID))
+            if (intent.resolveActivity(activity.packageManager) != null) {
+                activity.startActivity(intent)
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 
 interface PermissionProvider {
     fun permissionCheck()
+
+    fun permissionValidate(): Boolean
 }
 
 class PermissionProviderImpl(private val activity: Activity): PermissionProvider {
@@ -37,5 +39,10 @@ class PermissionProviderImpl(private val activity: Activity): PermissionProvider
                 ActivityCompat.requestPermissions(activity, checkList, PERMISSION)
             }
         }
+    }
+
+    override fun permissionValidate(): Boolean {
+        return (ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
     }
 }

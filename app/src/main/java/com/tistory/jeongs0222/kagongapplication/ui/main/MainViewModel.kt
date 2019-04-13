@@ -90,6 +90,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val noticeClick: LiveData<Any>
         get() = _noticeClick
 
+    private val _reviewClick = SingleLiveEvent<Any>()
+    val reviewClick: LiveData<Any>
+        get() = _reviewClick
+
 
     //Entire Fragment
     private val _selectedArea = MutableLiveData<String>()
@@ -133,6 +137,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     fun noticeClickEvent() {
         _noticeClick.call()
+    }
+
+    fun reviewClickEvent() {
+        _reviewClick.call()
     }
 
     fun profileDetailClickEvent() {

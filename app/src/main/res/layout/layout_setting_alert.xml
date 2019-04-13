@@ -16,7 +16,6 @@
             android:gravity="center"
             android:paddingTop="35dp"
             android:paddingBottom="35dp"
-            android:text="@string/network_disabled"
             android:textColor="@color/colorBlack"
             android:textSize="12sp"
             android:fontFamily="@font/nanumotfb"
@@ -27,15 +26,16 @@
 
     <TextView
             android:id="@+id/setting"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="end"
+            android:paddingStart="35dp"
+            android:paddingEnd="35dp"
             android:paddingBottom="35dp"
             android:text="@string/setting"
             android:textColor="@color/colorRed"
             android:textSize="10sp"
             android:fontFamily="@font/nanumotfr"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/content"
             app:layout_constraintBottom_toBottomOf="parent"/>
