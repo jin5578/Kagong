@@ -42,32 +42,32 @@
 ## Screenshots
 
 <div>
-
-![KakaoTalk_Photo_2019-04-14-17-58-56](https://user-images.githubusercontent.com/24897699/56186343-13fa3a80-605a-11e9-813b-912db95a4943.jpeg)
+   
+   <img width="500" src="https://user-images.githubusercontent.com/24897699/56186343-13fa3a80-605a-11e9-813b-912db95a4943.jpeg">
 
 > 메인페이지
 
-![KakaoTalk_Photo_2019-04-14-17-59-10](https://user-images.githubusercontent.com/24897699/56186344-1492d100-605a-11e9-9b67-ca2a70a3cbe9.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186344-1492d100-605a-11e9-9b67-ca2a70a3cbe9.jpeg">
 
 > 여행지정보페이지1
 
-![KakaoTalk_Photo_2019-04-14-17-58-38](https://user-images.githubusercontent.com/24897699/56186341-13fa3a80-605a-11e9-894d-731c2acdd982.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186341-13fa3a80-605a-11e9-894d-731c2acdd982.jpeg">
 
 > 여행지정보페이지2 - 모션적용
 
-![KakaoTalk_Photo_2019-04-14-17-58-47](https://user-images.githubusercontent.com/24897699/56186342-13fa3a80-605a-11e9-8692-e74b40a23b23.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186342-13fa3a80-605a-11e9-8692-e74b40a23b23.jpeg">
 
 > 동행페이지
 
-![KakaoTalk_Photo_2019-04-14-17-59-17](https://user-images.githubusercontent.com/24897699/56186345-1492d100-605a-11e9-97aa-76748d7eff42.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186345-1492d100-605a-11e9-97aa-76748d7eff42.jpeg">
 
 > 일정관리페이지
 
-![KakaoTalk_Photo_2019-04-14-17-59-26](https://user-images.githubusercontent.com/24897699/56186346-1492d100-605a-11e9-808b-154172dc75cc.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186346-1492d100-605a-11e9-808b-154172dc75cc.jpeg">
 
 > 세부일정관리페이지
 
-![KakaoTalk_Photo_2019-04-14-17-58-27](https://user-images.githubusercontent.com/24897699/56186340-1361a400-605a-11e9-9b86-51553db1cf53.jpeg)
+<img width="500" src="https://user-images.githubusercontent.com/24897699/56186340-1361a400-605a-11e9-9b86-51553db1cf53.jpeg">
 
 > 프로필페이지
 
