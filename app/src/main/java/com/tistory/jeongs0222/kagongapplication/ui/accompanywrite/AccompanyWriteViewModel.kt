@@ -26,6 +26,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     val confirmClick: LiveData<Any>
         get() = _confirmClick
 
+    private val _howToUseClick = SingleLiveEvent<Any>()
+    val howToUseClick: LiveData<Any>
+        get() = _howToUseClick
+
     private val _userNickName = MutableLiveData<String>()
     val userNickname: LiveData<String>
         get() = _userNickName
@@ -175,6 +179,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
 
     fun confirmClickEvent() {
         _confirmClick.call()
+    }
+
+    fun howToUseClickEvent() {
+        _howToUseClick.call()
     }
 
     fun categoryClickEvent() {

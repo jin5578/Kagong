@@ -15,6 +15,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityAccompanyWriteBinding
 import com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.adapter.CategoryAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.howToUse.HowToUseActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -76,6 +77,10 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
 
         accompanyWriteViewModel.previousClick.observe(this@AccompanyWriteActivity, Observer {
             finish()
+        })
+
+        accompanyWriteViewModel.howToUseClick.observe(this@AccompanyWriteActivity, Observer {
+            intentProvider.intent(HowToUseActivity::class.java)
         })
 
         accompanyWriteViewModel.confirmClick.observe(this@AccompanyWriteActivity, Observer {

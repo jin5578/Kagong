@@ -47,6 +47,19 @@
                     app:layout_constraintBottom_toBottomOf="@id/previous"/>
 
             <ImageView
+                    android:id="@+id/howToUse"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="15dp"
+                    android:src="@drawable/question"
+                    android:contentDescription="@string/imageView_description"
+                    android:onClick="@{() -> awViewModel.howToUseClickEvent()}"
+                    app:layout_constraintStart_toEndOf="@id/null1"
+                    app:layout_constraintTop_toTopOf="@id/confirm"
+                    app:layout_constraintBottom_toBottomOf="@id/confirm"/>
+
+            <ImageView
                     android:id="@+id/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
