@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.BuildConfig
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentProfileBinding
+import com.tistory.jeongs0222.kagongapplication.ui.howToUse.HowToUseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.MainViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
@@ -39,9 +40,14 @@ class ProfileFragment: Fragment() {
 
         intentProvider = IntentProviderImpl(this@ProfileFragment.activity!!)
 
+        mainViewModel.howToUseClick.observe(this@ProfileFragment, Observer {
+            intentProvider.intent(HowToUseActivity::class.java)
+        })
+
         mainViewModel.reviewClick.observe(this@ProfileFragment, Observer {
             intentProvider.intentReview()
         })
+
 
 
     }

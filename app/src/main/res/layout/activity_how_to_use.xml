@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="hViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.howToUse.HowToUseViewModel"/>
+
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:background="@color/colorBlue3">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:onClick="@{() -> hViewModel.previousClickEvent()}"
+                    android:contentDescription="@string/imageView_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                    android:id="@+id/null1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/seek_accompany"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/previous"/>
+
+            <TextView
+                    android:id="@+id/null2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/seek_accompany_introduce"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfl"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null1"/>
+
+            <ImageView
+                    android:id="@+id/null3"
+                    android:layout_width="0dp"
+                    android:layout_height="600dp"
+                    android:contentDescription="@string/imageView_description"
+                    app:imageGlide="@{hViewModel.image1}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null2"
+                    tools:src="@drawable/accompany_write"/>
+
+            <TextView
+                    android:id="@+id/null4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/seek_accompany_htu"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfl"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null3"/>
+
+            <ImageView
+                    android:id="@+id/null5"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imageView_description"
+                    app:imageGlide="@{hViewModel.image2}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null4"
+                    tools:src="@drawable/accompany_write1"/>
+
+            <ImageView
+                    android:id="@+id/null6"
+                    android:layout_width="0dp"
+                    android:layout_height="91dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imageView_description"
+                    app:imageGlide="@{hViewModel.image3}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null5"
+                    tools:src="@drawable/accompany_write2"/>
+
+            <ImageView
+                    android:id="@+id/null7"
+                    android:layout_width="0dp"
+                    android:layout_height="91dp"
+                    android:layout_marginTop="50dp"
+                    android:contentDescription="@string/imageView_description"
+                    app:imageGlide="@{hViewModel.image4}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null6"
+                    tools:src="@drawable/accompany_write3"/>
+
+            <ImageView
+                    android:id="@+id/null8"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:contentDescription="@string/imageView_description"
+                    app:imageGlide="@{hViewModel.image5}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null7"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:src="@drawable/accompany_write4"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

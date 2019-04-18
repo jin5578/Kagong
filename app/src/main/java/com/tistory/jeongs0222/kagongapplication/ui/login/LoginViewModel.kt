@@ -181,6 +181,5 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     fun removeCallback() {
         if(Session.getCurrentSession().isOpened)
             Session.getCurrentSession().removeCallback(callback)
-
     }
 }
