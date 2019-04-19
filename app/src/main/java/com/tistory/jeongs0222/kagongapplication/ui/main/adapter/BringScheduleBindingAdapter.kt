@@ -74,10 +74,10 @@ fun typeDivider(textView: TextView, type: String?) {
 fun areaConverter(textView: TextView, area: String?) {
     if(area != null) {
         when(area) {
-            "런던" -> textView.text = "LONDON"
-            "마드리드" -> textView.text = "MADRID"
-            "바르셀로나" -> textView.text = "BARCELONA"
-            "파리" -> textView.text = "PARIS"
+            "런던" -> textView.text = "London"
+            "마드리드" -> textView.text = "Madrid"
+            "바르셀로나" -> textView.text = "Barcelona"
+            "파리" -> textView.text = "Paris"
         }
     }
 }

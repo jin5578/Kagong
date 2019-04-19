@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivitySplashBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.appintroduce.AppIntroduceActivity
 import com.tistory.jeongs0222.kagongapplication.ui.login.LoginActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
@@ -24,7 +25,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
         splashViewModel.openDelay.observe(this, Observer {
             if (it) {
-                intentProvider.finishIntent(LoginActivity::class.java)
+                intentProvider.finishIntent(AppIntroduceActivity::class.java)
             }
         })
 
