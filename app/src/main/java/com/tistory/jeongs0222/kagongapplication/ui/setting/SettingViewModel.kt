@@ -1,11 +1,14 @@
 package com.tistory.jeongs0222.kagongapplication.ui.setting
 
 import android.annotation.SuppressLint
+import android.content.pm.PackageInfo
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.SettingRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
+import com.tistory.jeongs0222.kagongapplication.utils.PackageInfoProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,18 +34,24 @@ class SettingViewModel(private val settingRepository: SettingRepository) : Dispo
     val appShutDownRequest: LiveData<Any>
         get() = _appShutDownRequest
 
+    private val _versionName = MutableLiveData<String>()
+    val versionName: LiveData<String>
+        get() = _versionName
+
 
     private lateinit var dbHelperProvider: DBHelperProvider
     private lateinit var messageProvider: MessageProvider
+    private lateinit var packageInfoProvider: PackageInfoProvider
 
     private lateinit var userKey: String
 
-
-    fun bind(dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider) {
+    fun bind(dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider, packageInfoProvider: PackageInfoProvider) {
         this.dbHelperProvider = dbHelperProvider
         this.messageProvider = messageProvider
+        this.packageInfoProvider = packageInfoProvider
 
         userKey = dbHelperProvider.getDBHelper().getUserKey()
+        _versionName.value = packageInfoProvider.bringVersionName()
     }
 
     fun previousClickEvent() {

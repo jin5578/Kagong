@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.setting
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
@@ -14,6 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
+    private val TAG = "SettingActivity"
+
     override val layoutResourceId: Int = R.layout.activity_setting
 
     private val settingViewModel by viewModel<SettingViewModel>()
@@ -21,6 +24,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     private val dbHelperProvider = DBHelperProviderImpl(this@SettingActivity) as DBHelperProvider
     private val messageProvider = MessageProviderImpl(this@SettingActivity) as MessageProvider
     private val intentProvider = IntentProviderImpl(this@SettingActivity) as IntentProvider
+    private val packageProvider = PackageInfoProviderImpl(this@SettingActivity) as PackageInfoProvider
 
     private lateinit var alertDialog: AlertDialog
 
@@ -28,7 +32,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        settingViewModel.bind(dbHelperProvider, messageProvider)
+        settingViewModel.bind(dbHelperProvider, messageProvider, packageProvider)
 
         settingViewModel.previousClick.observe(this@SettingActivity, Observer {
             finish()

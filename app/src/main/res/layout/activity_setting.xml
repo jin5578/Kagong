@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-                android:text="1.0.1"
+                android:text="@{sViewModel.versionName}"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintEnd_toEndOf="parent"
