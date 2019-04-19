@@ -43,6 +43,7 @@ class Application: Application() {
                 }
             }
         }
+        
 
         override fun getApplicationConfig(): IApplicationConfig {
             return IApplicationConfig { context }
