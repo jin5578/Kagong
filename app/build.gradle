@@ -9,28 +9,35 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "com.tistory.jeongs0222.kagongapplication"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
         versionName "1.0.1"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     dataBinding {
         enabled = true
     }
+
     lintOptions {       //딥 링크 검사 비활성화
         disable 'GoogleAppIndexingWarning'
         baseline file("lint-baseline.xml")
     }
+
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
 
 }
@@ -38,47 +45,48 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.constraintlayoutVersion"
 
     //Retrofit && RxJava
-    implementation "com.squareup.retrofit2:retrofit:2.4.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
 
     //Lifecycle
-    implementation 'androidx.core:core-ktx:1.0.1'
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation "androidx.core:core-ktx:$rootProject.ext.ktxVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.lifecycleVersion"
 
     //Google FIrebase
-    implementation 'com.google.firebase:firebase-auth:16.2.1'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.firebase:firebase-messaging:17.6.0'
-    implementation 'com.google.firebase:firebase-config:16.5.0'
+    implementation "com.google.firebase:firebase-auth:$rootProject.ext.firebase_auth_version"
+    implementation "com.google.firebase:firebase-messaging:$rootProject.ext.firebase_messaging_version"
+    implementation "com.google.firebase:firebase-config:$rootProject.ext.firebase_config_version"
+    implementation "com.google.android.gms:play-services-auth:$rootProject.ext.google_auth_version"
+
+    //Material Design
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
 
     //Koin
-    implementation 'org.koin:koin-android:1.0.2'
-    implementation 'org.koin:koin-androidx-viewmodel:1.0.2'
+    implementation "org.koin:koin-android:$rootProject.ext.koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$rootProject.ext.koin_version"
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-
-    implementation 'com.google.android.material:material:1.1.0-alpha05'
-
-    //Design
-    implementation 'com.google.android.material:material:1.1.0-alpha05'
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
 
     //RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.recyclerVersion"
+    implementation "androidx.cardview:cardview:$rootProject.ext.cardViewVersion"
 
     //Http Interceptor
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
 
     //Kakao Login
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
