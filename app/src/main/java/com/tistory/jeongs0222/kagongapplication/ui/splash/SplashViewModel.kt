@@ -3,7 +3,6 @@ package com.tistory.jeongs0222.kagongapplication.ui.splash
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
-import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
 import com.tistory.jeongs0222.kagongapplication.utils.PackageInfoProvider
 import com.tistory.jeongs0222.kagongapplication.utils.RemoteControllerProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
@@ -22,30 +21,29 @@ class SplashViewModel : DisposableViewModel() {
 
     private lateinit var remoteControllerProvider: RemoteControllerProvider
     private lateinit var packageInfoProvider: PackageInfoProvider
-    private lateinit var messageProvider: MessageProvider
 
     private lateinit var least_version: String
     private lateinit var app_version: String
 
-    fun bind(remoteControllerProvider: RemoteControllerProvider, packageInfoProvider: PackageInfoProvider, messageProvider: MessageProvider) {
+    fun bind(remoteControllerProvider: RemoteControllerProvider, packageInfoProvider: PackageInfoProvider) {
         this.remoteControllerProvider = remoteControllerProvider
         this.packageInfoProvider = packageInfoProvider
-        this.messageProvider = messageProvider
 
         compareVersion()
     }
 
     private fun compareVersion() {
         least_version = remoteControllerProvider.fetchLeastVersion()
-        Log.e("least_version", least_version)
 
-        app_version = "\"" + packageInfoProvider.bringVersionName() + "\""
+        app_version = packageInfoProvider.bringVersionName()
+
+        Log.e("least_version", least_version)
         Log.e("app_version", app_version)
 
         if(app_version != least_version) {
             delayTime()
         } else {
-            messageProvider.settingAlertDialog(2)
+            Log.e("123", "!23")
         }
     }
 
