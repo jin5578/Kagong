@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.graphics.Bitmap
@@ -25,7 +26,7 @@ interface ImageCropProvider {
 }
 
 class ImageCropProviderImpl(
-    private val activity: ProfileModifyFragment
+    private val activity: Activity
 ) : ImageCropProvider {
 
     private val CROP_FROM_CAMERA = 222
@@ -37,9 +38,9 @@ class ImageCropProviderImpl(
         val intent = Intent("com.android.camera.action.CROP")
         intent.setDataAndType(temp, "image/*")
 
-        val list = activity.context!!.packageManager.queryIntentActivities(intent, 0)
+        val list = activity.packageManager.queryIntentActivities(intent, 0)
 
-        activity.context!!.applicationContext.grantUriPermission(
+        activity.applicationContext.grantUriPermission(
             list[0].activityInfo.packageName,
             temp,
             Intent.FLAG_GRANT_WRITE_URI_PERMISSION
@@ -77,7 +78,7 @@ class ImageCropProviderImpl(
             //SDK에 따른 분류
             convertedTemp = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 FileProvider.getUriForFile(
-                    activity.context!!.applicationContext,
+                    activity.applicationContext,
                     "com.tistory.jeongs0222.kagongapplication.provider",
                     tempFile
                 )
@@ -95,7 +96,7 @@ class ImageCropProviderImpl(
 
             val res = list[0]
 
-            activity.context!!.applicationContext.grantUriPermission(
+            activity.applicationContext.grantUriPermission(
                 res.activityInfo.packageName,
                 convertedTemp,
                 Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -130,7 +131,7 @@ class ImageCropProviderImpl(
 
         mediaScanIntent.data = Uri.fromFile(file)
 
-        activity.context!!.sendBroadcast(mediaScanIntent)
+        activity.sendBroadcast(mediaScanIntent)
 
         return file
     }

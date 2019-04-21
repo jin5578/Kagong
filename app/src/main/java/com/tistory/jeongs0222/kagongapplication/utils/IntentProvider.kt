@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import com.tistory.jeongs0222.kagongapplication.BuildConfig
 
 

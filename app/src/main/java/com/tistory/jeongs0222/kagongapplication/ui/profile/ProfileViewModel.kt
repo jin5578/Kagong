@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.repository.ProfileRepository
