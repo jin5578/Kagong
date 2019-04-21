@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
+import com.tistory.jeongs0222.kagongapplication.BuildConfig
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.AddDetailScheduleViewModel
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
@@ -86,11 +87,18 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater.inflate(R.layout.layout_setting_alert, null)
 
+        // 업데이트 AlertDialog인 경우
+        if(sort == 2)
+            inflater.findViewById<TextView>(R.id.setting).text = activity.resources.getString(R.string.update_right_now)
+
+
         inflater.findViewById<TextView>(R.id.content).apply {
             text = when(sort) {
                 0 -> activity.resources.getString(R.string.network_disabled)
 
-                else -> activity.resources.getString(R.string.permission_disabled)
+                1 -> activity.resources.getString(R.string.permission_disabled)
+
+                else -> activity.resources.getString(R.string.application_disabled)
             }
         }
 
@@ -101,10 +109,29 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
             val intent = when(sort) {
                 0 -> Intent(Settings.ACTION_WIFI_SETTINGS)
 
-                else  -> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(Uri.parse("package:" + activity.packageName))
+                1 -> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(Uri.parse("package:" + activity.packageName))
+
+                else -> {
+                    val uri = Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)
+
+                    Intent(Intent.ACTION_VIEW, uri).addFlags(
+                        Intent.FLAG_ACTIVITY_NO_HISTORY or
+                                Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                                Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                    )
+                }
             }
 
             activity.startActivity(intent)
+
+            // 업데이트 AlertDialog인 경우 누르면 어플이케이션이 완전히 종료되도록
+            if(sort == 2) {
+                activity.apply {
+                    moveTaskToBack(true)
+                    finishAffinity()
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }
+            }
 
             alertDialog.dismiss()
         }
@@ -114,7 +141,6 @@ class MessageProviderImpl(private val activity: Activity) : MessageProvider {
         alertDialog = builder.create()
 
         alertDialog.show()
-
     }
 
     override fun addDetailScheduleAlertDialog(viewModel: DisposableViewModel, area: String, position: String, sort: Int) {
