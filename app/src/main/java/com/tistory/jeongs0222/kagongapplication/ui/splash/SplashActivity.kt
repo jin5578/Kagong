@@ -19,11 +19,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     private val intentProvider = IntentProviderImpl(this@SplashActivity) as IntentProvider
     private val remoteControllerProvider = RemoteControllerProviderImpl() as RemoteControllerProvider
     private val packageInfoProvider = PackageInfoProviderImpl(this@SplashActivity) as PackageInfoProvider
+    private val messageProvider = MessageProviderImpl(this@SplashActivity) as MessageProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        splashViewModel.bind(remoteControllerProvider, packageInfoProvider)
+        splashViewModel.bind(remoteControllerProvider, packageInfoProvider, messageProvider)
 
         splashViewModel.openDelay.observe(this, Observer {
             if (it) {

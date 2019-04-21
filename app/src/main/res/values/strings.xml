@@ -172,4 +172,7 @@
 
     <string name="start">시작하기</string>
 
+    <string name="application_disabled">보다 나 서비스 이용을 위해\n지금 바로 업데이트 하세요!</string>
+    <string name="update_right_now">지금 업데이트</string>
+
 </resources>
