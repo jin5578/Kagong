@@ -1,13 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.profile.fragment
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -30,15 +24,10 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
     private val profileViewModel by sharedViewModel<ProfileViewModel>()
 
     private lateinit var permissionProvider: PermissionProvider
-    private lateinit var imageCropProvider: ImageCropProvider
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
     private lateinit var imm: InputMethodManager
 
-    private val PICK_FROM_GALLERY = 111
-    private val CROP_FROM_CAMERA = 222
-
-    private lateinit var dataUri: Uri
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,7 +43,6 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
         super.onViewCreated(view, savedInstanceState)
 
         permissionProvider = PermissionProviderImpl(this@ProfileModifyFragment.activity!!)
-        imageCropProvider = ImageCropProviderImpl(this@ProfileModifyFragment)
         messageProvider = MessageProviderImpl(this@ProfileModifyFragment.activity!!)
         intentProvider = IntentProviderImpl(this@ProfileModifyFragment.activity!!)
 
@@ -95,7 +83,6 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        Log.e("onTextChanged", "called")
         profileViewModel.validateCheck = false
     }
 
@@ -106,26 +93,5 @@ class ProfileModifyFragment : Fragment(), TextWatcher {
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == PICK_FROM_GALLERY) {
-
-            if(resultCode == Activity.RESULT_OK) {
-
-                if(data != null) {
-                    val temp = data.data!!
-
-                    imageCropProvider.cropImage(temp)
-                }
-            }
-        } else if(requestCode == CROP_FROM_CAMERA) {
-            if(data != null) {
-                dataUri = data.data!!
-
-                val cropFile = imageCropProvider.galleryAddPic()
-                profileViewModel.uploadProfileImage(cropFile)
-            }
-        }
-    }
 }
