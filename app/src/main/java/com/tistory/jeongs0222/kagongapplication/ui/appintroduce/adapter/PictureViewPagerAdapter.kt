@@ -15,8 +15,8 @@ import com.tistory.jeongs0222.kagongapplication.ui.appintroduce.AppIntroduceEven
 
 
 class PictureViewPagerAdapter(
-    private val eventListener: AppIntroduceEventListener,
-    private val context: Context
+    private val context: Context,
+    private val eventListener: AppIntroduceEventListener
 ) : PagerAdapter() {
 
 

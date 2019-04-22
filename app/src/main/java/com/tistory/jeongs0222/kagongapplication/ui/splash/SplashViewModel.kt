@@ -53,7 +53,5 @@ class SplashViewModel : DisposableViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _openDelay.value = true
-
-                onCleared()
             }
 }

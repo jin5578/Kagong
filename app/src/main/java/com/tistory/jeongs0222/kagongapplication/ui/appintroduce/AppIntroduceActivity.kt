@@ -20,12 +20,10 @@ class AppIntroduceActivity: BaseActivity<ActivityAppIntroduceBinding>(), ViewPag
 
     private val appIntroduceViewModel by viewModel<AppIntroduceViewModel>()
 
-
     private val intentProvider = IntentProviderImpl(this@AppIntroduceActivity) as IntentProvider
     private val dotsIndicatorProvider = DotsIndicatorProviderImpl(this@AppIntroduceActivity) as DotsIndicatorProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@AppIntroduceActivity)
 
-    private lateinit var pictureViewPagerAdapter: PictureViewPagerAdapter
     private lateinit var dotsImage: ArrayList<ImageView>
 
 
@@ -36,10 +34,8 @@ class AppIntroduceActivity: BaseActivity<ActivityAppIntroduceBinding>(), ViewPag
             intentProvider.finishIntent(LoginActivity::class.java)
         }
 
-        pictureViewPagerAdapter= PictureViewPagerAdapter(appIntroduceViewModel, this@AppIntroduceActivity)
-
         viewDataBinding.viewPager.apply {
-            adapter = pictureViewPagerAdapter
+            adapter = PictureViewPagerAdapter(this@AppIntroduceActivity, appIntroduceViewModel)
             addOnPageChangeListener(this@AppIntroduceActivity)
         }
 
