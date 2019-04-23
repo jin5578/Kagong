@@ -10,7 +10,6 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityWrittenBindi
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.written.adapter.WrittenAccompanyAdapter
 import com.tistory.jeongs0222.kagongapplication.utils.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

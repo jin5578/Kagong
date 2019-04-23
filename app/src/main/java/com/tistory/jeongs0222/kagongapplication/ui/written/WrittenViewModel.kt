@@ -39,13 +39,8 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
     val moreVisibility: LiveData<Boolean>
         get() = _moreVisibility
 
-    /*private val _moreOrder = MutableLiveData<Int>()
-    val moreOrder: LiveData<Int>
-        get() = _moreOrder*/
-
-    private val _selectedContent = MutableLiveData<String>()
-
-    private val _selectedWrittenTime = MutableLiveData<String>()
+    private lateinit var selectedContent: String
+    private lateinit var selectedWrittenTime: String
 
     private lateinit var messageProvider: MessageProvider
 
@@ -76,7 +71,7 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
     }
 
     fun deleteAccompany() {
-        writtenRepository.deleteAccompany(userKey, _selectedContent.value!!, _selectedWrittenTime.value!!)
+        writtenRepository.deleteAccompany(userKey, selectedContent, selectedWrittenTime)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
@@ -110,8 +105,8 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
     override fun moreClickEvent(content: String, writtenTime: String) {
         _moreVisibility.value = true
 
-        _selectedContent.value = content
-        _selectedWrittenTime.value = writtenTime
+        selectedContent = content
+        selectedWrittenTime = writtenTime
     }
 }
 
