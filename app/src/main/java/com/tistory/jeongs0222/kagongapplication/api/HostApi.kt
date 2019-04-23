@@ -5,6 +5,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.areaInformation.AreaI
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.BringAreaGoodPlaceResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaImage.BringAreaImageResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaList.BringAreaListResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
@@ -51,6 +52,10 @@ interface HostApi {
     fun bringNicknameAndIntro(
         @Field("googlekey") googlekey: String
     ): Single<BringNicknameAndIntroResult>
+
+    //Bring Area List - MainActivity ( MainAccompanyFragment)
+    @GET("bringAreaList.php")
+    fun bringAreaList(): Single<BringAreaListResponse>
 
     //Bring search area history - MainActivity
     @FormUrlEncoded

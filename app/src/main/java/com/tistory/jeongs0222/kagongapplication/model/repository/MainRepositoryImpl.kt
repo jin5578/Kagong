@@ -1,6 +1,8 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaList.BringAreaListResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
@@ -28,4 +30,10 @@ class MainRepositoryImpl(private val hostApi: HostApi): MainRepository {
 
     override fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
             = hostApi.bringSchedule(googlekey)
+
+    override fun bringAreaList(): Single<BringAreaListResponse>
+            = hostApi.bringAreaList()
+
+    override fun bringAccompany(area: String, tab: Int): Single<BringAccompanyResponse>
+            = hostApi.bringAccompany(area, tab)
 }

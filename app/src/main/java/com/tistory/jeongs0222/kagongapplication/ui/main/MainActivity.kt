@@ -31,9 +31,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     private val dbHelperProvider = DBHelperProviderImpl(this@MainActivity) as DBHelperProvider
 
     private val homeFragment = HomeFragment()
+    private val searchAreaFragment = SearchAreaFragment()
+    private val mainAccompanyFragment = MainAccompanyFragment()
     private val scheduleFragment = ScheduleFragment()
     private val profileFragment = ProfileFragment()
-    private val searchAreaFragment = SearchAreaFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +76,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
         return when (menuItem.itemId) {
             R.id.home_menu -> {
                 fragmentProvider.replaceFragment(homeFragment)
+
+                true
+            }
+
+            R.id.accompany_menu -> {
+                fragmentProvider.replaceFragment(mainAccompanyFragment)
 
                 true
             }

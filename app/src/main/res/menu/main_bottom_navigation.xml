@@ -10,6 +10,12 @@
         android:title="@string/home"/>
 
     <item
+        android:id="@+id/accompany_menu"
+        android:icon="@drawable/accompany"
+        app:showAsAction="ifRoom"
+        android:title="동행"/>
+
+    <item
         android:id="@+id/location_menu"
         android:icon="@drawable/schedule"
         app:showAsAction="ifRoom"

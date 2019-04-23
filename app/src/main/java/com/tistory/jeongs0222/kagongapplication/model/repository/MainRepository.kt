@@ -1,5 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaList.BringAreaListResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
@@ -10,15 +12,34 @@ import io.reactivex.Single
 
 
 interface MainRepository {
-    fun bringNicknameAndIntro(googlekey: String): Single<BringNicknameAndIntroResult>
+    fun bringNicknameAndIntro(
+        googlekey: String
+    ): Single<BringNicknameAndIntroResult>
 
-    fun bringHistory(googlekey: String): Single<FindAreaHistoryResponse>
+    fun bringHistory(
+        googlekey: String
+    ): Single<FindAreaHistoryResponse>
 
     fun bringRecommendArea(): Single<RecommendAreaResponse>
 
-    fun findArea(findcontent: String, sort: Int): Single<FindAreaResponse>
+    fun findArea(
+        findcontent: String,
+        sort: Int
+    ): Single<FindAreaResponse>
 
-    fun findAreaLog(area: String, userid: String): Single<FindAreaLogResult>
+    fun findAreaLog(
+        area: String,
+        userid: String
+    ): Single<FindAreaLogResult>
 
-    fun bringSchedule(googlekey: String): Single<BringScheduleResponse>
+    fun bringSchedule(
+        googlekey: String
+    ): Single<BringScheduleResponse>
+
+    fun bringAreaList(): Single<BringAreaListResponse>
+
+    fun bringAccompany(
+        area: String,
+        tab: Int
+    ): Single<BringAccompanyResponse>
 }
