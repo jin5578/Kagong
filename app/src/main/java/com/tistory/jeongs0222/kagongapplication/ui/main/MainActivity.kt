@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityMainBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.AccompanyWriteActivity
 import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.*
 import com.tistory.jeongs0222.kagongapplication.ui.notice.NoticeActivity
 import com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileActivity
@@ -50,6 +51,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
         mainViewModel.searchAreaClick.observe(this@MainActivity, Observer {
             fragmentProvider.replaceFragment(searchAreaFragment)
+        })
+
+        mainViewModel.accompanyWriteClick.observe(this@MainActivity, Observer {
+            intentProvider.intentPutExtra(AccompanyWriteActivity::class.java, mainViewModel.accompanyArea.value!!)
         })
 
         mainViewModel.previousClick.observe(this@MainActivity, Observer {

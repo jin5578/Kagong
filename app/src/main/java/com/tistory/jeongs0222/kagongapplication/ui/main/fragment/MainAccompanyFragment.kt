@@ -51,7 +51,7 @@ class MainAccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
         mainViewModel.bringAccompany(0)
 
-        mainViewModel.areaChanged.observe(this@MainAccompanyFragment, Observer {
+        mainViewModel.areaChangedClick.observe(this@MainAccompanyFragment, Observer {
             binding.tabLayout.getTabAt(0)!!.select()
         })
     }

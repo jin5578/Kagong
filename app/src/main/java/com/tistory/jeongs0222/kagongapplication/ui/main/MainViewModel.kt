@@ -52,9 +52,13 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
 
     //MainAccompanyFragment
-    private val _areaChanged = SingleLiveEvent<Any>()
-    val areaChanged: LiveData<Any>
-        get() = _areaChanged
+    private val _areaChangedClick = SingleLiveEvent<Any>()
+    val areaChangedClick: LiveData<Any>
+        get() = _areaChangedClick
+
+    private val _accompanyWriteClick = SingleLiveEvent<Any>()
+    val accompanyWriteClick: LiveData<Any>
+        get() = _accompanyWriteClick
 
     private val _areaList = MutableLiveData<MutableList<BringAreaListResult>>()
     val areaList: LiveData<MutableList<BringAreaListResult>>
@@ -156,6 +160,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     fun changeAreaClickEvent() {
         _areaRecyclerVisibility.value = true
+    }
+
+    fun accompanyWriteClickEvent() {
+        _accompanyWriteClick.call()
     }
 
     fun searchAreaClickEvent() {
@@ -341,7 +349,7 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     }
 
     override fun areaListItemClickEvent(area: String) {
-        _areaChanged.call()
+        _areaChangedClick.call()
 
         _accompanyArea.value = area
 
