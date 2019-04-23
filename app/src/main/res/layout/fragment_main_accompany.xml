@@ -42,7 +42,7 @@
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:text="@string/change_area"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:fontFamily="@font/nanumotfl"
                 android:onClick="@{() -> mViewModel.changeAreaClickEvent()}"
                 app:layout_constraintTop_toTopOf="@id/area"
@@ -54,10 +54,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingEnd="16dp"
                 android:paddingTop="16dp"
                 android:src="@drawable/ic_edit_pink_24dp"
                 android:onClick="@{() -> mViewModel.accompanyWriteClickEvent()}"
+                android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/area"
                 app:layout_constraintBottom_toBottomOf="@id/area"/>
@@ -149,32 +150,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-                android:id="@+id/itemNull1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="30dp"
-                android:text="@string/accompany"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:fontFamily="@font/nanumotfeb"
-                app:mAccompanyNullVisibility="@{mViewModel.accompanyList}"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
                 android:id="@+id/itemNull"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
                 android:visibility="gone"
                 android:gravity="center"
                 android:text="@string/content_hint_accompany"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 app:mAccompanyNullVisibility="@{mViewModel.accompanyList}"
-                app:layout_constraintStart_toStartOf="@id/itemNull1"
-                app:layout_constraintTop_toBottomOf="@id/itemNull1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
                 tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
