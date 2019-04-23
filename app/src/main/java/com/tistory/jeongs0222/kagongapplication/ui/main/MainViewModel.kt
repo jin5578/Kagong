@@ -3,6 +3,8 @@ package com.tistory.jeongs0222.kagongapplication.ui.main
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaList.BringAreaListResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResult
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResult
@@ -47,6 +49,28 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     private val _recommendArea = MutableLiveData<MutableList<RecommendAreaResult>>()
     val recommendArea: LiveData<MutableList<RecommendAreaResult>>
         get() = _recommendArea
+
+
+    //MainAccompanyFragment
+    private val _areaChanged = SingleLiveEvent<Any>()
+    val areaChanged: LiveData<Any>
+        get() = _areaChanged
+
+    private val _areaList = MutableLiveData<MutableList<BringAreaListResult>>()
+    val areaList: LiveData<MutableList<BringAreaListResult>>
+        get() = _areaList
+
+    private val _areaRecyclerVisibility = MutableLiveData<Boolean>()
+    val areaRecyclerVisibility: LiveData<Boolean>
+        get() = _areaRecyclerVisibility
+
+    private val _accompanyArea = MutableLiveData<String>()
+    val accompanyArea: LiveData<String>
+        get() = _accompanyArea
+
+    private val _accompanyList = MutableLiveData<MutableList<BringAccompanyResult>>()
+    val accompanyList: LiveData<MutableList<BringAccompanyResult>>
+        get() = _accompanyList
 
 
     //ScheduleFragment
@@ -115,6 +139,8 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     init {
         _viewFinish.value = false
+
+        _accompanyArea.value = "런던"
     }
 
     fun bind(messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
@@ -125,6 +151,11 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
         bringRecommendArea()
         bringNicknameAndIntro()
+        bringAreaList()
+    }
+
+    fun changeAreaClickEvent() {
+        _areaRecyclerVisibility.value = true
     }
 
     fun searchAreaClickEvent() {
@@ -163,6 +194,34 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
                 _userNickname.value = it.nickname
 
                 _userImage.value = it.image
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringAccompany(tab: Int) {
+        mainRepository.bringAccompany(_accompanyArea.value!!, tab)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _accompanyList.value = it.bringAccompany
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun bringAreaList() {
+        mainRepository.bringAreaList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _areaList.value = it.areaList
+
+                Log.e("_areaList_size", _areaList.value!!.size.toString())
             }
             .doOnError {
                 it.printStackTrace()
@@ -281,6 +340,20 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         }
     }
 
+    override fun areaListItemClickEvent(area: String) {
+        _areaChanged.call()
+
+        _accompanyArea.value = area
+
+        _areaRecyclerVisibility.value = false
+
+        bringAccompany(0)
+    }
+
+    override fun kakaoLinkClickEvent(link: String) {
+        intentProvider.intentActionView(link)
+    }
+
 }
 
 interface MainEventListener {
@@ -291,4 +364,8 @@ interface MainEventListener {
     fun searchItemClickEvent(area: String)
 
     fun myScheduleClickEvent(type: String, area: String)
+
+    fun areaListItemClickEvent(area: String)
+
+    fun kakaoLinkClickEvent(link: String)
 }
