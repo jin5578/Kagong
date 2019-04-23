@@ -12,6 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.*
 import com.tistory.jeongs0222.kagongapplication.ui.notice.NoticeActivity
 import com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileActivity
 import com.tistory.jeongs0222.kagongapplication.ui.setting.SettingActivity
+import com.tistory.jeongs0222.kagongapplication.ui.written.WrittenActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,6 +72,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
         mainViewModel.noticeClick.observe(this@MainActivity, Observer {
             intentProvider.intent(NoticeActivity::class.java)
+        })
+
+        mainViewModel.writtenClick.observe(this@MainActivity, Observer {
+            intentProvider.intent(WrittenActivity::class.java)
         })
 
         viewDataBinding.mViewModel = mainViewModel
