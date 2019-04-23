@@ -21,12 +21,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_login
 
-    private val loginViewModel by viewModel<LoginViewModel>()
+    private val lViewModel by viewModel<LoginViewModel>()
 
-    private val networkCheckProvider = NetworkCheckProviderImpl(this@LoginActivity) as NetworkCheckProvider
-    private val googleSignProvider = GoogleSignProviderImpl(this@LoginActivity) as GoogleSignProvider
-    private val kakaoSignProvider = KakaoSignProviderImpl(this@LoginActivity, this@LoginActivity) as KakaoSignProvider
-    private val dbHelperProvider = DBHelperProviderImpl(this@LoginActivity) as DBHelperProvider
     private val messageProvider = MessageProviderImpl(this@LoginActivity) as MessageProvider
     private val intentProvider = IntentProviderImpl(this@LoginActivity) as IntentProvider
 
@@ -34,14 +30,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loginViewModel.bind(networkCheckProvider, googleSignProvider, kakaoSignProvider, dbHelperProvider, messageProvider, intentProvider)
+        lViewModel.bind(
+            NetworkCheckProviderImpl(this@LoginActivity),
+            GoogleSignProviderImpl(this@LoginActivity),
+            KakaoSignProviderImpl(this@LoginActivity),
+            DBHelperProviderImpl(this@LoginActivity),
+            messageProvider,
+            intentProvider
+        )
 
         //네트워크 활성화 상태 확인
-        loginViewModel.networkStatus.observe(this@LoginActivity, Observer {
+        lViewModel.lNetworkStatus.observe(this@LoginActivity, Observer {
             if (it) {
-                loginViewModel.bbind()
+                lViewModel.bbind()
 
-                loginViewModel.validateUser.observe(this@LoginActivity, Observer {
+                lViewModel.lValidateUser.observe(this@LoginActivity, Observer {
                     if(it) {
                         intentProvider.finishIntent(MainActivity::class.java)
                     }
@@ -51,7 +54,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         })
 
-        viewDataBinding.lViewModel = loginViewModel
+        viewDataBinding.lViewModel = lViewModel
         viewDataBinding.lifecycleOwner = this@LoginActivity
     }
 
@@ -66,7 +69,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 val account = task.getResult(ApiException::class.java)
 
                 if (account != null) {
-                    loginViewModel.firebaseSignIn(account)
+                    lViewModel.firebaseSignIn(account)
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
@@ -85,15 +88,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onResume() {
         super.onResume()
 
-        loginViewModel.networkCheck()
+        lViewModel.networkCheck()
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        loginViewModel.removeCallback()
+        lViewModel.removeCallback()
 
-        loginViewModel.mGoogleSignInClient.signOut()
+        lViewModel.mGoogleSignInClient.signOut()
     }
 
     override fun onBackPressed() {

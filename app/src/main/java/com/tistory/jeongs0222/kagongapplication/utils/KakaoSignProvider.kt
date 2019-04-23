@@ -19,7 +19,7 @@ interface KakaoSignProvider {
     fun kakaoLogin()
 }
 
-class KakaoSignProviderImpl(private val activity: Activity, private val context: Context): KakaoSignProvider {
+class KakaoSignProviderImpl(private val activity: Activity): KakaoSignProvider {
 
     override fun kakaoLogin() {
         val authTypes = getAuthTypes()
@@ -86,7 +86,7 @@ class KakaoSignProviderImpl(private val activity: Activity, private val context:
     private fun createLoginAdapter(authItems: Array<Item>): ListAdapter {
 
         return object : ArrayAdapter<Item>(
-            context,
+            activity.applicationContext,
             android.R.layout.select_dialog_item,
             android.R.id.text1, authItems
         ) {
@@ -112,7 +112,7 @@ class KakaoSignProviderImpl(private val activity: Activity, private val context:
     }
 
     private fun createLoginDialog(authItems: Array<Item>, adapter: ListAdapter): Dialog {
-        val dialog = Dialog(context, R.style.LoginDialog)
+        val dialog = Dialog(activity.applicationContext, R.style.LoginDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(com.kakao.usermgmt.R.layout.layout_login_dialog)
         if (dialog.window != null) {

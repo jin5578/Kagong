@@ -3,7 +3,7 @@ package com.tistory.jeongs0222.kagongapplication
 import android.app.Application
 import android.content.Context
 import com.kakao.auth.*
-import com.tistory.jeongs0222.kagongapplication.di.kagongModules
+import com.tistory.jeongs0222.kagongapplication.di.appModules
 import org.koin.android.ext.android.startKoin
 
 
@@ -14,8 +14,10 @@ class Application: Application() {
         super.onCreate()
 
         context = this.applicationContext
+
         KakaoSDK.init(KakaoSDKAdapter())        //Kakao Login
-        startKoin(this, kagongModules)
+
+        startKoin(this, appModules)
     }
 
     //Kakao Login

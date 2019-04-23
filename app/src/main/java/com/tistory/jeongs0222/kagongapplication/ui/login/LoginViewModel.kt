@@ -27,13 +27,14 @@ import io.reactivex.schedulers.Schedulers
 
 class  LoginViewModel(private val loginRepository: LoginRepository) : DisposableViewModel() {
 
-    private val _networkStatue = MutableLiveData<Boolean>()
-    val networkStatus: LiveData<Boolean>
-        get() = _networkStatue
+    private val _lValidateUser = MutableLiveData<Boolean>()
+    val lValidateUser: LiveData<Boolean>
+        get() = _lValidateUser
 
-    private val _validateUser = MutableLiveData<Boolean>()
-    val validateUser: LiveData<Boolean>
-        get() = _validateUser
+    private val _lNetworkStatue = MutableLiveData<Boolean>()
+    val lNetworkStatus: LiveData<Boolean>
+        get() = _lNetworkStatue
+
 
     private val TAG = "LoginViewModel"
 
@@ -44,12 +45,12 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
     private lateinit var messageProvider: MessageProvider
     private lateinit var intentProvider: IntentProvider
 
-    lateinit var gso: GoogleSignInOptions
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-
     private lateinit var callback: SessionCallback
 
     private lateinit var user: String
+
+    lateinit var gso: GoogleSignInOptions
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     lateinit var loginMethod: String
 
@@ -73,8 +74,12 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
         mGoogleSignInClient = googleSignProvider.getGoogleSignInClient(gso)
     }
 
+    private fun validateUserCheck() {
+        _lValidateUser.value = dbHelperProvider.getDBHelper().getUserKey().isNotEmpty()
+    }
+
     fun networkCheck() {
-        _networkStatue.value = networkCheckProvider.isNetworkConeected()
+        _lNetworkStatue.value = networkCheckProvider.isNetworkConeected()
     }
 
     fun googleLoginClickEvent() {
@@ -107,9 +112,7 @@ class  LoginViewModel(private val loginRepository: LoginRepository) : Disposable
         }
     }
 
-    private fun validateUserCheck() {
-        _validateUser.value = dbHelperProvider.getDBHelper().getUserKey().isNotEmpty()
-    }
+
 
     @SuppressLint("CheckResult")
     fun keyCheck(userkey: String) {

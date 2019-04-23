@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit
 
 class SplashViewModel : DisposableViewModel() {
 
-    private val _openDelay = SingleLiveEvent<Boolean>()
-    val openDelay: LiveData<Boolean>
-        get() = _openDelay
+    private val _sOpenDelay = SingleLiveEvent<Boolean>()
+    val sOpenDelay: LiveData<Boolean>
+        get() = _sOpenDelay
 
     private lateinit var remoteControllerProvider: RemoteControllerProvider
     private lateinit var packageInfoProvider: PackageInfoProvider
@@ -52,6 +52,6 @@ class SplashViewModel : DisposableViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                _openDelay.value = true
+                _sOpenDelay.value = true
             }
 }
