@@ -24,8 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
+                android:paddingEnd="0dp"
                 android:paddingTop="20dp"
-                android:paddingEnd="20dp"
                 android:text="@{mViewModel.accompanyArea}"
                 android:textSize="16sp"
                 android:textColor="@color/colorBlack"
@@ -47,7 +47,20 @@
                 android:onClick="@{() -> mViewModel.changeAreaClickEvent()}"
                 app:layout_constraintTop_toTopOf="@id/area"
                 app:layout_constraintBottom_toBottomOf="@id/area"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintStart_toEndOf="@id/area"/>
+
+        <ImageView
+                android:id="@+id/write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_edit_pink_24dp"
+                android:onClick="@{() -> mViewModel.accompanyWriteClickEvent()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/area"
+                app:layout_constraintBottom_toBottomOf="@id/area"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/areaRecycler"

@@ -28,8 +28,7 @@
                 android:onClick="@{() -> tViewModel.previousClickEvent()}"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/goodPlaceSearch"
-                app:layout_constraintBottom_toBottomOf="@id/goodPlaceSearch"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
                 android:id="@+id/search"
@@ -54,6 +53,7 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:onClick="@{() -> tViewModel.writeClickEvent()}"
+                android:contentDescription="@string/imageView_description"
                 android:src="@drawable/ic_edit_pink_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
