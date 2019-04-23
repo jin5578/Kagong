@@ -56,11 +56,23 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:overScrollMode="never"
-                android:background="@color/colorGray1"
+                android:background="@color/colorGray4"
                 app:writtenAccompanyList="@{wViewModel.writtenAccompanyList}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+                android:id="@+id/include_written_more"
+                layout="@layout/layout_written_more_contract"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                app:wViewModel="@{wViewModel}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

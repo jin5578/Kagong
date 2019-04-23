@@ -234,7 +234,7 @@ interface HostApi {
         @Field("writtenTime") writtenTime: String,
         @Field("meetingDate") meetingDate: String,
         @Field("link") link: String
-        ): Single<BasicResult>  //0: 성공, 1: 실패
+    ): Single<BasicResult>  //0: 성공, 1: 실패
 
     //Bring Notice - NoticeActivity
     @GET("bringNotice.php")
@@ -254,4 +254,12 @@ interface HostApi {
         @Field("userkey") userkey: String
     ): Single<WrittenAccompanyResponse>
 
+    //delete accompany
+    @FormUrlEncoded
+    @POST("deleteAccompany.php")
+    fun deleteAccompany(
+        @Field("userkey") userkey: String,
+        @Field("content") content: String,
+        @Field("writtenTime") writtenTime: String
+    ): Single<BasicResult>
 }

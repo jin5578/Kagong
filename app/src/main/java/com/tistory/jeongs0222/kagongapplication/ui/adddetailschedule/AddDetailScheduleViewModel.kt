@@ -41,8 +41,6 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     val deleteLocationClick: LiveData<Any>
         get() = _deleteLocationClick
 
-    private val _cancelLocationClick = SingleLiveEvent<Any>()
-
     private val _detailSchedule = MutableLiveData<MutableList<BringDetailScheduleResult>>()
     val detailSchedule: LiveData<MutableList<BringDetailScheduleResult>>
         get() = _detailSchedule
@@ -164,8 +162,6 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     }
 
     fun cancelLocationClickEvent() {
-        _cancelLocationClick.call()
-
         _moreLocationVisibility.value = false
     }
 
