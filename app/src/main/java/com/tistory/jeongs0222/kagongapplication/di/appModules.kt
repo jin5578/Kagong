@@ -19,5 +19,6 @@ val appModules = arrayListOf(
     noticeModules,
     settingModules,
     termsOfUseModules,
-    howToUseModules
+    howToUseModules,
+    writtenModules
 )

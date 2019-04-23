@@ -10,11 +10,11 @@
 
         <variable
                 name="accompanyItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResult"/>
+                type="com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResult"/>
 
         <variable
                 name="eventListener"
-                type="com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.AreaDetailTabEventListener"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.written.WrittenEventListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/imageView_description"
-                app:accompanyProfile="@{accompanyItem.image}"
+                app:writtenAccompanyProfile="@{accompanyItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -60,13 +60,16 @@
                 tools:text="03.20 20:00"/>
 
         <ImageView
-                android:id="@+id/kakao_link"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:padding="10dp"
-                android:src="@drawable/message"
+                android:id="@+id/more"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:src="@drawable/more_vertical"
                 android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> eventListener.kakaoLinkClickEvent(accompanyItem.link)}"
+                android:onClick="@{() -> eventListener.moreClickEvent(accompanyItem.content, accompanyItem.written_time)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintBottom_toBottomOf="@id/image"/>

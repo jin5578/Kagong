@@ -118,6 +118,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val noticeClick: LiveData<Any>
         get() = _noticeClick
 
+    private val _writtenClick = SingleLiveEvent<Any>()
+    val writtenClick: LiveData<Any>
+        get() = _writtenClick
+
     private val _howToUseClick = SingleLiveEvent<Any>()
     val howToUseClick: LiveData<Any>
         get() = _howToUseClick
@@ -180,6 +184,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
 
     fun noticeClickEvent() {
         _noticeClick.call()
+    }
+
+    fun writtenClickEvent() {
+        _writtenClick.call()
     }
 
     fun howToUseClickEvent() {

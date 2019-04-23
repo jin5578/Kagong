@@ -17,6 +17,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResp
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
+import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -233,7 +234,7 @@ interface HostApi {
         @Field("writtenTime") writtenTime: String,
         @Field("meetingDate") meetingDate: String,
         @Field("link") link: String
-        ): Single<BasicResult>  //0: 성공, 1: 실패
+    ): Single<BasicResult>  //0: 성공, 1: 실패
 
     //Bring Notice - NoticeActivity
     @GET("bringNotice.php")
@@ -246,4 +247,19 @@ interface HostApi {
         @Field("googlekey") googlekey: String
     ): Single<BasicResult>  //0: 성공, 1: 실패
 
+    //written accompany
+    @FormUrlEncoded
+    @POST("writtenAccompany.php")
+    fun writtenAccompany(
+        @Field("userkey") userkey: String
+    ): Single<WrittenAccompanyResponse>
+
+    //delete accompany
+    @FormUrlEncoded
+    @POST("deleteAccompany.php")
+    fun deleteAccompany(
+        @Field("userkey") userkey: String,
+        @Field("content") content: String,
+        @Field("writtenTime") writtenTime: String
+    ): Single<BasicResult>
 }

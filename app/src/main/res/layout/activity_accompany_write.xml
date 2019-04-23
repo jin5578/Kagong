@@ -52,7 +52,7 @@
                     android:layout_height="52dp"
                     android:layout_marginStart="8dp"
                     android:padding="15dp"
-                    android:src="@drawable/question"
+                    android:src="@drawable/question2"
                     android:contentDescription="@string/imageView_description"
                     android:onClick="@{() -> awViewModel.howToUseClickEvent()}"
                     app:layout_constraintStart_toEndOf="@id/null1"
