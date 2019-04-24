@@ -63,6 +63,21 @@
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <TextView
+                android:id="@+id/itemNull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:visibility="gone"
+                android:text="@string/content_hint_accompany"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumotfr"
+                app:nullVisibility="@{wViewModel.wWrittenAccompanyList}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null2"
+                tools:visibility="visible"/>
+
         <include
                 android:id="@+id/include_written_more"
                 layout="@layout/layout_written_more_contract"

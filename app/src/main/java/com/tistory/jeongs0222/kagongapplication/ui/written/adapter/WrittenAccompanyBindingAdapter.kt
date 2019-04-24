@@ -1,7 +1,9 @@
 package com.tistory.jeongs0222.kagongapplication.ui.written.adapter
 
 import android.graphics.Bitmap
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,5 +39,15 @@ fun writtenAccompanyProfile(imageView: ImageView, uri: String) {
         Glide.with(imageView)
             .load(R.drawable.profileimage)
             .into(imageView)
+    }
+}
+
+@BindingAdapter("nullVisibility")
+fun nullVisibility(textView: TextView, list: MutableList<WrittenAccompanyResult>?) {
+    if(list != null) {
+        if(list.size == 0)
+            textView.visibility = View.VISIBLE
+        else
+            textView.visibility = View.GONE
     }
 }
