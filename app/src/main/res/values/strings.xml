@@ -187,4 +187,6 @@
 
     <string name="change_area">지역 변경하기</string>
 
+    <string name="category">카테고리</string>
+
 </resources>
