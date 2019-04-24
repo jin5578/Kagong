@@ -15,7 +15,6 @@ class WrittenAccompanyAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: WrittenEventListener
 ): ListAdapter<WrittenAccompanyResult, WrittenAccompanyAdapter.ViewHolder>(WAccompanyDiff) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAccompanyWrittenBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
