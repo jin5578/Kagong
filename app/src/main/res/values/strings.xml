@@ -111,8 +111,9 @@
     <string name="cancel">취소</string>
 
     <string name="item_detail_null">세부 일정을 등록해보세요.</string>
-    <string name="alertdialog_title">정말 진행하시겠습니가?</string>
-    <string name="alertdialog_content">삭제된 일정은 복구할 수 없습니다.</string>
+    <string name="alertdialog_title">정말 진행하시겠습니까?</string>
+    <string name="alertdialog_content">삭제된 일정은 복구할 수 없습니다</string>
+    <string name="written_delete_content">삭제된 글은 복구할 수 없습니다</string>
     <string name="day">DAY</string>
 
     <!--AddLocationActivity-->

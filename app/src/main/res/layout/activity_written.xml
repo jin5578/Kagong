@@ -26,7 +26,7 @@
                 android:padding="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> wViewModel.previousClickEvent()}"
+                android:onClick="@{() -> wViewModel.wPreviousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -57,7 +57,7 @@
                 android:layout_height="0dp"
                 android:overScrollMode="never"
                 android:background="@color/colorGray4"
-                app:writtenAccompanyList="@{wViewModel.writtenAccompanyList}"
+                app:writtenAccompanyList="@{wViewModel.wWrittenAccompanyList}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"

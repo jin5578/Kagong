@@ -17,7 +17,7 @@ class WrittenActivity: BaseActivity<ActivityWrittenBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_written
 
-    private val writtenViewModel by viewModel<WrittenViewModel>()
+    private val wViewModel by viewModel<WrittenViewModel>()
 
     private val constraintSetProvider = ConstraintSetProviderImpl(this@WrittenActivity) as ConstraintSetProvider
     private val messageProvider = MessageProviderImpl(this@WrittenActivity) as MessageProvider
@@ -28,52 +28,55 @@ class WrittenActivity: BaseActivity<ActivityWrittenBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        writtenViewModel.bind(DBHelperProviderImpl(this@WrittenActivity), messageProvider)
+        wViewModel.wBind(DBHelperProviderImpl(this@WrittenActivity), messageProvider)
 
         viewDataBinding.recycler.apply {
             layoutManager = LinearLayoutManager(this@WrittenActivity)
-            adapter = WrittenAccompanyAdapter(this@WrittenActivity, writtenViewModel)
+            adapter = WrittenAccompanyAdapter(this@WrittenActivity, wViewModel)
         }
 
-        writtenViewModel.previousClick.observe(this@WrittenActivity, Observer {
+        wViewModel.wPreviousClick.observe(this@WrittenActivity, Observer {
             finish()
         })
 
-        writtenViewModel.finishRequest.observe(this@WrittenActivity, Observer {
+        wViewModel.wFinishRequest.observe(this@WrittenActivity, Observer {
             finish()
         })
 
-        writtenViewModel.moreVisibility.observe(this@WrittenActivity, Observer {
+        wViewModel.wMoreVisibility.observe(this@WrittenActivity, Observer {
             if(it)
                 constraintSetProvider.moreExpandAnimation(R.layout.layout_written_more_expand, viewDataBinding.includeWrittenMore.moreLayout)
             else
                 constraintSetProvider.moreContractAnimation(R.layout.layout_written_more_contract, viewDataBinding.includeWrittenMore.moreLayout)
         })
 
-        writtenViewModel.moreDeleteClick.observe(this@WrittenActivity, Observer {
-            val builder = AlertDialog.Builder(this@WrittenActivity)
-
-            val inflater = layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
-            inflater.findViewById<TextView>(R.id.content).text = "삭제된 글은 복구할 수 없습니다."
-
-            builder.setView(inflater)
-
-            inflater.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                alertDialog.dismiss()
-            }
-
-            inflater.findViewById<TextView>(R.id.check).setOnClickListener {
-                writtenViewModel.deleteAccompany()
-            }
-
-            alertDialog = builder.create()
-
-            alertDialog.show()
-
+        wViewModel._wMoreDeleteClick.observe(this@WrittenActivity, Observer {
+            deleteAlertDialog()
         })
 
-        viewDataBinding.wViewModel = writtenViewModel
+        viewDataBinding.wViewModel = wViewModel
         viewDataBinding.lifecycleOwner = this@WrittenActivity
+    }
+
+    private fun deleteAlertDialog() {
+        val builder = AlertDialog.Builder(this@WrittenActivity)
+
+        val inflater = layoutInflater.inflate(R.layout.custom_alertdialog_layout, null)
+        inflater.findViewById<TextView>(R.id.content).text = getString(R.string.written_delete_content)
+
+        inflater.findViewById<TextView>(R.id.cancel).setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        inflater.findViewById<TextView>(R.id.check).setOnClickListener {
+            wViewModel.wDeleteAccompany()
+        }
+
+        builder.setView(inflater)
+
+        alertDialog = builder.create()
+
+        alertDialog.show()
     }
 
     override fun onBackPressed() {

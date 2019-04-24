@@ -15,62 +15,54 @@ import io.reactivex.schedulers.Schedulers
 
 class WrittenViewModel(private val writtenRepository: WrittenRepository): DisposableViewModel(), WrittenEventListener {
 
-    private val _previousClick = SingleLiveEvent<Any>()
-    val previousClick: LiveData<Any>
-        get() = _previousClick
+    private val _wPreviousClick = SingleLiveEvent<Any>()
+    val wPreviousClick: LiveData<Any>
+        get() = _wPreviousClick
 
-    private val _moreEditClick = SingleLiveEvent<Any>()
-    val moreEditClick: LiveData<Any>
-        get() = _moreEditClick
+    private val _wMoreDeteleClick = SingleLiveEvent<Any>()
+    val _wMoreDeleteClick: LiveData<Any>
+        get() = _wMoreDeteleClick
 
-    private val _moreDeleteClick = SingleLiveEvent<Any>()
-    val moreDeleteClick: LiveData<Any>
-        get() = _moreDeleteClick
+    private val _wFinishRequest = SingleLiveEvent<Any>()
+    val wFinishRequest: LiveData<Any>
+        get() = _wFinishRequest
 
-    private val _finishRequest = SingleLiveEvent<Any>()
-    val finishRequest: LiveData<Any>
-        get() = _finishRequest
+    private val _wWrittenAccompanyList = MutableLiveData<MutableList<WrittenAccompanyResult>>()
+    val wWrittenAccompanyList: LiveData<MutableList<WrittenAccompanyResult>>
+        get() = _wWrittenAccompanyList
 
-    private val _writtenAccompanyList = MutableLiveData<MutableList<WrittenAccompanyResult>>()
-    val writtenAccompanyList: LiveData<MutableList<WrittenAccompanyResult>>
-        get() = _writtenAccompanyList
+    private val _wMoreVisibility = MutableLiveData<Boolean>()
+    val wMoreVisibility: LiveData<Boolean>
+        get() = _wMoreVisibility
 
-    private val _moreVisibility = MutableLiveData<Boolean>()
-    val moreVisibility: LiveData<Boolean>
-        get() = _moreVisibility
+    private lateinit var messageProvider: MessageProvider
 
     private lateinit var selectedContent: String
     private lateinit var selectedWrittenTime: String
 
-    private lateinit var messageProvider: MessageProvider
-
     private lateinit var userKey: String
 
 
-    fun bind(dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider) {
+    fun wBind(dbHelperProvider: DBHelperProvider, messageProvider: MessageProvider) {
         userKey = dbHelperProvider.getDBHelper().getUserKey()
         this.messageProvider = messageProvider
 
         writtenAccompany()
     }
 
-    fun previousClickEvent() {
-        _previousClick.call()
+    fun wPreviousClickEvent() {
+        _wPreviousClick.call()
     }
 
-    fun moreEditClickEvent() {
-        _moreEditClick.call()
+    fun wMoreDeleteClickEvent() {
+        _wMoreDeteleClick.call()
     }
 
-    fun moreDeleteClickEvent() {
-        _moreDeleteClick.call()
+    fun wMoreCancelClickEvent() {
+        _wMoreVisibility.value = false
     }
 
-    fun moreCancelClickEvent() {
-        _moreVisibility.value = false
-    }
-
-    fun deleteAccompany() {
+    fun wDeleteAccompany() {
         writtenRepository.deleteAccompany(userKey, selectedContent, selectedWrittenTime)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -78,7 +70,7 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
                 if(it.value == 0) {
                     messageProvider.toastMessage(it.message)
 
-                    _finishRequest.call()
+                    _wFinishRequest.call()
                 } else {
                     messageProvider.toastMessage(it.message)
                 }
@@ -94,7 +86,7 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                _writtenAccompanyList.value = it.writtenAccompany
+                _wWrittenAccompanyList.value = it.writtenAccompany
             }
             .doOnError {
                 it.printStackTrace()
@@ -103,7 +95,7 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
     }
 
     override fun moreClickEvent(content: String, writtenTime: String) {
-        _moreVisibility.value = true
+        _wMoreVisibility.value = true
 
         selectedContent = content
         selectedWrittenTime = writtenTime
