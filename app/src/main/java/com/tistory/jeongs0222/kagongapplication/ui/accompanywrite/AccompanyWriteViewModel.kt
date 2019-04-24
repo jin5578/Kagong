@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.accompanywrite
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.dump.category.CategoryItem
@@ -66,6 +67,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     val selectedLink: LiveData<String>
         get() = _selectedLink
 
+    private val _writeClickable = MutableLiveData<Boolean>()
+    val writeClickable: LiveData<Boolean>
+        get() = _writeClickable
+
 
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
@@ -76,6 +81,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         _recyclerVisibility.value = 1
         _calendarVisibility.value = 1
         _linkVisibility.value = 1
+        _writeClickable.value = true
 
         categoryPreprocessor()
     }
@@ -136,6 +142,9 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     }
 
     fun accompanyWrite(content: String) {
+        //중복 작성 방지 락
+        _writeClickable.value = false
+
         accompanyWriteRepository
             .accompanyWrite(
                 _area.value!!.substring(1),
@@ -153,6 +162,9 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
                     intentProvider.intentFinish()
                 } else {
                     messageProvider.toastMessage(it.message)
+
+                    //중복 작성 방지 락 풀어주기
+                    _writeClickable.value = true
                 }
             }
             .doOnError {

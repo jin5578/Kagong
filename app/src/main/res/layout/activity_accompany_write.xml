@@ -67,6 +67,7 @@
                     android:src="@drawable/ic_check_black_24dp"
                     android:onClick="@{() -> awViewModel.confirmClickEvent()}"
                     android:contentDescription="@string/imageView_description"
+                    app:writeClickable="@{awViewModel.writeClickable}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
