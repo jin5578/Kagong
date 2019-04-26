@@ -54,6 +54,7 @@
         <activity android:name=".ui.termsofuse.PrivacyPolicyActivity"/>
         <activity android:name=".ui.howToUse.HowToUseActivity"/>
         <activity android:name=".ui.written.WrittenActivity"/>
+        <activity android:name=".ui.locationdetail.LocationDetailActivity"/>
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="com.tistory.jeongs0222.kagongapplication.provider"
