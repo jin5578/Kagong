@@ -11,11 +11,14 @@ import com.tistory.jeongs0222.kagongapplication.BuildConfig
 interface IntentProvider {
     fun finishIntent(activityClass: Class<*>)
 
+
     fun finishPutTwoExtraIntent(activityClass: Class<*>, value1: String, value2: String)
 
     fun intent(activityClass: Class<*>)
 
     fun intentPutExtra(activityClass: Class<*>, area: String)
+
+    fun iIntent(activityClass: Class<*>, value1: Int)
 
     fun intentPutTwoExtra(activityClass: Class<*>, area: String, order: String)
 
@@ -29,6 +32,7 @@ interface IntentProvider {
 }
 
 class IntentProviderImpl(private val activity: Activity): IntentProvider {
+
     override fun finishIntent(activityClass: Class<*>) {
         activity.startActivity(Intent(activity, activityClass))
         activity.finish()
@@ -51,6 +55,13 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
     override fun intentPutExtra(activityClass: Class<*>, area: String) {
         val intent = Intent(activity, activityClass)
         intent.putExtra("area", area)
+
+        activity.startActivity(intent)
+    }
+
+    override fun iIntent(activityClass: Class<*>, value1: Int) {
+        val intent = Intent(activity, activityClass)
+        intent.putExtra("value1", value1)
 
         activity.startActivity(intent)
     }

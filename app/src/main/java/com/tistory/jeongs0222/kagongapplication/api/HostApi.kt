@@ -8,6 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaImage.BringA
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaList.BringAreaListResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringDetailSchedule.BringDetailScheduleResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.BringLocationDetailResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNotice.BringNoticeResponse
@@ -261,5 +262,29 @@ interface HostApi {
         @Field("userkey") userkey: String,
         @Field("content") content: String,
         @Field("writtenTime") writtenTime: String
+    ): Single<BasicResult>
+
+    //bring location detail
+    @FormUrlEncoded
+    @POST("bringLocationDetail.php")
+    fun bringLocationDetail(
+        @Field("order") order: Int
+    ): Single<BringLocationDetailResult>
+
+    //location like click
+    @FormUrlEncoded
+    @POST("locationLikeClick.php")
+    fun locationLikeClick(
+        @Field("userkey") userkey: String,
+        @Field("order") order: Int,
+        @Field("status") status: Int
+    ): Single<BasicResult>
+
+    //location like validate
+    @FormUrlEncoded
+    @POST("locationLikeValidate.php")
+    fun locationLikeValidate(
+        @Field("userkey") userkey: String,
+        @Field("order") order: Int
     ): Single<BasicResult>
 }
