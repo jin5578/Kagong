@@ -29,14 +29,8 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     val additionClick: LiveData<Any>
         get() = _additionClick
 
-    private val _searchClick = SingleLiveEvent<Any>()
-    val searchClick: LiveData<Any>
-        get() = _searchClick
-
 
     //SearchLocationFragment
-    private val _selectLocationClick = SingleLiveEvent<Any>()
-
     private val _findLocation = MutableLiveData<MutableList<BringAreaLocationResult>>()
     val findLocation: LiveData<MutableList<BringAreaLocationResult>>
         get() = _findLocation
@@ -156,8 +150,6 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     }
 
     fun searchLocationClickEvent(id: Int) {
-        _searchClick.call()
-
         _title.value = "위치 검색하기"
         _confirmVisible.value = false
         _searchFrameVisible.value = true
@@ -168,8 +160,6 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     }
 
     fun selectLocationClickEvent() {
-        _selectLocationClick.call()
-
         _title.value = "이동 경로 표시"
         _confirmVisible.value = true
         _searchFrameVisible.value = false
