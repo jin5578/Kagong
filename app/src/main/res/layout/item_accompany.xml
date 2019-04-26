@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@{accompanyItem.nickname}"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintVertical_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/image"
@@ -61,9 +61,11 @@
 
         <ImageView
                 android:id="@+id/kakao_link"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingTop="15dp"
+                android:paddingStart="15dp"
+                android:paddingBottom="15dp"
                 android:src="@drawable/message"
                 android:contentDescription="@string/imageView_description"
                 android:onClick="@{() -> eventListener.kakaoLinkClickEvent(accompanyItem.link)}"
@@ -71,49 +73,31 @@
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintBottom_toBottomOf="@id/image"/>
 
-        <View
-                android:id="@+id/null1"
-                android:layout_width="100dp"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorGray3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image"/>
-
         <TextView
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
                 android:text="@{accompanyItem.content}"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 android:lineSpacingExtra="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null1"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="런던 종일동행 하실분 구합니다. 일정은 맞추도록 노력하겠습니다. 하지만 될 수 있으면 맨체스터 유나이티드 직관 가실분이였으면 좋겠습니다.."/>
-
-        <View
-                android:id="@+id/null2"
-                android:layout_width="50dp"
-                android:layout_height="0.5dp"
-                android:background="@color/colorGray3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content"/>
 
         <TextView
                 android:id="@+id/area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textColor="@color/colorBlue2"
                 android:fontFamily="@font/nanumotfr"
                 app:tagAreaText="@{accompanyItem.area}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
+                app:layout_constraintTop_toBottomOf="@id/content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="# 런던"/>
 
@@ -122,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textColor="@color/colorBlue2"
                 android:fontFamily="@font/nanumotfr"
                 app:tagMeetingDateText="@{accompanyItem.meeting_date}"
