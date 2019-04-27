@@ -1,7 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter
 
+import android.util.Log
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority

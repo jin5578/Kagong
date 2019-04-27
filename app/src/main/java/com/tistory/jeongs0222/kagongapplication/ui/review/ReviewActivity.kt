@@ -6,8 +6,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityReviewBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.review.fragment.ReviewWriteFragment
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
-import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -39,7 +38,13 @@ class ReviewActivity : BaseActivity<ActivityReviewBinding>() {
             fragmentProvider.initFragment(reviewWriteFragment)
         }
 
+        viewModel.bind(order, DBHelperProviderImpl(this@ReviewActivity), MessageProviderImpl(this@ReviewActivity))
+
         viewModel.previousClick.observe(this@ReviewActivity, Observer {
+            finish()
+        })
+
+        viewModel.viewFinishRequest.observe(this@ReviewActivity, Observer {
             finish()
         })
 

@@ -295,4 +295,14 @@ interface HostApi {
     fun bringReview(
         @Field("order") order: Int
     ): Single<BringLocationReviewResponse>
+
+    //location review write
+    @FormUrlEncoded
+    @POST("locationReviewWrite.php")
+    fun locationReviewWrite(
+        @Field("userkey") userkey: String,
+        @Field("written_time") written_time: String,
+        @Field("order") order: Int,
+        @Field("content") content: String
+    ): Single<BasicResult>
 }
