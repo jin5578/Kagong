@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="lDViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.locationdetail.LocationDetailViewModel"/>
+
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="0dp"
+                    android:layout_height="270dp"
+                    android:contentDescription="@string/imageView_description"
+                    android:scaleType="centerCrop"
+                    app:locationDetailImage="@{lDViewModel.locationDetailItem.image}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:onClick="@{()->lDViewModel.previousClickEvent()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/like"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="20dp"
+                    android:src="@drawable/dislike"
+                    android:contentDescription="@string/imageView_description"
+                    android:onClick="@{() -> lDViewModel.likeClickEvent()}"
+                    app:layout_constraintTop_toTopOf="@id/previous"
+                    app:layout_constraintBottom_toBottomOf="@id/previous"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                    android:id="@+id/locationK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@{lDViewModel.locationDetailItem.locationK}"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image"
+                    tools:text="런던아이"/>
+
+            <TextView
+                    android:id="@+id/locationE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{lDViewModel.locationDetailItem.locationE}"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfl"
+                    app:layout_constraintTop_toTopOf="@id/locationK"
+                    app:layout_constraintStart_toEndOf="@id/locationK"
+                    app:layout_constraintBottom_toBottomOf="@id/locationK"
+                    tools:text="London Eye"/>
+
+            <ImageView
+                    android:id="@+id/null1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/like"
+                    android:contentDescription="@string/imageView_description"
+                    app:layout_constraintStart_toStartOf="@id/locationK"
+                    app:layout_constraintTop_toBottomOf="@id/locationK"/>
+
+            <TextView
+                    android:id="@+id/like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{lDViewModel.locationDetailItem.likecount}"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nanumotfl"
+                    app:layout_constraintStart_toEndOf="@id/null1"
+                    app:layout_constraintTop_toTopOf="@id/null1"
+                    app:layout_constraintBottom_toBottomOf="@id/null1"
+                    tools:text="855"/>
+
+            <TextView
+                    android:id="@+id/introduce"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="80dp"
+                    android:paddingBottom="80dp"
+                    android:text="@{lDViewModel.locationDetailItem.introduceDetail}"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfr"
+                    android:lineSpacingExtra="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null1"
+                    tools:text="웨스트민스터(Westminster)와 헝거포드다리(Hungerford Bridge) 사이의 템즈강변에 있는 주빌리 가든(Jubilee Gardens) 내에 위치한다. 1999년 영국항공(British Airways)이 새로운 천년을 기념하여 건축한 것으로 커다란 자전거바퀴 모양을 한 회전 관람차이다. 높이 135m로 순수 관람용 건축물로는 세계에서 가장 높다."/>
+
+            <TextView
+                    android:id="@+id/null2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/review"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toStartOf="@id/locationK"
+                    app:layout_constraintTop_toBottomOf="@id/introduce"/>
+
+            <ImageView
+                    android:id="@+id/review"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:contentDescription="@string/imageView_description"
+                    android:src="@drawable/edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/null2"
+                    app:layout_constraintBottom_toBottomOf="@id/null2"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/review_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/review"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

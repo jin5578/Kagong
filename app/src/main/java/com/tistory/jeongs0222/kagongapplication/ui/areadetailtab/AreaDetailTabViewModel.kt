@@ -8,6 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaGoodPlace.Br
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAreaLocation.BringAreaLocationResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.AreaDetailTabRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.LocationDetailActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -112,7 +113,7 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
     }
 
     override fun areaLocationClickEvent(order: Int) {
-        Log.e(TAG, order.toString())
+        intentProvider.iIntent(LocationDetailActivity::class.java, order)
     }
 
     override fun kakaoLinkClickEvent(link: String) {
