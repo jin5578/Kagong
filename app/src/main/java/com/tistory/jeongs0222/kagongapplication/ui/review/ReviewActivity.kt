@@ -1,9 +1,13 @@
 package com.tistory.jeongs0222.kagongapplication.ui.review
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityReviewBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.review.fragment.ReviewWriteFragment
+import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -13,11 +17,39 @@ class ReviewActivity : BaseActivity<ActivityReviewBinding>() {
 
     private val viewModel by viewModel<ReviewViewModel>()
 
+    private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
+
+    private val reviewWriteFragment = ReviewWriteFragment()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewDataBinding.viewModel = viewModel
+        val order: Int
+        val sort: Int
+
+        intent.apply {
+            order = intent.getIntExtra("value1", 0)
+            sort = intent.getIntExtra("value2", 0)
+        }
+
+        if(sort == 0) {
+
+        } else {
+            fragmentProvider.initFragment(reviewWriteFragment)
+        }
+
+        viewModel.previousClick.observe(this@ReviewActivity, Observer {
+            finish()
+        })
+
+        viewDataBinding.rViewModel = this.viewModel
+
         viewDataBinding.lifecycleOwner = this@ReviewActivity
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
 }

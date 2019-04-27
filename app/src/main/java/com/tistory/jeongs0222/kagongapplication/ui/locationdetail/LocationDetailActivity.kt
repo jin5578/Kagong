@@ -8,7 +8,10 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLocationDetailBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter.LocationReviewAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.review.ReviewActivity
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
+import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -19,6 +22,8 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
     override val layoutResourceId: Int = R.layout.activity_location_detail
 
     private val viewModel by viewModel<LocationDetailViewModel>()
+
+    private val intentProvider = IntentProviderImpl(this@LocationDetailActivity) as IntentProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,10 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
 
         viewModel.previousClick.observe(this@LocationDetailActivity, Observer {
             finish()
+        })
+
+        viewModel.reviewWriteClick.observe(this@LocationDetailActivity, Observer {
+            intentProvider.iiIntent(ReviewActivity::class.java, order, 1)      // 1은 ReviewWriteFragment
         })
 
         viewModel.likeStatus.observe(this@LocationDetailActivity, Observer {

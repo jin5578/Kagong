@@ -190,5 +190,6 @@
     <string name="review">리뷰</string>
     <string name="review_see_more">리뷰 더보기</string>
     <string name="review_null">관광지에 다녀온 리뷰를 남겨보세요!</string>
+    <string name="write_review">리뷰 쓰기</string>
 
 </resources>

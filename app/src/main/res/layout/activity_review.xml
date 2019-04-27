@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
 
         <variable
-                name="viewModel"
+                name="rViewModel"
                 type="com.tistory.jeongs0222.kagongapplication.ui.review.ReviewViewModel"/>
 
     </data>

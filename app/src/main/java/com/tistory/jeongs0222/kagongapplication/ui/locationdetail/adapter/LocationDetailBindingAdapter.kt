@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.locationdetail
+package com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter
 
 import android.widget.ImageView
 import android.widget.TextView
