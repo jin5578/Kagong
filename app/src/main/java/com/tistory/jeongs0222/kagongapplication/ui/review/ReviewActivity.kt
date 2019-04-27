@@ -46,6 +46,10 @@ class ReviewActivity : BaseActivity<ActivityReviewBinding>() {
             finish()
         })
 
+        viewModel.writeClick.observe(this@ReviewActivity, Observer {
+            fragmentProvider.replaceFragment(reviewWriteFragment)
+        })
+
         viewModel.viewFinishRequest.observe(this@ReviewActivity, Observer {
             finish()
         })

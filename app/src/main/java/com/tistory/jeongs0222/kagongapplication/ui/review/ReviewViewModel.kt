@@ -25,6 +25,10 @@ class ReviewViewModel(private val reviewRepository: ReviewRepository): Disposabl
     val checkClick: LiveData<Any>
         get() = _checkClick
 
+    private val _writeClick = SingleLiveEvent<Any>()
+    val writeClick: LiveData<Any>
+        get() = _writeClick
+
     private val _viewFinishRequest = MutableLiveData<Boolean>()
     val viewFinishRequest: LiveData<Boolean>
         get() = _viewFinishRequest
@@ -62,6 +66,10 @@ class ReviewViewModel(private val reviewRepository: ReviewRepository): Disposabl
 
     fun checkClickEvent() {
         _checkClick.call()
+    }
+
+    fun writeClickEvent() {
+        _writeClick.call()
     }
 
     fun locationReviewWrite(content: String) {
