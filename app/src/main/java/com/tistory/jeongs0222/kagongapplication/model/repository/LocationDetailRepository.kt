@@ -24,7 +24,8 @@ interface LocationDetailRepository {
     ): Single<BasicResult>
 
     fun bringLocationReview(
-        order: Int
+        order: Int,
+        sort: Int
     ): Single<BringLocationReviewResponse>
 
 }

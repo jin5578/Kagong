@@ -293,7 +293,8 @@ interface HostApi {
     @FormUrlEncoded
     @POST("bringLocationReview.php")
     fun bringReview(
-        @Field("order") order: Int
+        @Field("order") order: Int,
+        @Field("sort") sort: Int
     ): Single<BringLocationReviewResponse>
 
     //location review write

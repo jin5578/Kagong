@@ -27,6 +27,10 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
     val reviewWriteClick: LiveData<Any>
         get() = _reviewWriteClick
 
+    private val _reviewMoreClick = SingleLiveEvent<Any>()
+    val reviewMoreClick: LiveData<Any>
+        get() = _reviewMoreClick
+
     private val _locationDetailItem = MutableLiveData<BringLocationDetailResult>()
     val locationDetailItem: LiveData<BringLocationDetailResult>
         get() = _locationDetailItem
@@ -68,6 +72,10 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
         _reviewWriteClick.call()
     }
 
+    fun reviewMoreClickEvent() {
+        _reviewMoreClick.call()
+    }
+
     fun likeClickEvent() {
         locationLikeClick()
     }
@@ -99,7 +107,7 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
     }
 
     private fun bringLocationReview() {
-        locationDetailRepository.bringLocationReview(order)
+        locationDetailRepository.bringLocationReview(order, 0)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

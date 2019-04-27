@@ -35,6 +35,7 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
         viewDataBinding.reviewRecycler.apply {
             layoutManager = LinearLayoutManager(this@LocationDetailActivity)
             adapter = LocationReviewAdapter(this@LocationDetailActivity)
+            isNestedScrollingEnabled = false
         }
 
         viewModel.bind(order, DBHelperProviderImpl(this@LocationDetailActivity))
@@ -45,6 +46,10 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
 
         viewModel.reviewWriteClick.observe(this@LocationDetailActivity, Observer {
             intentProvider.iiIntent(ReviewActivity::class.java, order, 1)      // 1은 ReviewWriteFragment
+        })
+
+        viewModel.reviewMoreClick.observe(this@LocationDetailActivity, Observer {
+            intentProvider.iiIntent(ReviewActivity::class.java, order, 0)       // 0은 ReviewMoreFragment
         })
 
         viewModel.likeStatus.observe(this@LocationDetailActivity, Observer {

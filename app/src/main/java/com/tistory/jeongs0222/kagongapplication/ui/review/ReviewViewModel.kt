@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.ReviewRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
@@ -31,6 +32,10 @@ class ReviewViewModel(private val reviewRepository: ReviewRepository): Disposabl
     private val _writeClickable = MutableLiveData<Boolean>()
     val writeClickable: LiveData<Boolean>
         get() = _writeClickable
+
+    private val _locationReviewItem = MutableLiveData<MutableList<BringLocationReviewResult>>()
+    val locationReviewItem: LiveData<MutableList<BringLocationReviewResult>>
+        get() = _locationReviewItem
 
     private val TAG = "ReviewViewModel"
 
@@ -72,8 +77,20 @@ class ReviewViewModel(private val reviewRepository: ReviewRepository): Disposabl
                     messageProvider.toastMessage(it.message)
 
                     _writeClickable.value = true
-
                 }
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    fun bringReview() {
+        reviewRepository.bringReview(order, 1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _locationReviewItem.value = it.bringLocationReview
             }
             .doOnError {
                 it.printStackTrace()

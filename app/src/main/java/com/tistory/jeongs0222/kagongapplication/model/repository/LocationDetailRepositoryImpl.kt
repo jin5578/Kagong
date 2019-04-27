@@ -15,5 +15,5 @@ class LocationDetailRepositoryImpl(private val hostApi: HostApi) : LocationDetai
 
     override fun locationLikeValidate(userkey: String, order: Int) = hostApi.locationLikeValidate(userkey, order)
 
-    override fun bringLocationReview(order: Int): Single<BringLocationReviewResponse> = hostApi.bringReview(order)
+    override fun bringLocationReview(order: Int, sort: Int): Single<BringLocationReviewResponse> = hostApi.bringReview(order, sort)
 }
