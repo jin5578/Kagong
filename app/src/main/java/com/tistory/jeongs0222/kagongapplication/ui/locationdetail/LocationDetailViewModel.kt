@@ -1,8 +1,10 @@
 package com.tistory.jeongs0222.kagongapplication.ui.locationdetail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.BringLocationDetailResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.LocationDetailRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
@@ -17,9 +19,21 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
     val previousClick: LiveData<Any>
         get() = _previousClick
 
+    private val _locationClick = SingleLiveEvent<Any>()
+    val locationClick: LiveData<Any>
+        get() = _locationClick
+
+    private val _reviewWriteClick = SingleLiveEvent<Any>()
+    val reviewWriteClick: LiveData<Any>
+        get() = _reviewWriteClick
+
     private val _locationDetailItem = MutableLiveData<BringLocationDetailResult>()
     val locationDetailItem: LiveData<BringLocationDetailResult>
         get() = _locationDetailItem
+
+    private val _locationReviewItem = MutableLiveData<MutableList<BringLocationReviewResult>>()
+    val locationReviewItem: LiveData<MutableList<BringLocationReviewResult>>
+        get() = _locationReviewItem
 
     private val _likeStatus = MutableLiveData<Int>()
     val likeStatus: LiveData<Int>
@@ -38,11 +52,20 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
         userkey = dbHelperProvider.getDBHelper().getUserKey()
 
         bringLocationDetail()
-
+        bringLocationReview()
     }
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun locationClickEvent() {
+        Log.e("locationClick", "locationClick")
+        _locationClick.call()
+    }
+
+    fun reviewWriteClickEvent() {
+        _reviewWriteClick.call()
     }
 
     fun likeClickEvent() {
@@ -62,7 +85,7 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
             .subscribe()
     }
 
-    fun bringLocationDetail() {
+    private fun bringLocationDetail() {
         locationDetailRepository.bringLocationDetail(order)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -75,7 +98,20 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
             .subscribe()
     }
 
-    fun locationLikeClick() {
+    private fun bringLocationReview() {
+        locationDetailRepository.bringLocationReview(order)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _locationReviewItem.value = it.bringLocationReview
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
+    private fun locationLikeClick() {
         locationDetailRepository.locationLikeClick(userkey, order, _likeStatus.value!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

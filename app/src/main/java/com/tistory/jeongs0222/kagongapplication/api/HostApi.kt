@@ -12,6 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.B
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNickname.BringNicknameResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNicknameAndIntro.BringNicknameAndIntroResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringNotice.BringNoticeResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
@@ -287,4 +288,11 @@ interface HostApi {
         @Field("userkey") userkey: String,
         @Field("order") order: Int
     ): Single<BasicResult>
+
+    //bring review list
+    @FormUrlEncoded
+    @POST("bringLocationReview.php")
+    fun bringReview(
+        @Field("order") order: Int
+    ): Single<BringLocationReviewResponse>
 }

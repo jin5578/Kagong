@@ -3,10 +3,11 @@ package com.tistory.jeongs0222.kagongapplication.ui.locationdetail
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLocationDetailBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
+import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter.LocationReviewAdapter
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +24,13 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
         super.onCreate(savedInstanceState)
 
         val order: Int = intent.getIntExtra("value1", 0)
+
+        Log.e("order", order.toString())
+
+        viewDataBinding.reviewRecycler.apply {
+            layoutManager = LinearLayoutManager(this@LocationDetailActivity)
+            adapter = LocationReviewAdapter(this@LocationDetailActivity)
+        }
 
         viewModel.bind(order, DBHelperProviderImpl(this@LocationDetailActivity))
 

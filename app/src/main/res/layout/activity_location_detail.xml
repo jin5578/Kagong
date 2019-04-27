@@ -17,6 +17,8 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never"
             android:background="@color/colorWhite">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,14 +43,32 @@
                     android:padding="16dp"
                     android:src="@drawable/ic_arrow_back_black_24dp"
                     android:onClick="@{()->lDViewModel.previousClickEvent()}"
+                    android:contentDescription="@string/imageView_description"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/location"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="24dp"
+                    android:src="@drawable/location_pin_pink"
+                    android:contentDescription="@string/imageView_description"
+                    android:onClick="@{() -> lDViewModel.locationClickEvent()}"
+                    app:layout_constraintEnd_toStartOf="@id/like"
+                    app:layout_constraintTop_toTopOf="@id/like"
+                    app:layout_constraintBottom_toBottomOf="@id/like"/>
 
             <ImageView
                     android:id="@+id/like"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:padding="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="16dp"
                     android:src="@drawable/dislike"
                     android:contentDescription="@string/imageView_description"
                     android:onClick="@{() -> lDViewModel.likeClickEvent()}"
@@ -106,14 +126,24 @@
                     app:layout_constraintBottom_toBottomOf="@id/null1"
                     tools:text="855"/>
 
+            <View
+                    android:id="@+id/null4"
+                    android:layout_width="0dp"
+                    android:layout_height="2.5dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null1"/>
+
             <TextView
                     android:id="@+id/introduce"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:paddingTop="80dp"
-                    android:paddingBottom="80dp"
+                    android:paddingTop="50dp"
+                    android:paddingBottom="50dp"
                     android:text="@{lDViewModel.locationDetailItem.introduceDetail}"
                     android:textSize="12sp"
                     android:textColor="@color/colorBlack"
@@ -121,22 +151,32 @@
                     android:lineSpacingExtra="14dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/null1"
+                    app:layout_constraintTop_toBottomOf="@id/null4"
                     tools:text="웨스트민스터(Westminster)와 헝거포드다리(Hungerford Bridge) 사이의 템즈강변에 있는 주빌리 가든(Jubilee Gardens) 내에 위치한다. 1999년 영국항공(British Airways)이 새로운 천년을 기념하여 건축한 것으로 커다란 자전거바퀴 모양을 한 회전 관람차이다. 높이 135m로 순수 관람용 건축물로는 세계에서 가장 높다."/>
+
+            <View
+                    android:id="@+id/null3"
+                    android:layout_width="0dp"
+                    android:layout_height="2.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/introduce"/>
 
             <TextView
                     android:id="@+id/null2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="@string/review"
                     android:textSize="16sp"
                     android:textColor="@color/colorBlack"
                     android:fontFamily="@font/nanumotfb"
                     app:layout_constraintStart_toStartOf="@id/locationK"
-                    app:layout_constraintTop_toBottomOf="@id/introduce"/>
+                    app:layout_constraintTop_toBottomOf="@id/null3"/>
 
             <ImageView
-                    android:id="@+id/review"
+                    android:id="@+id/reviewWrite"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="20dp"
@@ -145,6 +185,7 @@
                     android:paddingBottom="10dp"
                     android:contentDescription="@string/imageView_description"
                     android:src="@drawable/edit"
+                    android:onClick="@{() -> lDViewModel.reviewWriteClickEvent()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/null2"
                     app:layout_constraintBottom_toBottomOf="@id/null2"/>
@@ -153,9 +194,52 @@
                     android:id="@+id/review_recycler"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGray1"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    app:locationReviewItem="@{lDViewModel.locationReviewItem}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/review"/>
+                    app:layout_constraintTop_toBottomOf="@id/null2"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="12sp"
+                    android:text="@string/review_null"
+                    android:fontFamily="@font/nanumotfr"
+                    app:nullTextVisibility="@{lDViewModel.locationReviewItem}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null2"
+                    tools:visibility="visible"/>
+
+            <View
+                    android:id="@+id/null5"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/review_recycler"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/review_see_more"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:seeMoreVisibility="@{lDViewModel.locationReviewItem}"
+                    app:layout_constraintTop_toBottomOf="@id/null5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
