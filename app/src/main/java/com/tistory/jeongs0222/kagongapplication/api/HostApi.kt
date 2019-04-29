@@ -17,6 +17,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.bringSchedule.BringSc
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaHistory.FindAreaHistoryResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findArea.FindAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.findAreaLog.FindAreaLogResult
+import com.tistory.jeongs0222.kagongapplication.model.host.locationMap.LocationMapResult
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
@@ -306,4 +307,11 @@ interface HostApi {
         @Field("order") order: Int,
         @Field("content") content: String
     ): Single<BasicResult>
+
+    //location map
+    @FormUrlEncoded
+    @POST("locationMap.php")
+    fun locationMap(
+        @Field("order") order: Int
+    ): Single<LocationMapResult>
 }

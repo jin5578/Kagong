@@ -66,5 +66,6 @@ ext {
 
     okhttpVersion = '3.10.0'
 
-
+    googleMapVersion = '16.1.0'
+    googleLocationVersion = '16.0.0'
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="gViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.googleMap.GoogleMapViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+        <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                app:infoVisibility="@{gViewModel.informationVisibility}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/imageView_description"
+                    app:locationImage="@{gViewModel.locationItem.image}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                    android:id="@+id/locationK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@{gViewModel.locationItem.locationK}"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintVertical_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    app:layout_constraintTop_toTopOf="@id/image"
+                    app:layout_constraintBottom_toTopOf="@id/null1"
+                    tools:text="런던 아이"/>
+
+            <TextView
+                    android:id="@+id/locationE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{gViewModel.locationItem.locationE}"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toEndOf="@id/locationK"
+                    app:layout_constraintTop_toTopOf="@id/locationK"
+                    app:layout_constraintBottom_toBottomOf="@id/locationK"
+                    tools:text="London Eye"/>
+
+            <ImageView
+                    android:id="@+id/null1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/like"
+                    android:contentDescription="@string/imageView_description"
+                    app:layout_constraintStart_toStartOf="@id/locationK"
+                    app:layout_constraintTop_toBottomOf="@id/locationK"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                    android:id="@+id/like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{gViewModel.locationItem.likecount}"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nanumotfl"
+                    app:layout_constraintStart_toEndOf="@id/null1"
+                    app:layout_constraintTop_toTopOf="@id/null1"
+                    app:layout_constraintBottom_toBottomOf="@id/null1"
+                    tools:text="855"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
