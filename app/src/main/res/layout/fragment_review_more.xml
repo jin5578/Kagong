@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="rViewModel"
+                type="com.tistory.jeongs0222.kagongapplication.ui.review.ReviewViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+        <ImageView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_close_black_24dp"
+                android:contentDescription="@string/imageView_description"
+                android:onClick="@{() -> rViewModel.previousClickEvent()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/review_see_more"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfb"
+                app:layout_constraintStart_toEndOf="@id/previous"
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
+
+        <ImageView
+                android:id="@+id/reviewWrite"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:src="@drawable/edit"
+                android:onClick="@{() -> rViewModel.writeClickEvent()}"
+                android:contentDescription="@string/imageView_description"
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
+
+        <View
+                android:id="@+id/null1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGray1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/previous"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:background="@color/colorGray1"
+                app:locationReviewItem="@{rViewModel.locationReviewItem}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

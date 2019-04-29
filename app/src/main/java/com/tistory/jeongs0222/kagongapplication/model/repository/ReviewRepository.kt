@@ -1,31 +1,20 @@
 package com.tistory.jeongs0222.kagongapplication.model.repository
 
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
-import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.BringLocationDetailResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResponse
 import io.reactivex.Single
 
 
-interface LocationDetailRepository {
-
-    fun bringLocationDetail(
-        order: Int
-    ): Single<BringLocationDetailResult>
-
-    fun locationLikeClick(
+interface ReviewRepository {
+    fun locationReviewWrite(
         userkey: String,
+        written_time: String,
         order: Int,
-        status: Int
+        content: String
     ): Single<BasicResult>
 
-    fun locationLikeValidate(
-        userkey: String,
-        order: Int
-    ): Single<BasicResult>
-
-    fun bringLocationReview(
+    fun bringReview(
         order: Int,
         sort: Int
     ): Single<BringLocationReviewResponse>
-
 }

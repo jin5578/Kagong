@@ -20,6 +20,8 @@ interface IntentProvider {
 
     fun iIntent(activityClass: Class<*>, value1: Int)
 
+    fun iiIntent(activityClass: Class<*>, value1: Int, value2: Int)
+
     fun intentPutTwoExtra(activityClass: Class<*>, area: String, order: String)
 
     fun intentActionView(variable: String)
@@ -62,6 +64,14 @@ class IntentProviderImpl(private val activity: Activity): IntentProvider {
     override fun iIntent(activityClass: Class<*>, value1: Int) {
         val intent = Intent(activity, activityClass)
         intent.putExtra("value1", value1)
+
+        activity.startActivity(intent)
+    }
+
+    override fun iiIntent(activityClass: Class<*>, value1: Int, value2: Int) {
+        val intent = Intent(activity, activityClass)
+        intent.putExtra("value1", value1)
+        intent.putExtra("value2", value2)
 
         activity.startActivity(intent)
     }
