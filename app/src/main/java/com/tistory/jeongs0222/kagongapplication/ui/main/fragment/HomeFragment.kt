@@ -17,11 +17,11 @@ class HomeFragment: Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            mViewModel = viewModel
             lifecycleOwner = this@HomeFragment
         }
 
@@ -35,12 +35,12 @@ class HomeFragment: Fragment() {
             layoutManager = GridLayoutManager(this@HomeFragment.context, 2)
             adapter = RecommendAreaAdapter(
                 this@HomeFragment,
-                mainViewModel
+                viewModel
             )
         }
 
-        mainViewModel.selectedRecommendClick.observe(this@HomeFragment, Observer {
-            mainViewModel.findAreaLog()
+        viewModel.selectedRecommendClick.observe(this@HomeFragment, Observer {
+            viewModel.findAreaLog()
         })
     }
 }

@@ -23,11 +23,11 @@ class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatc
 
     private lateinit var binding: FragmentSearchAreaBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSearchAreaBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            mViewModel = viewModel
             lifecycleOwner = this@SearchAreaFragment
         }
         return binding.root
@@ -45,7 +45,7 @@ class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatc
             layoutManager = LinearLayoutManager(this@SearchAreaFragment.context, LinearLayoutManager.HORIZONTAL, false)
             adapter = AreaSearchHistoryAdapter(
                 this@SearchAreaFragment,
-                mainViewModel
+                viewModel
             )
         }
 
@@ -53,18 +53,18 @@ class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatc
             layoutManager = LinearLayoutManager(this@SearchAreaFragment.context)
             adapter = FindAreaAdapter(
                 this@SearchAreaFragment,
-                mainViewModel
+                viewModel
             )
         }
 
-        mainViewModel.findArea("", 0)
+        viewModel.findArea("", 0)
 
-        mainViewModel.selectedHistoryClick.observe(this@SearchAreaFragment, Observer {
-            mainViewModel.findAreaLog()
+        viewModel.selectedHistoryClick.observe(this@SearchAreaFragment, Observer {
+            viewModel.findAreaLog()
         })
 
-        mainViewModel.selectedSearchClick.observe(this@SearchAreaFragment, Observer {
-            mainViewModel.findAreaLog()
+        viewModel.selectedSearchClick.observe(this@SearchAreaFragment, Observer {
+            viewModel.findAreaLog()
         })
     }
 
@@ -91,12 +91,12 @@ class SearchAreaFragment : Fragment(), TextView.OnEditorActionListener, TextWatc
     }
 
     private fun postPreprocessor(findcontent: String, sort: Int) {
-        mainViewModel.findArea(findcontent, sort)
+        viewModel.findArea(findcontent, sort)
 
         binding.findRecyclerView.adapter =
                 FindAreaAdapter(
                     this@SearchAreaFragment,
-                    mainViewModel
+                    viewModel
                 )
     }
 }

@@ -19,12 +19,12 @@ class MainAccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
 
     private lateinit var binding: FragmentMainAccompanyBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMainAccompanyBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            mViewModel = viewModel
             lifecycleOwner = this@MainAccompanyFragment
         }
 
@@ -40,24 +40,24 @@ class MainAccompanyFragment: Fragment(), TabLayout.OnTabSelectedListener {
             layoutManager = LinearLayoutManager(this@MainAccompanyFragment.context, LinearLayoutManager.HORIZONTAL, false)
             adapter = BringAreaListAdapter(
                 this@MainAccompanyFragment,
-                mainViewModel
+                viewModel
             )
         }
 
         binding.accompanyRecycler.apply {
             layoutManager = LinearLayoutManager(this@MainAccompanyFragment.context)
-            adapter = AccompanyAdapter(this@MainAccompanyFragment, mainViewModel)
+            adapter = AccompanyAdapter(this@MainAccompanyFragment, viewModel)
         }
 
-        mainViewModel.bringAccompany(0)
+        viewModel.bringAccompany(0)
 
-        mainViewModel.areaChangedClick.observe(this@MainAccompanyFragment, Observer {
+        viewModel.areaChangedClick.observe(this@MainAccompanyFragment, Observer {
             binding.tabLayout.getTabAt(0)!!.select()
         })
     }
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
-        mainViewModel.bringAccompany(tab!!.position)
+        viewModel.bringAccompany(tab!!.position)
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
