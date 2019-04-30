@@ -166,6 +166,55 @@
                     app:layout_constraintTop_toBottomOf="@id/introduce"/>
 
             <TextView
+                    android:id="@+id/null6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/operation_time"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toStartOf="@id/locationK"
+                    app:layout_constraintTop_toBottomOf="@id/null3"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/operation_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGray1"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    app:operatingTimeItem="@{lDViewModel.operatingTime}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null6"/>
+
+            <TextView
+                    android:id="@+id/null8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/notice_operation_time"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorRed"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/operation_recycler"/>
+
+            <View
+                    android:id="@+id/null7"
+                    android:layout_width="0dp"
+                    android:layout_height="2.5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null8"/>
+
+
+            <TextView
                     android:id="@+id/null2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,7 +224,7 @@
                     android:textColor="@color/colorBlack"
                     android:fontFamily="@font/nanumotfb"
                     app:layout_constraintStart_toStartOf="@id/locationK"
-                    app:layout_constraintTop_toBottomOf="@id/null3"/>
+                    app:layout_constraintTop_toBottomOf="@id/null7"/>
 
             <ImageView
                     android:id="@+id/reviewWrite"
@@ -211,12 +260,14 @@
                     android:visibility="gone"
                     android:layout_marginTop="50dp"
                     android:layout_marginStart="30dp"
+                    android:layout_marginBottom="30dp"
                     android:textSize="12sp"
                     android:text="@string/review_null"
                     android:fontFamily="@font/nanumotfr"
                     app:nullTextVisibility="@{lDViewModel.locationReviewItem}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/null2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:visibility="visible"/>
 
             <View

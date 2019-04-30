@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="timeItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResult"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@color/colorWhite">
+
+        <TextView
+                android:id="@+id/dayOfWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{timeItem.dayOfweek}"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfr"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="월요일"/>
+
+        <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@{timeItem.operatingTime}"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/nanumotfr"
+                android:gravity="center"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/dayOfWeek"
+                app:layout_constraintTop_toTopOf="@id/dayOfWeek"
+                app:layout_constraintBottom_toBottomOf="@id/dayOfWeek"
+                tools:text="10:00 ~ 20:30"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

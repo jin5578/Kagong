@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.model.repository
 import com.tistory.jeongs0222.kagongapplication.api.HostApi
 import com.tistory.jeongs0222.kagongapplication.model.host.BasicResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.BringLocationDetailResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResponse
 import io.reactivex.Single
 
@@ -16,4 +17,8 @@ class LocationDetailRepositoryImpl(private val hostApi: HostApi) : LocationDetai
     override fun locationLikeValidate(userkey: String, order: Int) = hostApi.locationLikeValidate(userkey, order)
 
     override fun bringLocationReview(order: Int, sort: Int): Single<BringLocationReviewResponse> = hostApi.bringReview(order, sort)
+
+    override fun bringOperatingTime(order: Int): Single<BringOperatingTimeResponse> = hostApi.bringOperatingTime(order)
+
+
 }

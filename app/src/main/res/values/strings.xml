@@ -193,4 +193,8 @@
     <string name="write_review">리뷰 쓰기</string>
 
     <string name="location">위치</string>
+
+    <string name="operation_time">운영시간</string>
+
+    <string name="notice_operation_time">일정에 따라 운영시간이 다를 수 있으니 해당 홈페이지에서 다시 확인바랍니다:)</string>
 </resources>
