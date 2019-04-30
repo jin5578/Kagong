@@ -90,4 +90,8 @@ dependencies {
 
     //Kakao Login
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+    //Google Map
+    implementation "com.google.android.gms:play-services-maps:$googleMapVersion"
+    implementation "com.google.android.gms:play-services-location:$googleLocationVersion"
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLocationDetailBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.ui.googleMap.GoogleMapActivity
 import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter.LocationReviewAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.review.ReviewActivity
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
@@ -30,8 +31,6 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
 
         val order: Int = intent.getIntExtra("value1", 0)
 
-        Log.e("order", order.toString())
-
         viewDataBinding.reviewRecycler.apply {
             layoutManager = LinearLayoutManager(this@LocationDetailActivity)
             adapter = LocationReviewAdapter(this@LocationDetailActivity)
@@ -42,6 +41,10 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
 
         viewModel.previousClick.observe(this@LocationDetailActivity, Observer {
             finish()
+        })
+
+        viewModel.locationClick.observe(this@LocationDetailActivity, Observer {
+            intentProvider.iIntent(GoogleMapActivity::class.java, order)
         })
 
         viewModel.reviewWriteClick.observe(this@LocationDetailActivity, Observer {
