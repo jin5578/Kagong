@@ -16,11 +16,11 @@ class ScheduleFragment: Fragment() {
 
     private lateinit var binding: FragmentScheduleBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentScheduleBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            mViewModel = viewModel
             lifecycleOwner = this@ScheduleFragment
         }
 
@@ -34,7 +34,7 @@ class ScheduleFragment: Fragment() {
             layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
             adapter = BringScheduleAdapter(
                 this@ScheduleFragment,
-                mainViewModel
+                viewModel
             )
         }
     }

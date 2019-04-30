@@ -22,13 +22,13 @@ class ProfileFragment: Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
 
     private lateinit var intentProvider: IntentProvider
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false).apply {
-            mViewModel = mainViewModel
+            mViewModel = viewModel
             lifecycleOwner = this@ProfileFragment
         }
 
@@ -40,11 +40,11 @@ class ProfileFragment: Fragment() {
 
         intentProvider = IntentProviderImpl(this@ProfileFragment.activity!!)
 
-        mainViewModel.howToUseClick.observe(this@ProfileFragment, Observer {
+        viewModel.howToUseClick.observe(this@ProfileFragment, Observer {
             intentProvider.intent(HowToUseActivity::class.java)
         })
 
-        mainViewModel.reviewClick.observe(this@ProfileFragment, Observer {
+        viewModel.reviewClick.observe(this@ProfileFragment, Observer {
             intentProvider.intentReview()
         })
 

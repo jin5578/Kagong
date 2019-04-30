@@ -24,13 +24,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
     override val layoutResourceId: Int = R.layout.activity_main
 
-    private val mainViewModel by viewModel<MainViewModel>()
+    private val viewModel by viewModel<MainViewModel>()
 
     private val permissionProvider = PermissionProviderImpl(this@MainActivity) as PermissionProvider
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
-    private val messageProvider = MessageProviderImpl(this@MainActivity) as MessageProvider
     private val intentProvider = IntentProviderImpl(this@MainActivity) as IntentProvider
-    private val dbHelperProvider = DBHelperProviderImpl(this@MainActivity) as DBHelperProvider
 
     private val homeFragment = HomeFragment()
     private val searchAreaFragment = SearchAreaFragment()
@@ -48,37 +46,41 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
 
-        mainViewModel.bind(messageProvider, intentProvider, dbHelperProvider)
+        viewModel.bind(
+            MessageProviderImpl(this@MainActivity) as MessageProvider,
+            intentProvider,
+            DBHelperProviderImpl(this@MainActivity) as DBHelperProvider
+        )
 
-        mainViewModel.searchAreaClick.observe(this@MainActivity, Observer {
+        viewModel.searchAreaClick.observe(this@MainActivity, Observer {
             fragmentProvider.replaceFragment(searchAreaFragment)
         })
 
-        mainViewModel.accompanyWriteClick.observe(this@MainActivity, Observer {
-            intentProvider.intentPutExtra(AccompanyWriteActivity::class.java, mainViewModel.accompanyArea.value!!)
+        viewModel.accompanyWriteClick.observe(this@MainActivity, Observer {
+            intentProvider.intentPutExtra(AccompanyWriteActivity::class.java, viewModel.accompanyArea.value!!)
         })
 
-        mainViewModel.previousClick.observe(this@MainActivity, Observer {
+        viewModel.previousClick.observe(this@MainActivity, Observer {
             fragmentProvider.replaceFragment(homeFragment)
         })
 
-        mainViewModel.profileDetailClick.observe(this@MainActivity, Observer {
+        viewModel.profileDetailClick.observe(this@MainActivity, Observer {
             intentProvider.intent(ProfileActivity::class.java)
         })
 
-        mainViewModel.settingClick.observe(this@MainActivity, Observer {
+        viewModel.settingClick.observe(this@MainActivity, Observer {
             intentProvider.intent(SettingActivity::class.java)
         })
 
-        mainViewModel.noticeClick.observe(this@MainActivity, Observer {
+        viewModel.noticeClick.observe(this@MainActivity, Observer {
             intentProvider.intent(NoticeActivity::class.java)
         })
 
-        mainViewModel.writtenClick.observe(this@MainActivity, Observer {
+        viewModel.writtenClick.observe(this@MainActivity, Observer {
             intentProvider.intent(WrittenActivity::class.java)
         })
 
-        viewDataBinding.mViewModel = mainViewModel
+        viewDataBinding.mViewModel = viewModel
         viewDataBinding.lifecycleOwner = this@MainActivity
     }
 
@@ -115,9 +117,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     }
 
     override fun onBackPressed() {
-        mainViewModel.backPressed()
+        viewModel.backPressed()
 
-        mainViewModel.viewFinish.observe(this@MainActivity, Observer {
+        viewModel.viewFinish.observe(this@MainActivity, Observer {
             if (it) {
                 moveTaskToBack(true)
                 finishAffinity()
@@ -130,8 +132,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
     override fun onResume() {
         super.onResume()
 
-        mainViewModel.bringNicknameAndIntro()
-        mainViewModel.bringHistory()
-        mainViewModel.bringSchedule()
+        viewModel.bringNicknameAndIntro()
+        viewModel.bringHistory()
+        viewModel.bringSchedule()
     }
 }
