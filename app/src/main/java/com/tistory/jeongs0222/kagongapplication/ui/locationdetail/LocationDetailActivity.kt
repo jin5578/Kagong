@@ -9,6 +9,7 @@ import com.tistory.jeongs0222.kagongapplication.databinding.ActivityLocationDeta
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.googleMap.GoogleMapActivity
 import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter.LocationReviewAdapter
+import com.tistory.jeongs0222.kagongapplication.ui.locationdetail.adapter.OperatingTimeAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.review.ReviewActivity
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
@@ -30,6 +31,12 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
         super.onCreate(savedInstanceState)
 
         val order: Int = intent.getIntExtra("value1", 0)
+
+        viewDataBinding.operationRecycler.apply {
+            layoutManager = LinearLayoutManager(this@LocationDetailActivity)
+            adapter = OperatingTimeAdapter(this@LocationDetailActivity)
+            isNestedScrollingEnabled = false
+        }
 
         viewDataBinding.reviewRecycler.apply {
             layoutManager = LinearLayoutManager(this@LocationDetailActivity)

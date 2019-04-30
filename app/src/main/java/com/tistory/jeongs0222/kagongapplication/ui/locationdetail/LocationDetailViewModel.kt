@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tistory.jeongs0222.kagongapplication.model.host.bringLocationDetail.BringLocationDetailResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringReview.BringLocationReviewResult
+import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.LocationDetailRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
 import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
@@ -35,6 +36,10 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
     val locationDetailItem: LiveData<BringLocationDetailResult>
         get() = _locationDetailItem
 
+    private val _operatingTime = MutableLiveData<MutableList<BringOperatingTimeResult>>()
+    val operatingTime: LiveData<MutableList<BringOperatingTimeResult>>
+        get() = _operatingTime
+
     private val _locationReviewItem = MutableLiveData<MutableList<BringLocationReviewResult>>()
     val locationReviewItem: LiveData<MutableList<BringLocationReviewResult>>
         get() = _locationReviewItem
@@ -56,6 +61,7 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
         userkey = dbHelperProvider.getDBHelper().getUserKey()
 
         bringLocationDetail()
+        bringOperatingTime()
         bringLocationReview()
     }
 
@@ -105,6 +111,20 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
             }
             .subscribe()
     }
+
+    private fun bringOperatingTime() {
+        locationDetailRepository.bringOperatingTime(order)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _operatingTime.value = it.bringOperatingTime
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
 
     private fun bringLocationReview() {
         locationDetailRepository.bringLocationReview(order, 0)

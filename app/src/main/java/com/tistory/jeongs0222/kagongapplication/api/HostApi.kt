@@ -21,6 +21,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.locationMap.LocationM
 import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.RecommendAreaResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -314,4 +315,12 @@ interface HostApi {
     fun locationMap(
         @Field("order") order: Int
     ): Single<LocationMapResult>
+
+    //bring operation time
+    @FormUrlEncoded
+    @POST("bringOperatingTime.php")
+    fun bringOperatingTime(
+        @Field("order") order: Int
+    ): Single<BringOperatingTimeResponse>
+
 }
