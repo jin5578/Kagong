@@ -19,6 +19,7 @@ fun locationDetailImage(imageView: ImageView, uri: String?) {
                     .priorityOf(Priority.IMMEDIATE)
                     .placeholder(R.drawable.ic_error_outline_black_24dp)
                     .error(R.drawable.ic_error_outline_black_24dp)
+                    .centerCrop()
             )
             .into(imageView)
     }
