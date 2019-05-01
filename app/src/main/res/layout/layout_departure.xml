@@ -28,7 +28,7 @@
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:text="@string/departure_input"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"

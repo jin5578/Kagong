@@ -70,7 +70,6 @@ class LocationDetailViewModel(private val locationDetailRepository: LocationDeta
     }
 
     fun locationClickEvent() {
-        Log.e("locationClick", "locationClick")
         _locationClick.call()
     }
 

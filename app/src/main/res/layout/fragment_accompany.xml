@@ -23,7 +23,10 @@
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:onClick="@{() -> tViewModel.previousClickEvent()}"
                 android:contentDescription="@string/imageView_description"
@@ -38,7 +41,8 @@
                 android:textSize="16sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/nanumotfb"
-                app:layout_constraintStart_toEndOf="@id/previous"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
 
@@ -54,7 +58,8 @@
                 android:src="@drawable/ic_search_black_24dp"
                 android:contentDescription="@string/imageView_description"
                 app:layout_constraintEnd_toStartOf="@id/write"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
 
         <ImageView
                 android:id="@+id/write"
@@ -68,7 +73,8 @@
                 android:contentDescription="@string/imageView_description"
                 android:src="@drawable/ic_edit_pink_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="@id/previous"
+                app:layout_constraintBottom_toBottomOf="@id/previous"/>
 
         <View
                 android:id="@+id/null4"
