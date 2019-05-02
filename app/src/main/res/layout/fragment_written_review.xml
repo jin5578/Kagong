@@ -40,6 +40,7 @@
                 android:text="@string/review_null"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
+                app:reviewNullVisibility="@{wViewModel.wWrittenReviewList}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible"/>

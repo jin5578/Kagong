@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DotsIndicator">
+        <attr name="dotsColor"/>
+        <attr name="dotsSize"/>
+        <attr name="dotsSpacing"/>
+        <attr name="dotsCornerRadius"/>
+        <attr name="dotsStrokeWidth"/>
+        <attr name="dotsStrokeColor"/>
+    </declare-styleable>
+</resources>
