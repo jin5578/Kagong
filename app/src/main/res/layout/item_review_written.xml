@@ -9,8 +9,8 @@
         <import type="android.view.View"/>
 
         <variable
-                name="accompanyItem"
-                type="com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResult"/>
+                name="reviewItem"
+                type="com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResult"/>
 
         <variable
                 name="eventListener"
@@ -29,7 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/imageView_description"
-                app:writtenAccompanyProfile="@{accompanyItem.image}"
+                app:locationReviewProfile="@{reviewItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -38,26 +38,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{accompanyItem.nickname}"
+                android:text="@{reviewItem.nickname}"
                 android:textSize="11sp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintVertical_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image"
-                app:layout_constraintBottom_toTopOf="@id/writtenDate"
+                app:layout_constraintBottom_toTopOf="@id/written_time"
                 tools:text="히키코모리"/>
 
         <TextView
-                android:id="@+id/writtenDate"
+                android:id="@+id/written_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{reviewItem.written_time}"
                 android:textSize="10sp"
                 android:fontFamily="@font/nanumotfl"
-                app:writtenDateText="@{accompanyItem.written_time}"
                 app:layout_constraintStart_toStartOf="@id/nickname"
                 app:layout_constraintTop_toBottomOf="@id/nickname"
                 app:layout_constraintBottom_toBottomOf="@id/image"
-                tools:text="03.20 20:00"/>
+                tools:text="2019.4.27"/>
 
         <ImageView
                 android:id="@+id/more"
@@ -69,7 +69,7 @@
                 android:paddingEnd="0dp"
                 android:src="@drawable/more_vertical"
                 android:contentDescription="@string/imageView_description"
-                android:onClick="@{() -> eventListener.moreClickEvent(accompanyItem.content, accompanyItem.written_time)}"
+                android:onClick="@{() -> eventListener.reviewMoreClickEvent(reviewItem.content, reviewItem.written_time)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintBottom_toBottomOf="@id/image"/>
@@ -78,43 +78,15 @@
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:text="@{accompanyItem.content}"
-                android:textSize="12sp"
+                android:paddingTop="15dp"
+                android:text="@{reviewItem.content}"
+                android:textColor="@color/colorBlack"
+                android:textSize="11sp"
                 android:fontFamily="@font/nanumotfr"
-                android:lineSpacingExtra="5dp"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image"
-                tools:text="런던 종일동행 하실분 구합니다. 일정은 맞추도록 노력하겠습니다. 하지만 될 수 있으면 맨체스터 유나이티드 직관 가실분이였으면 좋겠습니다.."/>
-
-        <TextView
-                android:id="@+id/area"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="@color/colorBlue2"
-                android:fontFamily="@font/nanumotfr"
-                app:tagAreaText="@{accompanyItem.area}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="# 런던"/>
-
-        <TextView
-                android:id="@+id/meetingDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textSize="11sp"
-                android:textColor="@color/colorBlue2"
-                android:fontFamily="@font/nanumotfr"
-                app:tagMeetingDateText="@{accompanyItem.meeting_date}"
-                app:layout_constraintStart_toEndOf="@id/area"
-                app:layout_constraintTop_toTopOf="@id/area"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="# 02.22"/>
+                tools:text="런던의 랜드마크 답게 꼭 한번 가봐야하는 곳 입니다."/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

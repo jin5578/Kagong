@@ -22,6 +22,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.Recomme
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -258,10 +259,27 @@ interface HostApi {
         @Field("userkey") userkey: String
     ): Single<WrittenAccompanyResponse>
 
+    //bring written review
+    @FormUrlEncoded
+    @POST("writtenReview.php")
+    fun writtenReview(
+        @Field("userkey") userkey: String
+    ): Single<WrittenReviewResponse>
+
+
     //delete accompany
     @FormUrlEncoded
     @POST("deleteAccompany.php")
     fun deleteAccompany(
+        @Field("userkey") userkey: String,
+        @Field("content") content: String,
+        @Field("writtenTime") writtenTime: String
+    ): Single<BasicResult>
+
+    //delete review
+    @FormUrlEncoded
+    @POST("deleteReview.php")
+    fun deleteReview(
         @Field("userkey") userkey: String,
         @Field("content") content: String,
         @Field("writtenTime") writtenTime: String
