@@ -112,7 +112,7 @@ class KakaoSignProviderImpl(private val activity: Activity): KakaoSignProvider {
     }
 
     private fun createLoginDialog(authItems: Array<Item>, adapter: ListAdapter): Dialog {
-        val dialog = Dialog(activity.applicationContext, R.style.LoginDialog)
+        val dialog = Dialog(activity, R.style.LoginDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(com.kakao.usermgmt.R.layout.layout_login_dialog)
         if (dialog.window != null) {

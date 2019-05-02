@@ -11,6 +11,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.adddetailschedule.adapter.Bri
 import com.tistory.jeongs0222.kagongapplication.ui.addlocation.AddLocationActivity
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.addschedule.AddScheduleActivity
+import com.tistory.jeongs0222.kagongapplication.ui.howToUse.HowToUseActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -49,6 +50,10 @@ class AddDetailScheduleActivity : BaseActivity<ActivityAddDetailScheduleBinding>
         addDetailScheduleViewModel.bind(intentProvider, messageProvider, dbHelperProvider)
 
         viewDataBinding.recyclerView.layoutManager = LinearLayoutManager(this@AddDetailScheduleActivity)
+
+        addDetailScheduleViewModel.howToUseClick.observe(this@AddDetailScheduleActivity, Observer {
+            intentProvider.iIntent(HowToUseActivity::class.java, 1)
+        })
 
         addDetailScheduleViewModel.moreVisibility.observe(this@AddDetailScheduleActivity, Observer {
             if (it) {

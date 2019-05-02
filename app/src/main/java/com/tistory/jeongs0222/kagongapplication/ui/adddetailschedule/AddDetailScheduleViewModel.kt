@@ -21,6 +21,10 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
     val previousClick: LiveData<Any>
         get() = _previousClick
 
+    private val _howToUseClick = SingleLiveEvent<Any>()
+    val howToUseClick: LiveData<Any>
+        get() = _howToUseClick
+
     private val _moreClick = SingleLiveEvent<Any>()
 
     private val _editScheduleClick = SingleLiveEvent<Any>()
@@ -131,6 +135,10 @@ class AddDetailScheduleViewModel(private val addDetailScheduleRepository: AddDet
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun howToUseClickEvent() {
+        _howToUseClick.call()
     }
 
     fun moreClickEvent() {
