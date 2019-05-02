@@ -18,6 +18,13 @@ class HowToUseViewModel : DisposableViewModel() {
     val image4: Int = R.drawable.accompany_write3
     val image5: Int = R.drawable.accompany_write4
 
+    val image6: Int = R.drawable.schedulehtu1
+    val image7: Int = R.drawable.schedulehtu2
+    val image8: Int = R.drawable.schedulehtu3
+    val image9: Int = R.drawable.schedulehtu4
+    val image10: Int = R.drawable.schedulehtu5
+    val image11: Int = R.drawable.schedulehtu6
+
     fun previousClickEvent() {
         _previousClick.call()
     }
