@@ -4,19 +4,17 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityWrittenBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.written.adapter.WrittenAccompanyAdapter
 import com.tistory.jeongs0222.kagongapplication.ui.written.fragment.WrittenAccompanyFragment
 import com.tistory.jeongs0222.kagongapplication.ui.written.fragment.WrittenReviewFragment
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class WrittenActivity: BaseActivity<ActivityWrittenBinding>(), TabLayout.OnTabSelectedListener {
+class WrittenActivity : BaseActivity<ActivityWrittenBinding>(), TabLayout.OnTabSelectedListener {
 
     override val layoutResourceId: Int = R.layout.activity_written
 
@@ -50,10 +48,16 @@ class WrittenActivity: BaseActivity<ActivityWrittenBinding>(), TabLayout.OnTabSe
         })
 
         wViewModel.wMoreVisibility.observe(this@WrittenActivity, Observer {
-            if(it)
-                constraintSetProvider.moreExpandAnimation(R.layout.layout_written_more_expand, viewDataBinding.includeWrittenMore.moreLayout)
+            if (it)
+                constraintSetProvider.moreExpandAnimation(
+                    R.layout.layout_written_more_expand,
+                    viewDataBinding.includeWrittenMore.moreLayout
+                )
             else
-                constraintSetProvider.moreContractAnimation(R.layout.layout_written_more_contract, viewDataBinding.includeWrittenMore.moreLayout)
+                constraintSetProvider.moreContractAnimation(
+                    R.layout.layout_written_more_contract,
+                    viewDataBinding.includeWrittenMore.moreLayout
+                )
         })
 
         wViewModel._wMoreDeleteClick.observe(this@WrittenActivity, Observer {
@@ -76,7 +80,13 @@ class WrittenActivity: BaseActivity<ActivityWrittenBinding>(), TabLayout.OnTabSe
         }
 
         inflater.findViewById<TextView>(R.id.check).setOnClickListener {
-            wViewModel.wDeleteAccompany()
+            wViewModel.wMoreDivider.observe(this@WrittenActivity, Observer {
+                if (it == 0) {
+                    wViewModel.wDeleteAccompany()
+                } else {
+                    wViewModel.wDeleteReview()
+                }
+            })
         }
 
         builder.setView(inflater)
@@ -103,9 +113,8 @@ class WrittenActivity: BaseActivity<ActivityWrittenBinding>(), TabLayout.OnTabSe
     }
 
 
-
     private fun tabSelected(position: Int) {
-        when(position) {
+        when (position) {
             0 -> fragmentProvider.replaceFragment(writtenAccompanyFragment)
 
             else -> fragmentProvider.replaceFragment(writtenReviewFragment)

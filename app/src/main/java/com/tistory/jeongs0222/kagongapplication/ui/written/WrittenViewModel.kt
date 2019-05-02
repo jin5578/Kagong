@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.ui.written
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.WrittenRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
@@ -31,14 +32,25 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
     val wWrittenAccompanyList: LiveData<MutableList<WrittenAccompanyResult>>
         get() = _wWrittenAccompanyList
 
+    private val _wWrittenReviewList = MutableLiveData<MutableList<WrittenReviewResult>>()
+    val wWrittenReviewList: LiveData<MutableList<WrittenReviewResult>>
+        get() = _wWrittenReviewList
+
     private val _wMoreVisibility = MutableLiveData<Boolean>()
     val wMoreVisibility: LiveData<Boolean>
         get() = _wMoreVisibility
+
+    private val _wMoreDivider = MutableLiveData<Int>()
+    val wMoreDivider: LiveData<Int>
+        get() = _wMoreDivider
 
     private lateinit var messageProvider: MessageProvider
 
     private lateinit var selectedContent: String
     private lateinit var selectedWrittenTime: String
+
+    private lateinit var rSelectedContent: String
+    private lateinit var rSelectedWrittenTIme: String
 
     private lateinit var userKey: String
 
@@ -48,6 +60,7 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
         this.messageProvider = messageProvider
 
         writtenAccompany()
+        writtenReview()
     }
 
     fun wPreviousClickEvent() {
@@ -76,7 +89,26 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
                 }
             }
             .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
 
+    fun wDeleteReview() {
+        writtenRepository.deleteReview(userKey, rSelectedContent, rSelectedWrittenTIme)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                if(it.value == 0) {
+                    messageProvider.toastMessage(it.message)
+
+                    _wFinishRequest.call()
+                } else {
+                    messageProvider.toastMessage(it.message)
+                }
+            }
+            .doOnError {
+                it.printStackTrace()
             }
             .subscribe()
     }
@@ -94,14 +126,38 @@ class WrittenViewModel(private val writtenRepository: WrittenRepository): Dispos
             .subscribe()
     }
 
+    private fun writtenReview() {
+        writtenRepository.writtenReview(userKey)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                _wWrittenReviewList.value = it.bringWrittenReview
+            }
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+    }
+
     override fun moreClickEvent(content: String, writtenTime: String) {
         _wMoreVisibility.value = true
+        _wMoreDivider.value = 0
 
         selectedContent = content
         selectedWrittenTime = writtenTime
+    }
+
+    override fun reviewMoreClickEvent(content: String, writtenTime: String) {
+        _wMoreVisibility.value = true
+        _wMoreDivider.value = 1
+
+        rSelectedContent = content
+        rSelectedWrittenTIme = writtenTime
     }
 }
 
 interface WrittenEventListener {
     fun moreClickEvent(content: String, writtenTime: String)
+
+    fun reviewMoreClickEvent(content: String, writtenTime: String)
 }

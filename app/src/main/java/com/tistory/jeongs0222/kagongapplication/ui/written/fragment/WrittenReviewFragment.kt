@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentWrittenReviewBinding
 import com.tistory.jeongs0222.kagongapplication.ui.written.WrittenViewModel
+import com.tistory.jeongs0222.kagongapplication.ui.written.adapter.WrittenReviewAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -30,7 +32,10 @@ class WrittenReviewFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.reviewRecycler.apply {
+            layoutManager = LinearLayoutManager(this@WrittenReviewFragment.context)
+            adapter = WrittenReviewAdapter(this@WrittenReviewFragment, viewModel)
+        }
     }
 
 }
