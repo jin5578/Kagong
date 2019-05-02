@@ -33,18 +33,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-                android:id="@+id/null1"
-                android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/written"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/nanumotfb"
+                app:tabTextColor="@color/colorBlack"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorPink"
+                app:tabTextAppearance="@style/InnerTabLayoutTextStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/previous"
-                app:layout_constraintBottom_toBottomOf="@id/previous"/>
+                app:layout_constraintTop_toBottomOf="@id/previous">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내가 쓴 글"/>
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰"/>
+
+
+        </com.google.android.material.tabs.TabLayout>
 
         <View
                 android:id="@+id/null2"
@@ -53,34 +66,16 @@
                 android:background="@color/colorGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/previous"/>
+                app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
+        <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:overScrollMode="never"
-                android:background="@color/colorGray4"
-                app:writtenAccompanyList="@{wViewModel.wWrittenAccompanyList}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-                android:id="@+id/itemNull"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="30dp"
-                android:visibility="gone"
-                android:text="@string/content_hint_accompany"
-                android:textSize="12sp"
-                android:fontFamily="@font/nanumotfr"
-                app:nullVisibility="@{wViewModel.wWrittenAccompanyList}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null2"
-                tools:visibility="visible"/>
 
         <include
                 android:id="@+id/include_written_more"
