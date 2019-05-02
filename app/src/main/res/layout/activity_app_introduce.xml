@@ -28,19 +28,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <LinearLayout
-                android:id="@+id/detail_dots_linearLayout"
-                android:layout_width="0dp"
+        <com.tistory.jeongs0222.kagongapplication.utils.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                app:dotsColor="@color/colorGray4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/colorWhite"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

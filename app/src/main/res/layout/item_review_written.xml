@@ -29,7 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/imageView_description"
-                app:locationReviewProfile="@{reviewItem.image}"
+                app:writtenReviewProfile="@{reviewItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
