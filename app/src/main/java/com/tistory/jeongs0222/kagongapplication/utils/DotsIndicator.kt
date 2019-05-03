@@ -64,7 +64,7 @@ class DotsIndicator @JvmOverloads constructor(
 
         addView(strokeDotsLinearLayout)
 
-        dotsSize = dpToPx(9) // 9dp
+        dotsSize = dpToPx(7) // 9dp
         dotsSpacing = dpToPx(4) // 4dp
         dotsStrokeWidth = dpToPx(1) // 1dp
         dotsCornerRadius = dotsSize / 2
@@ -178,6 +178,7 @@ class DotsIndicator @JvmOverloads constructor(
             context,
             if (stroke) R.drawable.dot_stroke_background else R.drawable.dot_background
         )
+
         val params = dotImageView.layoutParams as RelativeLayout.LayoutParams
         params.height = dotsSize
         params.width = params.height
