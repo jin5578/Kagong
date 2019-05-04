@@ -115,6 +115,34 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="# 02.22"/>
 
+        <TextView
+                android:id="@+id/sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:textSize="11sp"
+                android:textColor="@color/colorBlue2"
+                android:fontFamily="@font/nanumotfr"
+                app:mAccompanySex="@{accompanyItem.sex}"
+                app:layout_constraintStart_toEndOf="@id/meetingDate"
+                app:layout_constraintTop_toTopOf="@id/meetingDate"
+                app:layout_constraintBottom_toBottomOf="@id/meetingDate"
+                tools:text="# 남성"/>
+
+        <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:textSize="11sp"
+                android:textColor="@color/colorBlue2"
+                android:fontFamily="@font/nanumotfr"
+                app:mAccompanyAge="@{accompanyItem.age}"
+                app:layout_constraintStart_toEndOf="@id/sex"
+                app:layout_constraintTop_toTopOf="@id/sex"
+                app:layout_constraintBottom_toBottomOf="@id/sex"
+                tools:text="# 22세"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

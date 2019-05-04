@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany.BringAccompanyResult
+import java.text.SimpleDateFormat
 
 
 @BindingAdapter("accompanyList")
@@ -50,5 +52,28 @@ fun accompanyProfile(imageView: ImageView, uri: String) {
         Glide.with(imageView)
             .load(R.drawable.profileimage)
             .into(imageView)
+    }
+}
+
+@BindingAdapter("accompanySex")
+fun accompanySex(textView: TextView, sex: String?) {
+    if (sex != null) {
+        textView.text = when (sex) {
+            "female" -> "# " + "여성"
+
+            else -> "# " + "남성"
+        }
+    }
+}
+
+@SuppressLint("SimpleDateFormat", "SetTextI18n")
+@BindingAdapter("accompanyAge")
+fun accompanyAge(textView: TextView, age: String?) {
+    if(age != null) {
+        val format1 = SimpleDateFormat("yyyy")
+
+        val present = format1.format(System.currentTimeMillis())
+
+        textView.text = "# " + (present.toInt() - age.toInt() + 1).toString() + "세"
     }
 }
