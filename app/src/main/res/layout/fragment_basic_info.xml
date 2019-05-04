@@ -14,74 +14,270 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none"
             android:background="@color/colorWhite">
 
-        <TextView
-                android:id="@+id/null1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
-                android:text="@string/basic_information"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/nanumotfr"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <EditText
-                android:id="@+id/nickname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="30dp"
-                android:gravity="center"
-                android:hint="@string/nickname"
-                android:textSize="12sp"
-                android:fontFamily="@font/nanumotfl"
-                android:padding="15dp"
-                android:maxLines="1"
-                android:inputType="text"
-                android:background="@drawable/edittext_background"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/null1"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                    android:id="@+id/null1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanumotfb"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-                android:id="@+id/validate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:gravity="center"
-                android:text="@string/validate"
-                android:textSize="10sp"
-                android:fontFamily="@font/nanumotfr"
-                android:background="@drawable/edittext_background"
-                android:onClick="@{() -> rViewModel.validateClickEvent()}"
-                app:layout_constraintTop_toBottomOf="@id/nickname"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            <View
+                    android:id="@+id/null2"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null1"/>
 
-        <TextView
-                android:id="@+id/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_marginEnd="30dp"
-                android:padding="15dp"
-                android:text="@string/next"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/nanumotfr"
-                android:onClick="@{() -> rViewModel.nextClickEvent()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    android:id="@+id/null3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/basic_information"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null2"/>
+
+            <TextView
+                    android:id="@+id/null4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/nickname"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null3"/>
+
+            <EditText
+                    android:id="@+id/nickname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="70dp"
+                    android:gravity="center"
+                    android:hint="@string/nickname"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:padding="15dp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:background="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null4"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <View
+                    android:id="@+id/null8"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="@id/nickname"
+                    app:layout_constraintEnd_toEndOf="@id/nickname"
+                    app:layout_constraintTop_toBottomOf="@id/nickname"/>
+
+            <TextView
+                    android:id="@+id/validate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:text="@string/validate"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:onClick="@{() -> rViewModel.validateClickEvent()}"
+                    app:layout_constraintTop_toBottomOf="@id/nickname"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                    android:id="@+id/null5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/personal_information"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/validate"/>
+
+            <TextView
+                    android:id="@+id/null6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/sex"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null5"/>
+
+            <TextView
+                    android:id="@+id/female"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:text="@string/female"
+                    android:textSize="11sp"
+                    android:onClick="@{() -> rViewModel.femaleClickEvent()}"
+                    app:layout_constraintStart_toStartOf="@id/age"
+                    app:layout_constraintEnd_toStartOf="@id/male"
+                    app:layout_constraintTop_toBottomOf="@id/null6"/>
+
+            <View
+                    android:id="@+id/null9"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="@id/female"
+                    app:layout_constraintEnd_toEndOf="@id/female"
+                    app:layout_constraintTop_toBottomOf="@id/female"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check_pink_24dp"
+                    android:contentDescription="@string/imageView_description"
+                    android:visibility="gone"
+                    app:femaleCheckVisibility="@{rViewModel.userSex}"
+                    app:layout_constraintStart_toStartOf="@id/female"
+                    app:layout_constraintEnd_toEndOf="@id/female"
+                    app:layout_constraintTop_toTopOf="@id/female"
+                    app:layout_constraintBottom_toTopOf="@id/female"
+                    tools:visibility="visible"/>
+
+            <TextView
+                    android:id="@+id/male"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:text="@string/male"
+                    android:textSize="11sp"
+                    android:onClick="@{() -> rViewModel.maleClickEvent()}"
+                    app:layout_constraintStart_toEndOf="@id/female"
+                    app:layout_constraintTop_toTopOf="@id/female"
+                    app:layout_constraintBottom_toBottomOf="@id/female"
+                    app:layout_constraintEnd_toEndOf="@id/age"/>
+
+            <View
+                    android:id="@+id/null10"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="@id/male"
+                    app:layout_constraintEnd_toEndOf="@id/male"
+                    app:layout_constraintTop_toBottomOf="@id/male"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check_pink_24dp"
+                    android:contentDescription="@string/imageView_description"
+                    android:visibility="gone"
+                    app:maleCheckVisibility="@{rViewModel.userSex}"
+                    app:layout_constraintStart_toStartOf="@id/male"
+                    app:layout_constraintEnd_toEndOf="@id/male"
+                    app:layout_constraintTop_toTopOf="@id/male"
+                    app:layout_constraintBottom_toTopOf="@id/male"
+                    tools:visibility="visible"/>
+
+            <TextView
+                    android:id="@+id/null7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/age"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nanumotfr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/female"/>
+
+            <TextView
+                    android:id="@+id/age"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="70dp"
+                    android:hint="@string/age"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:text="@{rViewModel.userYear}"
+                    android:textSize="11sp"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="@{() -> rViewModel.ageClickEvent()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null7"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <View
+                    android:id="@+id/null11"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="@id/age"
+                    app:layout_constraintEnd_toEndOf="@id/age"
+                    app:layout_constraintTop_toBottomOf="@id/age"/>
+
+            <TextView
+                    android:id="@+id/confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginEnd="30dp"
+                    android:padding="15dp"
+                    android:text="@string/confirm"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanumotfr"
+                    android:onClick="@{() -> rViewModel.confirmClickEvent()}"
+                    app:layout_constraintTop_toBottomOf="@id/age"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

@@ -18,45 +18,29 @@ import com.tistory.jeongs0222.kagongapplication.utils.*
 class RegisterViewModel(private val registerRepository: RegisterRepository) : DisposableViewModel(),
     RegisterEventListener {
 
-    private val _nextClick = SingleLiveEvent<Any>()
-    val nextClick: LiveData<Any>
-        get() = _nextClick
-
     private val _validateClick = SingleLiveEvent<Any>()
     val validateClick: LiveData<Any>
         get() = _validateClick
-
-    private val _userNickname = MutableLiveData<String>()
-    val userNickname: LiveData<String>
-        get() = _userNickname
-
-
-    //PersonalInfoFragment
-    private val _femaleClick = SingleLiveEvent<Any>()
-
-    private val _maleClick = SingleLiveEvent<Any>()
 
     private val _ageClick = SingleLiveEvent<Any>()
     val ageClick: LiveData<Any>
         get() = _ageClick
 
-    private val _previousClick = SingleLiveEvent<Any>()
-    val previousClick: LiveData<Any>
-        get() = _previousClick
-
     private val _confirmClick = SingleLiveEvent<Any>()
     val confirmClick: LiveData<Any>
         get() = _confirmClick
 
-
-    //YearFragment
-    private val _yearItem = MutableLiveData<MutableList<YearItem>>()
-    val yearItem: LiveData<MutableList<YearItem>>
-        get() = _yearItem
+    private val _userNickname = MutableLiveData<String>()
+    val userNickname: LiveData<String>
+        get() = _userNickname
 
     private val _userSex = MutableLiveData<String>()
     val userSex: LiveData<String>
         get() = _userSex
+
+    private val _yearItem = MutableLiveData<MutableList<YearItem>>()
+    val yearItem: LiveData<MutableList<YearItem>>
+        get() = _yearItem
 
     private val _userYear = MutableLiveData<String>()
     val userYear: LiveData<String>
@@ -91,13 +75,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
         getToken()
     }
 
-    fun nextClickEvent() {
-        _nextClick.call()
-    }
-
-    fun previousClickEvent() {
-        _previousClick.call()
-    }
 
     fun confirmClickEvent() {
         _confirmClick.call()
@@ -108,14 +85,10 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     }
 
     fun femaleClickEvent() {
-        _femaleClick.call()
-
         _userSex.value = "female"
     }
 
     fun maleClickEvent() {
-        _maleClick.call()
-
         _userSex.value = "male"
     }
 

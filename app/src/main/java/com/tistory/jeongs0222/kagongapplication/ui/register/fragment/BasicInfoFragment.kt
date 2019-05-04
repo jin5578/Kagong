@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.FragmentBasicInfoBinding
 import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterViewModel
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider
+import com.tistory.jeongs0222.kagongapplication.utils.MessageProviderImpl
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -22,6 +25,8 @@ class BasicInfoFragment : Fragment(), TextWatcher {
     private val registerViewModel by sharedViewModel<RegisterViewModel>()
 
     private lateinit var imm: InputMethodManager
+
+    private lateinit var messageProvider: MessageProvider
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,6 +49,24 @@ class BasicInfoFragment : Fragment(), TextWatcher {
             imm.hideSoftInputFromWindow(binding.nickname.windowToken, 0)
 
             registerViewModel.nicknameValidate(binding.nickname.text.toString())
+        })
+
+        messageProvider = MessageProviderImpl(this@BasicInfoFragment.activity!!)
+
+        registerViewModel.confirmClick.observe(this@BasicInfoFragment, Observer {
+            if(registerViewModel.validateCheck) {
+                if(!registerViewModel.userSex.value.isNullOrBlank()) {
+                    if(!registerViewModel.userYear.value.isNullOrBlank()) {
+                        registerViewModel.register()
+                    } else {
+                        messageProvider.toastMessage(view.context.getString(R.string.please_select_age))
+                    }
+                } else {
+                    messageProvider.toastMessage(view.context.getString(R.string.please_select_sex))
+                }
+            } else {
+                messageProvider.toastMessage(view.context.getString(R.string.validate_null))
+            }
         })
     }
 
