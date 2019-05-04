@@ -113,7 +113,8 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
     }
 
     override fun areaLocationClickEvent(order: Int) {
-        intentProvider.iIntent(LocationDetailActivity::class.java, order)
+        //관광지 자세히 보기 페이지인데 현재는 추가하지 않는걸로....
+        //intentProvider.iIntent(LocationDetailActivity::class.java, order)
     }
 
     override fun kakaoLinkClickEvent(link: String) {
