@@ -1,14 +1,12 @@
 package com.tistory.jeongs0222.kagongapplication.ui.register
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityRegisterBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.YearFragment
 import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.BasicInfoFragment
-import com.tistory.jeongs0222.kagongapplication.ui.register.fragment.PersonalInfoFragment
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +21,6 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private val fragmentProvider = FragmentProviderImpl(supportFragmentManager) as FragmentProvider
 
-    private val personalInfoFragment = PersonalInfoFragment()
     private val basicInfoFragment = BasicInfoFragment()
     private val yearFragment = YearFragment()
 
@@ -47,20 +44,12 @@ class    RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             loginMethod
         )
 
-        registerViewModel.nextClick.observe(this@RegisterActivity, Observer {
-            fragmentProvider.replaceFragment(personalInfoFragment)
-        })
-
-        registerViewModel.previousClick.observe(this@RegisterActivity, Observer {
-            fragmentProvider.replaceFragment(basicInfoFragment)
-        })
-
         registerViewModel.ageClick.observe(this@RegisterActivity, Observer {
             fragmentProvider.replaceFragment(yearFragment)
         })
 
         registerViewModel.userYear.observe(this@RegisterActivity, Observer {
-            fragmentProvider.replaceFragment(personalInfoFragment)
+            fragmentProvider.replaceFragment(basicInfoFragment)
         })
 
         viewDataBinding.rViewModel = registerViewModel

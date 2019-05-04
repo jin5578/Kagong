@@ -17,23 +17,61 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:paddingTop="150dp"
+            android:paddingBottom="150dp"
             android:background="@color/colorTransparent">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:scrollbars="vertical"
-                android:background="@color/colorWhite"
-                app:addYearList="@{rViewModel.yearItem}"
+                android:padding="10dp"
+                android:background="@drawable/search_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:id="@+id/null1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/age"
+                    android:textColor="@color/colorBlack"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/recyclerView"
+                    app:layout_constraintEnd_toEndOf="@id/recyclerView"
+                    app:layout_constraintBottom_toTopOf="@id/null2"/>
+
+            <View
+                    android:id="@+id/null2"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintStart_toStartOf="@id/recyclerView"
+                    app:layout_constraintEnd_toEndOf="@id/recyclerView"
+                    app:layout_constraintTop_toBottomOf="@id/null1"
+                    app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="never"
+                    app:addYearList="@{rViewModel.yearItem}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/null2"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
