@@ -22,6 +22,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.Recomme
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringUserProfile.BringUserProfileResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
@@ -340,5 +341,12 @@ interface HostApi {
     fun bringOperatingTime(
         @Field("order") order: Int
     ): Single<BringOperatingTimeResponse>
+
+    //bring user profile
+    @FormUrlEncoded
+    @POST("bringUserProfile.php")
+    fun bringUserProfile(
+        @Field("userkey") userkey: String
+    ): Single<BringUserProfileResult>
 
 }

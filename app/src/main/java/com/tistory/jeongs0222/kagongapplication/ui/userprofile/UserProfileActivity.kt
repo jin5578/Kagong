@@ -17,6 +17,10 @@ class UserProfileActivity: BaseActivity<ActivityUserProfileBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val userid = intent.getStringExtra("value1")
+
+        viewModel.bringUserProfile(userid)
+
         viewModel.previousClick.observe(this@UserProfileActivity, Observer {
             finish()
         })

@@ -52,6 +52,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/imageView_description"
+                app:uUserProfile="@{uViewModel.userProfileItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/previous"
@@ -62,13 +63,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:text="@{uViewModel.userProfileItem.nickname}"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="@id/image"
                 app:layout_constraintEnd_toEndOf="@id/image"
                 app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="나를찾아떠나는"/>
+
+        <TextView
+                android:id="@+id/sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumotfr"
+                app:uUserSex="@{uViewModel.userProfileItem.sex}"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/nickname"
+                app:layout_constraintTop_toBottomOf="@id/nickname"
+                app:layout_constraintEnd_toStartOf="@id/age"
+                tools:text="여성"/>
+
+        <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumotfr"
+                app:uUserAge="@{uViewModel.userProfileItem.age}"
+                app:layout_constraintStart_toEndOf="@id/sex"
+                app:layout_constraintTop_toTopOf="@id/sex"
+                app:layout_constraintBottom_toBottomOf="@id/sex"
+                app:layout_constraintEnd_toEndOf="@id/nickname"
+                tools:text="25세"/>
 
         <ImageView
                 android:id="@+id/null1"
@@ -80,19 +110,33 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@id/nickname"
                 app:layout_constraintEnd_toStartOf="@id/like_count"
-                app:layout_constraintTop_toBottomOf="@id/nickname"/>
+                app:layout_constraintTop_toBottomOf="@id/sex"/>
 
         <TextView
                 android:id="@+id/like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{uViewModel.userProfileItem.like}"
                 android:textSize="12sp"
+                android:fontFamily="@font/nanumotfr"
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toEndOf="@id/null1"
                 app:layout_constraintEnd_toEndOf="@id/nickname"
                 app:layout_constraintTop_toTopOf="@id/null1"
                 app:layout_constraintBottom_toBottomOf="@id/null1"
                 tools:text="63"/>
+
+        <TextView
+                android:id="@+id/null2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:text="지난 여정"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/null1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
