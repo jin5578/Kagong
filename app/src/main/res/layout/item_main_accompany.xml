@@ -41,6 +41,7 @@
                 android:text="@{accompanyItem.nickname}"
                 android:textSize="11sp"
                 android:fontFamily="@font/nanumotfr"
+                android:onClick="@{() ->eventListener.userProfileClickEvent(accompanyItem.userid)}"
                 app:layout_constraintVertical_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image"

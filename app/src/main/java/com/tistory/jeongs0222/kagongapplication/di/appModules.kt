@@ -23,5 +23,6 @@ val appModules = arrayListOf(
     writtenModules,
     locationDetailModules,
     reviewModules,
-    googleMapModules
+    googleMapModules,
+    userProfileModules
 )

@@ -76,6 +76,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
     val accompanyList: LiveData<MutableList<BringAccompanyResult>>
         get() = _accompanyList
 
+    private val _userProfile = MutableLiveData<String>()
+    val userProfile: LiveData<String>
+        get() = _userProfile
+
 
     //ScheduleFragment
     private val _myScheduleList = MutableLiveData<MutableList<BringScheduleResult>>()
@@ -370,6 +374,10 @@ class MainViewModel(private val mainRepository: MainRepository) : DisposableView
         intentProvider.intentActionView(link)
     }
 
+    override fun userProfileClickEvent(userid: String) {
+        _userProfile.value = userid
+    }
+
 }
 
 interface MainEventListener {
@@ -384,4 +392,6 @@ interface MainEventListener {
     fun areaListItemClickEvent(area: String)
 
     fun kakaoLinkClickEvent(link: String)
+
+    fun userProfileClickEvent(userid: String)
 }
