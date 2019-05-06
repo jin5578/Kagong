@@ -74,6 +74,7 @@
                     android:src="@drawable/dislike"
                     android:contentDescription="@string/imageView_description"
                     android:onClick="@{() -> lDViewModel.likeClickEvent()}"
+                    app:lLikeStatus="@{lDViewModel.likeStatus}"
                     app:layout_constraintTop_toTopOf="@id/previous"
                     app:layout_constraintBottom_toBottomOf="@id/previous"
                     app:layout_constraintEnd_toEndOf="parent"/>

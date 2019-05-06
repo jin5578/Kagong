@@ -57,6 +57,7 @@
         <activity android:name=".ui.locationdetail.LocationDetailActivity"/>
         <activity android:name=".ui.review.ReviewActivity"/>
         <activity android:name=".ui.googleMap.GoogleMapActivity"/>
+        <activity android:name=".ui.userprofile.UserProfileActivity"/>
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="com.tistory.jeongs0222.kagongapplication.provider"

@@ -22,7 +22,9 @@ import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.Recomme
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringUserProfile.BringUserProfileResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringTOPSchedule.BringTOPScheduleResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -340,5 +342,36 @@ interface HostApi {
     fun bringOperatingTime(
         @Field("order") order: Int
     ): Single<BringOperatingTimeResponse>
+
+    //bring user profile
+    @FormUrlEncoded
+    @POST("bringUserProfile.php")
+    fun bringUserProfile(
+        @Field("userkey") userkey: String
+    ): Single<BringUserProfileResult>
+
+    //user like click
+    @FormUrlEncoded
+    @POST("userLikeClick.php")
+    fun userLikeClick(
+        @Field("userKey") userKey: String,
+        @Field("theOtherKey") theOtherKey: String,
+        @Field("status") status: Int
+    ): Single<BasicResult>
+
+    //user like validate
+    @FormUrlEncoded
+    @POST("userLikeValidate.php")
+    fun userLikeValidate(
+        @Field("userKey") userKey: String,
+        @Field("theOtherKey") theOtherKey: String
+    ): Single<BasicResult>
+
+    //bring the other person schedule
+    @FormUrlEncoded
+    @POST("bringTOPSchedule.php")
+    fun bringTOPSchedule(
+        @Field("userKey") userKey: String
+    ): Single<BringTOPScheduleResponse>
 
 }

@@ -62,13 +62,6 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>() {
             intentProvider.iiIntent(ReviewActivity::class.java, order, 0)       // 0은 ReviewMoreFragment
         })
 
-        viewModel.likeStatus.observe(this@LocationDetailActivity, Observer {
-            if(it == 0) {
-                viewDataBinding.like.setImageDrawable(getDrawable(R.drawable.dislike))
-            } else if(it == 1) {
-                viewDataBinding.like.setImageDrawable(getDrawable(R.drawable.like))
-            }
-        })
 
         viewDataBinding.ldViewModel = viewModel
         viewDataBinding.lifecycleOwner = this@LocationDetailActivity

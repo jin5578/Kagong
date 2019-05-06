@@ -3,6 +3,7 @@ package com.tistory.jeongs0222.kagongapplication.model.host.bringAccompany
 
 data class BringAccompanyResult(
     val order: Int,
+    val userid: String,
     val nickname: String,
     val sex: String,
     val age: String,

@@ -12,6 +12,7 @@ import com.tistory.jeongs0222.kagongapplication.ui.main.fragment.*
 import com.tistory.jeongs0222.kagongapplication.ui.notice.NoticeActivity
 import com.tistory.jeongs0222.kagongapplication.ui.profile.ProfileActivity
 import com.tistory.jeongs0222.kagongapplication.ui.setting.SettingActivity
+import com.tistory.jeongs0222.kagongapplication.ui.userprofile.UserProfileActivity
 import com.tistory.jeongs0222.kagongapplication.ui.written.WrittenActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -58,6 +59,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomNavigationView.O
 
         viewModel.accompanyWriteClick.observe(this@MainActivity, Observer {
             intentProvider.intentPutExtra(AccompanyWriteActivity::class.java, viewModel.accompanyArea.value!!)
+        })
+
+        viewModel.userProfile.observe(this@MainActivity, Observer {
+            intentProvider.sIntent(UserProfileActivity::class.java, it)
         })
 
         viewModel.previousClick.observe(this@MainActivity, Observer {
