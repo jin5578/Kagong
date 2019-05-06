@@ -8,7 +8,7 @@ import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityInagreementBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
 import com.tistory.jeongs0222.kagongapplication.ui.register.RegisterActivity
-import com.tistory.jeongs0222.kagongapplication.ui.termsofuse.PrivacyPolicyActivity
+import com.tistory.jeongs0222.kagongapplication.ui.privacypolicy.PrivacyPolicyActivity
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.MessageProvider

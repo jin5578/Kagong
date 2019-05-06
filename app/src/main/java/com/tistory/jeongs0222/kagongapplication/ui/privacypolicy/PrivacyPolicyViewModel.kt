@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.termsofuse
+package com.tistory.jeongs0222.kagongapplication.ui.privacypolicy
 
 import androidx.lifecycle.LiveData
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel

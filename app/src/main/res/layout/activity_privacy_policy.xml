@@ -10,7 +10,7 @@
 
         <variable
                 name="toViewModel"
-                type="com.tistory.jeongs0222.kagongapplication.ui.termsofuse.PrivacyPolicyViewModel"/>
+                type="com.tistory.jeongs0222.kagongapplication.ui.privacypolicy.PrivacyPolicyViewModel"/>
 
     </data>
 

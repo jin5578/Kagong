@@ -51,7 +51,7 @@
         <activity android:name=".ui.notice.NoticeActivity"/>
         <activity android:name=".ui.profile.ProfileActivity"/>
         <activity android:name=".ui.setting.SettingActivity"/>
-        <activity android:name=".ui.termsofuse.PrivacyPolicyActivity"/>
+        <activity android:name=".ui.privacypolicy.PrivacyPolicyActivity"/>
         <activity android:name=".ui.howToUse.HowToUseActivity"/>
         <activity android:name=".ui.written.WrittenActivity"/>
         <activity android:name=".ui.locationdetail.LocationDetailActivity"/>

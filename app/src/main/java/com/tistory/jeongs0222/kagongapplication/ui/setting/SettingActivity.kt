@@ -2,13 +2,12 @@ package com.tistory.jeongs0222.kagongapplication.ui.setting
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivitySettingBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
-import com.tistory.jeongs0222.kagongapplication.ui.termsofuse.PrivacyPolicyActivity
+import com.tistory.jeongs0222.kagongapplication.ui.privacypolicy.PrivacyPolicyActivity
 import com.tistory.jeongs0222.kagongapplication.utils.*
 import kotlinx.android.synthetic.main.custom_alertdialog_layout.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

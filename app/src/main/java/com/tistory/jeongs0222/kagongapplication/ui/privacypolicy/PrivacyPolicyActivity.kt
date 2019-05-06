@@ -1,4 +1,4 @@
-package com.tistory.jeongs0222.kagongapplication.ui.termsofuse
+package com.tistory.jeongs0222.kagongapplication.ui.privacypolicy
 
 import android.os.Bundle
 import android.webkit.WebViewClient
@@ -24,7 +24,7 @@ class PrivacyPolicyActivity: BaseActivity<ActivityPrivacyPolicyBinding>() {
 
         viewDataBinding.webview.apply {
             webViewClient = WebViewClient()
-            loadUrl("http://jin5578.cafe24.com/KAGONG/Serendipity_termsofUse.html")
+            loadUrl("https://jin5578.cafe24.com/KAGONG/Serendipity_termsofUse.html")
         }
         viewDataBinding.webview.webViewClient = WebViewClient()
 
