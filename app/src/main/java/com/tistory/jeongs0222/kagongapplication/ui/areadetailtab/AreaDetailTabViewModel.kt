@@ -49,6 +49,10 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
     val accompanyList: LiveData<MutableList<BringAccompanyResult>>
         get() = _accompanyList
 
+    private val _userProfile = MutableLiveData<String>()
+    val userProfile: LiveData<String>
+        get() = _userProfile
+
 
     private lateinit var area: String
     private lateinit var intentProvider: IntentProvider
@@ -121,6 +125,10 @@ class AreaDetailTabViewModel(private val areaDetailTabRepository: AreaDetailTabR
         intentProvider.intentActionView(link)
     }
 
+    override fun userProfileClickEvent(userid: String) {
+        _userProfile.value = userid
+    }
+
 }
 
 interface AreaDetailTabEventListener {
@@ -128,5 +136,7 @@ interface AreaDetailTabEventListener {
     fun areaLocationClickEvent(order: Int)
 
     fun kakaoLinkClickEvent(link: String)
+
+    fun userProfileClickEvent(userid: String)
 
 }

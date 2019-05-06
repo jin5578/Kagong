@@ -24,6 +24,7 @@ import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.Writ
 import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringUserProfile.BringUserProfileResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResponse
+import com.tistory.jeongs0222.kagongapplication.model.host.bringTOPSchedule.BringTOPScheduleResponse
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -365,5 +366,12 @@ interface HostApi {
         @Field("userKey") userKey: String,
         @Field("theOtherKey") theOtherKey: String
     ): Single<BasicResult>
+
+    //bring the other person schedule
+    @FormUrlEncoded
+    @POST("bringTOPSchedule.php")
+    fun bringTOPSchedule(
+        @Field("userKey") userKey: String
+    ): Single<BringTOPScheduleResponse>
 
 }

@@ -29,6 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/imageView_description"
+                android:onClick="@{() -> eventListener.userProfileClickEvent(accompanyItem.userid)}"
                 app:accompanyProfile="@{accompanyItem.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -36,11 +37,13 @@
         <TextView
                 android:id="@+id/nickname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="@{accompanyItem.nickname}"
                 android:textSize="11sp"
                 android:fontFamily="@font/nanumotfr"
+                android:onClick="@{() -> eventListener.userProfileClickEvent(accompanyItem.userid)}"
                 app:layout_constraintVertical_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image"
@@ -50,7 +53,8 @@
         <TextView
                 android:id="@+id/writtenDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
                 android:textSize="10sp"
                 android:fontFamily="@font/nanumotfl"
                 app:writtenDateText="@{accompanyItem.written_time}"
