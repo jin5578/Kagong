@@ -1,9 +1,7 @@
 package com.tistory.jeongs0222.kagongapplication.ui.userprofile
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tistory.jeongs0222.kagongapplication.model.host.bringTOPSchedule.BringTOPScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.bringUserProfile.BringUserProfileResult
 import com.tistory.jeongs0222.kagongapplication.model.repository.UserProfileRepository
 import com.tistory.jeongs0222.kagongapplication.ui.DisposableViewModel
@@ -23,17 +21,9 @@ class UserProfileViewModel(private val userProfileRepository: UserProfileReposit
     val userProfileItem: LiveData<BringUserProfileResult>
         get() = _userProfileItem
 
-    private val _userSchedule = MutableLiveData<MutableList<BringTOPScheduleResult>>()
-    val userSchedule: LiveData<MutableList<BringTOPScheduleResult>>
-        get() = _userSchedule
-
     private val _likeStatus = MutableLiveData<Int>()
     val likeStatus: LiveData<Int>
         get() = _likeStatus
-
-    private val _likeCount = MutableLiveData<String>()
-    val likeCount: LiveData<String>
-        get() = _likeCount
 
     private lateinit var userKey: String
     private lateinit var theOtherPersonId: String
@@ -48,7 +38,6 @@ class UserProfileViewModel(private val userProfileRepository: UserProfileReposit
         this.theOtherPersonId = tOP
 
         bringUserProfile()
-        bringTOPSchedule()
     }
 
     fun previousClickEvent() {
@@ -66,7 +55,6 @@ class UserProfileViewModel(private val userProfileRepository: UserProfileReposit
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 _userProfileItem.value = it
-                _likeCount.value = it.likecount
             }
             .doOnError {
                 it.printStackTrace()
@@ -79,27 +67,11 @@ class UserProfileViewModel(private val userProfileRepository: UserProfileReposit
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                if (it.value == 2) {
+                if (it.value == 2)
                     _likeStatus.value = 0
-                    _likeCount.value = (_likeCount.value!!.toInt() - 1).toString()
-                } else if (it.value == 0) {
+                else if (it.value == 0)
                     _likeStatus.value = 1
-                    _likeCount.value = (_likeCount.value!!.toInt() + 1).toString()
-                }
 
-            }
-            .doOnError {
-                it.printStackTrace()
-            }
-            .subscribe()
-    }
-
-    private fun bringTOPSchedule() {
-        userProfileRepository.bringTOPSchedule(theOtherPersonId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess {
-                _userSchedule.value = it.bringTOPSchedule
             }
             .doOnError {
                 it.printStackTrace()

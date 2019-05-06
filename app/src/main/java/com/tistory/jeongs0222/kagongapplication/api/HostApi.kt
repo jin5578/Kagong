@@ -22,7 +22,6 @@ import com.tistory.jeongs0222.kagongapplication.model.host.recommendArea.Recomme
 import com.tistory.jeongs0222.kagongapplication.model.host.validateSchedule.ValidateScheduleResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenAccompany.WrittenAccompanyResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringOperatingTime.BringOperatingTimeResponse
-import com.tistory.jeongs0222.kagongapplication.model.host.bringTOPSchedule.BringTOPScheduleResponse
 import com.tistory.jeongs0222.kagongapplication.model.host.bringUserProfile.BringUserProfileResult
 import com.tistory.jeongs0222.kagongapplication.model.host.writtenReview.WrittenReviewResponse
 import io.reactivex.Single
@@ -366,12 +365,5 @@ interface HostApi {
         @Field("userKey") userKey: String,
         @Field("theOtherKey") theOtherKey: String
     ): Single<BasicResult>
-
-    //bring the other person schedule
-    @FormUrlEncoded
-    @POST("bringTOPSchedule.php")
-    fun bringTOPSchedule(
-        @Field("userKey") userKey: String
-    ): Single<BringTOPScheduleResponse>
 
 }

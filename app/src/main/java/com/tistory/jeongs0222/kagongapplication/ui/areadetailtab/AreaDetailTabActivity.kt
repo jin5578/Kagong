@@ -9,7 +9,6 @@ import com.tistory.jeongs0222.kagongapplication.ui.accompanywrite.AccompanyWrite
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.AccompanyFragment
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.GoodPlaceFragment
 import com.tistory.jeongs0222.kagongapplication.ui.areadetailtab.fragment.TourismFragment
-import com.tistory.jeongs0222.kagongapplication.ui.userprofile.UserProfileActivity
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProvider
 import com.tistory.jeongs0222.kagongapplication.utils.FragmentProviderImpl
 import com.tistory.jeongs0222.kagongapplication.utils.IntentProvider
@@ -52,10 +51,6 @@ class AreaDetailTabActivity : BaseActivity<ActivityAreaDetailTabBinding>() {
 
         areaDetailTabViewModel.writeClick.observe(this@AreaDetailTabActivity, Observer {
             intentProvider.intentPutExtra(AccompanyWriteActivity::class.java, area)
-        })
-
-        areaDetailTabViewModel.userProfile.observe(this@AreaDetailTabActivity, Observer {
-            intentProvider.sIntent(UserProfileActivity::class.java, it)
         })
 
         viewDataBinding.tViewModel = areaDetailTabViewModel
