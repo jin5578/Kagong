@@ -349,4 +349,21 @@ interface HostApi {
         @Field("userkey") userkey: String
     ): Single<BringUserProfileResult>
 
+    //user like click
+    @FormUrlEncoded
+    @POST("userLikeClick.php")
+    fun userLikeClick(
+        @Field("userKey") userKey: String,
+        @Field("theOtherKey") theOtherKey: String,
+        @Field("status") status: Int
+    ): Single<BasicResult>
+
+    //user like validate
+    @FormUrlEncoded
+    @POST("userLikeValidate.php")
+    fun userLikeValidate(
+        @Field("userKey") userKey: String,
+        @Field("theOtherKey") theOtherKey: String
+    ): Single<BasicResult>
+
 }

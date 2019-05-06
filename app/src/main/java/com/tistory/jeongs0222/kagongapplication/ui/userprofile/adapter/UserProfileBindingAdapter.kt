@@ -53,3 +53,13 @@ fun uUserAge(textView: TextView, age: String?) {
         textView.text = "# " + (present.toInt() - age.toInt() + 1).toString() + "세"
     }
 }
+
+@BindingAdapter("uLikeStatus")
+fun uLikeStatus(imageView: ImageView, status: Int?) {
+    if(status != null) {
+        when(status) {
+            0 -> imageView.setImageResource(R.drawable.dislike)
+            else -> imageView.setImageResource(R.drawable.like)
+        }
+    }
+}

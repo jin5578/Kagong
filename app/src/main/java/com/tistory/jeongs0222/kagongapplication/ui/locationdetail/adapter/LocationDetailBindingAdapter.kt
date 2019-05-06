@@ -24,3 +24,13 @@ fun locationDetailImage(imageView: ImageView, uri: String?) {
             .into(imageView)
     }
 }
+
+@BindingAdapter("lLikeStatus")
+fun lLikeStatus(imageView: ImageView, status: Int?) {
+    if(status != null) {
+        when(status) {
+            0 -> imageView.setImageResource(R.drawable.dislike)
+            else -> imageView.setImageResource(R.drawable.like)
+        }
+    }
+}

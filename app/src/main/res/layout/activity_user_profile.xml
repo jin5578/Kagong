@@ -29,6 +29,7 @@
                 android:paddingEnd="16dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:contentDescription="@string/imageView_description"
+                android:onClick="@{() -> uViewModel.previousClickEvent()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -42,6 +43,8 @@
                 android:paddingEnd="16dp"
                 android:src="@drawable/dislike"
                 android:contentDescription="@string/imageView_description"
+                android:onClick="@{() -> uViewModel.userLikeClickEvent()}"
+                app:uLikeStatus="@{uViewModel.likeStatus}"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -116,7 +119,7 @@
                 android:id="@+id/like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{uViewModel.userProfileItem.like}"
+                android:text="@{uViewModel.userProfileItem.likecount}"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfr"
                 android:layout_marginStart="10dp"

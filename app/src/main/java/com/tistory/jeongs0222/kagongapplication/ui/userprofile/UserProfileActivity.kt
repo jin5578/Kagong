@@ -5,6 +5,8 @@ import androidx.lifecycle.Observer
 import com.tistory.jeongs0222.kagongapplication.R
 import com.tistory.jeongs0222.kagongapplication.databinding.ActivityUserProfileBinding
 import com.tistory.jeongs0222.kagongapplication.ui.BaseActivity
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProvider
+import com.tistory.jeongs0222.kagongapplication.utils.DBHelperProviderImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -17,9 +19,9 @@ class UserProfileActivity: BaseActivity<ActivityUserProfileBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val userid = intent.getStringExtra("value1")
+        val theOtherPersonId = intent.getStringExtra("value1")
 
-        viewModel.bringUserProfile(userid)
+        viewModel.bind(DBHelperProviderImpl(this@UserProfileActivity), theOtherPersonId)
 
         viewModel.previousClick.observe(this@UserProfileActivity, Observer {
             finish()
@@ -31,5 +33,11 @@ class UserProfileActivity: BaseActivity<ActivityUserProfileBinding>() {
 
     override fun onBackPressed() {
         finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.userLikeValidate()
     }
 }
