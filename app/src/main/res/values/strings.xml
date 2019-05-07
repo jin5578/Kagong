@@ -34,6 +34,7 @@
     <string name="register">회원가입</string>
     <string name="basic_information">기본정보</string>
     <string name="nickname">NICKNAME</string>
+    <string name="nicknameK">닉네임</string>
     <string name="validate">중복체크</string>
     <string name="validate_null">중복체크를 먼저 해주세요.</string>
     <string name="personal_information">개인정보</string>

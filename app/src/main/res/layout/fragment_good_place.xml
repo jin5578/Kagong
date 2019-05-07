@@ -41,7 +41,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="@string/search_goodPlace_hint"
                 android:textColor="@color/colorBlack"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/nanumotfl"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"

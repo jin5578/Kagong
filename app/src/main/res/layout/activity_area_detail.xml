@@ -57,7 +57,7 @@
                 android:paddingEnd="15dp"
                 android:text="@{dViewModel.validateSchedule}"
                 android:textColor="@color/colorWhite"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/nanumotfl"
                 android:background="@drawable/toast_background"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"

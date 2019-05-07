@@ -40,7 +40,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/colorBlack"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/nanumotfl"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"

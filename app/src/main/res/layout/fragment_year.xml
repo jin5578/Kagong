@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/age"
                     android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
                     android:paddingTop="10dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
