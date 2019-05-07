@@ -30,7 +30,7 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@{dayItem.calendar}"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"

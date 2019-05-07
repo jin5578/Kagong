@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{noticeItem.title}"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textColor="@color/colorBlack"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintTop_toTopOf="parent"

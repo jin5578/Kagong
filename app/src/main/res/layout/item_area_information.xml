@@ -40,7 +40,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@{informationItem.content}"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:lineSpacingExtra="14dp"
                 android:fontFamily="@font/nanumotfr"
                 app:layout_constraintStart_toStartOf="parent"

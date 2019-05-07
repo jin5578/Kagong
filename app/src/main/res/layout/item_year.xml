@@ -31,7 +31,7 @@
                 android:padding="20dp"
                 android:text="@{yearItem.year}"
                 android:textColor="@color/colorBlack"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/nanumotfr"
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
