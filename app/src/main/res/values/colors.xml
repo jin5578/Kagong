@@ -15,7 +15,8 @@
     <color name="colorGray6">#E4E4E4</color>
     <color name="colorPink">#F7A7A6</color>
     <color name="colorTransparent">#80000000</color>
-    <color name="colorBlue1">#7CB5BE</color>
+    <color name="colorBlue1">#7CB5BE</color>7dc2bb
     <color name="colorBlue2">#97144247</color>
     <color name="colorBlue3">#EBF7FF</color>
+    <color name="colorBlue4">#7dc2bb</color>
 </resources>
