@@ -64,7 +64,7 @@
 
 > 관광지페이지
 
-<img width="500" src="https://user-images.githubusercontent.com/24897699/56186342-13fa3a80-605a-11e9-8692-e74b40a23b23.jpeg">
+<img width="500" src="https://user-images.githubusercontent.com/24897699/57379578-23e0e680-71e2-11e9-9c23-475de4e08c13.jpg">
 
 > 동행페이지
 
