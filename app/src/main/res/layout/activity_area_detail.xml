@@ -60,6 +60,7 @@
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumotfl"
                 android:background="@drawable/toast_background"
+                android:onClick="@{() -> dViewModel.addScheduleClickEvent()}"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

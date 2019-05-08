@@ -21,6 +21,10 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
     val previousClick: LiveData<Any>
         get() = _previousClick
 
+    private val _addScheduleClick = SingleLiveEvent<Any>()
+    val addScheduleClick: LiveData<Any>
+        get() = _addScheduleClick
+
     private val _validateSchedue = MutableLiveData<String>()
     val validateSchedule: LiveData<String>
         get() = _validateSchedue
@@ -71,6 +75,10 @@ class AreaDetailViewModel(private val areaDetailRepository: AreaDetailRepository
 
     fun previousClickEvent() {
         _previousClick.call()
+    }
+
+    fun addScheduleClickEvent() {
+        _addScheduleClick.call()
     }
 
     fun bringAreaImage() {
