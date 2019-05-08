@@ -21,7 +21,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     override val layoutResourceId: Int = R.layout.activity_area_detail
 
-    private val areaDetailViewModel by viewModel<AreaDetailViewModel>()
+    private val viewModel by viewModel<AreaDetailViewModel>()
 
     private val intentProvider = IntentProviderImpl(this@AreaDetailActivity) as IntentProvider
     private val dbHelperProvider = DBHelperProviderImpl(this@AreaDetailActivity) as DBHelperProvider
@@ -51,15 +51,19 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
         viewDataBinding.tabLayout.addOnTabSelectedListener(this@AreaDetailActivity)
 
-        areaDetailViewModel.bind(area, dbHelperProvider)
+        viewModel.bind(area, dbHelperProvider)
 
-        areaDetailViewModel.bringAreaInformation()
+        viewModel.bringAreaInformation()
 
-        areaDetailViewModel.previousClick.observe(this@AreaDetailActivity, Observer {
+        viewModel.previousClick.observe(this@AreaDetailActivity, Observer {
             finish()
         })
 
-        areaDetailViewModel.likeStatus.observe(this@AreaDetailActivity, Observer {
+        viewModel.addScheduleClick.observe(this@AreaDetailActivity, Observer {
+            intentProvider.intentPutExtra(AddScheduleActivity::class.java, area)    //일정
+        })
+
+        viewModel.likeStatus.observe(this@AreaDetailActivity, Observer {
             if(it == 0) {
                 viewDataBinding.tabLayout.getTabAt(0)!!.setIcon(R.drawable.dislike)
             } else if(it == 1) {
@@ -67,7 +71,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
             }
         })
 
-        viewDataBinding.dViewModel = areaDetailViewModel
+        viewDataBinding.dViewModel = viewModel
         viewDataBinding.lifecycleOwner = this@AreaDetailActivity
     }
 
@@ -86,9 +90,9 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
     override fun onResume() {
         super.onResume()
 
-        areaDetailViewModel.validateSchedule()
+        viewModel.validateSchedule()
 
-        areaDetailViewModel.areaLikeValidate()
+        viewModel.areaLikeValidate()
     }
 
     override fun onBackPressed() {
@@ -97,7 +101,7 @@ class AreaDetailActivity : BaseActivity<ActivityAreaDetailBinding>(), TabLayout.
 
     private fun tabSelected(position: Int) {
         when(position) {
-            0 -> areaDetailViewModel.areaLikeClick(areaDetailViewModel.likeStatus.value!!)
+            0 -> viewModel.areaLikeClick(viewModel.likeStatus.value!!)
 
             /*1 -> {
                 if(weatherVisible) {
