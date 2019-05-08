@@ -19,7 +19,7 @@
 
     * Kotlin
 
-* Code Architecture
+* Architecture
 
     * MVVM Pattern
 
@@ -28,6 +28,7 @@
     * Lifecycle
     * Koin
     * Google Firebase
+    * Kakao SDK
     * Glide
     * RecyclerView
     * Retrofit2
