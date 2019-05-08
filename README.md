@@ -72,7 +72,7 @@
 
 > 동행글작성페이지
 
-<img width="500" src="https://user-images.githubusercontent.com/24897699/56186345-1492d100-605a-11e9-97aa-76748d7eff42.jpeg">
+<img width="500" src="https://user-images.githubusercontent.com/24897699/57379722-6dc9cc80-71e2-11e9-824d-b8046428ae93.jpg">
 
 > 일정관리페이지
 
