@@ -24,7 +24,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
 
     override val layoutResourceId: Int = R.layout.activity_accompany_write
 
-    private val accompanyWriteViewModel by viewModel<AccompanyWriteViewModel>()
+    private val viewModel by viewModel<AccompanyWriteViewModel>()
 
     private lateinit var area: String
 
@@ -53,44 +53,32 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
         viewDataBinding.include.editLink.setOnEditorActionListener(this@AccompanyWriteActivity)
 
         viewDataBinding.include.calendar.setOnDateChangeListener { p0, p1, p2, p3 ->
-            if ((p2 + 1) < 10) {
-                if (p3 < 10) {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + "0" + p3.toString())
-                } else {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + p3.toString())
-                }
-            } else {
-                if (p3 < 10) {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2 + 1).toString() + "-" + "0" + p3.toString())
-                } else {
-                    accompanyWriteViewModel.calendarSelected(p1.toString() + "-" + (p2 + 1).toString() + "-" + p3.toString())
-                }
-            }
+            viewModel.calendarSelected(p1, p2, p3)
         }
 
         viewDataBinding.include.boardRecycler.apply {
             layoutManager = GridLayoutManager(this@AccompanyWriteActivity, 5)
-            adapter = CategoryAdapter(this@AccompanyWriteActivity, accompanyWriteViewModel)
+            adapter = CategoryAdapter(this@AccompanyWriteActivity, viewModel)
         }
 
-        accompanyWriteViewModel.bind(area, intentProvider, messageProvider, dbHelperProvider)
+        viewModel.bind(area, intentProvider, messageProvider, dbHelperProvider)
 
-        accompanyWriteViewModel.previousClick.observe(this@AccompanyWriteActivity, Observer {
+        viewModel.previousClick.observe(this@AccompanyWriteActivity, Observer {
             finish()
         })
 
-        accompanyWriteViewModel.howToUseClick.observe(this@AccompanyWriteActivity, Observer {
+        viewModel.howToUseClick.observe(this@AccompanyWriteActivity, Observer {
             intentProvider.intent(HowToUseActivity::class.java)
         })
 
-        accompanyWriteViewModel.confirmClick.observe(this@AccompanyWriteActivity, Observer {
+        viewModel.confirmClick.observe(this@AccompanyWriteActivity, Observer {
             if (viewDataBinding.content.text.isNotEmpty()
-                && !accompanyWriteViewModel.selectedCategory.value.isNullOrBlank()
-                && !accompanyWriteViewModel.selectedDate.value.isNullOrBlank()
-                && !accompanyWriteViewModel.selectedLink.value.isNullOrBlank()
-                && accompanyWriteViewModel.selectedLink.value!!.contains("https://open.kakao.com/")
+                && !viewModel.selectedCategory.value.isNullOrBlank()
+                && !viewModel.selectedDate.value.isNullOrBlank()
+                && !viewModel.selectedLink.value.isNullOrBlank()
+                && viewModel.selectedLink.value!!.contains("https://open.kakao.com/")
             ) {
-                accompanyWriteViewModel.accompanyWrite(
+                viewModel.accompanyWrite(
                     viewDataBinding.content.text.toString()
                 )
             } else {
@@ -98,14 +86,14 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
             }
         })
 
-        viewDataBinding.awViewModel = accompanyWriteViewModel
+        viewDataBinding.awViewModel = viewModel
         viewDataBinding.lifecycleOwner = this@AccompanyWriteActivity
     }
 
     override fun onEditorAction(tv: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
         if (tv!!.id == viewDataBinding.include.editLink.id && actionId == EditorInfo.IME_ACTION_DONE) {
             if(viewDataBinding.include.editLink.text.contains("https://open.kakao.com/")) {
-                accompanyWriteViewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
+                viewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
             } else {
                 messageProvider.toastMessage("유효한 오픈채팅 URL이 아닙니다.")
             }

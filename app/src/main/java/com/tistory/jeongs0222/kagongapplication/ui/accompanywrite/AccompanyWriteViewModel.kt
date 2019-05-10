@@ -131,7 +131,12 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         return format1.format(System.currentTimeMillis())
     }
 
-    fun bind(area: String, intentProvider: IntentProvider, messageProvider: MessageProvider, dbHelperProvider: DBHelperProvider) {
+    fun bind(
+        area: String,
+        intentProvider: IntentProvider,
+        messageProvider: MessageProvider,
+        dbHelperProvider: DBHelperProvider
+    ) {
         _area.value = "#$area"
         this.intentProvider = intentProvider
         this.messageProvider = messageProvider
@@ -173,7 +178,22 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
             .subscribe()
     }
 
-    fun calendarSelected(date: String) {
+    fun calendarSelected(p1: Int, p2: Int, p3: Int) {
+        val date: String =
+            if ((p2 + 1) < 10) {
+                if (p3 < 10) {
+                    p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + "0" + p3.toString()
+                } else {
+                    p1.toString() + "-" + "0" + (p2 + 1).toString() + "-" + p3.toString()
+                }
+            } else {
+                if (p3 < 10) {
+                    p1.toString() + "-" + (p2 + 1).toString() + "-" + "0" + p3.toString()
+                } else {
+                    p1.toString() + "-" + (p2 + 1).toString() + "-" + p3.toString()
+                }
+            }
+
         _selectedDate.value = date
 
         _calendarVisibility.value = 1
