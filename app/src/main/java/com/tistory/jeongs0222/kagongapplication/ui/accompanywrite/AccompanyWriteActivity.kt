@@ -82,7 +82,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
                     viewDataBinding.content.text.toString()
                 )
             } else {
-                messageProvider.toastMessage("빈 칸 없이 입력하세요.")
+                messageProvider.toastMessage(resources.getString(R.string.without_spaces))
             }
         })
 
@@ -95,7 +95,7 @@ class AccompanyWriteActivity : BaseActivity<ActivityAccompanyWriteBinding>(), Te
             if(viewDataBinding.include.editLink.text.contains("https://open.kakao.com/")) {
                 viewModel.linkSelected(viewDataBinding.include.editLink.text.toString())
             } else {
-                messageProvider.toastMessage("유효한 오픈채팅 URL이 아닙니다.")
+                messageProvider.toastMessage(resources.getString(R.string.not_validate_address))
             }
         }
 
