@@ -210,4 +210,7 @@
 
     <string name="stamp">STAMP</string>
 
+    <string name="not_validate_address">유효한 오픈채팅 URL이 아닙니다.</string>
+    <string name="without_spaces">빈 칸 없이 입력하세요.</string>
+
 </resources>
