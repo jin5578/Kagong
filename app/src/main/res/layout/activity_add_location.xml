@@ -54,6 +54,7 @@
                 android:onClick="@{() -> aLViewModel.confirmClickEvent()}"
                 app:confirmVisibility="@{aLViewModel.confirmVisible}"
                 android:contentDescription="@string/imageView_description"
+                app:writeClickable="@{aLViewModel.writeClickable}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previous"
                 app:layout_constraintBottom_toBottomOf="@id/previous"/>
@@ -86,6 +87,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/null2"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progressbar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:pVisibility="@{aLViewModel.proVisibility}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:SpinKit_Color="@color/colorBlue2"
+                style="@style/SpinKitView.Large.MultiplePulse"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

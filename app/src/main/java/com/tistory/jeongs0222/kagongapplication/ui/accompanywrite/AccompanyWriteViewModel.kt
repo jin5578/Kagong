@@ -86,6 +86,7 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         _calendarVisibility.value = 1
         _linkVisibility.value = 1
         _writeClickable.value = true
+        _proVisibility.value = false
 
         categoryPreprocessor()
     }

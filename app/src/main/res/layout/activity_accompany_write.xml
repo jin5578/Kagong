@@ -163,7 +163,6 @@
                     android:id="@+id/progressbar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:visibility="gone"
                     app:progressbarVisibility="@{awViewModel.proVisibility}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

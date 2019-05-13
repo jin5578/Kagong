@@ -57,6 +57,14 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     val searchFrameVisible: LiveData<Boolean>
         get() = _searchFrameVisible
 
+    private val _writeClickable = MutableLiveData<Boolean>()
+    val writeClickable: LiveData<Boolean>
+        get() = _writeClickable
+
+    private val _proVisibility = MutableLiveData<Boolean>()
+    val proVisibility: LiveData<Boolean>
+        get() = _proVisibility
+
 
     private val TAG = "AddLocationViewModel"
 
@@ -76,6 +84,8 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
         _title.value = "이동 경로 표시"
         _confirmVisible.value = true
         _searchFrameVisible.value = false
+        _writeClickable.value = true
+        _proVisibility.value = false
     }
 
     fun bind(area: String, sort: String, messageProvider: MessageProvider, intentProvider: IntentProvider, dbHelperProvider: DBHelperProvider) {
@@ -100,6 +110,11 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
     }
 
     fun registerLocation(location: String) {
+        //중복 작성 막음
+        _writeClickable.value = false
+
+        _proVisibility.value = true
+
         addLocationRepository
             .registerLocation(userKey,
                 area,
@@ -110,9 +125,16 @@ class AddLocationViewModel(private val addLocationRepository: AddLocationReposit
             .doOnSuccess {
                 if(it.value == 0) {
                     messageProvider.toastMessage(it.message)
+
+                    _proVisibility.value = false
+
                     intentProvider.intentFinish()
                 } else {
                     messageProvider.toastMessage(it.message)
+
+                    _writeClickable.value = true
+
+                    _proVisibility.value = false
                 }
             }
             .doOnError {
