@@ -4,12 +4,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.github.ybq.android.spinkit.SpinKitView
 
 
 @BindingAdapter("femaleCheckVisibility")
 fun femaleCheckVisibility(imageView: ImageView, userSex: String?) {
-    if(userSex != null) {
-        when(userSex) {
+    if (userSex != null) {
+        when (userSex) {
             "female" -> imageView.visibility = View.VISIBLE
 
             else -> imageView.visibility = View.GONE
@@ -19,8 +20,8 @@ fun femaleCheckVisibility(imageView: ImageView, userSex: String?) {
 
 @BindingAdapter("maleCheckVisibility")
 fun maleCheckVisibility(imageView: ImageView, userSex: String?) {
-    if(userSex != null) {
-        when(userSex) {
+    if (userSex != null) {
+        when (userSex) {
             "male" -> imageView.visibility = View.VISIBLE
 
             else -> imageView.visibility = View.GONE
@@ -31,8 +32,8 @@ fun maleCheckVisibility(imageView: ImageView, userSex: String?) {
 
 @BindingAdapter("registerClickable")
 fun registerClickable(textView: TextView, bool: Boolean?) {
-    if(bool != null) {
-        when(bool) {
+    if (bool != null) {
+        when (bool) {
             true ->
                 textView.isClickable = true
 
@@ -41,3 +42,18 @@ fun registerClickable(textView: TextView, bool: Boolean?) {
         }
     }
 }
+
+@BindingAdapter("rProVisibility")
+fun rProVisibility(spinKitView: SpinKitView, bool: Boolean?) {
+    if (bool != null) {
+        when (bool) {
+            true ->
+                spinKitView.visibility = View.VISIBLE
+
+            else ->
+                spinKitView.visibility = View.GONE
+        }
+    }
+}
+
+

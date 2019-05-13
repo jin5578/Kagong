@@ -50,6 +50,9 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     val registerClickable: LiveData<Boolean>
         get() = _registerClickable
 
+    private val _proVisibility = MutableLiveData<Boolean>()
+    val proVisibility: LiveData<Boolean>
+        get() = _proVisibility
 
     private val TAG = "RegisterViewModel"
 
@@ -66,6 +69,8 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
     init {
         _registerClickable.value = true
+        _proVisibility.value = false
+
         getYearList()
     }
 
@@ -134,6 +139,8 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
     fun register() {
         _registerClickable.value = false
 
+        _proVisibility.value = true
+
         registerRepository
             .register(userKey, token, _userNickname.value!!, _userSex.value!!, _userYear.value!!, loginMethod)
             .subscribeOn(Schedulers.io())
@@ -143,6 +150,8 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
                     it.value == 0 -> {
                         messageProvider.toastMessage(it.message)
 
+                        _proVisibility.value = false
+
                         dbHelperProvider.getDBHelper().insertUser(userKey)
 
                         intentProvider.finishIntent(MainActivity::class.java)
@@ -150,6 +159,8 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Di
 
                     it.value == 1 -> {
                         messageProvider.toastMessage(it.message)
+
+                        _proVisibility.value = false
 
                         _registerClickable.value = true
                     }
