@@ -71,6 +71,10 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
     val writeClickable: LiveData<Boolean>
         get() = _writeClickable
 
+    private val _proVisibility = MutableLiveData<Boolean>()
+    val proVisibility: LiveData<Boolean>
+        get() = _proVisibility
+
 
     private lateinit var intentProvider: IntentProvider
     private lateinit var messageProvider: MessageProvider
@@ -150,6 +154,8 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
         //중복 작성 방지 락
         _writeClickable.value = false
 
+        _proVisibility.value = true
+
         accompanyWriteRepository
             .accompanyWrite(
                 _area.value!!.substring(1),
@@ -164,8 +170,12 @@ class AccompanyWriteViewModel(private val accompanyWriteRepository: AccompanyWri
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 if (it.value == 0) {
+                    _proVisibility.value = false
+
                     intentProvider.intentFinish()
                 } else {
+                    _proVisibility.value = false
+
                     messageProvider.toastMessage(it.message)
 
                     //중복 작성 방지 락 풀어주기
